@@ -1,0 +1,34 @@
+image: "python:3.7"
+
+before_script:
+    - python --version
+    - python -m pip install -r requirements.txt
+
+stages:
+    - Static Analysis
+    - Test
+
+mypy:
+    stage: Static Analysis
+    script:
+    - python -m pip install mypy
+    - python -m mypy shamo
+
+flake8:
+    stage: Static Analysis
+    script:
+    - python -m pip install flake8
+    - python -m flake8 --max-line-length=80 shamo
+
+pylint:
+    stage: Static Analysis
+    allow_failure: true
+    script:
+    - python -m pip install pylint --upgrade
+    - pylint shamo
+
+pytest:
+    stage: Test
+    script:
+    - python -m pip install pytest
+    - pytest .
