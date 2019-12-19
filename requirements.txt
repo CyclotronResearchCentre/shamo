@@ -1,1 +1,5 @@
 .
+numpy>=1.16.2
+pygalmesh==0.4.0
+meshio>=3.0.7
+nibabel>=2.5.0
