@@ -3,6 +3,7 @@ image: "margrignard/shamo:latest-deps"
 before_script:
     - python --version
     - python -m pip install -r requirements.txt
+    - python -m pip install .
 
 stages:
     - Static Analysis

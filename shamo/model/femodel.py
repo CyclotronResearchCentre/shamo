@@ -8,6 +8,7 @@ import shutil
 
 from shamo.core import JSONObject
 from .tissue import Tissue
+from .sensor import Sensor
 
 
 class FEModel(JSONObject):
@@ -45,13 +46,16 @@ class FEModel(JSONObject):
 
     from ._geometry import (fem_from_labels, fem_from_nii, fem_from_masks,
                             fem_from_niis, get_tissues_from_mesh)
+    from ._sensors import (add_sensor_on_tissue, add_sensors_on_tissue)
 
     def __init__(self, name, parent_path, parents=True, exist_ok=True,
-                 mesh_path=None, tissues=None):
+                 mesh_path=None, tissues=None, sensors=None):
         super().__init__(name, parent_path)
         # Set `mesh_path`
         if mesh_path is not None:
-            if str(Path(mesh_path).parents[0]) != self.path:
+            if (Path(self.path) / mesh_path).exists():
+                self["mesh_path"] = mesh_path
+            elif str(Path(mesh_path).parents[0]) != self.path:
                 # Copy file inside `FEModel` directory and rename it
                 new_mesh_path = Path(self.path) / "{}.msh".format(self.name)
                 shutil.copy(mesh_path, new_mesh_path)
@@ -61,6 +65,9 @@ class FEModel(JSONObject):
         if tissues is not None:
             self["tissues"] = {name: Tissue(**tissue)
                                for name, tissue in tissues.items()}
+        if sensors is not None:
+            self["sensors"] = {name: Sensor(**sensor)
+                               for name, sensor in sensors.items()}
 
     @property
     def mesh_path(self):
@@ -88,3 +95,15 @@ class FEModel(JSONObject):
             return `None`.
         """
         return self.get("tissues", None)
+
+    @property
+    def sensors(self):
+        """Return the sensors of the model.
+
+        Returns
+        -------
+        dict[str: Sensor]
+            The sensors of the model. If the model does not have any `Sensor`,
+            return `None`.
+        """
+        return self.get("sensors", None)

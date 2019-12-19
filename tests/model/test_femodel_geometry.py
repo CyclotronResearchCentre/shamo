@@ -14,11 +14,10 @@ def test_fem_from_labels():
         labels[2:-2, 2:-2, 2:-2] = 1
         labels[4:-4, 4:-4, 4:-4] = 2
         affine = np.identity(4)
-        scale = (1, 1, 1)
         tissues = ["tissue_1", "tissue_2"]
         mesh_config = MeshConfig(facet_distance=0.1, cell_size=0.75,
                                  cell_radius_edge_ratio=1.5)
-        model.fem_from_labels(labels, tissues, affine, scale, mesh_config)
+        model.fem_from_labels(labels, tissues, affine, mesh_config)
         assert(model.mesh_path
                == str(Path(model.path) / "{}.msh".format(model.name)))
         assert(Path(model.mesh_path).exists())
@@ -58,10 +57,9 @@ def test_fem_from_masks():
         mask2[4:-4, 4:-4, 4:-4] = True
         tissue_masks = {"tissue_1": mask1, "tissue_2": mask2}
         affine = np.identity(4)
-        scale = (1, 1, 1)
         mesh_config = MeshConfig(facet_distance=0.1, cell_size=0.75,
                                  cell_radius_edge_ratio=1.5)
-        model.fem_from_masks(tissue_masks, affine, scale, mesh_config)
+        model.fem_from_masks(tissue_masks, affine, mesh_config)
         assert(model.mesh_path
                == str(Path(model.path) / "{}.msh".format(model.name)))
         assert(Path(model.mesh_path).exists())

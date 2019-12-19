@@ -75,7 +75,7 @@ class JSONObject(dict):
     def save(self):
         """Save the data of the object in a `.json` file."""
         with open(self.json_path, "w") as json_file:
-            json.dump(self, json_file)
+            json.dump(self, json_file, indent=4)
 
     @classmethod
     def load(cls, path):

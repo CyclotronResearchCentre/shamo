@@ -12,8 +12,7 @@ from .mesh_config import MeshConfig
 from .tissue import Tissue
 
 
-def fem_from_labels(self, labels, tissues, affine, scale=(1, 1, 1),
-                    mesh_config=MeshConfig()):
+def fem_from_labels(self, labels, tissues, affine, mesh_config=MeshConfig()):
     """Generate a `.msh` file from a labeled array.
 
     Parameters
@@ -27,9 +26,6 @@ def fem_from_labels(self, labels, tissues, affine, scale=(1, 1, 1),
         labels.
     affine : np.ndarray
         The affine matrix of the image.
-    scale : Tuple, optional
-        The dimensions of the voxels in millimiters. (The default is
-        `(1, 1, 1)`).
     mesh_config : MeshConfig, optional
         The configuration for the mesh generation. (The default is
         `MeshConfig()`).
@@ -43,6 +39,11 @@ def fem_from_labels(self, labels, tissues, affine, scale=(1, 1, 1),
     ------
     ValueError
         If one of the parameters are not of the right size.
+
+    Notes
+    -----
+    If a particular temporary directory must be used (e.g. working on a
+    cluster), simply set a environment variable called `SCRATCH_DIR`.
     """
     # Check the arguments
     labels = labels.astype(np.uint8)
@@ -58,18 +59,12 @@ def fem_from_labels(self, labels, tissues, affine, scale=(1, 1, 1),
     scratch_path = os.environ.get("SCRATCH_DIR", None)
     with TemporaryDirectory(dir=scratch_path) as parent_path:
         inr_path = _inr_file_from_labels(parent_path, labels)
-        print(inr_path)
         mesh_path = _mesh_from_inr_file(parent_path, inr_path,
                                         mesh_config)
         transformed_path = _affine_transform(parent_path,
                                              mesh_path,
                                              affine)
-        scale = [s * 1e-3 for s in scale]
-        scaling_affine = np.diag([*scale, 1])
-        scaled_path = _affine_transform(parent_path,
-                                        transformed_path,
-                                        scaling_affine)
-        msh_path = _finalize_mesh(self, scaled_path, tissues)
+        msh_path = _finalize_mesh(self, transformed_path, tissues)
         self["mesh_path"] = str(Path(msh_path).relative_to(self.path))
         self["tissues"] = get_tissues_from_mesh(msh_path)
     return self
@@ -99,17 +94,20 @@ def fem_from_nii(self, image_path, tissues, mesh_config=MeshConfig()):
     See Also
     --------
     FEMode.fem_from_labels
+
+    Notes
+    -----
+    If a particular temporary directory must be used (e.g. working on a
+    cluster), simply set a environment variable called `SCRATCH_DIR`.
     """
     image = nib.load(image_path)
     labels = image.get_fdata().astype(np.uint8)
     affine = image.affine
-    scale = image.header.get_zooms()
-    self.fem_from_labels(labels, tissues, affine, scale, mesh_config)
+    self.fem_from_labels(labels, tissues, affine, mesh_config)
     return self
 
 
-def fem_from_masks(self, tissue_masks, affine, scale=(1, 1, 1),
-                   mesh_config=MeshConfig()):
+def fem_from_masks(self, tissue_masks, affine, mesh_config=MeshConfig()):
     """Generate a `.msh` file from multiple binary masks.
 
     Parameters
@@ -119,9 +117,6 @@ def fem_from_masks(self, tissue_masks, affine, scale=(1, 1, 1),
         corresponding binary masks as values.
     affine : np.ndarray
         The affine matrix of the image.
-    scale : Tuple, optional
-        The dimensions of the voxels in millimiters. (The default is
-        `(1, 1, 1)`).
     mesh_config : MeshConfig, optional
         The configuration for the mesh generation. (The default is
         `MeshConfig()`).
@@ -131,17 +126,21 @@ def fem_from_masks(self, tissue_masks, affine, scale=(1, 1, 1),
     FEModel
         The current model.
 
-    Raises
-    ------
-    ValueError
-        If one of the parameters are not of the right size.
+    See Also
+    --------
+    FEMode.fem_from_labels
+
+    Notes
+    -----
+    If a particular temporary directory must be used (e.g. working on a
+    cluster), simply set a environment variable called `SCRATCH_DIR`.
     """
     tissues = list(tissue_masks.keys())
     masks = list(tissue_masks.values())
     labels = np.zeros(masks[0].shape, dtype=np.uint8)
     for label, mask in enumerate(masks):
         labels[mask] = label + 1
-    self.fem_from_labels(labels, tissues, affine, scale, mesh_config)
+    self.fem_from_labels(labels, tissues, affine, mesh_config)
     return self
 
 
@@ -162,17 +161,20 @@ def fem_from_niis(self, tissue_paths, mesh_config=MeshConfig()):
     FEModel
         The current model.
 
-    Raises
-    ------
-    ValueError
-        If one of the parameters are not of the right size.
+    See Also
+    --------
+    FEMode.fem_from_labels
+
+    Notes
+    -----
+    If a particular temporary directory must be used (e.g. working on a
+    cluster), simply set a environment variable called `SCRATCH_DIR`.
     """
     tissue_masks = {tissue: nib.load(path).get_fdata().astype(np.bool)
                     for tissue, path in tissue_paths.items()}
     image = nib.load(list(tissue_paths.values())[0])
     affine = image.affine
-    scale = image.header.get_zooms()
-    self.fem_from_masks(tissue_masks, affine, scale, mesh_config)
+    self.fem_from_masks(tissue_masks, affine, mesh_config)
     return self
 
 
@@ -321,7 +323,7 @@ def _affine_transform(parent_path, mesh_path, affine, name="model"):
                                                               col + 1),
                                   affine[row, col])
         gmsh.plugin.setNumber("Transform", "T{}".format(axes[row]),
-                              affine[row, 3] - 1)
+                              affine[row, -1])
     gmsh.plugin.run("Transform")
     gmsh.model.mesh.reclassifyNodes()
     msh_path = Path(parent_path) / "{}.msh".format(name)
