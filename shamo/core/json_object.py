@@ -3,13 +3,12 @@
 This module implements the `JSONObject` class which is the base class of any
 savable/loadable object in `shamo`.
 """
-from __future__ import annotations
 import json
 from pathlib import Path
 
 
 class JSONObject(dict):
-    """Short summary.
+    """Allow save and load functionalities.
 
     Parameters
     ----------
@@ -17,21 +16,22 @@ class JSONObject(dict):
         The name given to the object.
     parent_path : str
         The path to the parent directory of the object.
-    parents : bool
+    parents : bool, optional
         If set to `True`, any missing level in the tree is created. (The
         default is `True`).
-    exist_ok : bool
+    exist_ok : bool, optional
         If set to `True`, no exception is raised if the directory already
         exists. (The default is `True`).
 
     Attributes
     ----------
+    name
     path
     json_path
     """
 
-    def __init__(self, name: str, parent_path: str, parents: bool = True,
-                 exist_ok: bool = True, **kwargs) -> None:
+    def __init__(self, name, parent_path, parents=True,
+                 exist_ok=True):
         super().__init__()
         object_path = Path(parent_path) / name
         object_path.mkdir(parents=parents, exist_ok=exist_ok)
@@ -51,7 +51,7 @@ class JSONObject(dict):
         return self._name
 
     @property
-    def path(self) -> str:
+    def path(self):
         """Return the path to the directory of the object.
 
         Returns
@@ -62,7 +62,7 @@ class JSONObject(dict):
         return str(self._path)
 
     @property
-    def json_path(self) -> str:
+    def json_path(self):
         """Return the path to the `.json` file of the object.
 
         Returns
@@ -72,13 +72,13 @@ class JSONObject(dict):
         """
         return str(self._json_path)
 
-    def save(self) -> None:
+    def save(self):
         """Save the data of the object in a `.json` file."""
         with open(self.json_path, "w") as json_file:
             json.dump(self, json_file)
 
     @classmethod
-    def load(cls, path: str) -> JSONObject:
+    def load(cls, path):
         """Load a `JSONObject` from a `.json` file.
 
         Parameters

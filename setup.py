@@ -13,5 +13,5 @@ setup(
     author='Martin Grignard',
     author_email='mar.grignard@uliege.be',
     packages=find_packages(),
-    install_requires=[]
+    install_requires=["numpy", "nibabel"]
 )
