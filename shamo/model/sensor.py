@@ -35,10 +35,10 @@ class Sensor(dict):
     def __init__(self, real_coordinates, mesh_coordinates, group, entity,
                  on_tissue):
         super().__init__()
-        self["real_coordinates"] = tuple(real_coordinates)
-        self["mesh_coordinates"] = tuple(mesh_coordinates)
-        self["group"] = group
-        self["entity"] = entity
+        self["real_coordinates"] = tuple([float(i) for i in real_coordinates])
+        self["mesh_coordinates"] = tuple([float(i) for i in mesh_coordinates])
+        self["group"] = int(group)
+        self["entity"] = int(entity)
         self["on_tissue"] = on_tissue
 
     # PROPERTIES --------------------------------------------------------------
