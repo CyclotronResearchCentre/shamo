@@ -6,8 +6,8 @@ import gmsh
 from .anisotropy import Anisotropy
 
 
-def add_anisotropy_in_tissue_from_elements(self, element_tags, element_values,
-                                           in_tissue, fill_value, formula="1"):
+def add_anisotropy_from_elements(self, element_tags, element_values,
+                                 in_tissue, fill_value, formula="1"):
     """Add an anisotropic field to the model.
 
     Add an anisotropic field to the model based on elements values.
@@ -96,9 +96,9 @@ def add_anisotropy_in_tissue_from_elements(self, element_tags, element_values,
     return self
 
 
-def add_anisotropy_in_tissue_from_array(self, field, affine, in_tissue,
-                                        fill_value, formula="1",
-                                        nearest=False):
+def add_anisotropy_from_array(self, field, affine, in_tissue,
+                              fill_value, formula="1",
+                              nearest=False):
     """Add an anisotropic field to the model.
 
     Add an anisotropic field to the model based on a regular grid field.
@@ -135,7 +135,7 @@ def add_anisotropy_in_tissue_from_array(self, field, affine, in_tissue,
 
     See Also
     --------
-    add_anisotropy_in_tissue_from_elements
+    add_anisotropy_from_elements
     Anisotropy.evaluate_formula
     """
     # Check arguments
@@ -167,8 +167,58 @@ def add_anisotropy_in_tissue_from_array(self, field, affine, in_tissue,
     element_tags, element_coordinates = _get_tissue_elements(self, in_tissue)
     element_values = interpolate(element_coordinates)
     # Add the field
-    add_anisotropy_in_tissue_from_elements(self, element_tags, element_values,
-                                           in_tissue, fill_value, formula)
+    add_anisotropy_from_elements(self, element_tags, element_values,
+                                 in_tissue, fill_value, formula)
+    return self
+
+
+def add_anisotropy_from_nii(self, image_path, in_tissue, fill_value,
+                            formula="1", nearest=False):
+    """Add an anisotropic field to the model.
+
+    Add an anisotropic field to the model based on a regular grid field
+    contained in a `.nii` file.
+
+    Parameters
+    ----------
+    image_path : str
+        The path to the nifti file containing the field.
+    in_tissue : str
+        The name of the tissue to add anisotropy in.
+    fill_value : float
+        The value used in elements not included in `element_tags` but still in
+        the same tissue.
+    formula : str, optional
+        The formula to compute the coefficient with. (The default is `1`).
+    nearest : bool, optional
+        If set to `True`, no linear interpolation is performed and the nearest
+        value is used. (The default is `False`).
+
+    Returns
+    -------
+    FEModel
+        The current model.
+
+    Raises
+    ------
+    KeyError
+        If the tissue defined by `in_tissue` is not included in the model.
+    ValueError
+        If `field` contains neither a scalar field nor a vector field nor a
+        tensor field or if the values are not in the last dimension.
+
+    See Also
+    --------
+    add_anisotropy_from_elements
+    add_anisotropy_from_array
+    Anisotropy.evaluate_formula
+    """
+    image = nib.load(image_path)
+    field = image.get_fdata()
+    affine = image.affine
+    add_anisotropy_from_array(self, field, affine, in_tissue,
+                              fill_value, formula=formula,
+                              nearest=nearest)
     return self
 
 
