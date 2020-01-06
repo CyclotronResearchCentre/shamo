@@ -51,8 +51,9 @@ class FEModel(JSONObject):
     from ._geometry import (fem_from_labels, fem_from_nii, fem_from_masks,
                             fem_from_niis, get_tissues_from_mesh)
     from ._sensors import (add_sensor_on_tissue, add_sensors_on_tissue)
-    from ._anisotropy import (add_anisotropy_in_tissue_from_elements,
-                              add_anisotropy_in_tissue_from_array)
+    from ._anisotropy import (add_anisotropy_from_elements,
+                              add_anisotropy_from_array,
+                              add_anisotropy_from_nii)
 
     def __init__(self, name, parent_path, parents=True, exist_ok=True,
                  mesh_path=None, tissues=None, sensors=None, anisotropy=None):
