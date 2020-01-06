@@ -33,7 +33,7 @@ class Anisotropy(dict):
     def __init__(self, anisotropy_type, view, formula="1"):
         super().__init__()
         self["anisotropy_type"] = anisotropy_type
-        self["view"] = view
+        self["view"] = int(view)
         self["formula"] = formula
 
     @property
