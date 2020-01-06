@@ -9,6 +9,7 @@ import shutil
 from shamo.core import JSONObject
 from .tissue import Tissue
 from .sensor import Sensor
+from .anisotropy import Anisotropy
 
 
 class FEModel(JSONObject):
@@ -30,6 +31,8 @@ class FEModel(JSONObject):
         The path to the `.msh` file of the model. (The default is `None`).
     tissues : dict[str: dict], optional
         The tissues of the model. (The default is `None`).
+    anisotropy : dict[str: dict], optional
+        The anisotropy of the model. (the default is `None`).
 
     Attributes
     ----------
@@ -38,6 +41,7 @@ class FEModel(JSONObject):
     json_path
     mesh_path
     tissues
+    anisotropy
 
     See Also
     --------
@@ -47,9 +51,11 @@ class FEModel(JSONObject):
     from ._geometry import (fem_from_labels, fem_from_nii, fem_from_masks,
                             fem_from_niis, get_tissues_from_mesh)
     from ._sensors import (add_sensor_on_tissue, add_sensors_on_tissue)
+    from ._anisotropy import (add_anisotropy_in_tissue_from_elements,
+                              add_anisotropy_in_tissue_from_array)
 
     def __init__(self, name, parent_path, parents=True, exist_ok=True,
-                 mesh_path=None, tissues=None, sensors=None):
+                 mesh_path=None, tissues=None, sensors=None, anisotropy=None):
         super().__init__(name, parent_path)
         # Set `mesh_path`
         if mesh_path is not None:
@@ -68,6 +74,9 @@ class FEModel(JSONObject):
         if sensors is not None:
             self["sensors"] = {name: Sensor(**sensor)
                                for name, sensor in sensors.items()}
+        if anisotropy is not None:
+            self["anisotropy"] = {name: Anisotropy(**data)
+                                  for name, data in anisotropy.items()}
 
     @property
     def mesh_path(self):
@@ -107,3 +116,15 @@ class FEModel(JSONObject):
             return `None`.
         """
         return self.get("sensors", None)
+
+    @property
+    def anisotropy(self):
+        """Return the anisotropy of the model.
+
+        Returns
+        -------
+        dict[str: Anisotropy]
+            The anisotropy of the model. If the model does not have any
+            `Anisotropy`, return `None`.
+        """
+        return self.get("anisotropy", None)
