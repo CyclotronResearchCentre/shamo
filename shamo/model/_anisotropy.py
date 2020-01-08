@@ -50,13 +50,13 @@ def add_anisotropy_from_elements(self, element_tags, element_values,
                         "'{}'.").format(in_tissue))
     if element_values.size == element_tags.size:
         n_values = 1
-        type = Anisotropy.SCALAR
+        anisotropy_type = Anisotropy.SCALAR
     elif element_values.size == 3 * element_tags.size:
         n_values = 3
-        type = Anisotropy.VECTOR
+        anisotropy_type = Anisotropy.VECTOR
     elif element_values.size == 9 * element_tags.size:
         n_values = 9
-        type = Anisotropy.TENSOR
+        anisotropy_type = Anisotropy.TENSOR
     else:
         raise ValueError(("Values in `element_values` must be scalars, "
                           "3D vectors or 3D tensors."))
@@ -91,7 +91,7 @@ def add_anisotropy_from_elements(self, element_tags, element_values,
     gmsh.finalize()
     if self.anisotropy is None:
         self["anisotropy"] = {}
-    self["anisotropy"][in_tissue] = Anisotropy(type, view,
+    self["anisotropy"][in_tissue] = Anisotropy(anisotropy_type, view,
                                                formula)
     return self
 

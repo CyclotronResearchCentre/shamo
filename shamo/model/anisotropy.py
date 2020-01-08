@@ -1,7 +1,6 @@
-"""Implement `Anisotropy`, `AnisotropyField` and `AnisotropyTensor` classes.
+"""Implement `Anisotropy` class.
 
-This module implements the `Anisotropy`, `AnisotropyField` and
-`AnisotropyTensor` classes which holds the data corresponding
+This module implements the `Anisotropy`class which holds the data corresponding
 to a different anisotropic properties.
 """
 import re
