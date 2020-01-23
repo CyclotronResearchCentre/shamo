@@ -59,7 +59,7 @@ class JSONObject(dict):
         str
             The path to the directory of the object.
         """
-        return str(self._path)
+        return str(self._path.absolute())
 
     @property
     def json_path(self):

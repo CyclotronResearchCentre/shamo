@@ -41,6 +41,7 @@ class FEModel(JSONObject):
     json_path
     mesh_path
     tissues
+    sensors
     anisotropy
 
     See Also
@@ -57,7 +58,7 @@ class FEModel(JSONObject):
 
     def __init__(self, name, parent_path, parents=True, exist_ok=True,
                  mesh_path=None, tissues=None, sensors=None, anisotropy=None):
-        super().__init__(name, parent_path)
+        super().__init__(name, parent_path, parents, exist_ok)
         # Set `mesh_path`
         if mesh_path is not None:
             if (Path(self.path) / mesh_path).exists():

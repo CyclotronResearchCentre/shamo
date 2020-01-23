@@ -94,3 +94,21 @@ class Anisotropy(dict):
                                "formula.".format(key))
             formula = re.sub(re.compile(text), str(value), formula)
         return eval(formula)
+
+    def generate_sigma_text(self, **kwargs):
+        """Generate a string to define sigma value.
+
+        Returns
+        -------
+        str
+            The string defining sigma value.
+
+        See Also
+        --------
+        Anisotropy.evaluate_formula
+        """
+        coefficient = self.evaluate_formula(**kwargs)
+        field = "{}Field".format(self.anisotropy_type.capitalize())
+        sigma_text = "{} * {}[XYZ[]]{{{}}}".format(coefficient, field,
+                                                   self.view)
+        return sigma_text
