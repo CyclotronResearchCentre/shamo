@@ -28,17 +28,19 @@ class Sensor(dict):
     mesh_coordinates
     group
     entity
+    node
     on_tissue
     coordinates_error
     """
 
     def __init__(self, real_coordinates, mesh_coordinates, group, entity,
-                 on_tissue):
+                 node, on_tissue):
         super().__init__()
         self["real_coordinates"] = tuple([float(i) for i in real_coordinates])
         self["mesh_coordinates"] = tuple([float(i) for i in mesh_coordinates])
         self["group"] = int(group)
         self["entity"] = int(entity)
+        self["node"] = int(node)
         self["on_tissue"] = on_tissue
 
     # PROPERTIES --------------------------------------------------------------
@@ -85,6 +87,17 @@ class Sensor(dict):
             The entity tag of the sensor.
         """
         return self["entity"]
+
+    @property
+    def node(self):
+        """Return the node tag of the sensor.
+
+        Returns
+        -------
+        int
+            The node tag of the sensor.
+        """
+        return self["node"]
 
     @property
     def on_tissue(self):

@@ -30,7 +30,8 @@ def add_sensor_on_tissue(self, name, coordinates, on_tissue):
     node_tag = node_tags[min_distance_index]
     mesh_coordinates = node_coordinates[min_distance_index, :].flatten()
     entity, group = _add_sensor_on_node(name, node_tag, mesh_coordinates)
-    sensor = Sensor(coordinates, mesh_coordinates, group, entity, on_tissue)
+    sensor = Sensor(coordinates, mesh_coordinates, group, entity, node_tag,
+                    on_tissue)
     if self.sensors is None:
         self["sensors"] = {}
     self["sensors"][name] = sensor
@@ -67,7 +68,7 @@ def add_sensors_on_tissue(self, sensor_coordinates, on_tissue):
         entity, group = _add_sensor_on_node(name, node_tag[i],
                                             mesh_coordinates[i])
         sensor = Sensor(coordinates[i], mesh_coordinates[i], group, entity,
-                        on_tissue)
+                        node_tag[i], on_tissue)
         if self.sensors is None:
             self["sensors"] = {}
         self["sensors"][name] = sensor
@@ -141,8 +142,10 @@ def _add_sensor_on_node(name, node_tag, node_coordinates):
     -----
     This method must be called inside a gmsh context.
     """
+    groups = [tag for dim, tag in gmsh.model.getPhysicalGroups(-1)]
+    max_group = max(groups)
     entity = gmsh.model.addDiscreteEntity(0)
     gmsh.model.mesh.addNodes(0, entity, [node_tag], node_coordinates)
-    group = gmsh.model.addPhysicalGroup(0, [entity])
+    group = gmsh.model.addPhysicalGroup(0, [entity], max_group + 1)
     gmsh.model.setPhysicalName(0, group, name)
     return entity, group

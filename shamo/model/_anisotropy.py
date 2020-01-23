@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import nibabel as nib
 import numpy as np
 from scipy.interpolate import RegularGridInterpolator
@@ -81,16 +83,18 @@ def add_anisotropy_from_elements(self, element_tags, element_values,
         element_tags = np.hstack((element_tags, empty_element_tags))
         element_values = np.hstack((element_values,
                                     empty_element_values.flatten()))
-    # Add anisotropy
+    # Create anisotropy view
     model = gmsh.model.list()[0]
     view = gmsh.view.add("{}_anisotropy".format(in_tissue))
     gmsh.view.addModelData(view, 0, model, "ElementData", element_tags,
                            element_values.reshape((-1, n_values)),
                            numComponents=n_values)
-    gmsh.view.write(view, self.mesh_path, True)
-    gmsh.finalize()
     if self.anisotropy is None:
         self["anisotropy"] = {}
+        print("First")
+        Path(self.mesh_path).unlink()
+    gmsh.view.write(view, self.mesh_path, True)
+    gmsh.finalize()
     self["anisotropy"][in_tissue] = Anisotropy(anisotropy_type, view,
                                                formula)
     return self
