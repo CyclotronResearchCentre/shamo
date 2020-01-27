@@ -58,13 +58,15 @@ class LeadfieldMatrix(JSONObject):
     N_VALUES_PER_ELEMENT = 0
 
     def __init__(self, name, parent_path, parents=True, exist_ok=True,
-                 matrix_path=None, shape=None, sensor_names=None,
-                 settings=None, model_path=None):
+                 matrix_path=None, shape=None, elements_path=None,
+                 sensor_names=None, settings=None, model_path=None):
         super().__init__(name, parent_path, parents, exist_ok)
         if matrix_path is not None:
             self["matrix_path"] = matrix_path
         if shape is not None:
-            self["shape"] = shape
+            self["shape"] = tuple(shape)
+        if elements_path is not None:
+            self["elements_path"] = elements_path
         if sensor_names is not None:
             self["sensor_names"] = sensor_names
         if settings is not None:
