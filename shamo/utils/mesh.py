@@ -46,7 +46,7 @@ def get_elements_coordinates(model, regions_of_interest, element_types,
     return element_coordinates
 
 
-def get_tissue_elements(self, model, name):
+def get_tissue_elements(model, name):
     """Get the tags and the coordinates of the elements of a tissue.
 
     Parameters

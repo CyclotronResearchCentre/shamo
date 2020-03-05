@@ -2,5 +2,6 @@
 from .tissue import Tissue
 from .sensor import Sensor
 from .anisotropy import Anisotropy
+from .source import Source
 
-__all__ = ["Tissue", "Sensor", "Anisotropy"]
+__all__ = ["Tissue", "Sensor", "Anisotropy", "Source"]
