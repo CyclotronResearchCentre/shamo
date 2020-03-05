@@ -1,5 +1,6 @@
 """API for `shamo.core`."""
-from .json_object import JSONObject
-from .template_file import TemplateFile
+from .objects import Object, FileObject, DirObject
+from .problem import Problem
+from .solution import Solution
 
-__all__ = ["JSONObject", "TemplateFile"]
+__all__ = ["Object", "FileObject", "DirObject", "Problem", "Solution"]

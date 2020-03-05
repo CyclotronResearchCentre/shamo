@@ -6,10 +6,13 @@ from scipy.interpolate import RegularGridInterpolator
 import gmsh
 
 from .anisotropy import Anisotropy
+from ._geometry import MILLIMETER_AFFINE
+from shamo.utils import get_tissue_elements
 
 
 def add_anisotropy_from_elements(self, element_tags, element_values,
-                                 in_tissue, fill_value, formula="1"):
+                                 in_tissue, fill_value, formula="1",
+                                 suffix="anisotropy"):
     """Add an anisotropic field to the model.
 
     Add an anisotropic field to the model based on elements values.
@@ -27,6 +30,9 @@ def add_anisotropy_from_elements(self, element_tags, element_values,
         the same tissue.
     formula : str, optional
         The formula to compute the coefficient with. (The default is `1`).
+    suffix : str, optional
+        A suffix to add to the name of this field. The name is
+        `'<in_tissue>_<suffix>'`. (The default is `'anisotropy'`)
 
     Returns
     -------
@@ -85,24 +91,22 @@ def add_anisotropy_from_elements(self, element_tags, element_values,
                                     empty_element_values.flatten()))
     # Create anisotropy view
     model = gmsh.model.list()[0]
-    view = gmsh.view.add("{}_anisotropy".format(in_tissue))
+    view_name = "{}_{}".format(in_tissue, suffix)
+    view = gmsh.view.add(view_name)
     gmsh.view.addModelData(view, 0, model, "ElementData", element_tags,
                            element_values.reshape((-1, n_values)),
                            numComponents=n_values)
-    if self.anisotropy is None:
-        self["anisotropy"] = {}
-        print("First")
-        Path(self.mesh_path).unlink()
+    gmsh.option.setNumber("PostProcessing.SaveMesh", 0)
     gmsh.view.write(view, self.mesh_path, True)
     gmsh.finalize()
-    self["anisotropy"][in_tissue] = Anisotropy(anisotropy_type, view,
+    self["anisotropy"][view_name] = Anisotropy(anisotropy_type, view,
                                                formula)
     return self
 
 
 def add_anisotropy_from_array(self, field, affine, in_tissue,
                               fill_value, formula="1",
-                              nearest=False):
+                              nearest=False, suffix="anisotropy"):
     """Add an anisotropic field to the model.
 
     Add an anisotropic field to the model based on a regular grid field.
@@ -123,6 +127,9 @@ def add_anisotropy_from_array(self, field, affine, in_tissue,
     nearest : bool, optional
         If set to `True`, no linear interpolation is performed and the nearest
         value is used. (The default is `False`).
+    suffix : str, optional
+        A suffix to add to the name of this field. The name is
+        `'<in_tissue>_<suffix>'`. (The default is `'anisotropy'`)
 
     Returns
     -------
@@ -142,6 +149,7 @@ def add_anisotropy_from_array(self, field, affine, in_tissue,
     add_anisotropy_from_elements
     Anisotropy.evaluate_formula
     """
+    affine = np.dot(MILLIMETER_AFFINE, affine)
     # Check arguments
     if field.ndim != 3 and field.ndim != 4:
         raise ValueError("The argument `field` must be a 3D or 4D array.")
@@ -168,16 +176,16 @@ def add_anisotropy_from_array(self, field, affine, in_tissue,
                                           bounds_error=False,
                                           fill_value=fill_value)
     # Get tissue elements values
-    element_tags, element_coordinates = _get_tissue_elements(self, in_tissue)
+    element_tags, element_coordinates = get_tissue_elements(self, in_tissue)
     element_values = interpolate(element_coordinates)
     # Add the field
     add_anisotropy_from_elements(self, element_tags, element_values,
-                                 in_tissue, fill_value, formula)
+                                 in_tissue, fill_value, formula, suffix)
     return self
 
 
 def add_anisotropy_from_nii(self, image_path, in_tissue, fill_value,
-                            formula="1", nearest=False):
+                            formula="1", nearest=False, suffix="anisotropy"):
     """Add an anisotropic field to the model.
 
     Add an anisotropic field to the model based on a regular grid field
@@ -185,7 +193,7 @@ def add_anisotropy_from_nii(self, image_path, in_tissue, fill_value,
 
     Parameters
     ----------
-    image_path : str
+    image_path : PathLike
         The path to the nifti file containing the field.
     in_tissue : str
         The name of the tissue to add anisotropy in.
@@ -197,6 +205,9 @@ def add_anisotropy_from_nii(self, image_path, in_tissue, fill_value,
     nearest : bool, optional
         If set to `True`, no linear interpolation is performed and the nearest
         value is used. (The default is `False`).
+    suffix : str, optional
+        A suffix to add to the name of this field. The name is
+        `'<in_tissue>_<suffix>'`. (The default is `'anisotropy'`)
 
     Returns
     -------
@@ -217,29 +228,10 @@ def add_anisotropy_from_nii(self, image_path, in_tissue, fill_value,
     add_anisotropy_from_array
     Anisotropy.evaluate_formula
     """
-    image = nib.load(image_path)
+    image = nib.load(str(Path(image_path)))
     field = image.get_fdata()
     affine = image.affine
     add_anisotropy_from_array(self, field, affine, in_tissue,
                               fill_value, formula=formula,
-                              nearest=nearest)
+                              nearest=nearest, suffix=suffix)
     return self
-
-
-def _get_tissue_elements(self, name):
-    gmsh.initialize()
-    gmsh.open(self.mesh_path)
-    element_type_tags = [(entity, *gmsh.model.mesh.getElements(3, entity)[:2])
-                         for entity in self.tissues[name].volume_entity]
-    element_tags = []
-    element_coordinates = []
-    for entity, types, tags in element_type_tags:
-        for i, element_type in enumerate(types):
-            element_tags.append(tags[i])
-            element_coordinates.append(
-                gmsh.model.mesh.getBarycenters(element_type, entity,
-                                               False, False))
-    gmsh.finalize()
-    all_tags = np.hstack(element_tags)
-    all_coordinates = np.hstack(element_coordinates).reshape((-1, 3))
-    return all_tags, all_coordinates

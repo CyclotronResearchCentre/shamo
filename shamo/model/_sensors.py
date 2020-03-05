@@ -5,7 +5,7 @@ import gmsh
 from .sensor import Sensor
 
 
-def add_sensor_on_tissue(self, name, coordinates, on_tissue):
+def add_sensor(self, name, coordinates, on_tissue):
     """Add a sensor to the model.
 
     Parameters
@@ -13,7 +13,7 @@ def add_sensor_on_tissue(self, name, coordinates, on_tissue):
     name : str
         The name of the sensor.
     coordinates : Tuple(float, float, float)
-        The coordinates of the sensor in the real world.
+        The coordinates of the sensor in the real world [mm].
     on_tissue : str
         The name of the tissue the sensor must be placed on.
 
@@ -22,6 +22,9 @@ def add_sensor_on_tissue(self, name, coordinates, on_tissue):
     FEModel
         The current model.
     """
+    # Rescale coordinates [m]
+    coordinates = [c / 1000 for c in coordinates]
+    # Add sensor
     gmsh.initialize()
     gmsh.open(self.mesh_path)
     node_tags, node_coordinates = _get_tissue_nodes(self, on_tissue)
@@ -35,12 +38,13 @@ def add_sensor_on_tissue(self, name, coordinates, on_tissue):
     if self.sensors is None:
         self["sensors"] = {}
     self["sensors"][name] = sensor
+    gmsh.model.mesh.removeDuplicateNodes()
     gmsh.write(self.mesh_path)
     gmsh.finalize()
     return self
 
 
-def add_sensors_on_tissue(self, sensor_coordinates, on_tissue):
+def add_sensors(self, sensor_coordinates, on_tissue):
     """Add multiple sensors to the model.
 
     Parameters
@@ -56,6 +60,10 @@ def add_sensors_on_tissue(self, sensor_coordinates, on_tissue):
     FEModel
         The current model.
     """
+    # Rescale coordinates [m]
+    sensor_coordinates = {name: [c / 1000 for c in coordinates]
+                          for name, coordinates in sensor_coordinates.items()}
+    # Add sensor
     gmsh.initialize()
     gmsh.open(self.mesh_path)
     node_tags, node_coordinates = _get_tissue_nodes(self, on_tissue)
@@ -146,6 +154,7 @@ def _add_sensor_on_node(name, node_tag, node_coordinates):
     max_group = max(groups)
     entity = gmsh.model.addDiscreteEntity(0)
     gmsh.model.mesh.addNodes(0, entity, [node_tag], node_coordinates)
+    gmsh.model.mesh.removeDuplicateNodes()
     group = gmsh.model.addPhysicalGroup(0, [entity], max_group + 1)
     gmsh.model.setPhysicalName(0, group, name)
     return entity, group

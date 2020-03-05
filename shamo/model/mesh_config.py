@@ -40,12 +40,12 @@ class MeshConfig(dict):
                  facet_angle=0.0, facet_distance=0.0,
                  cell_radius_edge_ratio=0.0):
         super().__init__()
-        self["cell_size"] = cell_size
-        self["edge_size"] = edge_size
-        self["facet_size"] = facet_size
-        self["facet_angle"] = facet_angle
-        self["facet_distance"] = facet_distance
-        self["cell_radius_edge_ratio"] = cell_radius_edge_ratio
+        self["cell_size"] = float(cell_size)
+        self["edge_size"] = float(edge_size)
+        self["facet_size"] = float(facet_size)
+        self["facet_angle"] = float(facet_angle)
+        self["facet_distance"] = float(facet_distance)
+        self["cell_radius_edge_ratio"] = float(cell_radius_edge_ratio)
 
     @property
     def cell_radius_edge_ratio(self):

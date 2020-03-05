@@ -30,10 +30,10 @@ class Tissue(dict):
     def __init__(self, volume_group, volume_entity, surface_group,
                  surface_entity):
         super().__init__()
-        self["volume_group"] = volume_group
-        self["volume_entity"] = volume_entity
-        self["surface_group"] = surface_group
-        self["surface_entity"] = surface_entity
+        self["volume_group"] = int(volume_group)
+        self["volume_entity"] = [int(entity) for entity in volume_entity]
+        self["surface_group"] = int(surface_group)
+        self["surface_entity"] = [int(entity) for entity in surface_entity]
 
     @property
     def volume_group(self):

@@ -11,8 +11,10 @@ import gmsh
 from .mesh_config import MeshConfig
 from .tissue import Tissue
 
+MILLIMETER_AFFINE = np.diag((0.001, 0.001, 0.001, 1))
 
-def fem_from_labels(self, labels, tissues, affine, mesh_config=MeshConfig()):
+
+def mesh_from_labels(self, labels, tissues, affine, mesh_config=MeshConfig()):
     """Generate a `.msh` file from a labeled array.
 
     Parameters
@@ -63,14 +65,14 @@ def fem_from_labels(self, labels, tissues, affine, mesh_config=MeshConfig()):
                                         mesh_config)
         transformed_path = _affine_transform(parent_path,
                                              mesh_path,
-                                             affine)
+                                             np.dot(MILLIMETER_AFFINE, affine))
         msh_path = _finalize_mesh(self, transformed_path, tissues)
         self["mesh_path"] = str(Path(msh_path).relative_to(self.path))
         self["tissues"] = get_tissues_from_mesh(msh_path)
     return self
 
 
-def fem_from_nii(self, image_path, tissues, mesh_config=MeshConfig()):
+def mesh_from_nii(self, image_path, tissues, mesh_config=MeshConfig()):
     """Generate a `.msh` file from a labeled `.nii` image.
 
     Parameters
@@ -93,7 +95,7 @@ def fem_from_nii(self, image_path, tissues, mesh_config=MeshConfig()):
 
     See Also
     --------
-    FEMode.fem_from_labels
+    FEMode.mesh_from_labels
 
     Notes
     -----
@@ -103,11 +105,11 @@ def fem_from_nii(self, image_path, tissues, mesh_config=MeshConfig()):
     image = nib.load(image_path)
     labels = image.get_fdata().astype(np.uint8)
     affine = image.affine
-    self.fem_from_labels(labels, tissues, affine, mesh_config)
+    self.mesh_from_labels(labels, tissues, affine, mesh_config)
     return self
 
 
-def fem_from_masks(self, tissue_masks, affine, mesh_config=MeshConfig()):
+def mesh_from_masks(self, tissue_masks, affine, mesh_config=MeshConfig()):
     """Generate a `.msh` file from multiple binary masks.
 
     Parameters
@@ -128,7 +130,7 @@ def fem_from_masks(self, tissue_masks, affine, mesh_config=MeshConfig()):
 
     See Also
     --------
-    FEMode.fem_from_labels
+    FEMode.mesh_from_labels
 
     Notes
     -----
@@ -140,11 +142,11 @@ def fem_from_masks(self, tissue_masks, affine, mesh_config=MeshConfig()):
     labels = np.zeros(masks[0].shape, dtype=np.uint8)
     for label, mask in enumerate(masks):
         labels[mask] = label + 1
-    self.fem_from_labels(labels, tissues, affine, mesh_config)
+    self.mesh_from_labels(labels, tissues, affine, mesh_config)
     return self
 
 
-def fem_from_niis(self, tissue_paths, mesh_config=MeshConfig()):
+def mesh_from_niis(self, tissue_paths, mesh_config=MeshConfig()):
     """Generate a `.msh` file from multiple `.nii` binary masks.
 
     Parameters
@@ -163,7 +165,7 @@ def fem_from_niis(self, tissue_paths, mesh_config=MeshConfig()):
 
     See Also
     --------
-    FEMode.fem_from_labels
+    FEMode.mesh_from_labels
 
     Notes
     -----
@@ -174,7 +176,7 @@ def fem_from_niis(self, tissue_paths, mesh_config=MeshConfig()):
                     for tissue, path in tissue_paths.items()}
     image = nib.load(list(tissue_paths.values())[0])
     affine = image.affine
-    self.fem_from_masks(tissue_masks, affine, mesh_config)
+    self.mesh_from_masks(tissue_masks, affine, mesh_config)
     return self
 
 
@@ -333,6 +335,20 @@ def _affine_transform(parent_path, mesh_path, affine, name="model"):
 
 
 def _finalize_mesh(self, origin_path, tissues):
+    """Add names to the tissues of the `.msh` file.
+
+    Parameters
+    ----------
+    origin_path : str
+        The path to the `.msh` file.
+    tissues : list[str]
+        The names of the tissues.
+
+    Returns
+    -------
+    str
+        The path tot the `.msh` file.
+    """
     gmsh.initialize()
     gmsh.open(origin_path)
     for label, tissue in enumerate(tissues):
@@ -341,6 +357,10 @@ def _finalize_mesh(self, origin_path, tissues):
         gmsh.model.setPhysicalName(3, group, tissue)
         group = gmsh.model.addPhysicalGroup(2, [entity])
         gmsh.model.setPhysicalName(2, group, tissue)
+    # Get n nodes (Required for problem solving and better extract it once
+    # rather than each time we want to solve)
+    nodes = gmsh.model.mesh.getNodes(-1, -1, False, False)[0]
+    self["n_nodes"] = nodes.size
     msh_path = Path(self.path) / "{}.msh".format(self.name)
     gmsh.write(str(msh_path))
     gmsh.finalize()
