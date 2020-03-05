@@ -4,6 +4,8 @@ This module implements the `Solution` class which is the base for any solution.
 """
 from .objects import DirObject
 
+from shamo.utils import none_callable
+
 
 class Solution(DirObject):
     """The base for any solution.
@@ -25,7 +27,7 @@ class Solution(DirObject):
         The problem that result in this solution.
     """
 
-    PROBLEM_FACTORY = lambda **kwags: None
+    PROBLEM_FACTORY = none_callable
 
     def __init__(self, name, parent_path, **kwargs):
         super().__init__(name, parent_path)
