@@ -12,9 +12,9 @@ class Sensor(dict):
     Parameters
     ----------
     real_coordinates : Tuple(float, float, float)
-        The coordinates in the real world.
+        The coordinates in the real world [m].
     mesh_coordinates : Tuple(float, float, float)
-        The coordinates in the mesh.
+        The coordinates in the mesh [m].
     group : int
         The physical tag.
     entity : int
@@ -51,7 +51,7 @@ class Sensor(dict):
         Returns
         -------
         Tuple(float, float, float)
-            The real coordinates of the sensor.
+            The real coordinates of the sensor [m].
         """
         return self["real_coordinates"]
 
@@ -62,7 +62,7 @@ class Sensor(dict):
         Returns
         -------
         Tuple(float, float, float)
-            The mesh coordinates of the sensor.
+            The mesh coordinates of the sensor [m].
         """
         return self["mesh_coordinates"]
 
@@ -123,5 +123,5 @@ class Sensor(dict):
             The error of coordinates.
         """
         difference = np.abs(np.array(self.real_coordinates)
-                            - np.array(self.mesh_coordinates))
+                            - np.array(self.mesh_coordinates)) * 1000
         return np.linalg.norm(difference)

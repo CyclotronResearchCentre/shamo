@@ -95,13 +95,13 @@ class Anisotropy(dict):
             formula = re.sub(re.compile(text), str(value), formula)
         return eval(formula)
 
-    def generate_sigma_text(self, **kwargs):
-        """Generate a string to define sigma value.
+    def generate_formula_text(self, **kwargs):
+        """Generate a string to define formula value.
 
         Returns
         -------
         str
-            The string defining sigma value.
+            The string defining formula value.
 
         See Also
         --------
