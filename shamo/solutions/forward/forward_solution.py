@@ -3,6 +3,7 @@
 This module implements the `ForwardSolution` class which is the base for any
 forward problem solution.
 """
+import abc
 from pathlib import Path
 
 import numpy as np
@@ -320,3 +321,52 @@ class ForwardSolution(Solution):
                 raise ValueError("Sensors count not matching matrix shape.")
         self["sensors"] = sensors
         return self
+
+    @abc.abstractmethod
+    def evaluate(self, sources_vector, memory_map=False):
+        """Evaluate the leadfield matrix for a set of sources.
+
+        Parameters
+        ----------
+        sources_vector : numpy.ndarray
+            The s vector from L.s=r.
+        memory_map : bool, optional
+            If set to `True`, matrix is never loaded in memory. (The default
+            is `False`)
+
+        Returns
+        -------
+        dict[str: float | tuple]
+            The recordings for each active sensor.
+        """
+
+    @abc.abstractmethod
+    def evaluate_for_elements(self, element_sources):
+        """Evaluate the leadfield matrix for a set of sources.
+
+        Parameters
+        ----------
+        element_sources : dict[int, tuple[float, float, float]]
+            A dictionary containing element tags as keys and source values as
+            values.
+
+        Returns
+        -------
+        dict[str: float | tuple]
+            The recordings for each active sensor.
+        """
+
+    @abc.abstractmethod
+    def evaluate_for_sources(self, sources):
+        """Evaluate the leadfield matrix for a set of sources.
+
+        Parameters
+        ----------
+        sources : list[shamo.model.Source]
+            The sources for which the leadfield matrix must be evaluated.
+
+        Returns
+        -------
+        dict[str: float | tuple]
+            The recordings for each active sensor.
+        """
