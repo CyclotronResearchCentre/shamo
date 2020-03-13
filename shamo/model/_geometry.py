@@ -34,7 +34,7 @@ def mesh_from_labels(self, labels, tissues, affine, mesh_config=MeshConfig()):
 
     Returns
     -------
-    FEModel
+    shamo.FEModel
         The current model.
 
     Raises
@@ -90,7 +90,7 @@ def mesh_from_nii(self, image_path, tissues, mesh_config=MeshConfig()):
 
     Returns
     -------
-    FEModel
+    shamo.FEModel
         The current model.
 
     See Also
@@ -125,7 +125,7 @@ def mesh_from_masks(self, tissue_masks, affine, mesh_config=MeshConfig()):
 
     Returns
     -------
-    FEModel
+    shamo.FEModel
         The current model.
 
     See Also
@@ -160,7 +160,7 @@ def mesh_from_niis(self, tissue_paths, mesh_config=MeshConfig()):
 
     Returns
     -------
-    FEModel
+    shamo.FEModel
         The current model.
 
     See Also
@@ -329,6 +329,7 @@ def _affine_transform(parent_path, mesh_path, affine, name="model"):
     gmsh.plugin.run("Transform")
     gmsh.model.mesh.reclassifyNodes()
     msh_path = Path(parent_path) / "{}.msh".format(name)
+    gmsh.option.setNumber("Mesh.Binary", 1)
     gmsh.write(str(msh_path))
     gmsh.finalize()
     return str(msh_path)
@@ -362,6 +363,7 @@ def _finalize_mesh(self, origin_path, tissues):
     nodes = gmsh.model.mesh.getNodes(-1, -1, False, False)[0]
     self["n_nodes"] = nodes.size
     msh_path = Path(self.path) / "{}.msh".format(self.name)
+    gmsh.option.setNumber("Mesh.Binary", 1)
     gmsh.write(str(msh_path))
     gmsh.finalize()
     return str(msh_path)

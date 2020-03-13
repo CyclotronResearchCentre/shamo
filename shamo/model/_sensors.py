@@ -19,7 +19,7 @@ def add_sensor(self, name, coordinates, on_tissue):
 
     Returns
     -------
-    FEModel
+    shamo.FEModel
         The current model.
     """
     # Rescale coordinates [m]
@@ -39,6 +39,7 @@ def add_sensor(self, name, coordinates, on_tissue):
         self["sensors"] = {}
     self["sensors"][name] = sensor
     gmsh.model.mesh.removeDuplicateNodes()
+    gmsh.option.setNumber("Mesh.Binary", 1)
     gmsh.write(self.mesh_path)
     gmsh.finalize()
     return self
@@ -57,7 +58,7 @@ def add_sensors(self, sensor_coordinates, on_tissue):
 
     Returns
     -------
-    FEModel
+    shamo.FEModel
         The current model.
     """
     # Rescale coordinates [m]
@@ -80,6 +81,8 @@ def add_sensors(self, sensor_coordinates, on_tissue):
         if self.sensors is None:
             self["sensors"] = {}
         self["sensors"][name] = sensor
+    gmsh.model.mesh.removeDuplicateNodes()
+    gmsh.option.setNumber("Mesh.Binary", 1)
     gmsh.write(self.mesh_path)
     gmsh.finalize()
     return self

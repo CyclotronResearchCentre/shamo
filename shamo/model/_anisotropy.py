@@ -36,7 +36,7 @@ def add_anisotropy_from_elements(self, element_tags, element_values,
 
     Returns
     -------
-    FEModel
+    shamo.FEModel
         The current model.
 
     Raises
@@ -97,6 +97,7 @@ def add_anisotropy_from_elements(self, element_tags, element_values,
                            element_values.reshape((-1, n_values)),
                            numComponents=n_values)
     gmsh.option.setNumber("PostProcessing.SaveMesh", 0)
+    gmsh.option.setNumber("Mesh.Binary", 1)
     gmsh.view.write(view, self.mesh_path, True)
     gmsh.finalize()
     self["anisotropy"][view_name] = Anisotropy(anisotropy_type, view,
@@ -133,7 +134,7 @@ def add_anisotropy_from_array(self, field, affine, in_tissue,
 
     Returns
     -------
-    FEModel
+    shamo.FEModel
         The current model.
 
     Raises
@@ -211,7 +212,7 @@ def add_anisotropy_from_nii(self, image_path, in_tissue, fill_value,
 
     Returns
     -------
-    FEModel
+    shamo.FEModel
         The current model.
 
     Raises

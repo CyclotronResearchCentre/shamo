@@ -9,7 +9,6 @@ from pathlib import Path
 import numpy as np
 
 from shamo.core import Solution
-from shamo.utils import get_relative_path
 
 
 class ForwardSolution(Solution):
@@ -25,11 +24,22 @@ class ForwardSolution(Solution):
     Attributes
     ----------
     problem
+    model_path
+    matrix_path
+    shape
+    sensors
+    n_sensors
+    n_elements
+    n_values_per_element
+    model_path
+    elements_path
 
     Other Parameters
     ----------------
     problem : dict[str: Any]
         The problem that result in this solution.
+    model_path : PathLike
+        The path to the model file.
     matrix_path : PathLike
         The path to the matrix file.
     shape : tuple[int, int]
@@ -42,8 +52,12 @@ class ForwardSolution(Solution):
         The number of elements.
     n_values_per_element : int
         The number of values by element.
-    model_path : PathLike
-        The path to the
+    elements_path : PathLike
+        The path to the elements file.
+
+    See Also
+    --------
+    shamo.core.Solution
     """
 
     N_VALUES_PER_ELEMENT = 0
@@ -60,12 +74,6 @@ class ForwardSolution(Solution):
         self["shape"] = tuple(kwargs.get("shape", (0, 0)))
         # Sensors
         self["sensors"] = kwargs.get("sensors", [])
-        # Model path
-        model_path = kwargs.get("model_path", None)
-        if model_path is not None:
-            self["model_path"] = str(Path(model_path))
-        else:
-            self["model_path"] = None
         # Elements path
         elements_path = kwargs.get("elements_path", None)
         if elements_path is not None:
@@ -151,30 +159,6 @@ class ForwardSolution(Solution):
             The names of the sensors.
         """
         return self["sensors"]
-
-    @property
-    def model_path(self):
-        """Return the path to the FE model file.
-
-        Returns
-        -------
-        str
-            The path to the FE model file.
-
-        Raises
-        ------
-        FileNotFoundError
-            If the model does not contain a FE model.
-            If the FE model file does not exist.
-        """
-        # Check if the model file exists
-        if self["model_path"] is None:
-            raise FileNotFoundError("The model does not contain a FE model.")
-        path = Path(self.path) / self["model_path"]
-        if not path.exists():
-            raise FileNotFoundError(("The specified FE model file no longer "
-                                     "exists."))
-        return str(path)
 
     @property
     def elements_path(self):
@@ -286,22 +270,6 @@ class ForwardSolution(Solution):
         if len(values) > 1:
             return values
         return values[0]
-
-    def set_model(self, model):
-        """Set the FE model used to generate the forward model.
-
-        Parameters
-        ----------
-        model : shamo.FEModel
-            The model used to generate the forward model.
-
-        Returns
-        -------
-        shamo.model.ForwardModel
-            The solution.
-        """
-        self["model_path"] = get_relative_path(model.json_path, self.path)
-        return self
 
     def set_sensors(self, sensors):
         """Set the names of the sensors used to generate the foward model.
