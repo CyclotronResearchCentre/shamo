@@ -9,6 +9,7 @@ from shamo.core import DirObject
 from .tissue import Tissue
 from .sensor import Sensor
 from .anisotropy import Anisotropy
+from .sources.fe_source import FESource
 
 
 class FEModel(DirObject):
@@ -54,6 +55,7 @@ class FEModel(DirObject):
     from ._anisotropy import (add_anisotropy_from_elements,
                               add_anisotropy_from_array,
                               add_anisotropy_from_nii)
+    from ._source import (add_sources, source_exists, get_source)
 
     def __init__(self, name, parent_path, **kwargs):
         super().__init__(name, parent_path)
@@ -73,6 +75,9 @@ class FEModel(DirObject):
         anisotropy = kwargs.get("anisotropy", {})
         self["anisotropy"] = {name: Anisotropy(**data)
                               for name, data in anisotropy.items()}
+        # Sources
+        sources = kwargs.get("sources", [])
+        self["sources"] = [FESource(**data) for data in sources]
 
     @property
     def mesh_path(self):
@@ -141,3 +146,14 @@ class FEModel(DirObject):
             The anisotropy of the model.
         """
         return self["anisotropy"]
+
+    @property
+    def sources(self):
+        """Return the sources of the model.
+
+        Returns
+        -------
+        list[shamo.FESource]
+            The sources of the model.
+        """
+        return self["sources"]

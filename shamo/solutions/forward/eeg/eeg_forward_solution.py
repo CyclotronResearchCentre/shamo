@@ -10,6 +10,52 @@ from shamo.solutions import ForwardSolution
 
 
 class EEGForwardSolution(ForwardSolution):
+    """The solution to an EEG forward problem.
+
+    Parameters
+    ----------
+    name : str
+        The name of the solution.
+    parent_path : str
+        The path to the parent directory of the solution.
+
+    Attributes
+    ----------
+    problem
+    matrix_path
+    shape
+    sensors
+    n_sensors
+    n_elements
+    n_values_per_element
+    model_path
+    elements_path
+
+    Other Parameters
+    ----------------
+    problem : dict[str: Any]
+        The problem that result in this solution.
+    matrix_path : PathLike
+        The path to the matrix file.
+    shape : tuple[int, int]
+        The shape of the matrix.
+    sensors : list[str]
+        The names of the sensors.
+    n_sensors : int
+        The number of sensors.
+    n_elements : int
+        The number of elements.
+    n_values_per_element : int
+        The number of values by element.
+    model_path : PathLike
+        The path to the model file.
+    elements_path : PathLike
+        The path to the elements file.
+
+    See Also
+    --------
+    shamo.solution.ForwardSolution
+    """
 
     from shamo import EEGForwardProblem
 
@@ -84,5 +130,5 @@ class EEGForwardSolution(ForwardSolution):
             element_index = np.argmin(distances)
             offset = element_index * self.n_values_per_element
             sources_vector[offset:offset + self.n_values_per_element] = \
-                np.array(source.unit_orientation) * source.value
+                source.values
         return self.evaluate(sources_vector)

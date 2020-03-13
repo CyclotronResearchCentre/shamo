@@ -1,75 +1,11 @@
-"""Implement `Source` and `EEGSource` class.
+"""Implement `EEGSource` class.
 
-This module implements the `Source` and `EEGSource` class which holds the data
-corresponding to a source.
+This module implements the `EEGSource` class which holds the data corresponding
+to a source.
 """
 import numpy as np
 
-
-class Source(dict):
-    """Hold the data corresponding to a source.
-
-    Parameters
-    ----------
-    coordinates : tuple[float, float, float]
-        The coordinates of the source.
-
-    Attributes
-    ----------
-    coordinates
-    x
-    y
-    z
-    """
-
-    def __init__(self, coordinates):
-        if len(coordinates) != 3:
-            raise ValueError("Argument 'coordinates' mus be of length 3.")
-        self["coordinates"] = tuple(coordinates)
-
-    @property
-    def coordinates(self):
-        """Return the coordinates of the source.
-
-        Returns
-        -------
-        tuple[float, float, float]
-            The coordinates of the source.
-        """
-        return self["coordinates"]
-
-    @property
-    def x(self):
-        """Return the coordinate of the source along x axis.
-
-        Returns
-        -------
-        float
-            The coordinate of the source along x axis.
-        """
-        return self["coordinates"][0]
-
-    @property
-    def y(self):
-        """Return the coordinate of the source along y axis.
-
-        Returns
-        -------
-        float
-            The coordinate of the source along y axis.
-        """
-        return self["coordinates"][1]
-
-    @property
-    def z(self):
-        """Return the coordinate of the source along z axis.
-
-        Returns
-        -------
-        float
-            The coordinate of the source along z axis.
-        """
-        return self["coordinates"][2]
+from .source import Source
 
 
 class EEGSource(Source):
@@ -78,7 +14,7 @@ class EEGSource(Source):
     Parameters
     ----------
     coordinates : tuple[float, float, float]
-        The coordinates of the source.
+        The coordinates of the source [mm].
     orientation : tuple[float, float, float]
         The orientation of the source.
     value : float
@@ -96,6 +32,7 @@ class EEGSource(Source):
     dz
     value
     unit_orientation
+    values
     """
 
     def __init__(self, coordinates, orientation, value):
@@ -173,3 +110,14 @@ class EEGSource(Source):
             The unitary orientation of the source.
         """
         return self["unit_orientation"]
+
+    @property
+    def values(self):
+        """Return the values along each axis.
+
+        Returns
+        -------
+        numpy.ndarray
+            The values along each axis.
+        """
+        return np.array(self.unit_orientation) * self.value

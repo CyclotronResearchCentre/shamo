@@ -2,9 +2,10 @@
 
 This module implements the `Solution` class which is the base for any solution.
 """
-from .objects import DirObject
+from pathlib import Path
 
-from shamo.utils import none_callable
+from .objects import DirObject
+from shamo.utils import none_callable, get_relative_path
 
 
 class Solution(DirObject):
@@ -20,11 +21,14 @@ class Solution(DirObject):
     Attributes
     ----------
     problem
+    model_path
 
     Other Parameters
     ----------------
     problem : dict[str: Any]
         The problem that result in this solution.
+    model_path : PathLike
+        The path to the model file.
     """
 
     PROBLEM_FACTORY = none_callable
@@ -37,6 +41,12 @@ class Solution(DirObject):
             self["problem"] = self.PROBLEM_FACTORY(**problem)
         else:
             self["problem"] = problem
+        # Model path
+        model_path = kwargs.get("model_path", None)
+        if model_path is not None:
+            self["model_path"] = str(Path(model_path))
+        else:
+            self["model_path"] = None
 
     @property
     def problem(self):
@@ -47,7 +57,31 @@ class Solution(DirObject):
         shamo.core.Problem
             The problem that result in this solution.
         """
-        return self["problem_settings"]
+        return self["problem"]
+
+    @property
+    def model_path(self):
+        """Return the path to the model file.
+
+        Returns
+        -------
+        str
+            The path to the model file.
+
+        Raises
+        ------
+        FileNotFoundError
+            If the model does not contain a model.
+            If the FE model file does not exist.
+        """
+        # Check if the model file exists
+        if self["model_path"] is None:
+            raise FileNotFoundError("The solution does not contain a model.")
+        path = Path(self.path) / self["model_path"]
+        if not path.exists():
+            raise FileNotFoundError(("The specified model file no longer "
+                                     "exists."))
+        return str(path)
 
     def set_problem(self, problem):
         """Set the problem that result in this solution.
@@ -63,4 +97,20 @@ class Solution(DirObject):
             The solution.
         """
         self["problem"] = problem
+        return self
+
+    def set_model(self, model):
+        """Set the model used to generate the solution.
+
+        Parameters
+        ----------
+        model : shamo.FEModel
+            The model used to generate the solution.
+
+        Returns
+        -------
+        shamo.core.Solution
+            The solution.
+        """
+        self["model_path"] = get_relative_path(model.json_path, self.path)
         return self
