@@ -19,4 +19,4 @@ pytest:
     stage: Test
     script:
     - python -m pip install pytest
-    - pytest .
+    - python -m pytest -W ignore::RuntimeWarning::523 .
