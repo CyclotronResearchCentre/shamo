@@ -73,6 +73,9 @@ def add_sources(self, sources, in_tissue, size=0.1, lc=0.001):
     gmsh.model.mesh.embed(0, all_points, 3, volume)
     gmsh.model.mesh.generate(3)
     gmsh.option.setNumber("Mesh.Binary", 1)
+    # Update number of nodes
+    nodes = gmsh.model.mesh.getNodes(-1, -1, False, False)[0]
+    self["n_nodes"] = nodes.size
     gmsh.write(self.mesh_path)
     gmsh.finalize()
 
