@@ -94,7 +94,7 @@ class EEGSimulationProblem(EEGForwardProblem):
         shamo.EEGSimulationProblem
             The problem.
         """
-        self["sources"].estend(sources)
+        self["sources"].extend(sources)
         return self
 
     def check_settings(self, model, **kwargs):
