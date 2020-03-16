@@ -34,6 +34,7 @@ def add_sources(self, sources, in_tissue, size=0.1, lc=0.001):
     # Remove original mesh for the tissue
     gmsh.initialize()
     gmsh.open(self.mesh_path)
+    gmsh.model.removeEntities([(3, self.tissues[in_tissue].volume_entity[0])])
     gmsh.model.removePhysicalGroups([
         (3, self.tissues[in_tissue].volume_group)
     ])
@@ -61,13 +62,13 @@ def add_sources(self, sources, in_tissue, size=0.1, lc=0.001):
     surface_loop = gmsh.model.geo.addSurfaceLoop(
         self.tissues[in_tissue].surface_entity
     )
-    volume = gmsh.model.geo.addVolume([surface_loop])
+    volume = gmsh.model.geo.addVolume(
+        [surface_loop]
+    )
     group = gmsh.model.addPhysicalGroup(3, [volume],
                                         self.tissues[in_tissue].volume_group)
     self.tissues[in_tissue]["volume_entity"] = [volume]
     gmsh.model.setPhysicalName(3, group, in_tissue)
-    gmsh.model.setPhysicalName(2, self.tissues[in_tissue].volume_group,
-                               in_tissue)
     gmsh.model.geo.synchronize()
     gmsh.model.mesh.embed(0, all_points, 3, volume)
     gmsh.model.mesh.generate(3)
