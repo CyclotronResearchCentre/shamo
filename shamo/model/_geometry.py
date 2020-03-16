@@ -141,7 +141,7 @@ def mesh_from_masks(self, tissue_masks, affine, mesh_config=MeshConfig()):
     masks = list(tissue_masks.values())
     labels = np.zeros(masks[0].shape, dtype=np.uint8)
     for label, mask in enumerate(masks):
-        labels[mask] = label + 1
+        labels[mask.astype(np.bool)] = label + 1
     self.mesh_from_labels(labels, tissues, affine, mesh_config)
     return self
 
