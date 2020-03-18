@@ -1,0 +1,39 @@
+{
+    "mesh_path": "model_1.msh",
+    "n_nodes": 971,
+    "tissues": {
+        "a": {
+            "volume_group": 1,
+            "volume_entity": [
+                1
+            ],
+            "surface_group": 2,
+            "surface_entity": [
+                1
+            ]
+        },
+        "b": {
+            "volume_group": 3,
+            "volume_entity": [
+                2
+            ],
+            "surface_group": 4,
+            "surface_entity": [
+                2
+            ]
+        },
+        "c": {
+            "volume_group": 5,
+            "volume_entity": [
+                3
+            ],
+            "surface_group": 6,
+            "surface_entity": [
+                3
+            ]
+        }
+    },
+    "sensors": {},
+    "anisotropy": {},
+    "sources": []
+}
