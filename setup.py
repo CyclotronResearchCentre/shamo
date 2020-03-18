@@ -1,7 +1,9 @@
 from setuptools import setup, find_packages
 
+# Load long description
 long_description = open("README.md", "r").read()
 
+# Define classifiers
 CLASSIFIERS = [
     "Development Status :: 2 - Pre-Alpha",
     "Intended Audience :: Science/Research",
@@ -12,6 +14,7 @@ CLASSIFIERS = [
     "Topic :: Scientific/Engineering :: Medical Science Apps."
 ]
 
+# Define setup settings
 setup(
     name="shamo",
     version="v1.0.0",
@@ -22,7 +25,5 @@ setup(
     author_email="mar.grignard@uliege.be",
     packages=find_packages(),
     install_requires=["numpy", "nibabel", "scipy", "scikit-learn"],
-    classifiers=CLASSIFIERS,
-    setup_requires=["pytest-runner"],
-    tests_require=["pytest"]
+    classifiers=CLASSIFIERS
 )
