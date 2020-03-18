@@ -23,7 +23,7 @@ setup(
     long_description=long_description,
     author="Martin Grignard",
     author_email="mar.grignard@uliege.be",
-    packages=find_packages(),
+    packages=find_packages(exclude=["tests"]),
     install_requires=["numpy", "nibabel", "scipy", "scikit-learn"],
     classifiers=CLASSIFIERS
 )

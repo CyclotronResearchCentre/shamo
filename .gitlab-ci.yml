@@ -15,8 +15,32 @@ flake8:
     - python -m pip install flake8
     - python -m flake8 --max-line-length=80 shamo
 
-pytest:
+py34-pytest:
     stage: Test
     script:
-    - python -m pip install pytest
-    - python -m pytest -W ignore::RuntimeWarning::523 .
+    - pip install tox
+    - tox -e py34
+
+py35-pytest:
+    stage: Test
+    script:
+    - pip install tox
+    - tox -e py35
+
+py36-pytest:
+    stage: Test
+    script:
+    - pip install tox
+    - tox -e py36
+
+py37-pytest:
+    stage: Test
+    script:
+    - pip install tox
+    - tox -e py37
+
+py38-pytest:
+    stage: Test
+    script:
+    - pip install tox
+    - tox -e py38
