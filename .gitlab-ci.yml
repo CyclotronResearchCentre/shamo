@@ -8,7 +8,7 @@ stages:
         name: gcr.io/kaniko-project/executor:debug
         entrypoint: [""]
     script:
-        - echo "{\"auths\":{\"$DOCKER_HUB\":{\"username\":\"$DOCKER_HUB_USER\",\"password\":\"$DOCKER_HUB_PASSWORD\"}}}" > /kaniko/.docker/config.json
+        - echo "{\"auths\":{\"${DOCKER_HUB}\":{\"auth\":\"$(echo ${DOCKER_HUB_USER}:${DOCKER_HUB_PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
         - /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile Dockerfile --destination margrignard/shamo:test-${PY}
 
 docker-build-test-3.5:
