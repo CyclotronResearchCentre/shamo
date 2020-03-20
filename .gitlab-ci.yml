@@ -10,7 +10,7 @@ stages:
     script:
         - echo "{\"auths\":{\"${DOCKER_HUB}\":{\"username\":\"${DOCKER_HUB_USER}\",\"password\":\"$DOCKER_HUB_PASSWORD\"}}}" > /kaniko/.docker/config.json
         - cat /kaniko/.docker/config.json
-        - /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/Dockerfile --destination ${DOCKER_HUB}/${DOCKER_HUB_USER}/shamo:test-${PY}
+        - /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/Dockerfile --destination ${DOCKER_HUB_USER}/shamo:test-${PY}
 
 docker-build-test-3.5:
     extends: .docker-build-test
