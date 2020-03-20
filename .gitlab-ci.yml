@@ -1,46 +1,32 @@
-image: "margrignard/shamo:latest-deps"
-
-before_script:
-    - python --version
-    - python -m pip install -r requirements.txt
-    - python -m pip install .
-
 stages:
-    - Static Analysis
-    - Test
+    - docker-build
 
-flake8:
-    stage: Static Analysis
+.docker-build-test:
+    stage: docker-build
+    when: manual
+    image:
+        name: gcr.io/kaniko-project/executor:debug
+        entrypoint: [""]
     script:
-    - python -m pip install flake8
-    - python -m flake8 --max-line-length=80 shamo
+        - echo "{\"auths\":{\"$DOCKER_HUB\":{\"username\":\"$DOCKER_HUB_USER\",\"password\":\"$DOCKER_HUB_PASSWORD\"}}}" > /kaniko/.docker/config.json
+        - /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile Dockerfile --destination margrignard/shamo:test-${PY}
 
-py34-pytest:
-    stage: Test
-    script:
-    - pip install tox
-    - tox -e py34
+docker-build-test-3.5:
+    extends: .docker-build-test
+    variables:
+        PY: "3.5"
 
-py35-pytest:
-    stage: Test
-    script:
-    - pip install tox
-    - tox -e py35
+docker-build-test-3.6:
+    extends: .docker-build-test
+    variables:
+        PY: "3.6"
 
-py36-pytest:
-    stage: Test
-    script:
-    - pip install tox
-    - tox -e py36
+docker-build-test-3.7:
+    extends: .docker-build-test
+    variables:
+        PY: "3.7"
 
-py37-pytest:
-    stage: Test
-    script:
-    - pip install tox
-    - tox -e py37
-
-py38-pytest:
-    stage: Test
-    script:
-    - pip install tox
-    - tox -e py38
+docker-build-test-3.8:
+    extends: .docker-build-test
+    variables:
+        PY: "3.8"
