@@ -89,8 +89,9 @@ def test_add_anisotropy_from_nii_tensor():
         img = nib.Nifti1Image(field, affine)
         img.to_filename(image_path)
         # Add anisotropy
-        model.add_anisotropy_from_nii(image_path, "b", 0, formula="3*<b>",
-                                      suffix="test")
+        model.add_anisotropy_from_nii(image_path, "b",
+                                      (1, 0, 0, 0, 1, 0, 0, 0, 1),
+                                      formula="3*<b>", suffix="test")
         model.save()
         # Test the model
         _check_model_anisotropy(model, "b_test", "tensor", "3*<b>")
