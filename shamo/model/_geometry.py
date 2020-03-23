@@ -261,7 +261,7 @@ def _inr_file_from_labels(parent_path, labels, name="model"):
               "VY=1\n"
               "VZ=1\n").format(*labels.shape, bytes_type, n_bits)
     header = header + "\n" * (256 - 4 - len(header)) + "##}\n"
-    inr_path = Path(parent_path) / "{}.inr".format(name)
+    inr_path = str(Path(parent_path) / "{}.inr".format(name))
     with open(inr_path, "wb") as inr_file:
         inr_file.write(header.encode("utf-8"))
         inr_file.write(labels.tobytes(order="F"))
