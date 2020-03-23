@@ -3,7 +3,6 @@ import shutil
 from tempfile import TemporaryDirectory
 
 import numpy as np
-import nibabel as nib
 import gmsh
 
 from shamo import FEModel
@@ -22,7 +21,8 @@ def _check_model_sensors(model, sensors):
     groups = gmsh.model.getPhysicalGroups(0)
     entities = [gmsh.model.getEntitiesForPhysicalGroup(0, group)
                 for dim, group in groups]
-    nodes = [gmsh.model.mesh.getNodes(0, entity)[0][0] for entity in entities]
+    nodes = [gmsh.model.mesh.getNodes(0, np.array(entity).astype(np.int))[0][0]
+             for entity in entities]
     mesh_coords = [tuple(gmsh.model.mesh.getNodes(0, entity)[1][:3])
                    for entity in entities]
     points = {gmsh.model.getPhysicalName(*group): {
