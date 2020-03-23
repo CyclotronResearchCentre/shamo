@@ -2,7 +2,6 @@ from pathlib import Path
 import shutil
 from tempfile import TemporaryDirectory
 
-import numpy as np
 import gmsh
 
 from shamo import FEModel
@@ -21,11 +20,10 @@ def _check_model_sensors(model, sensors):
     groups = gmsh.model.getPhysicalGroups(0)
     entities = [gmsh.model.getEntitiesForPhysicalGroup(0, group)
                 for dim, group in groups]
-    nodes = [gmsh.model.mesh.getNodes(0, [int(e) for e in entity])[0][0]
+    nodes = [gmsh.model.mesh.getNodes(0, int(entity))[0][0]
              for entity in entities]
-    mesh_coords = [tuple(
-        gmsh.model.mesh.getNodes(0, [int(e) for e in entity])[1][:3])
-        for entity in entities]
+    mesh_coords = [tuple(gmsh.model.mesh.getNodes(0, int(entity))[1][:3])
+                   for entity in entities]
     points = {gmsh.model.getPhysicalName(*group): {
         "group": group[1], "entity": entities[i], "node": nodes[i],
         "coords": mesh_coords[i]}
