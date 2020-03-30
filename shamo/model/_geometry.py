@@ -141,7 +141,7 @@ def mesh_from_masks(self, tissue_masks, affine, mesh_config=MeshConfig()):
     masks = list(tissue_masks.values())
     labels = np.zeros(masks[0].shape, dtype=np.uint8)
     for label, mask in enumerate(masks):
-        labels[mask] = label + 1
+        labels[mask.astype(np.bool)] = label + 1
     self.mesh_from_labels(labels, tissues, affine, mesh_config)
     return self
 
@@ -261,7 +261,7 @@ def _inr_file_from_labels(parent_path, labels, name="model"):
               "VY=1\n"
               "VZ=1\n").format(*labels.shape, bytes_type, n_bits)
     header = header + "\n" * (256 - 4 - len(header)) + "##}\n"
-    inr_path = Path(parent_path) / "{}.inr".format(name)
+    inr_path = str(Path(parent_path) / "{}.inr".format(name))
     with open(inr_path, "wb") as inr_file:
         inr_file.write(header.encode("utf-8"))
         inr_file.write(labels.tobytes(order="F"))
