@@ -193,7 +193,7 @@ class FileObject(Object):
         if not exist_ok and json_path.exists():
             raise FileExistsError("The object already exists.")
         # Save the object
-        with open(str(json_path), "w") as json_file:
+        with open(json_path, "w") as json_file:
             json.dump(self, json_file, indent=4)
 
     @classmethod
@@ -220,7 +220,7 @@ class FileObject(Object):
         if not json_path.exists():
             raise FileNotFoundError("The object does not exist.")
         # Load the object
-        with open(str(json_path), "r") as json_file:
+        with open(json_path, "r") as json_file:
             data = json.load(json_file)
         return cls(json_path.stem, json_path.parent, **data)
 
@@ -322,6 +322,6 @@ class DirObject(Object):
         if not json_path.exists():
             raise FileNotFoundError("The object does not exist.")
         # Load the object
-        with open(str(json_path), "r") as json_file:
+        with open(json_path, "r") as json_file:
             data = json.load(json_file)
         return cls(json_path.stem, json_path.parents[1], **data)
