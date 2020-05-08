@@ -189,7 +189,8 @@ class EEGSimulationProblem(EEGForwardProblem):
             file_names = ["j.pos", "v.pos", "v_skin.pos"]
             for file_name in file_names:
                 shutil.copy(Path(temporary_path) / file_name,
-                            Path(solution.path))
+                            Path(solution.path)
+                            / "{}_{}".format(solution.name, file_name))
         solution.save()
         return solution
 
@@ -216,6 +217,8 @@ class EEGSimulationProblem(EEGForwardProblem):
             template_file.replace_with_list("tissues", "name", tissue_names,
                                             separator=", ")
             # Add electrical conductivity
+            all_parameters = {name: sigma.value for name, sigma
+                              in self.electrical_conductivity.items()}
             electrical_conductivity = {}
             for tissue in tissue_names:
                 if self.electrical_conductivity[tissue].is_anisotropic:
@@ -226,7 +229,8 @@ class EEGSimulationProblem(EEGForwardProblem):
                                           "not found in "
                                           "model.").format(anisotropy))
                     electrical_conductivity[tissue] = \
-                        model.anisotropy[anisotropy].generate_formula_text()
+                        model.anisotropy[anisotropy].generate_formula_text(
+                        **all_parameters)
                 else:
                     electrical_conductivity[tissue] = str(
                         self.electrical_conductivity[tissue].value)

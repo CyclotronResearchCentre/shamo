@@ -30,6 +30,6 @@ setup(
     author="Martin Grignard",
     author_email="mar.grignard@uliege.be",
     packages=find_packages(exclude=["tests"]),
-    install_requires=["numpy", "nibabel", "scipy", "scikit-learn"],
+    install_requires=["numpy", "nibabel", "scipy", "scikit-learn", "chaospy"],
     classifiers=CLASSIFIERS
 )

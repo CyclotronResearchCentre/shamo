@@ -204,6 +204,8 @@ class EEGForwardProblem(ForwardProblem):
             template_file.replace_with_text(
                 "tag", "source", str(model.sensors[source_name].group))
             # Add electrical conductivity
+            all_parameters = {name: sigma.value for name, sigma
+                              in self.electrical_conductivity.items()}
             electrical_conductivity = {}
             for tissue in tissue_names:
                 if self.electrical_conductivity[tissue].is_anisotropic:
@@ -214,7 +216,8 @@ class EEGForwardProblem(ForwardProblem):
                                           "not found in "
                                           "model.").format(anisotropy))
                     electrical_conductivity[tissue] = \
-                        model.anisotropy[anisotropy].generate_formula_text()
+                        model.anisotropy[anisotropy].generate_formula_text(
+                        **all_parameters)
                 else:
                     electrical_conductivity[tissue] = str(
                         self.electrical_conductivity[tissue].value)

@@ -4,3 +4,4 @@ meshio>=3.0.7
 nibabel>=2.5.0
 scipy>=1.4.0
 scikit-learn>=0.22.1
+chaospy>=3.2.8
