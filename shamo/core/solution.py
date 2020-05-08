@@ -99,6 +99,22 @@ class Solution(DirObject):
         self["problem"] = problem
         return self
 
+    def set_model_path(self, model_path):
+        """Set the path to the model used to generate the solution.
+
+        Parameters
+        ----------
+        model_path : PathLike
+            The path to the model used to generate the solution.
+
+        Returns
+        -------
+        shamo.core.Solution
+            The solution.
+        """
+        self["model_path"] = get_relative_path(model_path, self.path)
+        return self
+
     def set_model(self, model):
         """Set the model used to generate the solution.
 

@@ -1,8 +1,10 @@
 """Implement `TissueProperty` class.
 
-This module implements the `tissueProperty` class which holds the data
+This module implements the `TissueProperty` class which holds the data
 corresponding to a certain property of a tissue.
 """
+
+from shamo import Distribution
 
 
 class TissueProperty(dict):
@@ -24,7 +26,10 @@ class TissueProperty(dict):
 
     def __init__(self, value, anisotropy=""):
         super().__init__()
-        self["value"] = value
+        if isinstance(value, dict):
+            self["value"] = Distribution.load(value)
+        else:
+            self["value"] = value
         self["anisotropy"] = anisotropy
 
     @property

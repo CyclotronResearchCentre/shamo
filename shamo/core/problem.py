@@ -1,11 +1,12 @@
-"""Implement `Problem` class.
+"""Implement `Problem` and `ParametricProblem` classes.
 
-This module implements the `Problem` class which is the base for any problem.
+This module implements the `Problem` and `ParametricProblem` classes which are
+the bases for any problem.
 """
 import abc
 
 
-class Problem(dict):
+class Problem(dict, abc.ABC):
     """The base for any problem."""
 
     @abc.abstractmethod
