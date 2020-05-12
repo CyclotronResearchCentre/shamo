@@ -23,9 +23,9 @@ CLASSIFIERS = [
 # Define setup settings
 setup(
     name="shamo",
-    version="v1.0.0",
+    version="v0.1.0",
     license="GPLv3",
-    description="Forward modelling and sensitivity analysis.",
+    description="A tool for electromagnetic modelling of the head and sensitivity analysis.",
     long_description=long_description,
     author="Martin Grignard",
     author_email="mar.grignard@uliege.be",
