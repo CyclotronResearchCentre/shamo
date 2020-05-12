@@ -9,7 +9,7 @@ def add_sources(self, sources, in_tissue, size=0.1, lc=0.001):
 
     Parameters
     ----------
-    sources : shamo.model.Source
+    sources : shamo.model.sources.surce.Source
         The sources to simulate.
     in_tissue : str
         The name of the tissue to add the sources in.
@@ -20,7 +20,7 @@ def add_sources(self, sources, in_tissue, size=0.1, lc=0.001):
 
     Returns
     -------
-    shamo.FEModel
+    shamo.model.fe_model.FEModel
         The current model.
     """
     # Define points offset
@@ -85,13 +85,13 @@ def source_exists(self, source):
 
     Parameters
     ----------
-    source : shamo.model.Source
+    source : shamo.model.sources.source.Source
         The source.
 
     Returns
     -------
     bool
-        Return `True` if the source exists in the model, `False` otherwise.
+        Return ``True`` if the source exists in the model, ``False`` otherwise.
     """
     for model_source in self.sources:
         if source.coordinates == model_source.coordinates:
@@ -104,13 +104,14 @@ def get_source(self, source):
 
     Parameters
     ----------
-    source : shamo.model.Source
+    source : shamo.model.sources.source.Source
         The source to retrieve.
 
     Returns
     -------
-    shamo.FESource
-        If the source exists in the model, return the source, `None` otherwise.
+    shamo.model.sources.fe_source.FESource
+        If the source exists in the model, return the source, ``None``
+        otherwise.
     """
     for model_source in self.sources:
         if source.coordinates == model_source.coordinates:

@@ -21,19 +21,10 @@ class MeshConfig(dict):
     cell_radius_edge_ratio : float
         The ratio between cell radius and edges.
 
-    Attributes
-    ----------
-    cell_radius_edge_ratio
-    cell_size
-    edge_size
-    facet_angle
-    facet_distance
-    facet_size
-
     See Also
     --------
     pygalmesh.generate_from_inr
-        The attributes of `MeshConfig` are passed to this function.
+        The attributes of are passed to this function.
     """
 
     def __init__(self, cell_size=0.0, edge_size=0.0, facet_size=0.0,

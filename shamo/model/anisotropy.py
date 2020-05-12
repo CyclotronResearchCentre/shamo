@@ -1,7 +1,7 @@
 """Implement `Anisotropy` class.
 
-This module implements the `Anisotropy`class which holds the data corresponding
-to a different anisotropic properties.
+This module implements the `Anisotropy` class which holds the data
+corresponding to a different anisotropic properties.
 """
 import re
 
@@ -16,13 +16,7 @@ class Anisotropy(dict):
     view : int
         The tag of the view the anisotropy is in.
     formula : str, optional
-        The formula multiplying anisotropic data. (The default is `1`).
-
-    Attributes
-    ----------
-    anisotropy_type
-    view
-    formula
+        The formula multiplying anisotropic data. (The default is ``1``).
     """
 
     SCALAR = "scalar"
@@ -105,7 +99,8 @@ class Anisotropy(dict):
 
         See Also
         --------
-        Anisotropy.evaluate_formula
+        shamo.model.anisotropy.Anisotropy.evaluate_formula
+            For more information on how to define the formula.
         """
         coefficient = self.evaluate_formula(**kwargs)
         field = "{}Field".format(self.anisotropy_type.capitalize())

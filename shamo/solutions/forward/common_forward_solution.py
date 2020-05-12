@@ -21,27 +21,15 @@ class CommonForwardSolution(Solution):
     parent_path : str
         The path to the parent directory of the solution.
 
-    Attributes
-    ----------
-    problem
-    model_path
-    shape
-    sensors
-    n_sensors
-    n_elements
-    n_values_per_element
-    model_path
-    elements_path
-
     Other Parameters
     ----------------
-    problem : dict[str: Any]
+    problem : dict [str, Any]
         The problem that result in this solution.
     model_path : PathLike
         The path to the model file.
-    shape : tuple[int, int]
+    shape : tuple (int, int)
         The shape of the matrix.
-    sensors : list[str]
+    sensors : list [str]
         The names of the sensors.
     n_sensors : int
         The number of sensors.
@@ -54,7 +42,7 @@ class CommonForwardSolution(Solution):
 
     See Also
     --------
-    shamo.solutions.CommonForwardSolution
+    shamo.solutions.forward.common_forward_solution.CommonForwardSolution
     """
 
     N_VALUES_PER_ELEMENT = 0
@@ -78,7 +66,7 @@ class CommonForwardSolution(Solution):
 
         Returns
         -------
-        tuple[int, int]
+        tuple (int, int)
             The shape of the matrix.
         """
         return self["shape"]
@@ -122,7 +110,7 @@ class CommonForwardSolution(Solution):
 
         Returns
         -------
-        list[str]
+        list [str]
             The names of the sensors.
         """
         return self["sensors"]
@@ -161,7 +149,7 @@ class CommonForwardSolution(Solution):
 
         Returns
         -------
-        shamo.solutions.ForwardSolution
+        shamo.solutions.forward.common_forward_solution.CommonForwardSolution
             The solution.
         """
         self["elements_path"] = get_relative_path(elements_path, self.path)
@@ -179,7 +167,7 @@ class CommonForwardSolution(Solution):
 
         Returns
         -------
-        shamo.solutions.ForwardSolution
+        shamo.solutions.forward.common_forward_solution.CommonForwardSolution
             The solution.
         """
         elements_path = str(Path(self.path)
@@ -194,18 +182,18 @@ class CommonForwardSolution(Solution):
         Parameters
         ----------
         tags : bool, optional
-            If set to `True`, return the tags of the elements.
-            (The default is `True`)
+            If set to ``True``, return the tags of the elements.
+            (The default is ``True``)
         coords : bool, optional
-            If set to `True`, return the coordinates of the elements.
-            (The default is `True`)
+            If set to ``True``, return the coordinates of the elements.
+            (The default is ``True``)
 
         Returns
         -------
         numpy.ndarray
-            If `tags` is `True`, the tags of the elements.
+            If ``tags`` is ``True``, the tags of the elements.
         numpy.ndarray
-            If `coords` is `True`, the coordinates of the elements.
+            If ``coords`` is ``True``, the coordinates of the elements.
         """
         values = []
         elements = np.load(self.elements_path)
@@ -222,12 +210,12 @@ class CommonForwardSolution(Solution):
 
         Parameters
         ----------
-        sensors : list[str]
+        sensors : list [str]
             The names of the sensors used to generate the foward model.
 
         Returns
         -------
-        shamo.model.ForwardModel
+        shamo.solutions.forward.common_forward_solution.CommonForwardSolution
             The solution.
         """
         if self.n_sensors != 0:

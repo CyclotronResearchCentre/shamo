@@ -21,21 +21,14 @@ class EEGForwardProblem(ForwardProblem):
 
     Parameters
     ----------
-    regions_of_interest : list[str]
+    regions_of_interest : list [str]
         The names of the regions of interest.
-    markers : list[str]
+    markers : list [str]
         The names of the markers.
-    electrical_conductivity : dict[str: dict]
+    electrical_conductivity : dict [str, dict]
         The electrical conductivity of the tissues [S/m].
     reference : str
         The name of the reference sensor.
-
-    Attributes
-    ----------
-    regions_of_interest
-    markers
-    electrical_conductivity
-    reference
 
     See Also
     --------
@@ -71,7 +64,7 @@ class EEGForwardProblem(ForwardProblem):
 
         Returns
         -------
-        shamo.EEGForwardProblem
+        shamo.problems.forward.eeg.eeg_forward_problem.EEGForwardProblem
             The problem.
         """
         self["reference"] = name
@@ -82,7 +75,7 @@ class EEGForwardProblem(ForwardProblem):
 
         Parameters
         ----------
-        model : shamo.FEModel
+        model : shamo.model.fe_model.FEModel
             The model to check the settings for.
 
         Raises
@@ -90,8 +83,8 @@ class EEGForwardProblem(ForwardProblem):
         ValueError
             If none of the specified regions of interest can be found in the
             model.
-            If `is_roi_required` is set to `True` and no region of interest is
-            specified.
+            If ``is_roi_required`` is set to ``True`` and no region of interest
+            is specified.
             If at least one tissue of the model has no specified electrical
             conductivity.
         """
@@ -110,7 +103,7 @@ class EEGForwardProblem(ForwardProblem):
             The name of the solution.
         parent_path : PathLike
             The path to the parent directory of the solution.
-        model : shamo.core.FileObject
+        model : shamo.core.objects.FileObject
             The model to solve the problem on.
 
         Returns
@@ -163,14 +156,14 @@ class EEGForwardProblem(ForwardProblem):
         return solution
 
     def _generate_problem_file(self, path, model, n_sensors):
-        """Generate a `.pro` file with all the field filled.
+        """Generate a ``.pro`` file with all the field filled.
 
         Parameters
         ----------
         path : PathLike
-            The path to the output `.pro` file.
-        model : shamo.FEModel
-            The model to fill the `.pro` file for.
+            The path to the output ``.pro`` file.
+        model : shamo.model.fe_model.FEModel
+            The model to fill the ``.pro`` file for.
         n_sensors : int
             The number of sensors to compute the solution for.
         """
@@ -238,7 +231,7 @@ class EEGForwardProblem(ForwardProblem):
         ----------
         n_values : int
             The length of the vector.
-        sensors : dict[str, shamo.model.sensor.Sensor]
+        sensors : dict [str, shamo.model.sensor.Sensor]
             The sensors to compute the solution for.
         reference : shamo.model.sensor.Sensor
             The sensor used as a reference.

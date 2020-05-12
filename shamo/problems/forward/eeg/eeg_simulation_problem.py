@@ -23,26 +23,18 @@ class EEGSimulationProblem(EEGForwardProblem):
 
     Parameters
     ----------
-    regions_of_interest : list[str]
+    regions_of_interest : list [str]
         The names of the regions of interest.
-    markers : list[str]
+    markers : list [str]
         The names of the markers.
-    electrical_conductivity : dict[str: dict]
+    electrical_conductivity : dict [str, dict]
         The electrical conductivity of the tissues [S/m].
     reference : str
         The name of the reference sensor.
 
-    Attributes
-    ----------
-    regions_of_interest
-    markers
-    electrical_conductivity
-    reference
-    sources
-
     See Also
     --------
-    shamo.problems.ForwardProblem
+    shamo.problems.forward.forward_problem.ForwardProblem
     """
 
     TEMPLATE_PATH = resource_filename("shamo", str(
@@ -60,7 +52,7 @@ class EEGSimulationProblem(EEGForwardProblem):
 
         Returns
         -------
-        list[shamo.EEGSource]
+        list [shamo.model.sources.eeg_source.EEGSource]
             The sources set for the problem.
         """
         return self["sources"]
@@ -70,12 +62,12 @@ class EEGSimulationProblem(EEGForwardProblem):
 
         Parameters
         ----------
-        source : shamo.EEGSource
+        source : shamo.model.sources.eeg_source.EEGSource
             The source to add.
 
         Returns
         -------
-        shamo.EEGSimulationProblem
+        shamo.problems.forward.eeg.eeg_simulation_problem.EEGSimulationProblem
             The problem.
         """
         self["sources"].append(source)
@@ -86,12 +78,12 @@ class EEGSimulationProblem(EEGForwardProblem):
 
         Parameters
         ----------
-        sources : list[shamo.EEGSource]
+        sources : list [shamo.model.sources.eeg_source.EEGSource]
             The sources to add.
 
         Returns
         -------
-        shamo.EEGSimulationProblem
+        shamo.problems.forward.eeg.eeg_simulation_problem.EEGSimulationProblem
             The problem.
         """
         self["sources"].extend(sources)
@@ -110,8 +102,8 @@ class EEGSimulationProblem(EEGForwardProblem):
         ValueError
             If none of the specified regions of interest can be found in the
             model.
-            If `is_roi_required` is set to `True` and no region of interest is
-            specified.
+            If ``is_roi_required`` is set to ``True`` and no region of interest
+            is specified.
             If at least one tissue of the model has no specified electrical
             conductivity.
             If a source do not exist in the model.
@@ -132,7 +124,7 @@ class EEGSimulationProblem(EEGForwardProblem):
             The name of the solution.
         parent_path : PathLike
             The path to the parent directory of the solution.
-        model : shamo.core.FileObject
+        model : shamo.core.objects.FileObject
             The model to solve the problem on.
 
         Returns
@@ -195,14 +187,14 @@ class EEGSimulationProblem(EEGForwardProblem):
         return solution
 
     def _generate_problem_file(self, path, model):
-        """Generate a `.pro` file with all the field filled.
+        """Generate a ``.pro`` file with all the field filled.
 
         Parameters
         ----------
         path : PathLike
-            The path to the output `.pro` file.
-        model : shamo.FEModel
-            The model to fill the `.pro` file for.
+            The path to the output ``.pro`` file.
+        model : shamo.model.fe_model.FEModel
+            The model to fill the ``.pro`` file for.
         """
         path = str(Path(path))
         with TemplateFile(self.TEMPLATE_PATH, path) as template_file:
@@ -278,7 +270,7 @@ class EEGSimulationProblem(EEGForwardProblem):
         Parameters
         ----------
         path : PathLike
-            The path to the `.pos` file to edit.
+            The path to the ``.pos`` file to edit.
         reference_potential : float
             The reference value.
         """

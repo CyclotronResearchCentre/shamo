@@ -11,24 +11,12 @@ class FESource(Source):
 
     Parameters
     ----------
-    coordinates : tuple[float, float, float]
+    coordinates : tuple (float, float, float)
         The coordinates of the source [mm].
     group : int
         The physical group of the source.
-    point_groups : list[tuple[int, int]]
+    point_groups : list [tuple (int, int)]
         The physical groups of the points.
-
-    Attributes
-    ----------
-    coordinates
-    x
-    y
-    z
-    group
-    point_groups
-    px
-    py
-    pz
     """
 
     def __init__(self, coordinates, length, group, point_groups):
@@ -65,7 +53,7 @@ class FESource(Source):
 
         Returns
         -------
-        list[tuple[int, int]]
+        list [tuple (int, int)]
             The physical groups of the points.
         """
         return self["point_groups"]
@@ -76,7 +64,7 @@ class FESource(Source):
 
         Returns
         -------
-        tuple[int, int]
+        tuple (int, int)
             The physical groups of the points along x axis.
         """
         return self["point_groups"][0]
@@ -87,7 +75,7 @@ class FESource(Source):
 
         Returns
         -------
-        tuple[int, int]
+        tuple (int, int)
             The physical groups of the points along y axis.
         """
         return self["point_groups"][1]
@@ -98,7 +86,7 @@ class FESource(Source):
 
         Returns
         -------
-        tuple[int, int]
+        tuple (int, int)
             The physical groups of the points along z axis.
         """
         return self["point_groups"][2]

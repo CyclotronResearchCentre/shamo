@@ -16,11 +16,11 @@ class Distribution(dict, abc.ABC):
     name : str
         The name of the distribution.
 
-    Attributes
-    ----------
-    name
-    expected
-    distribution
+    Notes
+    -----
+    All the distribution should inherit from this class but, to be able to use
+    them in other methods, they should correspond to distributions from
+    `chaospy`.
     """
 
     def __init__(self, name):
@@ -53,7 +53,7 @@ class Distribution(dict, abc.ABC):
 
         Returns
         -------
-        chaospy.Distribution
+        chaospy.distributions.baseclass.Dist
             The distribution.
         """
 
@@ -63,12 +63,12 @@ class Distribution(dict, abc.ABC):
 
         Parameters
         ----------
-        data : dict[str: object]
+        data : dict [str, object]
             The dictionary containing the distribution information.
 
         Returns
         -------
-        shamo.Distribution
+        shamo.core.distribution.Distribution
             The loaded distribution.
         """
         name = data.get("name", "")
@@ -86,13 +86,6 @@ class ConstantDistribution(Distribution):
     ----------
     value : float
         The constant value.
-
-    Attributes
-    ----------
-    name
-    value
-    expected
-    distribution
     """
 
     def __init__(self, value):
@@ -106,7 +99,7 @@ class ConstantDistribution(Distribution):
         Returns
         -------
         float
-            The value
+            The value.
         """
         return self["value"]
 
@@ -123,7 +116,7 @@ class ConstantDistribution(Distribution):
 
     @property
     def distribution(self):
-        """Return `None`."""
+        """Return ``None``."""
         return None
 
 
@@ -136,14 +129,6 @@ class UniformDistribution(Distribution):
         The minimum value.
     maximum : float
         The maximum value.
-
-    Attributes
-    ----------
-    name
-    minimum
-    maximum
-    expected
-    distribution
     """
 
     def __init__(self, minimum, maximum):
@@ -158,7 +143,7 @@ class UniformDistribution(Distribution):
         Returns
         -------
         float
-            The minimum value
+            The minimum value.
         """
         return self["minimum"]
 
@@ -169,7 +154,7 @@ class UniformDistribution(Distribution):
         Returns
         -------
         float
-            The maximum value
+            The maximum value.
         """
         return self["maximum"]
 
@@ -179,7 +164,7 @@ class UniformDistribution(Distribution):
 
         Returns
         -------
-        chaospy.Uniform
+        chaospy.distributions.collection.uniform.Uniform
             The distribution.
         """
         return chaos.Uniform(self.minimum, self.maximum)

@@ -10,15 +10,8 @@ class Source(dict):
 
     Parameters
     ----------
-    coordinates : tuple[float, float, float]
+    coordinates : tuple (float, float, float)
         The coordinates of the source [mm].
-
-    Attributes
-    ----------
-    coordinates
-    x
-    y
-    z
     """
 
     def __init__(self, coordinates):
@@ -32,7 +25,7 @@ class Source(dict):
 
         Returns
         -------
-        tuple[float, float, float]
+        tuple (float, float, float)
             The coordinates of the source.
         """
         return self["coordinates"]

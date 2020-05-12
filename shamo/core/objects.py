@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 class Object(dict, abc.ABC):
-    """The abstract base class for any object in `shamo`.
+    """The abstract base class for any object in ``shamo``.
 
     Parameters
     ----------
@@ -17,13 +17,6 @@ class Object(dict, abc.ABC):
         The name of the object.
     parent_path : PathLike
         The path to the parent directory of the object on disk.
-
-    Attributes
-    ----------
-    name
-    parent_path
-    path
-    json_path
     """
 
     def __init__(self, name, parent_path):
@@ -65,12 +58,12 @@ class Object(dict, abc.ABC):
 
     @abc.abstractproperty
     def json_path(self):
-        """Return the path to the `.json` file representing the object.
+        """Return the path to the ``.json`` file representing the object.
 
         Returns
         -------
         str
-            The path to the `.json` file representing the object.
+            The path to the ``.json`` file representing the object.
         """
 
     @abc.abstractmethod
@@ -80,30 +73,30 @@ class Object(dict, abc.ABC):
         Parameters
         ----------
         parents : bool, optional
-            If set to `True`, the missing directories in the path are created.
-            Otherwise, a missing parent raise `FileNotFoundError`.
-            (The default is `True`)
+            If set to ``True``, the missing directories in the path are
+            created. Otherwise, a missing parent raise ``FileNotFoundError``.
+            (The default is ``True``)
         exist_ok : bool, optional
-            If set to `True`, override any existing file. Otherwise, if any
-            existing file is found, raise `FileExistsError`.
-            (The default is `True`)
+            If set to ``True``, override any existing file. Otherwise, if any
+            existing file is found, raise ``FileExistsError``.
+            (The default is ``True``)
 
         Raises
         ------
         FileNotFoundError
-            If `parents` is set to `False` and a missing parent is found.
+            If ``parents`` is set to ``False`` and a missing parent is found.
         FileExistsError
-            If `exist_ok` is set to `False` and the object already exists.
+            If ``exist_ok`` is set to ``False`` and the object already exists.
         """
 
     @abc.abstractclassmethod
     def load(cls, json_path):
-        """Load an object from a `.json` file.
+        """Load an object from a ``.json`` file.
 
         Parameters
         ----------
         json_path : PathLike
-            The path to the `.json` file representing  the object.
+            The path to the ``.json`` file representing  the object.
 
         Returns
         -------
@@ -113,12 +106,12 @@ class Object(dict, abc.ABC):
         Raises
         ------
         FileNotFoundError
-            If the `.json` file does not exist.
+            If the ``.json`` file does not exist.
         """
 
 
 class FileObject(Object):
-    """The base class for any single file object in `shamo`.
+    """The base class for any single file object in ``shamo``.
 
     Parameters
     ----------
@@ -126,13 +119,6 @@ class FileObject(Object):
         The name of the object.
     parent_path : PathLike
         The path to the parent directory of the object on disk.
-
-    Attributes
-    ----------
-    name
-    parent_path
-    path
-    json_path
     """
 
     def __init__(self, name, parent_path):
@@ -149,41 +135,41 @@ class FileObject(Object):
 
         Notes
         -----
-        For `FileObject`, it returns the same path as `json_path()`.
+        For ``FileObject``, it returns the same path as ``json_path()``.
         """
         return self.json_path
 
     @property
     def json_path(self):
-        """Return the path to the `.json` file representing the object.
+        """Return the path to the ``.json`` file representing the object.
 
         Returns
         -------
         str
-            The path to the `.json` file representing the object.
+            The path to the ``.json`` file representing the object.
         """
         return str(Path(self.parent_path) / "{}.json".format(self.name))
 
     def save(self, parents=True, exist_ok=True):
-        """Save the object `.json` file.
+        """Save the object ``.json`` file.
 
         Parameters
         ----------
         parents : bool, optional
-            If set to `True`, the missing directories in the path are created.
-            Otherwise, a missing parent raise `FileNotFoundError`.
-            (The default is `True`)
+            If set to ``True``, the missing directories in the path are
+            created. Otherwise, a missing parent raise ``FileNotFoundError``.
+            (The default is ``True``)
         exist_ok : bool, optional
-            If set to `True`, override any existing file. Otherwise, if any
-            existing file is found, raise `FileExistsError`.
-            (The default is `True`)
+            If set to ``True``, override any existing file. Otherwise, if any
+            existing file is found, raise ``FileExistsError``.
+            (The default is ``True``)
 
         Raises
         ------
         FileNotFoundError
-            If `parents` is set to `False` and a missing parent is found.
+            If ``parents`` is set to ``False`` and a missing parent is found.
         FileExistsError
-            If `exist_ok` is set to `False` and the object already exists.
+            If ``exist_ok`` is set to ``False`` and the object already exists.
         """
         # Make sure the parent directory exists
         parent_path = Path(self.parent_path)
@@ -198,12 +184,12 @@ class FileObject(Object):
 
     @classmethod
     def load(cls, json_path):
-        """Load an object from a `.json` file.
+        """Load an object from a ``.json`` file.
 
         Parameters
         ----------
         json_path : PathLike
-            The path to the `.json` file representing  the object.
+            The path to the ``.json`` file representing  the object.
 
         Returns
         -------
@@ -213,7 +199,7 @@ class FileObject(Object):
         Raises
         ------
         FileNotFoundError
-            If the `.json` file does not exist.
+            If the ``.json`` file does not exist.
         """
         # Check if the file exists
         json_path = Path(json_path)
@@ -226,7 +212,7 @@ class FileObject(Object):
 
 
 class DirObject(Object):
-    """The base class for any directory object in `shamo`.
+    """The base class for any directory object in ``shamo``.
 
     Parameters
     ----------
@@ -234,13 +220,6 @@ class DirObject(Object):
         The name of the object.
     parent_path : PathLike
         The path to the parent directory of the object on disk.
-
-    Attributes
-    ----------
-    name
-    parent_path
-    path
-    json_path
     """
 
     def __init__(self, name, parent_path):
@@ -261,35 +240,35 @@ class DirObject(Object):
 
     @property
     def json_path(self):
-        """Return the path to the `.json` file representing the object.
+        """Return the path to the ``.json`` file representing the object.
 
         Returns
         -------
         str
-            The path to the `.json` file representing the object.
+            The path to the ``.json`` file representing the object.
         """
         return str(Path(self.path) / "{}.json".format(self.name))
 
     def save(self, parents=True, exist_ok=True):
-        """Save the object `.json` file in a new directory.
+        """Save the object ``.json`` file in a new directory.
 
         Parameters
         ----------
         parents : bool, optional
-            If set to `True`, the missing directories in the path are created.
-            Otherwise, a missing parent raise `FileNotFoundError`.
-            (The default is `True`)
+            If set to ``True``, the missing directories in the path are
+            created. Otherwise, a missing parent raise ``FileNotFoundError``.
+            (The default is ``True``)
         exist_ok : bool, optional
-            If set to `True`, override any existing file. Otherwise, if any
-            existing file is found, raise `FileExistsError`.
-            (The default is `True`)
+            If set to ``True``, override any existing file. Otherwise, if any
+            existing file is found, raise ``FileExistsError``.
+            (The default is ``True``)
 
         Raises
         ------
         FileNotFoundError
-            If `parents` is set to `False` and a missing parent is found.
+            If ``parents`` is set to ``False`` and a missing parent is found.
         FileExistsError
-            If `exist_ok` is set to `False` and the object already exists.
+            If ``exist_ok`` is set to ``False`` and the object already exists.
         """
         # Create the directory
         path = Path(self.path)
@@ -300,12 +279,12 @@ class DirObject(Object):
 
     @classmethod
     def load(cls, json_path):
-        """Load an object from a `.json` file.
+        """Load an object from a ``.json`` file.
 
         Parameters
         ----------
         json_path : PathLike
-            The path to the `.json` file representing  the object.
+            The path to the ``.json`` file representing  the object.
 
         Returns
         -------
@@ -315,7 +294,7 @@ class DirObject(Object):
         Raises
         ------
         FileNotFoundError
-            If the `.json` file does not exist.
+            If the ``.json`` file does not exist.
         """
         # Check if the file exists
         json_path = Path(json_path)

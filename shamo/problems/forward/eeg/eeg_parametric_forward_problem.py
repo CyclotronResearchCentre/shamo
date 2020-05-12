@@ -19,25 +19,18 @@ class EEGParametricForwardProblem(EEGForwardProblem):
 
     Parameters
     ----------
-    regions_of_interest : list[str]
+    regions_of_interest : list [str]
         The names of the regions of interest.
-    markers : list[str]
+    markers : list [str]
         The names of the markers.
-    electrical_conductivity : dict[str: dict]
+    electrical_conductivity : dict [str, dict]
         The electrical conductivity of the tissues [S/m].
     reference : str
         The name of the reference sensor.
 
-    Attributes
-    ----------
-    regions_of_interest
-    markers
-    electrical_conductivity
-    reference
-
     See Also
     --------
-    shamo.EEGForwardProblem
+    shamo.problems.eeg.forward.eeg_forward_problem.EEGForwardProblem
     """
 
     METHOD_SEQ = "seq"
@@ -59,28 +52,29 @@ class EEGParametricForwardProblem(EEGForwardProblem):
             The name of the solution.
         parent_path : PathLike
             The path to the parent directory of the solution.
-        model : shamo.core.FileObject
+        model : shamo.core.objects.FileObject
             The model to solve the problem on.
 
         Other Parameters
         ----------------
         order : int, optional
             The order of the quadrature to generate the evaluation points. (The
-            default is `2`)
+            default is ``2``)
         rule : str, optional
             The quadrature rule to generate the evaluation points. Those rules
-            are defined in `chaospy` and the accepted values are
-            `'clenshaw_curtis'`, `'fejer'`, `'gaussian'`, `'gauss_legendre'`,
-            `'gauss_lobatto'`, `'gauss_kronrod'`, `'gauss_patterson'`,
-            `'gauss_radau'`, `'genz_keister'`, `'leja'` and `'newton_cotes'`.
-            (The default is `'leja'`)
+            are defined in ``chaospy`` and the accepted values are
+            ``'clenshaw_curtis'``, ``'fejer'``, ``'gaussian'``,
+            ``'gauss_legendre'``, ``'gauss_lobatto'``, ``'gauss_kronrod'``,
+            ``'gauss_patterson'``, ``'gauss_radau'``, ``'genz_keister'``,
+            ``'leja'`` and ``'newton_cotes'``.
+            (The default is ``'leja'``)
         sparse : bool, optional
-            If set to `True`, the quadrature rule is sparse. (The default is
-            `True`)
+            If set to ``True``, the quadrature rule is sparse. (The default is
+            ``True``)
 
         Returns
         -------
-        shamo.EEGForwardSolution
+        shamo.solutions.forward.eeg.eeg_forward_solution.EEGForwardSolution
             The solution of the problem for the specified model.
         """
         from shamo import EEGParametricForwardSolution
@@ -137,7 +131,7 @@ class EEGParametricForwardProblem(EEGForwardProblem):
         -------
         int
             The number of points to evaluate.
-        dict[str: float|numpy.ndarray]
+        dict [str, float|numpy.ndarray]
             The points to evaluate.
         """
         tissue_distributions = [(name, tissue.value.distribution)
@@ -166,12 +160,12 @@ class EEGParametricForwardProblem(EEGForwardProblem):
         ----------
         n_evals : int
             The number of evaluation points.
-        eval_points : dict[str: float|numpy.ndarray]
+        eval_points : dict [str, float|numpy.ndarray]
             The coordinates of the evaluation points.
 
         Returns
         -------
-        list[shamo.EEGForwardProblem]
+        list [shamo.problems.forward.eeg.eeg_forward_problem.EEGForwardProblem]
             The generated problems.
         """
         sub_problems = []
@@ -202,12 +196,12 @@ class EEGParametricForwardProblem(EEGForwardProblem):
             The name of the sub-solution.
         parent_path : PathLike
             The path to the parent directory of the sub-solution.
-        model : shamo.FEModel
+        model : shamo.model.fe_model.FEModel
             The model used to solve the problem.
 
         Returns
         -------
-        shamo.EEGForwardSolution
+        shamo.solutions.forward.eeg.eeg_forward_solution.EEGForwardSolution
             The sub-solution.
         """
         return problem.solve(name, parent_path, model)
@@ -224,7 +218,7 @@ class EEGParametricForwardProblem(EEGForwardProblem):
             The name of the sub-solution.
         parent_path : PathLike
             The path to the parent directory of the sub-solution.
-        model : shamo.FEModel
+        model : shamo.model.fe_model.FEModel
             The model used to solve the problem.
 
         Returns
