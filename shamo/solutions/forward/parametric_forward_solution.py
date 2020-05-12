@@ -23,29 +23,15 @@ class ParametricForwardSolution(CommonForwardSolution):
     parent_path : str
         The path to the parent directory of the solution.
 
-    Attributes
-    ----------
-    problem
-    model_path
-    shape
-    sensors
-    n_sensors
-    n_elements
-    n_values_per_element
-    model_path
-    elements_path
-    solution_paths
-    is_finalized
-
     Other Parameters
     ----------------
-    problem : dict[str: Any]
+    problem : dict [str, Any]
         The problem that result in this solution.
     model_path : PathLike
         The path to the model file.
-    shape : tuple[int, int]
+    shape : tuple (int, int)
         The shape of the matrix.
-    sensors : list[str]
+    sensors : list [str]
         The names of the sensors.
     n_sensors : int
         The number of sensors.
@@ -55,14 +41,14 @@ class ParametricForwardSolution(CommonForwardSolution):
         The number of values by element.
     elements_path : PathLike
         The path to the elements file.
-    solution_paths : list[PathLike]
+    solution_paths : list [PathLike]
         The paths to the solutions.
     is_finalized : bool
-        `True` if the solution is finalized.
+        ``True`` if the solution is finalized.
 
     See Also
     --------
-    shamo.solutions.CommonForwardSolution
+    shamo.solutions.forward.common_forward_solution.CommonForwardSolution
     """
 
     SOLUTION_FACTORY = none_callable
@@ -90,7 +76,7 @@ class ParametricForwardSolution(CommonForwardSolution):
 
         Returns
         -------
-        dict[str: Any]
+        dict [str, Any]
             The quadrature settings.
         """
         return self["quadrature"]
@@ -101,7 +87,7 @@ class ParametricForwardSolution(CommonForwardSolution):
 
         Returns
         -------
-        list[str]
+        list [str]
             The paths to the solutions.
         """
         return [str(Path(self.path) / path)
@@ -114,7 +100,7 @@ class ParametricForwardSolution(CommonForwardSolution):
         Returns
         -------
         bool
-            `True` if the solution is finalized, `False` otherwise.
+            ``True`` if the solution is finalized, ``False`` otherwise.
         """
         return self["is_finalized"]
 
@@ -152,7 +138,7 @@ class ParametricForwardSolution(CommonForwardSolution):
         rule : str
             The quadrature rule.
         sparse : bool
-            If set to `True`, the quadrature is sparse.
+            If set to ``True``, the quadrature is sparse.
 
         Returns
         -------
@@ -171,7 +157,7 @@ class ParametricForwardSolution(CommonForwardSolution):
 
         Returns
         -------
-        list[shamo.core.Solution]
+        list [shamo.core.solution.Solution]
             The solutions.
         """
         return [self.SOLUTION_FACTORY.load(path)
@@ -197,8 +183,8 @@ class ParametricForwardSolution(CommonForwardSolution):
         Parameters
         ----------
         clean : bool, optional
-            If set to `True`, all the temporary files created during the
-            generation are removed. (The default is `True`)
+            If set to ``True``, all the temporary files created during the
+            generation are removed. (The default is ``True``)
 
         Returns
         -------

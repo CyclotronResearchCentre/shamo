@@ -12,19 +12,12 @@ class Tissue(dict):
     ----------
     volume_group : int
         The physical tag of the volume.
-    volume_entity : list[int]
+    volume_entity : list [int]
         The geometric tags of the volumes.
     surface_group : int
         The physical tag of the surface.
-    surface_entity : list[int]
+    surface_entity : list [int]
         The geometric tags of the surfaces.
-
-    Attributes
-    ----------
-    volume_group
-    volume_entity
-    surface_group
-    surface_entity
     """
 
     def __init__(self, volume_group, volume_entity, surface_group,

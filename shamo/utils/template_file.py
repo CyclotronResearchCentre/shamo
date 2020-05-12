@@ -1,4 +1,4 @@
-"""Implement `TemplateFile`class.
+"""Implement `TemplateFile` class.
 
 This module implements the `TemplateFile` class which is used to edit a
 template by replacing tags with their value.
@@ -74,7 +74,8 @@ class TemplateFile:
         data : list[str | int | float]
             The list of values to replace the tag with.
         separator : str, optional
-            The separator to place between each items. (The default is `','`).
+            The separator to place between each items.
+            (The default is ``','``).
 
         Returns
         -------
@@ -106,14 +107,15 @@ class TemplateFile:
         data : dict[str: str | int | float]
             The dictionary containing the data to replace the tag with.
         prefix : str, optional
-            A prefix to add before each items. (The default is `''`).
+            A prefix to add before each items. (The default is ``''``).
         key_value_separator : str, optional
             A separator to add between the keys and the values. (The default
-            is `''`).
+            is ``''``).
         suffix : str, optional
-            A suffix to add after each items. (The default is `''`).
+            A suffix to add after each items. (The default is ``''``).
         separator : str, optional
-            The separator to place between each items. (The default is `','`).
+            The separator to place between each items.
+            (The default is ``','``).
 
         Returns
         -------

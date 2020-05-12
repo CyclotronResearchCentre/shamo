@@ -3,8 +3,7 @@
 import warnings
 
 # Core
-from .core.distribution import (Distribution, ConstantDistribution,
-                                UniformDistribution)
+from .core.distribution import ConstantDistribution, UniformDistribution
 
 # Model
 from .model.fe_model import FEModel
@@ -33,7 +32,7 @@ warnings.filterwarnings("ignore", category=RuntimeWarning, lineno=49,
 warnings.filterwarnings("ignore", category=RuntimeWarning, lineno=49,
                         message="invalid value encountered in")
 
-__all__ = ["Distribution", "ConstantDistribution", "UniformDistribution",
+__all__ = ["ConstantDistribution", "UniformDistribution",
            "FEModel", "MeshConfig", "FESource", "EEGSource",
            "EEGForwardProblem", "EEGSimulationProblem",
            "EEGParametricForwardProblem", "EEGForwardSolution",

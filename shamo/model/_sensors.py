@@ -12,14 +12,14 @@ def add_sensor(self, name, coordinates, on_tissue):
     ----------
     name : str
         The name of the sensor.
-    coordinates : Tuple(float, float, float)
+    coordinates : tuple (float, float, float)
         The coordinates of the sensor in the real world [mm].
     on_tissue : str
         The name of the tissue the sensor must be placed on.
 
     Returns
     -------
-    shamo.FEModel
+    shamo.model.fe_model.FEModel
         The current model.
     """
     # Rescale coordinates [m]
@@ -50,7 +50,7 @@ def add_sensors(self, sensor_coordinates, on_tissue):
 
     Parameters
     ----------
-    sensor_coordinates : dict[str, tuple(float, float, float)]
+    sensor_coordinates : dict [str, tuple (float, float, float)]
         A dictionary containing the names of the sensors as keys and their
         respective real coordinates as values.
     on_tissue : str
@@ -58,7 +58,7 @@ def add_sensors(self, sensor_coordinates, on_tissue):
 
     Returns
     -------
-    shamo.FEModel
+    shamo.model.fe_model.FEModel
         The current model.
     """
     # Rescale coordinates [m]
@@ -98,15 +98,15 @@ def _get_tissue_nodes(self, name):
 
     Returns
     -------
-    np.ndarray
+    numpy.ndarray
         The tags of the nodes.
-    np.ndarray
+    numpy.ndarray
         The coordinates of the nodes.
 
     Raises
     ------
     KeyError
-        If the tissue defined by `name` is not part of the model.
+        If the tissue defined by ``name`` is not part of the model.
 
     Notes
     -----
@@ -139,7 +139,7 @@ def _add_sensor_on_node(name, node_tag, node_coordinates):
         The name of the sensor.
     node_tag: int
         The tag of the node the sensor must be added on.
-    node_coordinates: np.ndarray
+    node_coordinates: numpy.ndarray
         The coordinates of the node the sensor must be added on.
 
     Returns

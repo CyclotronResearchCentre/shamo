@@ -25,28 +25,18 @@ class FEModel(DirObject):
     Other Parameters
     ----------------
     mesh_path : str
-        The path to the `.msh` file of the model.
-    tissues : dict[str: dict]
+        The path to the ``.msh`` file of the model.
+    tissues : dict [str, dict]
         The tissues of the model.
-    sensors : dict[str: dict]
+    sensors : dict [str, dict]
         The sensors of the model.
-    anisotropy : dict[str: dict]
+    anisotropy : dict [str, dict]
         The anisotropy of the model.
-
-    Attributes
-    ----------
-    name
-    parent_path
-    path
-    json_path
-    mesh_path
-    tissues
-    sensors
-    anisotropy
 
     See Also
     --------
-    shamo.core.DirObject
+    shamo.core.objects.DirObject
+        To load and save this object, see its parent class.
     """
 
     from ._geometry import (mesh_from_labels, mesh_from_nii, mesh_from_masks,
@@ -81,18 +71,18 @@ class FEModel(DirObject):
 
     @property
     def mesh_path(self):
-        """Return the path to the `.msh` file of the model.
+        """Return the path to the ``.msh`` file of the model.
 
         Returns
         -------
         str
-            The path to the `.msh` file of the model.
+            The path to the ``.msh`` file of the model.
 
         Raises
         ------
         FileNotFoundError
-            If the model does not contain a `.msh` file.
-            If the `.msh` file does not exist.
+            If the model does not contain a ``.msh`` file.
+            If the ``.msh`` file does not exist.
         """
         # Check if the mesh file exists
         if self["mesh_path"] is None:
@@ -120,7 +110,7 @@ class FEModel(DirObject):
 
         Returns
         -------
-        dict[str: shamo.model.Tissue]
+        dict [str, shamo.model.tissue.Tissue]
             The tissues of the model.
         """
         return self["tissues"]
@@ -131,7 +121,7 @@ class FEModel(DirObject):
 
         Returns
         -------
-        dict[str: shamo.model.Sensor]
+        dict [str, shamo.model.sensor.Sensor]
             The sensors of the model.
         """
         return self["sensors"]
@@ -142,7 +132,7 @@ class FEModel(DirObject):
 
         Returns
         -------
-        dict[str: shamo.model.Anisotropy]
+        dict [str, shamo.model.anisotropy.Anisotropy]
             The anisotropy of the model.
         """
         return self["anisotropy"]
@@ -153,7 +143,7 @@ class FEModel(DirObject):
 
         Returns
         -------
-        list[shamo.FESource]
+        list [shamo.model.sources.fe_source.FESource]
             The sources of the model.
         """
         return self["sources"]

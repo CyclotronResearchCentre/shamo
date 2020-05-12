@@ -13,26 +13,12 @@ class EEGSource(Source):
 
     Parameters
     ----------
-    coordinates : tuple[float, float, float]
+    coordinates : tuple (float, float, float)
         The coordinates of the source [mm].
-    orientation : tuple[float, float, float]
+    orientation : tuple (float, float, float)
         The orientation of the source.
     value : float
         The dipole moment of the source [Am].
-
-    Attributes
-    ----------
-    coordinates
-    x
-    y
-    z
-    orientation
-    dx
-    dy
-    dz
-    value
-    unit_orientation
-    values
     """
 
     def __init__(self, coordinates, orientation, value):
@@ -51,7 +37,7 @@ class EEGSource(Source):
 
         Returns
         -------
-        tuple[float, float, float]
+        tuple (float, float, float)
             The orientation of the source.
         """
         return self["orientation"]
@@ -106,7 +92,7 @@ class EEGSource(Source):
 
         Returns
         -------
-        tuple[float, float, float]
+        tuple (float, float, float)
             The unitary orientation of the source.
         """
         return self["unit_orientation"]

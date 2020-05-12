@@ -16,21 +16,16 @@ class EEGSimulationSolution(Solution):
     parent_path : PathLike
         The path to the parent directory of the solution.
 
-    Attributes
-    ----------
-    problem
-    recordings
-
     Other Parameters
     ----------------
-    problem : dict[str: Any]
+    problem : dict [str, Any]
         The problem that result in this solution.
-    recordings : dict[str: float]
+    recordings : dict [str, float]
         The recordings of the sensors [V].
 
     See Also
     --------
-    shamo.core.Solution
+    shamo.core.solution.Solution
     """
 
     from shamo import EEGSimulationProblem
@@ -48,7 +43,7 @@ class EEGSimulationSolution(Solution):
 
         Returns
         -------
-        dict[str: float]
+        dict [str, float]
             The recordings of the sensors [V].
         """
         return self["recordings"]
@@ -58,7 +53,7 @@ class EEGSimulationSolution(Solution):
 
         Parameters
         ----------
-        recordings : dict[str: float]
+        recordings : dict [str, float]
             The recordings of the sensors [V].
 
         Returns

@@ -1,4 +1,4 @@
-"""API for `shamo.model.fe_model`."""
+"""API for `shamo.model`."""
 from .tissue import Tissue
 from .sensor import Sensor
 from .anisotropy import Anisotropy

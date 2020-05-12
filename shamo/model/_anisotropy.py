@@ -19,38 +19,40 @@ def add_anisotropy_from_elements(self, element_tags, element_values,
 
     Parameters
     ----------
-    element_tags : np.ndarray
+    element_tags : numpy.ndarray
         The tags of the elements to add anisotropy in.
-    element_values : np.ndarray
+    element_values : numpy.ndarray
         The corresponding values.
     in_tissue : str
         The name of the tissue to add anisotropy in.
     fill_value : float
-        The value used in elements not included in `element_tags` but still in
-        the same tissue.
+        The value used in elements not included in ``element_tags`` but still
+        in the same tissue.
     formula : str, optional
-        The formula to compute the coefficient with. (The default is `1`).
+        The formula to compute the coefficient with. (The default is ``1``).
     suffix : str, optional
         A suffix to add to the name of this field. The name is
-        `'<in_tissue>_<suffix>'`. (The default is `'anisotropy'`)
+        ``'<in_tissue>_<suffix>'``. (The default is ``'anisotropy'``)
 
     Returns
     -------
-    shamo.FEModel
+    shamo.model.fe_model.FEModel
         The current model.
 
     Raises
     ------
     KeyError
-        If the tissue defined by `in_tissue` is not included in the model.
+        If the tissue defined by ``in_tissue`` is not included in the model.
     ValueError
-        If `element_values` contains neither a scalar field nor a vector field
-        nor a tensor field.
-        If `fill_value` is not of the same size as the `element_values` values.
+        If ``element_values`` contains neither a scalar field nor a vector
+        field nor a tensor field.
+        If ``fill_value`` is not of the same size as the ``element_values``
+        values.
 
     See Also
     --------
-    Anisotropy.evaluate_formula
+    shamo.model.anisotropy.Anisotropy.evaluate_formula
+        To get more information on how to define the formula.
     """
     # Check arguments
     if in_tissue not in self.tissues:
@@ -114,41 +116,43 @@ def add_anisotropy_from_array(self, field, affine, in_tissue,
 
     Parameters
     ----------
-    field : np.ndarray
+    field : numpy.ndarray
         The field array.
-    affine : np.ndarray
+    affine : numpy.ndarray
         The affine matrix of the field.
     in_tissue : str
         The name of the tissue to add anisotropy in.
     fill_value : float
-        The value used in elements not included in `element_tags` but still in
-        the same tissue.
+        The value used in elements not included in ``element_tags`` but still
+        in the same tissue.
     formula : str, optional
-        The formula to compute the coefficient with. (The default is `1`).
+        The formula to compute the coefficient with. (The default is ``1``).
     nearest : bool, optional
-        If set to `True`, no linear interpolation is performed and the nearest
-        value is used. (The default is `False`).
+        If set to ``True``, no linear interpolation is performed and the
+        nearest value is used. (The default is ``False``).
     suffix : str, optional
         A suffix to add to the name of this field. The name is
-        `'<in_tissue>_<suffix>'`. (The default is `'anisotropy'`)
+        ``'<in_tissue>_<suffix>'``. (The default is ``'anisotropy'``)
 
     Returns
     -------
-    shamo.FEModel
+    shamo.model.fe_model.FEModel
         The current model.
 
     Raises
     ------
     KeyError
-        If the tissue defined by `in_tissue` is not included in the model.
+        If the tissue defined by ``in_tissue`` is not included in the model.
     ValueError
-        If `field` contains neither a scalar field nor a vector field nor a
+        If ``field`` contains neither a scalar field nor a vector field nor a
         tensor field or if the values are not in the last dimension.
 
     See Also
     --------
     add_anisotropy_from_elements
-    Anisotropy.evaluate_formula
+        To see how the array is converted into element data.
+    shamo.model.anisotropy.Anisotropy.evaluate_formula
+        To get more information on how to define the formula.
     """
     affine = np.dot(MILLIMETER_AFFINE, affine)
     # Check arguments
@@ -190,7 +194,7 @@ def add_anisotropy_from_nii(self, image_path, in_tissue, fill_value,
     """Add an anisotropic field to the model.
 
     Add an anisotropic field to the model based on a regular grid field
-    contained in a `.nii` file.
+    contained in a ``.nii`` file.
 
     Parameters
     ----------
@@ -199,35 +203,38 @@ def add_anisotropy_from_nii(self, image_path, in_tissue, fill_value,
     in_tissue : str
         The name of the tissue to add anisotropy in.
     fill_value : float
-        The value used in elements not included in `element_tags` but still in
-        the same tissue.
+        The value used in elements not included in ``element_tags`` but still
+        in the same tissue.
     formula : str, optional
-        The formula to compute the coefficient with. (The default is `1`).
+        The formula to compute the coefficient with. (The default is ``1``).
     nearest : bool, optional
-        If set to `True`, no linear interpolation is performed and the nearest
-        value is used. (The default is `False`).
+        If set to ``True``, no linear interpolation is performed and the
+        nearest value is used. (The default is ``False``).
     suffix : str, optional
         A suffix to add to the name of this field. The name is
-        `'<in_tissue>_<suffix>'`. (The default is `'anisotropy'`)
+        ``'<in_tissue>_<suffix>'``. (The default is ``'anisotropy'``)
 
     Returns
     -------
-    shamo.FEModel
+    shamo.model.fe_model.FEModel
         The current model.
 
     Raises
     ------
     KeyError
-        If the tissue defined by `in_tissue` is not included in the model.
+        If the tissue defined by ``in_tissue`` is not included in the model.
     ValueError
-        If `field` contains neither a scalar field nor a vector field nor a
+        If ``field`` contains neither a scalar field nor a vector field nor a
         tensor field or if the values are not in the last dimension.
 
     See Also
     --------
     add_anisotropy_from_elements
+        To see how the array is converted into element data.
     add_anisotropy_from_array
-    Anisotropy.evaluate_formula
+        To see how the array is converted into element data.
+    shamo.model.anisotropy.Anisotropy.evaluate_formula
+        To get more information on how to define the formula.
     """
     image = nib.load(str(Path(image_path)))
     field = image.get_fdata()

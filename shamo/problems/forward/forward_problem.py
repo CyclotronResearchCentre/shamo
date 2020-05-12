@@ -14,18 +14,12 @@ class ForwardProblem(Problem):
 
     Parameters
     ----------
-    regions_of_interest : list[str]
+    regions_of_interest : list [str]
         The names of the regions of interest.
-    markers : list[str]
+    markers : list [str]
         The names of the markers.
-    electrical_conductivity : dict[str: dict]
+    electrical_conductivity : dict [str, dict]
         The electrical conductivity of the tissues [S/m].
-
-    Attributes
-    ----------
-    regions_of_interest
-    markers
-    electrical_conductivity
     """
 
     def __init__(self, **kwargs):
@@ -46,7 +40,7 @@ class ForwardProblem(Problem):
 
         Returns
         -------
-        list[str]
+        list [str]
             The names of the regions of interest of the problem.
         """
         return self["regions_of_interest"]
@@ -57,7 +51,7 @@ class ForwardProblem(Problem):
 
         Returns
         -------
-        list[str]
+        list [str]
             The names of the markers of the problem.
         """
         return self["markers"]
@@ -68,7 +62,7 @@ class ForwardProblem(Problem):
 
         Returns
         -------
-        dict[str: shamo.problem.forward.TissueProperty]
+        dict[str, shamo.problem.forward.tissue_property.TissueProperty]
             The electrical conductivity of the tissues [S/m].
         """
         return self["electrical_conductivity"]
@@ -83,7 +77,7 @@ class ForwardProblem(Problem):
 
         Returns
         -------
-        shamo.problem.ForwardProblem
+        shamo.problem.forward.forward_problem.ForwardProblem
             The problem.
         """
         self["regions_of_interest"].append(name)
@@ -94,12 +88,12 @@ class ForwardProblem(Problem):
 
         Parameters
         ----------
-        name : list[str]
+        name : list [str]
             The names of the tissues.
 
         Returns
         -------
-        shamo.problem.ForwardProblem
+        shamo.problem.forward.forward_problem.ForwardProblem
             The problem.
         """
         self["regions_of_interest"].extend(names)
@@ -115,7 +109,7 @@ class ForwardProblem(Problem):
 
         Returns
         -------
-        shamo.problem.ForwardProblem
+        shamo.problem.forward.forward_problem.ForwardProblem
             The problem.
         """
         self["markers"].append(name)
@@ -126,12 +120,12 @@ class ForwardProblem(Problem):
 
         Parameters
         ----------
-        name : list[str]
+        name : list [str]
             The names of the sensors.
 
         Returns
         -------
-        shamo.problem.ForwardProblem
+        shamo.problem.forward.forward_problem.ForwardProblem
             The problem.
         """
         self["markers"].extend(names)
@@ -148,11 +142,11 @@ class ForwardProblem(Problem):
             The electrical conductivity [S/m].
         anisotropy : str, optional
             The name of the anisotropic field for this property. (The default
-            is `''`)
+            is ``''``)
 
         Returns
         -------
-        shamo.problem.ForwardProblem
+        shamo.problem.forward.forward_problem.ForwardProblem
             The problem.
         """
         self["electrical_conductivity"][name] = TissueProperty(value,
@@ -168,13 +162,13 @@ class ForwardProblem(Problem):
             The name of the tissue.
         value : object
             The electrical conductivity of multiple tissues [S/m].
-        anisotropy : dict[str: str], optional
+        anisotropy : dict [str, str], optional
             The names of the anisotropic fields for this property. (The default
-            is `None`)
+            is ``None``)
 
         Returns
         -------
-        shamo.problem.ForwardProblem
+        shamo.problem.forward.forward_problem.ForwardProblem
             The problem.
         """
         if anistropies is None:
@@ -189,7 +183,7 @@ class ForwardProblem(Problem):
 
         Parameters
         ----------
-        model : shamo.FEModel
+        model : shamo.model.fe_model.FEModel
             The model to check the settings for.
 
         Raises
@@ -197,16 +191,16 @@ class ForwardProblem(Problem):
         ValueError
             If none of the specified regions of interest can be found in the
             model.
-            If `is_roi_required` is set to `True` and no region of interest is
-            specified.
+            If ``is_roi_required`` is set to ``True`` and no region of interest
+            is specified.
             If at least one tissue of the model has no specified electrical
             conductivity.
 
         Other Parameters
         ----------------
         is_roi_required : bool, optional
-            If set to `True`, at least one region of interest is required. (The
-            defaul is `False`)
+            If set to ``True``, at least one region of interest is required.
+            (The defaul is ``False``)
         """
         is_roi_required = kwargs.get("is_roi_required", False)
         # Check region of interest
@@ -236,11 +230,11 @@ class ForwardProblem(Problem):
             The name of the solution.
         parent_path : PathLike
             The path to the parent directory of the solution.
-        model : shamo.FEModel
+        model : shamo.model.fe_model.FEModel
             The model to solve the problem on.
 
         Returns
         -------
-        shamo.core.FileObject
+        shamo.core.objects.FileObject
             The solution of the problem for the specified model.
         """

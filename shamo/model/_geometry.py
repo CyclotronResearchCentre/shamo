@@ -15,26 +15,26 @@ MILLIMETER_AFFINE = np.diag((0.001, 0.001, 0.001, 1))
 
 
 def mesh_from_labels(self, labels, tissues, affine, mesh_config=MeshConfig()):
-    """Generate a `.msh` file from a labeled array.
+    """Generate a ``.msh`` file from a labeled array.
 
     Parameters
     ----------
-    labels : np.ndarray
+    labels : numpy.ndarray
         A labeled array corresponding to a multi-segments image. The array
-        must contain integer labels starting from `0` (void) without
+        must contain integer labels starting from ``0`` (void) without
         skipping a number.
-    tissues : list[str]
+    tissues : list [str]
         An Sequence containing the names of the tissues in the order of the
         labels.
-    affine : np.ndarray
+    affine : numpy.ndarray
         The affine matrix of the image.
-    mesh_config : MeshConfig, optional
+    mesh_config : shamo.model.mesh_config.MeshConfig, optional
         The configuration for the mesh generation. (The default is
-        `MeshConfig()`).
+        ``shamo.model.mesh_config.MeshConfig()``).
 
     Returns
     -------
-    shamo.FEModel
+    shamo.model.fe_model.FEModel
         The current model.
 
     Raises
@@ -45,7 +45,7 @@ def mesh_from_labels(self, labels, tissues, affine, mesh_config=MeshConfig()):
     Notes
     -----
     If a particular temporary directory must be used (e.g. working on a
-    cluster), simply set a environment variable called `SCRATCH_DIR`.
+    cluster), simply set a environment variable called ``SCRATCH_DIR``.
     """
     # Check the arguments
     labels = labels.astype(np.uint8)
@@ -73,34 +73,35 @@ def mesh_from_labels(self, labels, tissues, affine, mesh_config=MeshConfig()):
 
 
 def mesh_from_nii(self, image_path, tissues, mesh_config=MeshConfig()):
-    """Generate a `.msh` file from a labeled `.nii` image.
+    """Generate a ``.msh`` file from a labeled ``.nii`` image.
 
     Parameters
     ----------
     image_path : str
         A labeled array corresponding to a multi-segments image. The array
-        must contain integer labels starting from `0` (void) without
+        must contain integer labels starting from ``0`` (void) without
         skipping a number.
-    tissues : list[str]
+    tissues : list [str]
         An Sequence containing the names of the tissues in the order of the
         labels.
     mesh_config : MeshConfig, optional
         The configuration for the mesh generation. (The default is
-        `MeshConfig()`).
+        ``MeshConfig()``).
 
     Returns
     -------
-    shamo.FEModel
+    shamo.model.fe_model.FEModel
         The current model.
 
     See Also
     --------
-    FEMode.mesh_from_labels
+    mesh_from_labels
+        To see how the labels are converted into a mesh.
 
     Notes
     -----
     If a particular temporary directory must be used (e.g. working on a
-    cluster), simply set a environment variable called `SCRATCH_DIR`.
+    cluster), simply set a environment variable called ``SCRATCH_DIR``.
     """
     image = nib.load(image_path)
     labels = image.get_fdata().astype(np.uint8)
@@ -110,32 +111,33 @@ def mesh_from_nii(self, image_path, tissues, mesh_config=MeshConfig()):
 
 
 def mesh_from_masks(self, tissue_masks, affine, mesh_config=MeshConfig()):
-    """Generate a `.msh` file from multiple binary masks.
+    """Generate a ``.msh`` file from multiple binary masks.
 
     Parameters
     ----------
-    tissue_masks : dict[str, np.ndarray]
+    tissue_masks : dict [str, numpy.ndarray]
         A dictionary containing the names of the tissues as keys and the
         corresponding binary masks as values.
-    affine : np.ndarray
+    affine : numpy.ndarray
         The affine matrix of the image.
-    mesh_config : MeshConfig, optional
+    mesh_config : shamo.model.mesh_config.MeshConfig, optional
         The configuration for the mesh generation. (The default is
-        `MeshConfig()`).
+        ``MeshConfig()``).
 
     Returns
     -------
-    shamo.FEModel
+    shamo.model.fe_model.FEModel
         The current model.
 
     See Also
     --------
-    FEMode.mesh_from_labels
+    mesh_from_labels
+        To see how the labels are converted into a mesh.
 
     Notes
     -----
     If a particular temporary directory must be used (e.g. working on a
-    cluster), simply set a environment variable called `SCRATCH_DIR`.
+    cluster), simply set a environment variable called ``SCRATCH_DIR``.
     """
     tissues = list(tissue_masks.keys())
     masks = list(tissue_masks.values())
@@ -147,30 +149,31 @@ def mesh_from_masks(self, tissue_masks, affine, mesh_config=MeshConfig()):
 
 
 def mesh_from_niis(self, tissue_paths, mesh_config=MeshConfig()):
-    """Generate a `.msh` file from multiple `.nii` binary masks.
+    """Generate a ``.msh`` file from multiple ``.nii`` binary masks.
 
     Parameters
     ----------
-    tissue_paths : dict[str, str]
+    tissue_paths : dict [str, str]
         A dictionary containing the names of the tissues as keys and the
-        paths to the corresponding `.nii` images as values.
-    mesh_config : MeshConfig, optional
+        paths to the corresponding ``.nii`` images as values.
+    mesh_config : shamo.model.mesh_config.MeshConfig, optional
         The configuration for the mesh generation. (The default is
-        `MeshConfig()`).
+        ``shamo.model.mesh_config.MeshConfig()``).
 
     Returns
     -------
-    shamo.FEModel
+    shamo.model.fe_modelFEModel
         The current model.
 
     See Also
     --------
-    FEMode.mesh_from_labels
+    mesh_from_labels
+        To see how the labels are converted into a mesh.
 
     Notes
     -----
     If a particular temporary directory must be used (e.g. working on a
-    cluster), simply set a environment variable called `SCRATCH_DIR`.
+    cluster), simply set a environment variable called ``SCRATCH_DIR``.
     """
     tissue_masks = {tissue: nib.load(path).get_fdata().astype(np.bool)
                     for tissue, path in tissue_paths.items()}
@@ -181,18 +184,18 @@ def mesh_from_niis(self, tissue_paths, mesh_config=MeshConfig()):
 
 
 def get_tissues_from_mesh(mesh_path):
-    """Extract tissues information from a `.msh` file.
+    """Extract tissues information from a ``.msh`` file.
 
     Parameters
     ----------
     mesh_path : str
-        The path to the `.msh` file.
+        The path to the ``.msh`` file.
 
     Returns
     -------
-    dict[str: Tissue]
-        A `dict` containing the names of the tissues as keys and the
-        corresponding `Tissue` object as values.
+    dict [str, shamo.model.tissue.Tissue]
+        A ``dict`` containing the names of the tissues as keys and the
+        corresponding ``shamo.model.tissue.Tissue`` object as values.
     """
     gmsh.initialize()
     gmsh.open(mesh_path)
@@ -216,15 +219,15 @@ def get_tissues_from_mesh(mesh_path):
 
 
 def _inr_file_from_labels(parent_path, labels, name="model"):
-    """Generate a `.inr` file from a multilabels array.
+    """Generate a ``.inr`` file from a multilabels array.
 
     Parameters
     ----------
     parent_path : str
-        The path to the directory the `.inr` must be created in.
-    labels : np.ndarray
+        The path to the directory the ``.inr`` must be created in.
+    labels : numpy.ndarray
         A labeled array corresponding to a multi-segments image. The array
-        must contain integer labels starting from `0` (void) without
+        must contain integer labels starting from ``0`` (void) without
         skipping a number.
     name : str, optional
         The name of the file without '.inr'. (The default is 'model').
@@ -232,14 +235,14 @@ def _inr_file_from_labels(parent_path, labels, name="model"):
     Returns
     -------
     str
-        The path to the generated `.inr` file.
+        The path to the generated ``.inr`` file.
 
     Raises
     ------
     ValueError
-        If `labels` is not a 3D array.
+        If ``labels`` is not a 3D array.
     TypeError
-        If `labels` data type is not `uint8`.
+        If ``labels`` data type is not ``uint8``.
     """
     # Check the arguments
     if labels.ndim != 3:
@@ -269,15 +272,15 @@ def _inr_file_from_labels(parent_path, labels, name="model"):
 
 
 def _mesh_from_inr_file(parent_path, inr_path, mesh_config, name="model"):
-    """Generate a `.mesh` file from a `.inr` file.
+    """Generate a ``.mesh`` file from a ``.inr`` file.
 
     Parameters
     ----------
     parent_path : str
-        The path to the directory the `.mesh` must be created in.
+        The path to the directory the ``.mesh`` must be created in.
     inr_path : str
-        The path to the `.inr` file.
-    mesh_config : MeshConfig
+        The path to the ``.inr`` file.
+    mesh_config : shamo.model.mesh_config.MeshConfig
         The configuration for the mesh generation.
     name : str, optional
         The name of the file without '.mesh'. (The default is 'model').
@@ -285,7 +288,7 @@ def _mesh_from_inr_file(parent_path, inr_path, mesh_config, name="model"):
     Returns
     -------
     str
-        The path to the generated `.mesh` file.
+        The path to the generated ``.mesh`` file.
     """
     mesh = cgal.generate_from_inr(
         inr_path,
@@ -302,10 +305,10 @@ def _affine_transform(parent_path, mesh_path, affine, name="model"):
     Parameters
     ----------
     parent_path : str
-        The path to the directory the resulting `.msh` must be created in.
+        The path to the directory the resulting ``.msh`` must be created in.
     mesh_path : str
-        The path to the `.mesh` or `.msh` file.
-    affine : np.ndarray
+        The path to the ``.mesh`` or ``.msh`` file.
+    affine : numpy.ndarray
         The affine matrix to apply.
     name : str, optional
         The name of the file without '.msh'. (The default is 'model').
@@ -313,7 +316,7 @@ def _affine_transform(parent_path, mesh_path, affine, name="model"):
     Returns
     -------
     str
-        The path to the generated `.msh` file.
+        The path to the generated ``.msh`` file.
     """
     gmsh.initialize()
     gmsh.open(mesh_path)
@@ -336,19 +339,19 @@ def _affine_transform(parent_path, mesh_path, affine, name="model"):
 
 
 def _finalize_mesh(self, origin_path, tissues):
-    """Add names to the tissues of the `.msh` file.
+    """Add names to the tissues of the ``.msh`` file.
 
     Parameters
     ----------
     origin_path : str
-        The path to the `.msh` file.
-    tissues : list[str]
+        The path to the ``.msh`` file.
+    tissues : list [str]
         The names of the tissues.
 
     Returns
     -------
     str
-        The path tot the `.msh` file.
+        The path tot the ``.msh`` file.
     """
     gmsh.initialize()
     gmsh.open(origin_path)

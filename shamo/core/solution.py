@@ -18,14 +18,9 @@ class Solution(DirObject):
     parent_path : PathLike
         The path to the parent directory of the solution.
 
-    Attributes
-    ----------
-    problem
-    model_path
-
     Other Parameters
     ----------------
-    problem : dict[str: Any]
+    problem : dict [str, Any]
         The problem that result in this solution.
     model_path : PathLike
         The path to the model file.
@@ -54,7 +49,7 @@ class Solution(DirObject):
 
         Returns
         -------
-        shamo.core.Problem
+        shamo.core.problem.Problem
             The problem that result in this solution.
         """
         return self["problem"]
@@ -88,12 +83,12 @@ class Solution(DirObject):
 
         Parameters
         ----------
-        problem : shamo.core.Problem
+        problem : shamo.core.problem.Problem
             The problem that result in this solution.
 
         Returns
         -------
-        shamo.core.Solution
+        shamo.core.solution.Solution
             The solution.
         """
         self["problem"] = problem
@@ -109,7 +104,7 @@ class Solution(DirObject):
 
         Returns
         -------
-        shamo.core.Solution
+        shamo.core.solution.Solution
             The solution.
         """
         self["model_path"] = get_relative_path(model_path, self.path)
@@ -120,12 +115,12 @@ class Solution(DirObject):
 
         Parameters
         ----------
-        model : shamo.FEModel
+        model : shamo.model.fe_model.FEModel
             The model used to generate the solution.
 
         Returns
         -------
-        shamo.core.Solution
+        shamo.core.solution.Solution
             The solution.
         """
         self["model_path"] = get_relative_path(model.json_path, self.path)

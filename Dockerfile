@@ -20,12 +20,6 @@ RUN apt-get update && \
         libeigen3-dev && \
     rm -rf /var/lib/apt/lists/*
 
-# Install Gmsh (http://gmsh.info/)
-RUN wget -O /tmp/gmsh.tgz http://gmsh.info/bin/Linux/gmsh-git-Linux64-sdk.tgz && \
-    tar -zxvf /tmp/gmsh.tgz -C /opt && \
-    rm /tmp/gmsh* && \
-    mv /opt/gmsh* /opt/gmsh
-
 # Install GetDP (http://getdp.info/)
 RUN wget -O /tmp/getdp.tgz http://getdp.info/bin/Linux/getdp-3.2.0-Linux64c.tgz && \
     tar -zxvf /tmp/getdp.tgz -C /opt && \

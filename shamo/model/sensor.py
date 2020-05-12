@@ -11,9 +11,9 @@ class Sensor(dict):
 
     Parameters
     ----------
-    real_coordinates : Tuple(float, float, float)
+    real_coordinates : tuple (float, float, float)
         The coordinates in the real world [m].
-    mesh_coordinates : Tuple(float, float, float)
+    mesh_coordinates : tuple (float, float, float)
         The coordinates in the mesh [m].
     group : int
         The physical tag.
@@ -21,16 +21,6 @@ class Sensor(dict):
         The geometric tag.
     on_tissue : str
         The name of the tissue the sensor is placed on.
-
-    Attributes
-    ----------
-    real_coordinates
-    mesh_coordinates
-    group
-    entity
-    node
-    on_tissue
-    coordinates_error
     """
 
     def __init__(self, real_coordinates, mesh_coordinates, group, entity,
@@ -50,7 +40,7 @@ class Sensor(dict):
 
         Returns
         -------
-        Tuple(float, float, float)
+        tuple (float, float, float)
             The real coordinates of the sensor [m].
         """
         return self["real_coordinates"]
@@ -61,7 +51,7 @@ class Sensor(dict):
 
         Returns
         -------
-        Tuple(float, float, float)
+        tuple (float, float, float)
             The mesh coordinates of the sensor [m].
         """
         return self["mesh_coordinates"]

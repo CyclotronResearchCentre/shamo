@@ -21,29 +21,15 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
     parent_path : str
         The path to the parent directory of the solution.
 
-    Attributes
-    ----------
-    problem
-    model_path
-    shape
-    sensors
-    n_sensors
-    n_elements
-    n_values_per_element
-    model_path
-    elements_path
-    solution_paths
-    is_finalized
-
     Other Parameters
     ----------------
-    problem : dict[str: Any]
+    problem : dict [str, Any]
         The problem that result in this solution.
     model_path : PathLike
         The path to the model file.
-    shape : tuple[int, int]
+    shape : tuple (int, int)
         The shape of the matrix.
-    sensors : list[str]
+    sensors : list [str]
         The names of the sensors.
     n_sensors : int
         The number of sensors.
@@ -53,10 +39,10 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
         The number of values by element.
     elements_path : PathLike
         The path to the elements file.
-    solution_paths : list[PathLike]
+    solution_paths : list [PathLike]
         The paths to the solutions.
     is_finalized : bool
-        `True` if the solution is finalized.
+        ``True`` if the solution is finalized.
 
     See Also
     --------

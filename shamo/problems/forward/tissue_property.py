@@ -4,7 +4,7 @@ This module implements the `TissueProperty` class which holds the data
 corresponding to a certain property of a tissue.
 """
 
-from shamo import Distribution
+from shamo.core.distribution import Distribution
 
 
 class TissueProperty(dict):
@@ -16,12 +16,7 @@ class TissueProperty(dict):
         The value of the property.
     anisotropy : str, optional
         The name of the anisotropy field used for this property. (The default
-        is `''`)
-
-    Attributes
-    ----------
-    value
-    anisotropy
+        is ``''``)
     """
 
     def __init__(self, value, anisotropy=""):
@@ -51,7 +46,7 @@ class TissueProperty(dict):
         -------
         str
             The name of the anisotropy field used for this property. If no
-            anisotropy is specified, return `''`.
+            anisotropy is specified, return ``''``.
         """
         return self["anisotropy"]
 
@@ -62,8 +57,8 @@ class TissueProperty(dict):
         Returns
         -------
         bool
-            Return `True` if the property is anisotropic, otherwise return
-            `False`.
+            Return ``True`` if the property is anisotropic, otherwise return
+            ``False``.
         """
         if self.anisotropy == "":
             return False

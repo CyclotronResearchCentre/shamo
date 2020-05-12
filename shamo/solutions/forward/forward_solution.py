@@ -21,30 +21,17 @@ class ForwardSolution(CommonForwardSolution):
     parent_path : str
         The path to the parent directory of the solution.
 
-    Attributes
-    ----------
-    problem
-    model_path
-    matrix_path
-    shape
-    sensors
-    n_sensors
-    n_elements
-    n_values_per_element
-    model_path
-    elements_path
-
     Other Parameters
     ----------------
-    problem : dict[str: Any]
+    problem : dict [str, Any]
         The problem that result in this solution.
     model_path : PathLike
         The path to the model file.
     matrix_path : PathLike
         The path to the matrix file.
-    shape : tuple[int, int]
+    shape : tuple (int, int)
         The shape of the matrix.
-    sensors : list[str]
+    sensors : list [str]
         The names of the sensors.
     n_sensors : int
         The number of sensors.
@@ -103,7 +90,7 @@ class ForwardSolution(CommonForwardSolution):
 
         Returns
         -------
-        shamo.solutions.ForwardSolution
+        shamo.solutions.forward.forward_solution.ForwardSolution
             The solution.
         """
         matrix_name = "{}_matrix.npy".format(self.name)
@@ -119,8 +106,8 @@ class ForwardSolution(CommonForwardSolution):
         Parameters
         ----------
         memory_map : bool, optional
-            If set to `True`, the returned array is mapped on memory. (The
-            default is `False`)
+            If set to ``True``, the returned array is mapped on memory. (The
+            default is ``False``)
 
         Returns
         -------
@@ -139,12 +126,12 @@ class ForwardSolution(CommonForwardSolution):
         sources_vector : numpy.ndarray
             The s vector from L.s=r.
         memory_map : bool, optional
-            If set to `True`, matrix is never loaded in memory. (The default
-            is `False`)
+            If set to ``True``, matrix is never loaded in memory. (The default
+            is ``False``)
 
         Returns
         -------
-        dict[str: float | tuple]
+        dict [str, float | tuple]
             The recordings for each active sensor.
         """
 
@@ -160,7 +147,7 @@ class ForwardSolution(CommonForwardSolution):
 
         Returns
         -------
-        dict[str: float | tuple]
+        dict [str, float|tuple]
             The recordings for each active sensor.
         """
 
@@ -170,11 +157,11 @@ class ForwardSolution(CommonForwardSolution):
 
         Parameters
         ----------
-        sources : list[shamo.model.Source]
+        sources : list [shamo.model.sources.source.Source]
             The sources for which the leadfield matrix must be evaluated.
 
         Returns
         -------
-        dict[str: float | tuple]
+        dict [str, float|tuple]
             The recordings for each active sensor.
         """
