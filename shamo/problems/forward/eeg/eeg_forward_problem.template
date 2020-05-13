@@ -1,0 +1,12 @@
+from pathlib import Path
+
+from shamo import FEModel, EEGForwardProblem
+
+if __name__ == "__main__":
+    # Load model
+    model_path = "<model:path>"
+    model = FEModel.load(model_path)
+    # Load problem
+    problem_data = <problem:data>
+    problem = EEGForwardProblem(**problem_data)
+    solution = problem.solve("<solution:name>", ".", model)
