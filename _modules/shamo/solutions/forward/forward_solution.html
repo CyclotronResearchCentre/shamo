@@ -1,0 +1,473 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>shamo.solutions.forward.forward_solution &mdash; shamo 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> shamo
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/quickstart.html">Quickstart guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../quickstart/install.html">Install</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/install.html#install-binary-dependencies">Install binary dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/install.html#cgal">CGAL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/install.html#getdp">GetDP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/install.html#install-python-dependencies">Install python dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/install.html#install-shamo">Install shamo</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../quickstart/usage/usage.html">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/usage/model_creation.html">Finite element model creation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/model_creation.html#model-initialization">Model initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/model_creation.html#mesh-generation">Mesh generation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/model_creation.html#sensors-placement">Sensors placement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/model_creation.html#anisotropy-definition">Anisotropy definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/model_creation.html#model-finalization">Model finalization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/model_creation.html#full-code">Full code</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/usage/eeg/eeg.html">EEG</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/eeg/forward_problem.html">EEG forward problem resolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/eeg/parametric_forward_problem.html">EEG parametric forward problem resolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/eeg/simulation.html">EEG simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/api.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/api.html#finite-element-model">Finite element model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/api.html#problems">Problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/api.html#eeg">EEG</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/api.html#solutions">Solutions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/api.html#id1">EEG</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/api.html#sources">Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/api.html#distributions">Distributions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/reference.html">Code reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/core/core.html">shamo.core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/core/distribution.html">shamo.core.distribution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/core/distribution.html#shamo-core-distribution-distribution">shamo.core.distribution.Distribution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/core/distribution.html#shamo-core-distribution-constantdistribution">shamo.core.distribution.ConstantDistribution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/core/distribution.html#shamo-core-distribution-uniformdistribution">shamo.core.distribution.UniformDistribution</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/core/objects.html">shamo.core.objects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/core/objects.html#shamo-core-objects-object">shamo.core.objects.Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/core/objects.html#shamo-core-objects-fileobject">shamo.core.objects.FileObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/core/objects.html#shamo-core-objects-dirobject">shamo.core.objects.DirObject</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/core/problem.html">shamo.core.problem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/core/problem.html#shamo-core-problem-problem">shamo.core.problem.Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/core/solution.html">shamo.core.solution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/core/solution.html#shamo-core-solution-solution">shamo.core.solution.Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/model/model.html">shamo.model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/model/anisotropy.html">shamo.model.anisotropy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/model/anisotropy.html#shamo-model-anisotropy-anisotropy">shamo.model.anisotropy.Anisotropy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/model/fe_model.html">shamo.model.fe_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/model/fe_model.html#shamo-model-fe-model-femodel">shamo.model.fe_model.FEModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/model/mesh_config.html">shamo.model.mesh_config</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/model/mesh_config.html#shamo-model-mesh-config-meshconfig">shamo.model.mesh_config.MeshConfig</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/model/sensor.html">shamo.model.sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/model/sensor.html#shamo-model-sensor-sensor">shamo.model.sensor.Sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/model/sources/sources.html">shamo.model.sources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/model/sources/eeg_source.html">shamo.model.sources.eeg_source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/model/sources/fe_source.html">shamo.model.sources.fe_source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/model/sources/source.html">shamo.model.sources.source</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/model/tissue.html">shamo.model.tissue</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/model/tissue.html#shamo-model-tissue-tissue">shamo.model.tissue.Tissue</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/problems/problems.html">shamo.problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/problems/forward/forward.html">shamo.problems.forward</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/problems/forward/eeg/eeg.html">shamo.problems.forward.eeg</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/problems/forward/forward_problem.html">shamo.problems.forward.forward_problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/problems/forward/tissue_property.html">shamo.problems.forward.tissue_property</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/solutions/solutions.html">shamo.solutions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/solutions/forward/forward.html">shamo.solutions.forward</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/solutions/forward/eeg/eeg.html">shamo.solutions.forward.eeg</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/solutions/forward/common_forward_solution.html">shamo.solutions.forward.common_forward_solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/solutions/forward/forward_solution.html">shamo.solutions.forward.forward_solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/solutions/forward/parametric_forward_solution.html">shamo.solutions.forward.parametric_forward_solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">shamo</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>shamo.solutions.forward.forward_solution</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for shamo.solutions.forward.forward_solution</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Implement `ForwardSolution` class.</span>
+
+<span class="sd">This module implements the `ForwardSolution` class which is the base for any</span>
+<span class="sd">forward problem solution.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">abc</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">shamo.solutions</span> <span class="k">import</span> <span class="n">CommonForwardSolution</span>
+
+
+<div class="viewcode-block" id="ForwardSolution"><a class="viewcode-back" href="../../../../solutions/forward/forward_solution.html#shamo.solutions.forward.forward_solution.ForwardSolution">[docs]</a><span class="k">class</span> <span class="nc">ForwardSolution</span><span class="p">(</span><span class="n">CommonForwardSolution</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The base for any forward problem solution.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        The name of the solution.</span>
+<span class="sd">    parent_path : str</span>
+<span class="sd">        The path to the parent directory of the solution.</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ----------------</span>
+<span class="sd">    problem : dict [str, Any]</span>
+<span class="sd">        The problem that result in this solution.</span>
+<span class="sd">    model_path : PathLike</span>
+<span class="sd">        The path to the model file.</span>
+<span class="sd">    matrix_path : PathLike</span>
+<span class="sd">        The path to the matrix file.</span>
+<span class="sd">    shape : tuple (int, int)</span>
+<span class="sd">        The shape of the matrix.</span>
+<span class="sd">    sensors : list [str]</span>
+<span class="sd">        The names of the sensors.</span>
+<span class="sd">    n_sensors : int</span>
+<span class="sd">        The number of sensors.</span>
+<span class="sd">    n_elements : int</span>
+<span class="sd">        The number of elements.</span>
+<span class="sd">    n_values_per_element : int</span>
+<span class="sd">        The number of values by element.</span>
+<span class="sd">    elements_path : PathLike</span>
+<span class="sd">        The path to the elements file.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    shamo.solutions.CommonForwardSolution</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c1"># Matrix path</span>
+        <span class="n">matrix_path</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;matrix_path&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">matrix_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;matrix_path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">matrix_path</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;matrix_path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">matrix_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the path to matrix file.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            The path to matrix file.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        FileNotFoundError</span>
+<span class="sd">            If the model does not contain a matrix file.</span>
+<span class="sd">            If the matrix file does not exist.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Check if the matrix file exists</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;matrix_path&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;The model does not contain a matrix.&quot;</span><span class="p">)</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;matrix_path&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">((</span><span class="s2">&quot;The specified matrix file no longer &quot;</span>
+                                     <span class="s2">&quot;exists.&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ForwardSolution.set_matrix"><a class="viewcode-back" href="../../../../solutions/forward/forward_solution.html#shamo.solutions.forward.forward_solution.ForwardSolution.set_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">set_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the matrix.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        matrix : numpy.ndarray</span>
+<span class="sd">            The matrix.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        shamo.solutions.forward.forward_solution.ForwardSolution</span>
+<span class="sd">            The solution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">matrix_name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_matrix.npy&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">matrix_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="o">/</span> <span class="n">matrix_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;matrix_path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">matrix_name</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">matrix_path</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;shape&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="ForwardSolution.get_matrix"><a class="viewcode-back" href="../../../../solutions/forward/forward_solution.html#shamo.solutions.forward.forward_solution.ForwardSolution.get_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">get_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memory_map</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the matrix.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        memory_map : bool, optional</span>
+<span class="sd">            If set to ``True``, the returned array is mapped on memory. (The</span>
+<span class="sd">            default is ``False``)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">            The matrix.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">memory_map_mode</span> <span class="o">=</span> <span class="s2">&quot;r&quot;</span> <span class="k">if</span> <span class="n">memory_map</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix_path</span><span class="p">,</span> <span class="n">mmap_mode</span><span class="o">=</span><span class="n">memory_map_mode</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ForwardSolution.evaluate"><a class="viewcode-back" href="../../../../solutions/forward/forward_solution.html#shamo.solutions.forward.forward_solution.ForwardSolution.evaluate">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sources_vector</span><span class="p">,</span> <span class="n">memory_map</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Evaluate the leadfield matrix for a set of sources.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        sources_vector : numpy.ndarray</span>
+<span class="sd">            The s vector from L.s=r.</span>
+<span class="sd">        memory_map : bool, optional</span>
+<span class="sd">            If set to ``True``, matrix is never loaded in memory. (The default</span>
+<span class="sd">            is ``False``)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict [str, float | tuple]</span>
+<span class="sd">            The recordings for each active sensor.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="ForwardSolution.evaluate_for_elements"><a class="viewcode-back" href="../../../../solutions/forward/forward_solution.html#shamo.solutions.forward.forward_solution.ForwardSolution.evaluate_for_elements">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">evaluate_for_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_sources</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Evaluate the leadfield matrix for a set of sources.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        element_sources : dict[int, tuple[float, float, float]]</span>
+<span class="sd">            A dictionary containing element tags as keys and source values as</span>
+<span class="sd">            values.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict [str, float|tuple]</span>
+<span class="sd">            The recordings for each active sensor.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="ForwardSolution.evaluate_for_sources"><a class="viewcode-back" href="../../../../solutions/forward/forward_solution.html#shamo.solutions.forward.forward_solution.ForwardSolution.evaluate_for_sources">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">evaluate_for_sources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sources</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Evaluate the leadfield matrix for a set of sources.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        sources : list [shamo.model.sources.source.Source]</span>
+<span class="sd">            The sources for which the leadfield matrix must be evaluated.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict [str, float|tuple]</span>
+<span class="sd">            The recordings for each active sensor.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Martin Grignard
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

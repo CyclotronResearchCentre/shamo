@@ -1,0 +1,515 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Finite element model creation &mdash; shamo 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="EEG" href="eeg/eeg.html" />
+    <link rel="prev" title="Usage" href="usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> shamo
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../quickstart.html">Quickstart guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../install.html">Install</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install.html#install-binary-dependencies">Install binary dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../install.html#cgal">CGAL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install.html#getdp">GetDP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../install.html#install-python-dependencies">Install python dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install.html#install-shamo">Install shamo</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="usage.html">Usage</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Finite element model creation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#model-initialization">Model initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mesh-generation">Mesh generation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sensors-placement">Sensors placement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#anisotropy-definition">Anisotropy definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model-finalization">Model finalization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#full-code">Full code</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="eeg/eeg.html">EEG</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="eeg/forward_problem.html">EEG forward problem resolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eeg/parametric_forward_problem.html">EEG parametric forward problem resolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eeg/simulation.html">EEG simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/api.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/api.html#finite-element-model">Finite element model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/api.html#problems">Problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/api.html#eeg">EEG</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/api.html#solutions">Solutions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/api.html#id1">EEG</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/api.html#sources">Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/api.html#distributions">Distributions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/reference.html">Code reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/core/core.html">shamo.core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/core/distribution.html">shamo.core.distribution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/core/distribution.html#shamo-core-distribution-distribution">shamo.core.distribution.Distribution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/core/distribution.html#shamo-core-distribution-constantdistribution">shamo.core.distribution.ConstantDistribution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/core/distribution.html#shamo-core-distribution-uniformdistribution">shamo.core.distribution.UniformDistribution</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/core/objects.html">shamo.core.objects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/core/objects.html#shamo-core-objects-object">shamo.core.objects.Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/core/objects.html#shamo-core-objects-fileobject">shamo.core.objects.FileObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/core/objects.html#shamo-core-objects-dirobject">shamo.core.objects.DirObject</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/core/problem.html">shamo.core.problem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/core/problem.html#shamo-core-problem-problem">shamo.core.problem.Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/core/solution.html">shamo.core.solution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/core/solution.html#shamo-core-solution-solution">shamo.core.solution.Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/model/model.html">shamo.model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/model/anisotropy.html">shamo.model.anisotropy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/model/anisotropy.html#shamo-model-anisotropy-anisotropy">shamo.model.anisotropy.Anisotropy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/model/fe_model.html">shamo.model.fe_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/model/fe_model.html#shamo-model-fe-model-femodel">shamo.model.fe_model.FEModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/model/mesh_config.html">shamo.model.mesh_config</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/model/mesh_config.html#shamo-model-mesh-config-meshconfig">shamo.model.mesh_config.MeshConfig</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/model/sensor.html">shamo.model.sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/model/sensor.html#shamo-model-sensor-sensor">shamo.model.sensor.Sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/model/sources/sources.html">shamo.model.sources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/model/sources/eeg_source.html">shamo.model.sources.eeg_source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/model/sources/fe_source.html">shamo.model.sources.fe_source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/model/sources/source.html">shamo.model.sources.source</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/model/tissue.html">shamo.model.tissue</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/model/tissue.html#shamo-model-tissue-tissue">shamo.model.tissue.Tissue</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/problems/problems.html">shamo.problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/problems/forward/forward.html">shamo.problems.forward</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/problems/forward/eeg/eeg.html">shamo.problems.forward.eeg</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/problems/forward/forward_problem.html">shamo.problems.forward.forward_problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/problems/forward/tissue_property.html">shamo.problems.forward.tissue_property</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/solutions/solutions.html">shamo.solutions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/solutions/forward/forward.html">shamo.solutions.forward</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/solutions/forward/eeg/eeg.html">shamo.solutions.forward.eeg</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/solutions/forward/common_forward_solution.html">shamo.solutions.forward.common_forward_solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/solutions/forward/forward_solution.html">shamo.solutions.forward.forward_solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/solutions/forward/parametric_forward_solution.html">shamo.solutions.forward.parametric_forward_solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">shamo</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../quickstart.html">Quickstart guide</a> &raquo;</li>
+        
+          <li><a href="usage.html">Usage</a> &raquo;</li>
+        
+      <li>Finite element model creation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/quickstart/usage/model_creation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="finite-element-model-creation">
+<h1>Finite element model creation<a class="headerlink" href="#finite-element-model-creation" title="Permalink to this headline">¶</a></h1>
+<p>Creating a proper finite element model of the subject’s head is the first step to solve forward problems or run simulations.
+In <code class="xref py py-mod docutils literal notranslate"><span class="pre">shamo</span></code>, it only takes a few lines of code.
+In the following example, we will generate a <a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel" title="shamo.model.fe_model.FEModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEModel</span></code></a> for a simple labeled volume but the steps are the same as for a more complex one.</p>
+<div class="section" id="model-initialization">
+<h2>Model initialization<a class="headerlink" href="#model-initialization" title="Permalink to this headline">¶</a></h2>
+<p>First, we have to create a new instance of the <a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel" title="shamo.model.fe_model.FEModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEModel</span></code></a> class:</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shamo</span> <span class="kn">import</span> <span class="n">FEModel</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">FEModel</span><span class="p">(</span><span class="s2">&quot;example_model&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>Here we have defined a model called <code class="docutils literal notranslate"><span class="pre">&quot;example_model&quot;</span></code> located in the current directory.
+A folder with this name should have appeared.</p>
+</div>
+<div class="section" id="mesh-generation">
+<h2>Mesh generation<a class="headerlink" href="#mesh-generation" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have a <a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel" title="shamo.model.fe_model.FEModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEModel</span></code></a> instance, we have to generate the mesh.
+To do so, we need a labeled volume.
+In <code class="xref py py-mod docutils literal notranslate"><span class="pre">shamo</span></code>, you can achieve this using multiple methods:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.mesh_from_labels" title="shamo.model.fe_model.FEModel.mesh_from_labels"><code class="xref py py-func docutils literal notranslate"><span class="pre">mesh_from_labels</span></code></a>: Use this if you have a <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> containing <code class="docutils literal notranslate"><span class="pre">uint8</span></code> labels from <code class="docutils literal notranslate"><span class="pre">0</span></code> (air) to <code class="docutils literal notranslate"><span class="pre">n</span></code> (the n-th tissue).</p></li>
+<li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.mesh_from_nii" title="shamo.model.fe_model.FEModel.mesh_from_nii"><code class="xref py py-func docutils literal notranslate"><span class="pre">mesh_from_nii</span></code></a>: Use this if you have stored the exact same data as above in a <code class="docutils literal notranslate"><span class="pre">.nii</span></code> image.</p></li>
+<li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.mesh_from_masks" title="shamo.model.fe_model.FEModel.mesh_from_masks"><code class="xref py py-func docutils literal notranslate"><span class="pre">mesh_from_masks</span></code></a>: Use this if you have stored each tissue class in separate <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>.</p></li>
+<li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.mesh_from_niis" title="shamo.model.fe_model.FEModel.mesh_from_niis"><code class="xref py py-func docutils literal notranslate"><span class="pre">mesh_from_niis</span></code></a>: Use this if you have stored each tissue class in separate <code class="docutils literal notranslate"><span class="pre">.nii</span></code> images.</p></li>
+</ul>
+<p>In this example, we will generate a single <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> containing all the labels and thus we will be using <a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.mesh_from_labels" title="shamo.model.fe_model.FEModel.mesh_from_labels"><code class="xref py py-func docutils literal notranslate"><span class="pre">mesh_from_labels</span></code></a>.
+For more information on the methods, refer to the corresponding documentation.</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="c1"># Generate the labels</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">labels</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">labels</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">affine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">tissues</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">]</span>
+</pre></div>
+</td></tr></table></div>
+<p>The above generate <code class="docutils literal notranslate"><span class="pre">labels</span></code> is made of a big cube containing two smaller cubes. This is where you should place the code required to load your labels.
+Next, we must define the parameters for the mesh generation. This is achieved by creating a <a class="reference internal" href="../../reference/model/mesh_config.html#shamo.model.mesh_config.MeshConfig" title="shamo.model.mesh_config.MeshConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">MeshConfig</span></code></a> object and setting its attributes.</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shamo</span> <span class="kn">import</span> <span class="n">MeshConfig</span>
+
+<span class="n">mesh_config</span> <span class="o">=</span> <span class="n">MeshConfig</span><span class="p">(</span><span class="n">facet_distance</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">cell_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The quality of the resulting mesh depends on these parameters. You should try to create the most accurate mesh you can before using it in next steps.</p>
+</div>
+<p>Now, we can pass all those variables to <a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.mesh_from_labels" title="shamo.model.fe_model.FEModel.mesh_from_labels"><code class="xref py py-func docutils literal notranslate"><span class="pre">mesh_from_labels</span></code></a>.</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">mesh_from_labels</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">tissues</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="n">mesh_config</span><span class="o">=</span><span class="n">mesh_config</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>One run, this line generate a <code class="docutils literal notranslate"><span class="pre">.msh</span></code> file in the previously created directory. Those files can be opened using <a class="reference external" href="http://gmsh.info/">Gmsh</a>.</p>
+</div>
+<div class="section" id="sensors-placement">
+<h2>Sensors placement<a class="headerlink" href="#sensors-placement" title="Permalink to this headline">¶</a></h2>
+<p>We can now add sensors on the mesh using two methods:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.add_sensor" title="shamo.model.fe_model.FEModel.add_sensor"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_sensor</span></code></a>: To add sensors one-by-one.</p></li>
+<li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.add_sensors" title="shamo.model.fe_model.FEModel.add_sensors"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_sensors</span></code></a>: To add multiple sensors at a time.</p></li>
+</ul>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]</span>
+<span class="n">sensors</span> <span class="o">=</span> <span class="p">{</span><span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span><span class="p">):</span> <span class="n">c</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)}</span>
+</pre></div>
+</td></tr></table></div>
+<p>We have defined sensors manually for this example, but you should load their locations from experiment measurements.
+Once the locations and the names of the sensors are defined, we can add them to the model on tissue <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span></code>.</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">add_sensors</span><span class="p">(</span><span class="n">sensors</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="anisotropy-definition">
+<h2>Anisotropy definition<a class="headerlink" href="#anisotropy-definition" title="Permalink to this headline">¶</a></h2>
+<p>Anisotropic fields can be added to the model (e.g. white matter anisotropy). Once again, we can do this by using several methods:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.add_anisotropy_from_elements" title="shamo.model.fe_model.FEModel.add_anisotropy_from_elements"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_anisotropy_from_elements</span></code></a>: You might never use this as it requires the values of the field correspondign to each elements of the tissue you want to add anisotropy in.</p></li>
+<li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.add_anisotropy_from_array" title="shamo.model.fe_model.FEModel.add_anisotropy_from_array"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_anisotropy_from_array</span></code></a>: Use this if you have a <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> containing the field.</p></li>
+<li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.add_anisotropy_from_nii" title="shamo.model.fe_model.FEModel.add_anisotropy_from_nii"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_anisotropy_from_nii</span></code></a>: Use this if you have a <code class="docutils literal notranslate"><span class="pre">.nii</span></code> image containing the field.</p></li>
+</ul>
+<p>The fields can either be scalar fields or tensor fields. For the sake of this example, we generate a fake scalar field.</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">field</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.1</span>
+<span class="n">field</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">field</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">field</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">affine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</td></tr></table></div>
+<p>We can now add it to the model.</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">add_anisotropy_from_array</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;&lt;b&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="model-finalization">
+<h2>Model finalization<a class="headerlink" href="#model-finalization" title="Permalink to this headline">¶</a></h2>
+<p>Our model is now complete. All we have to do is save it.</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p>After this step, a <code class="docutils literal notranslate"><span class="pre">.json</span></code> file have been created in the model directory.
+This file contains all the information about the model and allow us to load it back in the future.</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">FEModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;./example_model/example_model.json&quot;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="full-code">
+<h2>Full code<a class="headerlink" href="#full-code" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shamo</span> <span class="kn">import</span> <span class="n">FEModel</span><span class="p">,</span> <span class="n">MeshConfig</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="c1"># Model initialization</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">FEModel</span><span class="p">(</span><span class="s2">&quot;example_model&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Mesh generation</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">labels</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">labels</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">affine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">tissues</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">]</span>
+
+<span class="n">mesh_config</span> <span class="o">=</span> <span class="n">MeshConfig</span><span class="p">(</span><span class="n">facet_distance</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">cell_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">mesh_from_labels</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">tissues</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="n">mesh_config</span><span class="o">=</span><span class="n">mesh_config</span><span class="p">)</span>
+
+<span class="c1"># Sensors placement</span>
+<span class="n">coordinates</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]</span>
+<span class="n">sensors</span> <span class="o">=</span> <span class="p">{</span><span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span><span class="p">):</span> <span class="n">c</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)}</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">add_sensors</span><span class="p">(</span><span class="n">sensors</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+
+<span class="c1"># Anisotropy definition</span>
+<span class="n">field</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.1</span>
+<span class="n">field</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">field</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">field</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">affine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">add_anisotropy_from_array</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;&lt;b&gt;&quot;</span><span class="p">)</span>
+
+<span class="c1"># Finalization</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="eeg/eeg.html" class="btn btn-neutral float-right" title="EEG" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Martin Grignard
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
