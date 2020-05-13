@@ -6,7 +6,7 @@
 SPHINXOPTS    ?=
 SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = src
-BUILDDIR      = build
+BUILDDIR      = ../../shamo-docs
 
 # Put it first so that "make" without argument is like "make help".
 help:
