@@ -1,3 +1,2 @@
-include shamo/problems/forward/eeg/eeg_forward_problem.pro
-include shamo/problems/forward/eeg/eeg_forward_problem.template
-include shamo/problems/forward/eeg/eeg_simulation_problem.pro
+include *.pro
+include *.template

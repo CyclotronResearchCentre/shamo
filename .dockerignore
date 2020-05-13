@@ -1,0 +1,12 @@
+.git
+.venv
+**/.ipynb_checkpoints
+*.egg-info
+**/__pycache__
+docs
+examples
+tests
+.gitlab-ci.yml
+*.md
+!README*.md
+tox.ini

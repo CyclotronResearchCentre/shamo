@@ -23,15 +23,17 @@ CLASSIFIERS = [
 # Define setup settings
 setup(
     name="shamo",
-    version="v1.0.0",
+    version="0.1.0",
     license="GPLv3",
-    description="Forward modelling and sensitivity analysis.",
+    description="A tool for electromagnetic modelling of the head and sensitivity analysis.",
     long_description=long_description,
     author="Martin Grignard",
     author_email="mar.grignard@uliege.be",
     packages=find_packages(exclude=["tests"]),
     install_requires=[
-        "numpy", "nibabel", "scipy", "scikit-learn", "chaospy==0.4.0, gmsh"
+        "numpy", "nibabel", "scipy", "scikit-learn", "chaospy",
+        "pygalmesh==0.4.0", "gmsh"
     ],
+    zip_safe=False,
     classifiers=CLASSIFIERS
 )
