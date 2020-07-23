@@ -40,8 +40,9 @@ class EEGParametricForwardProblem(EEGForwardProblem):
 
     SUB_PROBLEM_FACTORY = EEGForwardProblem
 
-    TEMPLATE_PATH = resource_filename("shamo", str(
-        Path("problems/forward/eeg/eeg_forward_problem.template")))
+    TEMPLATE_PATH = resource_filename(
+        "shamo", str(Path("problems/forward/eeg/eeg_forward_problem.template"))
+    )
 
     def solve(self, name, parent_path, model, **kwargs):
         """Solve the problem.
@@ -78,6 +79,7 @@ class EEGParametricForwardProblem(EEGForwardProblem):
             The solution of the problem for the specified model.
         """
         from shamo import EEGParametricForwardSolution
+
         self.check_settings(model)
         # Initialize the solution
         solution = EEGParametricForwardSolution(name, parent_path)
@@ -88,30 +90,30 @@ class EEGParametricForwardProblem(EEGForwardProblem):
         order = kwargs.get("order", 2)
         rule = kwargs.get("rule", "leja")
         sparse = kwargs.get("sparse", True)
-        n_evals, eval_points = self._generate_evaluation_points(
-            order=order, rule=rule)
+        n_evals, eval_points = self._generate_evaluation_points(order=order, rule=rule)
         solution.set_quadrature(order, rule, sparse)
         # Generate problems
         sub_problems = self._generate_sub_problems(n_evals, eval_points)
-        generator = ((problem, "sol_{:08d}".format(i), solution.path, model)
-                     for i, problem in enumerate(sub_problems))
+        generator = (
+            (problem, "sol_{:08d}".format(i), solution.path, model)
+            for i, problem in enumerate(sub_problems)
+        )
         # Solve using the right method
         method = kwargs.get("method", self.METHOD_SEQ)
         n_process = kwargs.get("n_process", None)
         if method == self.METHOD_SEQ or n_process == 1:
-            solutions = list(iter.starmap(
-                self._solve_single_sub_problem, generator))
+            solutions = list(iter.starmap(self._solve_single_sub_problem, generator))
             solution.finalize()
         elif method == self.METHOD_MULTI:
             with mp.Pool(processes=n_process) as pool:
-                solutions = list(pool.starmap(
-                    self._solve_single_sub_problem, generator))
+                solutions = list(
+                    pool.starmap(self._solve_single_sub_problem, generator)
+                )
             solution.finalize()
         elif method == self.METHOD_MPI:
             pass
         else:
-            solutions = list(iter.starmap(
-                self._print_single_sub_problem, generator))
+            solutions = list(iter.starmap(self._print_single_sub_problem, generator))
         # Check if all the solutions or scripts were generated
         if len(solutions) != n_evals:
             raise RuntimeError("Some solutions were not computed.")
@@ -134,22 +136,25 @@ class EEGParametricForwardProblem(EEGForwardProblem):
         dict [str, float|numpy.ndarray]
             The points to evaluate.
         """
-        tissue_distributions = [(name, tissue.value.distribution)
-                                for name, tissue
-                                in self.electrical_conductivity.items()]
+        tissue_distributions = [
+            (name, tissue.value.distribution)
+            for name, tissue in self.electrical_conductivity.items()
+        ]
         # Only consider non constant parameters
-        varying = [item for item in tissue_distributions
-                   if item[1] is not None]
+        varying = [item for item in tissue_distributions if item[1] is not None]
         if len(varying) == 0:
-            raise RuntimeError(("No varying parameter given. Use "
-                                "'EEGForwardProblem' instead."))
+            raise RuntimeError(
+                ("No varying parameter given. Use " "'EEGForwardProblem' instead.")
+            )
         distribution = cp.J(*[distribution for _, distribution in varying])
-        absissas = cp.generate_quadrature(order, distribution, rule=rule,
-                                          sparse=sparse)[0]
-        points = {varying[i][0]: absissas[i, :].flatten().tolist()
-                  for i in range(len(varying))}
-        for name, _ in [item for item in tissue_distributions
-                        if item[1] is None]:
+        absissas = cp.generate_quadrature(
+            order, distribution, rule=rule, sparse=sparse
+        )[0]
+        points = {
+            varying[i][0]: absissas[i, :].flatten().tolist()
+            for i in range(len(varying))
+        }
+        for name, _ in [item for item in tissue_distributions if item[1] is None]:
             points[name] = self.electrical_conductivity[name].value.value
         return absissas.shape[1], points
 
@@ -181,8 +186,7 @@ class EEGParametricForwardProblem(EEGForwardProblem):
                     value = values[i_problem]
                 except TypeError:
                     value = values
-                sub_problem.set_electrical_conductivity(
-                    name, value, anisotropy)
+                sub_problem.set_electrical_conductivity(name, value, anisotropy)
             sub_problems.append(sub_problem)
         return sub_problems
 
@@ -227,8 +231,9 @@ class EEGParametricForwardProblem(EEGForwardProblem):
             The path to the generated script.
         """
         path = str(Path(parent_path) / "{}.py".format(name))
-        with TemplateFile(EEGParametricForwardProblem.TEMPLATE_PATH, path) \
-                as template_file:
+        with TemplateFile(
+            EEGParametricForwardProblem.TEMPLATE_PATH, path
+        ) as template_file:
             model_path = get_relative_path(model.json_path, parent_path)
             template_file.replace_with_text("model", "path", model_path)
             template_file.replace_with_text("problem", "data", str(problem))

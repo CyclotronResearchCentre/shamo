@@ -61,6 +61,5 @@ class EEGSimulationSolution(Solution):
         shamo.EEGSimulationSolution
             The solution.
         """
-        self["recordings"] = {name: float(value)
-                              for name, value in recordings.items()}
+        self["recordings"] = {name: float(value) for name, value in recordings.items()}
         return self

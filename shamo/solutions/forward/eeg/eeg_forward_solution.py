@@ -69,8 +69,7 @@ class EEGForwardSolution(ForwardSolution):
         recordings = {}
         matrix = self.get_matrix(memory_map=memory_map)
         for i_sensor, name in enumerate(self.sensors):
-            recordings[name] = float(np.dot(matrix[i_sensor, :],
-                                            sources_vector))
+            recordings[name] = float(np.dot(matrix[i_sensor, :], sources_vector))
         return recordings
 
     def evaluate_for_elements(self, element_sources):
@@ -91,10 +90,9 @@ class EEGForwardSolution(ForwardSolution):
         sources_vector = np.zeros((self.shape[1],))
         element_tags = self.get_elements(coords=False)
         for element_tag, values in element_sources.items():
-            element_index = \
-                np.argwhere(element_tags == element_tag).flatten()[0]
+            element_index = np.argwhere(element_tags == element_tag).flatten()[0]
             offset = element_index * self.n_values_per_element
-            sources_vector[offset:offset + self.n_values_per_element] = values
+            sources_vector[offset : offset + self.n_values_per_element] = values
         return self.evaluate(sources_vector)
 
     def evaluate_for_sources(self, sources):
@@ -117,6 +115,5 @@ class EEGForwardSolution(ForwardSolution):
             distances = cdist([source.coordinates], element_coords).flatten()
             element_index = np.argmin(distances)
             offset = element_index * self.n_values_per_element
-            sources_vector[offset:offset + self.n_values_per_element] = \
-                source.values
+            sources_vector[offset : offset + self.n_values_per_element] = source.values
         return self.evaluate(sources_vector)

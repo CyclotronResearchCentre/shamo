@@ -55,17 +55,17 @@ def mesh_from_labels(self, labels, tissues, affine, mesh_config=MeshConfig()):
         raise ValueError("Argument `affine` must be a 2D 4x4 array.")
     n_tissues = np.max(labels)
     if len(tissues) != n_tissues:
-        raise ValueError(("Argument `tissue` must contain {} "
-                          "names.").format(n_tissues))
+        raise ValueError(
+            ("Argument `tissue` must contain {} " "names.").format(n_tissues)
+        )
     # Generate the mesh
     scratch_path = os.environ.get("SCRATCH_DIR", None)
     with TemporaryDirectory(dir=scratch_path) as parent_path:
         inr_path = _inr_file_from_labels(parent_path, labels)
-        mesh_path = _mesh_from_inr_file(parent_path, inr_path,
-                                        mesh_config)
-        transformed_path = _affine_transform(parent_path,
-                                             mesh_path,
-                                             np.dot(MILLIMETER_AFFINE, affine))
+        mesh_path = _mesh_from_inr_file(parent_path, inr_path, mesh_config)
+        transformed_path = _affine_transform(
+            parent_path, mesh_path, np.dot(MILLIMETER_AFFINE, affine)
+        )
         msh_path = _finalize_mesh(self, transformed_path, tissues)
         self["mesh_path"] = str(Path(msh_path).relative_to(self.path))
         self["tissues"] = get_tissues_from_mesh(msh_path)
@@ -175,8 +175,10 @@ def mesh_from_niis(self, tissue_paths, mesh_config=MeshConfig()):
     If a particular temporary directory must be used (e.g. working on a
     cluster), simply set a environment variable called ``SCRATCH_DIR``.
     """
-    tissue_masks = {tissue: nib.load(path).get_fdata().astype(np.bool)
-                    for tissue, path in tissue_paths.items()}
+    tissue_masks = {
+        tissue: nib.load(path).get_fdata().astype(np.bool)
+        for tissue, path in tissue_paths.items()
+    }
     image = nib.load(list(tissue_paths.values())[0])
     affine = image.affine
     self.mesh_from_masks(tissue_masks, affine, mesh_config)
@@ -207,15 +209,14 @@ def get_tissues_from_mesh(mesh_path):
             entity = gmsh.model.getEntitiesForPhysicalGroup(dim, group)
             if name in tissues_data:
                 tissues_data[name]["{}_group".format(dimension)] = group
-                tissues_data[name]["{}_entity".format(dimension)] = \
-                    entity.tolist()
+                tissues_data[name]["{}_entity".format(dimension)] = entity.tolist()
             else:
-                tissues_data[name] = {"{}_group".format(dimension): group,
-                                      "{}_entity".format(dimension):
-                                      entity.tolist()}
+                tissues_data[name] = {
+                    "{}_group".format(dimension): group,
+                    "{}_entity".format(dimension): entity.tolist(),
+                }
     gmsh.finalize()
-    return {name: Tissue(**data)
-            for name, data in tissues_data.items()}
+    return {name: Tissue(**data) for name, data in tissues_data.items()}
 
 
 def _inr_file_from_labels(parent_path, labels, name="model"):
@@ -252,17 +253,19 @@ def _inr_file_from_labels(parent_path, labels, name="model"):
     # Generate the file
     bytes_type = "unsigned fixed"
     n_bits = 8
-    header = ("#INRIMAGE-4#{{\n"
-              "XDIM={}\n"
-              "YDIM={}\n"
-              "ZDIM={}\n"
-              "VDIM=1\n"
-              "TYPE={}\n"
-              "PIXSIZE={} bits\n"
-              "CPU=decm\n"
-              "VX=1\n"
-              "VY=1\n"
-              "VZ=1\n").format(*labels.shape, bytes_type, n_bits)
+    header = (
+        "#INRIMAGE-4#{{\n"
+        "XDIM={}\n"
+        "YDIM={}\n"
+        "ZDIM={}\n"
+        "VDIM=1\n"
+        "TYPE={}\n"
+        "PIXSIZE={} bits\n"
+        "CPU=decm\n"
+        "VX=1\n"
+        "VY=1\n"
+        "VZ=1\n"
+    ).format(*labels.shape, bytes_type, n_bits)
     header = header + "\n" * (256 - 4 - len(header)) + "##}\n"
     inr_path = str(Path(parent_path) / "{}.inr".format(name))
     with open(inr_path, "wb") as inr_file:
@@ -290,10 +293,7 @@ def _mesh_from_inr_file(parent_path, inr_path, mesh_config, name="model"):
     str
         The path to the generated ``.mesh`` file.
     """
-    mesh = cgal.generate_from_inr(
-        inr_path,
-        **mesh_config,
-        verbose=False)
+    mesh = cgal.generate_from_inr(inr_path, **mesh_config, verbose=False)
     mesh_path = Path(parent_path) / "{}.mesh".format(name)
     mio.write(str(mesh_path), mesh)
     return str(mesh_path)
@@ -324,11 +324,10 @@ def _affine_transform(parent_path, mesh_path, affine, name="model"):
     axes = ["x", "y", "z"]
     for row in range(3):
         for col in range(3):
-            gmsh.plugin.setNumber("Transform", "A{}{}".format(row + 1,
-                                                              col + 1),
-                                  affine[row, col])
-        gmsh.plugin.setNumber("Transform", "T{}".format(axes[row]),
-                              affine[row, -1])
+            gmsh.plugin.setNumber(
+                "Transform", "A{}{}".format(row + 1, col + 1), affine[row, col]
+            )
+        gmsh.plugin.setNumber("Transform", "T{}".format(axes[row]), affine[row, -1])
     gmsh.plugin.run("Transform")
     gmsh.model.mesh.reclassifyNodes()
     msh_path = Path(parent_path) / "{}.msh".format(name)

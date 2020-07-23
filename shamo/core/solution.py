@@ -74,8 +74,7 @@ class Solution(DirObject):
             raise FileNotFoundError("The solution does not contain a model.")
         path = Path(self.path) / self["model_path"]
         if not path.exists():
-            raise FileNotFoundError(("The specified model file no longer "
-                                     "exists."))
+            raise FileNotFoundError(("The specified model file no longer " "exists."))
         return str(path)
 
     def set_problem(self, problem):

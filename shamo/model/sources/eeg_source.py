@@ -28,8 +28,9 @@ class EEGSource(Source):
         self["orientation"] = tuple(orientation)
         self["value"] = float(value)
         # Compute unitary orientation
-        self["unit_orientation"] = tuple(np.array(orientation)
-                                         / np.linalg.norm(orientation))
+        self["unit_orientation"] = tuple(
+            np.array(orientation) / np.linalg.norm(orientation)
+        )
 
     @property
     def orientation(self):
