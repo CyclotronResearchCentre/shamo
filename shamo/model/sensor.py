@@ -23,8 +23,9 @@ class Sensor(dict):
         The name of the tissue the sensor is placed on.
     """
 
-    def __init__(self, real_coordinates, mesh_coordinates, group, entity,
-                 node, on_tissue):
+    def __init__(
+        self, real_coordinates, mesh_coordinates, group, entity, node, on_tissue
+    ):
         super().__init__()
         self["real_coordinates"] = tuple([float(i) for i in real_coordinates])
         self["mesh_coordinates"] = tuple([float(i) for i in mesh_coordinates])
@@ -112,6 +113,8 @@ class Sensor(dict):
         float
             The error of coordinates.
         """
-        difference = np.abs(np.array(self.real_coordinates)
-                            - np.array(self.mesh_coordinates)) * 1000
+        difference = (
+            np.abs(np.array(self.real_coordinates) - np.array(self.mesh_coordinates))
+            * 1000
+        )
         return np.linalg.norm(difference)

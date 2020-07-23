@@ -75,8 +75,7 @@ class Distribution(dict, abc.ABC):
         if name == "constant":
             return ConstantDistribution(data.get("value"))
         elif name == "uniform":
-            return UniformDistribution(
-                data.get("minimum"), data.get("maximum"))
+            return UniformDistribution(data.get("minimum"), data.get("maximum"))
 
 
 class ConstantDistribution(Distribution):

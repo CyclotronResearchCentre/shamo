@@ -20,8 +20,7 @@ class Tissue(dict):
         The geometric tags of the surfaces.
     """
 
-    def __init__(self, volume_group, volume_entity, surface_group,
-                 surface_entity):
+    def __init__(self, volume_group, volume_entity, surface_group, surface_entity):
         super().__init__()
         self["volume_group"] = int(volume_group)
         self["volume_entity"] = [int(entity) for entity in volume_entity]

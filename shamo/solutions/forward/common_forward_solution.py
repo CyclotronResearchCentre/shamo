@@ -135,8 +135,9 @@ class CommonForwardSolution(Solution):
             raise FileNotFoundError("The model does not contain a FE model.")
         path = Path(self.path) / self["elements_path"]
         if not path.exists():
-            raise FileNotFoundError(("The specified elements file no longer "
-                                     "exists."))
+            raise FileNotFoundError(
+                ("The specified elements file no longer " "exists.")
+            )
         return str(path)
 
     def set_elements_path(self, elements_path):
@@ -170,8 +171,7 @@ class CommonForwardSolution(Solution):
         shamo.solutions.forward.common_forward_solution.CommonForwardSolution
             The solution.
         """
-        elements_path = str(Path(self.path)
-                            / "{}_elements.npz".format(self.name))
+        elements_path = str(Path(self.path) / "{}_elements.npz".format(self.name))
         self["elements_path"] = str(Path(elements_path).relative_to(self.path))
         np.savez(elements_path, tags=element_tags, coords=element_coords)
         return self

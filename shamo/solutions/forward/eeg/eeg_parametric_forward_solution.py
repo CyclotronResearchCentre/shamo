@@ -49,8 +49,7 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
     shamo.solutions.ParametricForwardSolution
     """
 
-    from shamo import (EEGParametricForwardProblem, EEGForwardProblem,
-                       EEGForwardSolution)
+    from shamo import EEGParametricForwardProblem, EEGForwardProblem, EEGForwardSolution
 
     PROBLEM_FACTORY = EEGParametricForwardProblem
     N_VALUES_PER_ELEMENT = 3
@@ -70,21 +69,28 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
         model = GaussianProcessRegressor()
         model.fit(x, y)
         surrogate_model_path = str(
-            Path(self.path) / "{}_surrogate.bin".format(self.name))
+            Path(self.path) / "{}_surrogate.bin".format(self.name)
+        )
         pickle.dump(model, open(surrogate_model_path, "wb"))
         self["surrogate_model_path"] = surrogate_model_path
 
     def _get_x_y(self):
-        varying = [name for name, tissue
-                   in self.problem.electrical_conductivity.items()
-                   if tissue.value.name != "constant"]
+        varying = [
+            name
+            for name, tissue in self.problem.electrical_conductivity.items()
+            if tissue.value.name != "constant"
+        ]
         self["varying"] = varying
         solutions = self.get_solutions()
         x = []
         y = []
         for solution in solutions:
-            x.append([solution.problem.electrical_conductivity[tissue].value
-                      for tissue in varying])
+            x.append(
+                [
+                    solution.problem.electrical_conductivity[tissue].value
+                    for tissue in varying
+                ]
+            )
             y.append(solution.get_matrix(memory_map=True).reshape((-1,)))
         return x, y
 
@@ -99,8 +105,8 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
         x = []
         for name in self["varying"]:
             value = kwargs.get(
-                name,
-                self.problem.electrical_conductivity[name].value.expected)
+                name, self.problem.electrical_conductivity[name].value.expected
+            )
             x.append(value)
         model = self.get_surrogate_model()
         return model.predict([x]).reshape(self.shape)
@@ -133,16 +139,19 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
         for name, property in self.problem.electrical_conductivity.items():
             if name in self["varying"]:
                 parameters[name] = kwargs.get(
-                    name,
-                    self.problem.electrical_conductivity[name].value.expected)
+                    name, self.problem.electrical_conductivity[name].value.expected
+                )
                 problem.set_electrical_conductivity(
-                    name, parameters[name],
-                    self.problem.electrical_conductivity[name].anisotropy)
+                    name,
+                    parameters[name],
+                    self.problem.electrical_conductivity[name].anisotropy,
+                )
             else:
                 problem.set_electrical_conductivity(
                     name,
                     self.problem.electrical_conductivity[name].value.value,
-                    self.problem.electrical_conductivity[name].anisotropy)
+                    self.problem.electrical_conductivity[name].anisotropy,
+                )
         # Compute the matrix
         matrix = self.generate_matrix(**parameters)
         # Generate the solution

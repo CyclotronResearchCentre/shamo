@@ -30,9 +30,10 @@ class ForwardProblem(Problem):
         self["markers"] = kwargs.get("markers", [])
         # Elcectrical conductivity
         electrical_conductivity = kwargs.get("electrical_conductivity", {})
-        self["electrical_conductivity"] = {name: TissueProperty(**data)
-                                           for name, data
-                                           in electrical_conductivity.items()}
+        self["electrical_conductivity"] = {
+            name: TissueProperty(**data)
+            for name, data in electrical_conductivity.items()
+        }
 
     @property
     def regions_of_interest(self):
@@ -149,8 +150,7 @@ class ForwardProblem(Problem):
         shamo.problem.forward.forward_problem.ForwardProblem
             The problem.
         """
-        self["electrical_conductivity"][name] = TissueProperty(value,
-                                                               anisotropy)
+        self["electrical_conductivity"][name] = TissueProperty(value, anisotropy)
         return self
 
     def set_electrical_conductivities(self, values, anistropies=None):
@@ -210,15 +210,23 @@ class ForwardProblem(Problem):
                 if region_of_interest in model.tissues:
                     n_regions_of_interest += 1
             if n_regions_of_interest == 0:
-                raise ValueError(("None of the specified regions of interest "
-                                  "can be found in the model."))
+                raise ValueError(
+                    (
+                        "None of the specified regions of interest "
+                        "can be found in the model."
+                    )
+                )
         elif is_roi_required and not self.regions_of_interest:
             raise ValueError("No specified region of interest.")
         # Check electrical conductivity
         for tissue in model.tissues:
             if tissue not in self.electrical_conductivity:
-                raise ValueError(("No electrical conductivity specified for "
-                                  "tissue with name '{}'.").format(tissue))
+                raise ValueError(
+                    (
+                        "No electrical conductivity specified for "
+                        "tissue with name '{}'."
+                    ).format(tissue)
+                )
 
     @abc.abstractmethod
     def solve(self, name, parent_path, model, **kwargs):

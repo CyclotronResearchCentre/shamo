@@ -58,8 +58,9 @@ class ParametricForwardSolution(CommonForwardSolution):
         # Quadrature
         self["quadrature"] = kwargs.get("quadrature", {})
         # Sub-solutions paths
-        self["solution_paths"] = [str(Path(path))
-                                  for path in kwargs.get("solution_paths", [])]
+        self["solution_paths"] = [
+            str(Path(path)) for path in kwargs.get("solution_paths", [])
+        ]
         # Is finalized
         self["is_finalized"] = kwargs.get("is_finalized", False)
         # Surrogate model path
@@ -90,8 +91,7 @@ class ParametricForwardSolution(CommonForwardSolution):
         list [str]
             The paths to the solutions.
         """
-        return [str(Path(self.path) / path)
-                for path in self["solution_paths"]]
+        return [str(Path(self.path) / path) for path in self["solution_paths"]]
 
     @property
     def is_finalized(self):
@@ -124,8 +124,7 @@ class ParametricForwardSolution(CommonForwardSolution):
             raise FileNotFoundError("The model does not contain a model.")
         path = Path(self.path) / self["surrogate_model_path"]
         if not path.exists():
-            raise FileNotFoundError(("The specified model file no longer "
-                                     "exists."))
+            raise FileNotFoundError(("The specified model file no longer " "exists."))
         return str(path)
 
     def set_quadrature(self, order, rule, sparse):
@@ -145,11 +144,7 @@ class ParametricForwardSolution(CommonForwardSolution):
         shamo.solutions.ParametricForwardSolution
             The current solution.
         """
-        self["quadrature"] = {
-            "order": order,
-            "rule": rule,
-            "sparse": sparse
-        }
+        self["quadrature"] = {"order": order, "rule": rule, "sparse": sparse}
         return self
 
     def get_solutions(self):
@@ -160,8 +155,7 @@ class ParametricForwardSolution(CommonForwardSolution):
         list [shamo.core.solution.Solution]
             The solutions.
         """
-        return [self.SOLUTION_FACTORY.load(path)
-                for path in self.solution_paths]
+        return [self.SOLUTION_FACTORY.load(path) for path in self.solution_paths]
 
     def get_surrogate_model(self):
         """Load the surrogate model.
@@ -173,8 +167,7 @@ class ParametricForwardSolution(CommonForwardSolution):
         """
         # Make sure to only load it once
         if self._surrogate_model is None:
-            self._surrogate_model = pickle.load(
-                open(self.surrogate_model_path, "rb"))
+            self._surrogate_model = pickle.load(open(self.surrogate_model_path, "rb"))
         return self._surrogate_model
 
     def finalize(self, clean=True):
@@ -219,8 +212,7 @@ class ParametricForwardSolution(CommonForwardSolution):
         self["sensors"] = solutions[0].sensors
         # Remove duplicated elements files
         elements_path = "{}_elements.npz".format(self.name)
-        shutil.copy(solutions[0].elements_path,
-                    str(Path(self.path) / elements_path))
+        shutil.copy(solutions[0].elements_path, str(Path(self.path) / elements_path))
         self["elements_path"] = elements_path
         for solution in solutions:
             Path(solution.elements_path).unlink()

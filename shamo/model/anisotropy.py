@@ -84,8 +84,7 @@ class Anisotropy(dict):
             key = match.group(0)[1:-1]
             value = kwargs.get(key, None)
             if value is None:
-                raise KeyError("No parameter '{}' given to the "
-                               "formula.".format(key))
+                raise KeyError("No parameter '{}' given to the " "formula.".format(key))
             formula = re.sub(re.compile(text), str(value), formula)
         return eval(formula)
 
@@ -104,6 +103,5 @@ class Anisotropy(dict):
         """
         coefficient = self.evaluate_formula(**kwargs)
         field = "{}Field".format(self.anisotropy_type.capitalize())
-        sigma_text = "{} * {}[XYZ[]]{{{}}}".format(coefficient, field,
-                                                   self.view)
+        sigma_text = "{} * {}[XYZ[]]{{{}}}".format(coefficient, field, self.view)
         return sigma_text

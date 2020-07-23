@@ -94,8 +94,16 @@ class TemplateFile:
         self.replace_with_text(key, value, text)
         return self
 
-    def replace_with_dict(self, key, value, data, prefix="",
-                          key_value_separator="", suffix="", separator=""):
+    def replace_with_dict(
+        self,
+        key,
+        value,
+        data,
+        prefix="",
+        key_value_separator="",
+        suffix="",
+        separator="",
+    ):
         """Replace a tag by a text.
 
         Parameters
@@ -130,8 +138,11 @@ class TemplateFile:
         -----
         The tags are formatted as <key:value> in a template file.
         """
-        items = ["{}{}{}{}{}".format(prefix, data_key, key_value_separator,
-                                     data_value, suffix)
-                 for data_key, data_value in data.items()]
+        items = [
+            "{}{}{}{}{}".format(
+                prefix, data_key, key_value_separator, data_value, suffix
+            )
+            for data_key, data_value in data.items()
+        ]
         self.replace_with_list(key, value, items, separator)
         return self

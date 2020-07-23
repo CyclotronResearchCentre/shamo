@@ -76,8 +76,7 @@ class ForwardSolution(CommonForwardSolution):
             raise FileNotFoundError("The model does not contain a matrix.")
         path = Path(self.path) / self["matrix_path"]
         if not path.exists():
-            raise FileNotFoundError(("The specified matrix file no longer "
-                                     "exists."))
+            raise FileNotFoundError(("The specified matrix file no longer " "exists."))
         return str(path)
 
     def set_matrix(self, matrix):

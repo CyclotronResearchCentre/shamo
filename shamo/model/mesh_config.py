@@ -27,9 +27,15 @@ class MeshConfig(dict):
         The attributes of are passed to this function.
     """
 
-    def __init__(self, cell_size=0.0, edge_size=0.0, facet_size=0.0,
-                 facet_angle=0.0, facet_distance=0.0,
-                 cell_radius_edge_ratio=0.0):
+    def __init__(
+        self,
+        cell_size=0.0,
+        edge_size=0.0,
+        facet_size=0.0,
+        facet_angle=0.0,
+        facet_distance=0.0,
+        cell_radius_edge_ratio=0.0,
+    ):
         super().__init__()
         self["cell_size"] = float(cell_size)
         self["edge_size"] = float(edge_size)

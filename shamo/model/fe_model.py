@@ -39,13 +39,20 @@ class FEModel(DirObject):
         To load and save this object, see its parent class.
     """
 
-    from ._geometry import (mesh_from_labels, mesh_from_nii, mesh_from_masks,
-                            mesh_from_niis, get_tissues_from_mesh)
-    from ._sensors import (add_sensor, add_sensors)
-    from ._anisotropy import (add_anisotropy_from_elements,
-                              add_anisotropy_from_array,
-                              add_anisotropy_from_nii)
-    from ._source import (add_sources, source_exists, get_source)
+    from ._geometry import (
+        mesh_from_labels,
+        mesh_from_nii,
+        mesh_from_masks,
+        mesh_from_niis,
+        get_tissues_from_mesh,
+    )
+    from ._sensors import add_sensor, add_sensors
+    from ._anisotropy import (
+        add_anisotropy_from_elements,
+        add_anisotropy_from_array,
+        add_anisotropy_from_nii,
+    )
+    from ._source import add_sources, source_exists, get_source
 
     def __init__(self, name, parent_path, **kwargs):
         super().__init__(name, parent_path)
@@ -55,16 +62,15 @@ class FEModel(DirObject):
         self["n_nodes"] = int(kwargs.get("n_nodes", 0))
         # Tissues
         tissues = kwargs.get("tissues", {})
-        self["tissues"] = {name: Tissue(**data)
-                           for name, data in tissues.items()}
+        self["tissues"] = {name: Tissue(**data) for name, data in tissues.items()}
         # Sensors
         sensors = kwargs.get("sensors", {})
-        self["sensors"] = {name: Sensor(**data)
-                           for name, data in sensors.items()}
+        self["sensors"] = {name: Sensor(**data) for name, data in sensors.items()}
         # Anisotropy
         anisotropy = kwargs.get("anisotropy", {})
-        self["anisotropy"] = {name: Anisotropy(**data)
-                              for name, data in anisotropy.items()}
+        self["anisotropy"] = {
+            name: Anisotropy(**data) for name, data in anisotropy.items()
+        }
         # Sources
         sources = kwargs.get("sources", [])
         self["sources"] = [FESource(**data) for data in sources]
@@ -89,8 +95,7 @@ class FEModel(DirObject):
             raise FileNotFoundError("The model does not contain a mesh file.")
         path = Path(self.path) / self["mesh_path"]
         if not path.exists():
-            raise FileNotFoundError(("The specified mesh file no longer "
-                                     "exists."))
+            raise FileNotFoundError(("The specified mesh file no longer " "exists."))
         return str(path)
 
     @property

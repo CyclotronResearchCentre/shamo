@@ -35,8 +35,9 @@ class EEGForwardProblem(ForwardProblem):
     shamo.problems.ForwardProblem
     """
 
-    TEMPLATE_PATH = resource_filename("shamo", str(
-        Path("problems/forward/eeg/eeg_forward_problem.pro")))
+    TEMPLATE_PATH = resource_filename(
+        "shamo", str(Path("problems/forward/eeg/eeg_forward_problem.pro"))
+    )
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -91,8 +92,11 @@ class EEGForwardProblem(ForwardProblem):
         super().check_settings(model, is_roi_required=True)
         # Check reference
         if self.reference not in model.sensors:
-            raise ValueError(("Missing reference sensor with name '{}' can be "
-                              "found.").format(self.reference))
+            raise ValueError(
+                ("Missing reference sensor with name '{}' can be " "found.").format(
+                    self.reference
+                )
+            )
 
     def solve(self, name, parent_path, model, **kwargs):
         """Solve the problem.
@@ -112,6 +116,7 @@ class EEGForwardProblem(ForwardProblem):
             The solution of the problem for the specified model.
         """
         from shamo import EEGForwardSolution
+
         self.check_settings(model)
         # Initialize the solution
         solution = EEGForwardSolution(name, parent_path)
@@ -122,26 +127,37 @@ class EEGForwardProblem(ForwardProblem):
         with TemporaryDirectory(dir=scratch_path) as temporary_path:
             # Get sensors and reference
             reference = model.sensors[self.reference]
-            sensors = {name: sensor for name, sensor in model.sensors.items()
-                       if name not in self.markers and name != self.reference}
+            sensors = {
+                name: sensor
+                for name, sensor in model.sensors.items()
+                if name not in self.markers and name != self.reference
+            }
             n_sensors = len(sensors)
             # Generate right hand side files
-            self._generate_rhs(model.n_nodes, sensors, reference,
-                               temporary_path)
+            self._generate_rhs(model.n_nodes, sensors, reference, temporary_path)
             # Generate problem file
             problem_path = str(Path(temporary_path) / "problem.pro")
             self._generate_problem_file(problem_path, model, n_sensors)
             # Solve for each sensor
-            command = ["getdp", problem_path, "-msh", model.mesh_path,
-                       "-solve", "resolution", "-pos", "post_operation"]
+            command = [
+                "getdp",
+                problem_path,
+                "-msh",
+                model.mesh_path,
+                "-solve",
+                "resolution",
+                "-pos",
+                "post_operation",
+            ]
             try:
-                sp.run(command, capture_output=True, check=True,
-                       cwd=temporary_path)
+                sp.run(command, capture_output=True, check=True, cwd=temporary_path)
             except sp.CalledProcessError as exception:
                 if exception.returncode != 1:
-                    raise RuntimeError(("GetDP exit with code '{}' on command:"
-                                        "\n'{}'").format(exception.returncode,
-                                                         exception.stdout))
+                    raise RuntimeError(
+                        ("GetDP exit with code '{}' on command:" "\n'{}'").format(
+                            exception.returncode, exception.stdout
+                        )
+                    )
             # Generate leadfield matrix
             matrix, element_types, element_tags = self._generate_matrix(
                 sensors, temporary_path, solution.n_values_per_element
@@ -150,7 +166,8 @@ class EEGForwardProblem(ForwardProblem):
             solution.set_sensors([name for name in sensors])
             # Generate element data
             element_coords = get_elements_coordinates(
-                model, self.regions_of_interest, element_types, element_tags)
+                model, self.regions_of_interest, element_types, element_tags
+            )
             solution.set_elements(element_tags, element_coords)
         solution.save()
         return solution
@@ -170,58 +187,82 @@ class EEGForwardProblem(ForwardProblem):
         path = str(Path(path))
         with TemplateFile(self.TEMPLATE_PATH, path) as template_file:
             # Add the regions
-            tissue_groups = {name: tissue.volume_group
-                             for name, tissue in model.tissues.items()}
-            template_file.replace_with_dict("region", "group", tissue_groups,
-                                            key_value_separator=" = Region[{",
-                                            suffix="}];", separator="\n    ")
+            tissue_groups = {
+                name: tissue.volume_group for name, tissue in model.tissues.items()
+            }
+            template_file.replace_with_dict(
+                "region",
+                "group",
+                tissue_groups,
+                key_value_separator=" = Region[{",
+                suffix="}];",
+                separator="\n    ",
+            )
             tissue_names = [tissue for tissue in tissue_groups]
-            template_file.replace_with_list("name", "region", tissue_names,
-                                            separator=", ")
+            template_file.replace_with_list(
+                "name", "region", tissue_names, separator=", "
+            )
             # Add region of interest
-            regions_of_interest = [tissue for tissue
-                                   in self.regions_of_interest
-                                   if tissue in tissue_names]
-            template_file.replace_with_list("name", "roi", regions_of_interest,
-                                            separator=", ")
+            regions_of_interest = [
+                tissue for tissue in self.regions_of_interest if tissue in tissue_names
+            ]
+            template_file.replace_with_list(
+                "name", "roi", regions_of_interest, separator=", "
+            )
             # Add reference
             if self.reference not in model.sensors:
-                raise ValueError(("Reference sensor '{}' not defined in "
-                                  "model").format(self.reference))
+                raise ValueError(
+                    ("Reference sensor '{}' not defined in " "model").format(
+                        self.reference
+                    )
+                )
             template_file.replace_with_text(
-                "tag", "sink", str(model.sensors[self.reference].group))
+                "tag", "sink", str(model.sensors[self.reference].group)
+            )
             # Add source
-            source_name = [sensor for sensor in model.sensors
-                           if sensor not in self.markers
-                           and sensor != self.reference][0]
+            source_name = [
+                sensor
+                for sensor in model.sensors
+                if sensor not in self.markers and sensor != self.reference
+            ][0]
             template_file.replace_with_text(
-                "tag", "source", str(model.sensors[source_name].group))
+                "tag", "source", str(model.sensors[source_name].group)
+            )
             # Add electrical conductivity
-            all_parameters = {name: sigma.value for name, sigma
-                              in self.electrical_conductivity.items()}
+            all_parameters = {
+                name: sigma.value
+                for name, sigma in self.electrical_conductivity.items()
+            }
             electrical_conductivity = {}
             for tissue in tissue_names:
                 if self.electrical_conductivity[tissue].is_anisotropic:
-                    anisotropy = \
-                        self.electrical_conductivity[tissue].anisotropy
+                    anisotropy = self.electrical_conductivity[tissue].anisotropy
                     if anisotropy not in model.anisotropy:
-                        raise ValueError(("Anisotropic field with name '{}' "
-                                          "not found in "
-                                          "model.").format(anisotropy))
-                    electrical_conductivity[tissue] = \
-                        model.anisotropy[anisotropy].generate_formula_text(
-                        **all_parameters)
+                        raise ValueError(
+                            (
+                                "Anisotropic field with name '{}' "
+                                "not found in "
+                                "model."
+                            ).format(anisotropy)
+                        )
+                    electrical_conductivity[tissue] = model.anisotropy[
+                        anisotropy
+                    ].generate_formula_text(**all_parameters)
                 else:
                     electrical_conductivity[tissue] = str(
-                        self.electrical_conductivity[tissue].value)
-            template_file.replace_with_dict("name", "sigma",
-                                            electrical_conductivity,
-                                            key_value_separator="] = ",
-                                            prefix="sigma[", suffix=";",
-                                            separator="\n    ")
+                        self.electrical_conductivity[tissue].value
+                    )
+            template_file.replace_with_dict(
+                "name",
+                "sigma",
+                electrical_conductivity,
+                key_value_separator="] = ",
+                prefix="sigma[",
+                suffix=";",
+                separator="\n    ",
+            )
             # Set the number of sensors to compute for
-            template_file.replace_with_text("count", "sensors",
-                                            str(n_sensors - 1))
+            template_file.replace_with_text("count", "sensors", str(n_sensors - 1))
 
     @staticmethod
     def _generate_rhs(n_values, sensors, reference, out_path):
@@ -243,8 +284,11 @@ class EEGForwardProblem(ForwardProblem):
             values = [1, -1]
             row_indices = [sensor.node - 1, reference.node - 1]
             column_indices = [0, 0]
-            b = csc_matrix((values, (row_indices, column_indices)),
-                           shape=(n_values, 1), dtype=np.int)
+            b = csc_matrix(
+                (values, (row_indices, column_indices)),
+                shape=(n_values, 1),
+                dtype=np.int,
+            )
             b_path = Path(out_path) / "{}.b".format(i)
             np.savetxt(b_path, b.toarray(), fmt="%d")
 
@@ -278,9 +322,11 @@ class EEGForwardProblem(ForwardProblem):
                     element_types.append(element_type)
                     elements.append(element)
                     values.append([float(v) for v in split[-3:]])
-        return (np.array(element_types).flatten(),
-                np.array(elements).flatten(),
-                np.array(values))
+        return (
+            np.array(element_types).flatten(),
+            np.array(elements).flatten(),
+            np.array(values),
+        )
 
     @staticmethod
     def _generate_matrix(sensors, path, n_values_per_element):
@@ -288,13 +334,13 @@ class EEGForwardProblem(ForwardProblem):
         n_sensors = len(sensors)
         for i_sensor, name in enumerate(sensors):
             e_path = str(Path(path) / "{}.e".format(i_sensor))
-            element_types, element_tags, values = \
-                EEGForwardProblem._read_out_file(e_path)
+            element_types, element_tags, values = EEGForwardProblem._read_out_file(
+                e_path
+            )
             if matrix is None:
                 n_elements = element_tags.size
                 matrix = np.empty(
-                    (n_sensors, n_elements * n_values_per_element),
-                    dtype=np.float32
+                    (n_sensors, n_elements * n_values_per_element), dtype=np.float32
                 )
             matrix[i_sensor, :] = values.flatten()
         return matrix, element_types, element_tags

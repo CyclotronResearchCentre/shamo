@@ -26,47 +26,49 @@ def add_sources(self, sources, in_tissue, size=0.1, lc=0.001):
     # Define points offset
     size = 0.001 * size
     lc = 0.001 * lc
-    point_offsets = np.array([
-        (-size / 2, 0, 0), (size / 2, 0, 0),
-        (0, -size / 2, 0), (0, size / 2, 0),
-        (0, 0, -size / 2), (0, 0, size / 2)
-    ])
+    point_offsets = np.array(
+        [
+            (-size / 2, 0, 0),
+            (size / 2, 0, 0),
+            (0, -size / 2, 0),
+            (0, size / 2, 0),
+            (0, 0, -size / 2),
+            (0, 0, size / 2),
+        ]
+    )
     # Remove original mesh for the tissue
     gmsh.initialize()
     gmsh.open(self.mesh_path)
     gmsh.model.removeEntities([(3, self.tissues[in_tissue].volume_entity[0])])
-    gmsh.model.removePhysicalGroups([
-        (3, self.tissues[in_tissue].volume_group)
-    ])
+    gmsh.model.removePhysicalGroups([(3, self.tissues[in_tissue].volume_group)])
     # Add the points
     all_points = []
     for source in sources:
         i_source = len(self.sources)
         points_coordinates = point_offsets + source.coordinates
-        points = [gmsh.model.geo.addPoint(*point, lc)
-                  for point in points_coordinates]
+        points = [gmsh.model.geo.addPoint(*point, lc) for point in points_coordinates]
         group = gmsh.model.addPhysicalGroup(0, points, 1000 + i_source * 6)
         gmsh.model.setPhysicalName(0, group, "source{}".format(i_source))
-        groups = [gmsh.model.addPhysicalGroup(0, [point])
-                  for point in points]
+        groups = [gmsh.model.addPhysicalGroup(0, [point]) for point in points]
         for i_point, point_group in enumerate(groups):
-            gmsh.model.setPhysicalName(0, point_group,
-                                       "source{}_{}".format(i_source, i_point))
-        point_groups = [(groups[0], groups[1]),
-                        (groups[2], groups[3]),
-                        (groups[4], groups[5])]
-        self["sources"].append(FESource([c * 1000 for c in source.coordinates],
-                                        size, group, point_groups))
+            gmsh.model.setPhysicalName(
+                0, point_group, "source{}_{}".format(i_source, i_point)
+            )
+        point_groups = [
+            (groups[0], groups[1]),
+            (groups[2], groups[3]),
+            (groups[4], groups[5]),
+        ]
+        self["sources"].append(
+            FESource([c * 1000 for c in source.coordinates], size, group, point_groups)
+        )
         all_points.extend(points)
     # Remesh
-    surface_loop = gmsh.model.geo.addSurfaceLoop(
-        self.tissues[in_tissue].surface_entity
+    surface_loop = gmsh.model.geo.addSurfaceLoop(self.tissues[in_tissue].surface_entity)
+    volume = gmsh.model.geo.addVolume([surface_loop])
+    group = gmsh.model.addPhysicalGroup(
+        3, [volume], self.tissues[in_tissue].volume_group
     )
-    volume = gmsh.model.geo.addVolume(
-        [surface_loop]
-    )
-    group = gmsh.model.addPhysicalGroup(3, [volume],
-                                        self.tissues[in_tissue].volume_group)
     self.tissues[in_tissue]["volume_entity"] = [volume]
     gmsh.model.setPhysicalName(3, group, in_tissue)
     gmsh.model.geo.synchronize()

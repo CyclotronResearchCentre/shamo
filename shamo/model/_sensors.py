@@ -33,8 +33,7 @@ def add_sensor(self, name, coordinates, on_tissue):
     node_tag = node_tags[min_distance_index]
     mesh_coordinates = node_coordinates[min_distance_index, :].flatten()
     entity, group = _add_sensor_on_node(name, node_tag, mesh_coordinates)
-    sensor = Sensor(coordinates, mesh_coordinates, group, entity, node_tag,
-                    on_tissue)
+    sensor = Sensor(coordinates, mesh_coordinates, group, entity, node_tag, on_tissue)
     if self.sensors is None:
         self["sensors"] = {}
     self["sensors"][name] = sensor
@@ -62,8 +61,10 @@ def add_sensors(self, sensor_coordinates, on_tissue):
         The current model.
     """
     # Rescale coordinates [m]
-    sensor_coordinates = {name: [c / 1000 for c in coordinates]
-                          for name, coordinates in sensor_coordinates.items()}
+    sensor_coordinates = {
+        name: [c / 1000 for c in coordinates]
+        for name, coordinates in sensor_coordinates.items()
+    }
     # Add sensor
     gmsh.initialize()
     gmsh.open(self.mesh_path)
@@ -74,10 +75,10 @@ def add_sensors(self, sensor_coordinates, on_tissue):
     node_tag = node_tags[min_distance_indices]
     mesh_coordinates = node_coordinates[min_distance_indices, :]
     for i, name in enumerate(sensor_coordinates.keys()):
-        entity, group = _add_sensor_on_node(name, node_tag[i],
-                                            mesh_coordinates[i])
-        sensor = Sensor(coordinates[i], mesh_coordinates[i], group, entity,
-                        node_tag[i], on_tissue)
+        entity, group = _add_sensor_on_node(name, node_tag[i], mesh_coordinates[i])
+        sensor = Sensor(
+            coordinates[i], mesh_coordinates[i], group, entity, node_tag[i], on_tissue
+        )
         if self.sensors is None:
             self["sensors"] = {}
         self["sensors"][name] = sensor

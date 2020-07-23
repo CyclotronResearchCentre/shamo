@@ -4,8 +4,7 @@ from scipy.spatial.distance import cdist
 import gmsh
 
 
-def get_elements_coordinates(model, regions_of_interest, element_types,
-                             element_tags):
+def get_elements_coordinates(model, regions_of_interest, element_types, element_tags):
     """Get the coordinates of the elements.
 
     Parameters
@@ -30,18 +29,15 @@ def get_elements_coordinates(model, regions_of_interest, element_types,
     element_coordinates[:] = np.nan
     for region_of_interest in regions_of_interest:
         for entity in model.tissues[region_of_interest].volume_entity:
-            entity_types, entity_tags = gmsh.model.mesh.getElements(
-                3, entity)[:2]
+            entity_types, entity_tags = gmsh.model.mesh.getElements(3, entity)[:2]
             for i, element_type in enumerate(entity_types):
-                type_element_indices = np.argwhere(np.isin(element_tags,
-                                                           entity_tags[i])
-                                                   ).flatten()
-                type_element_coordinates = \
-                    gmsh.model.mesh.getBarycenters(
-                        element_type, entity, False,
-                        False).reshape((-1, 3))
-                element_coordinates[type_element_indices, :] = \
-                    type_element_coordinates
+                type_element_indices = np.argwhere(
+                    np.isin(element_tags, entity_tags[i])
+                ).flatten()
+                type_element_coordinates = gmsh.model.mesh.getBarycenters(
+                    element_type, entity, False, False
+                ).reshape((-1, 3))
+                element_coordinates[type_element_indices, :] = type_element_coordinates
     gmsh.finalize()
     return element_coordinates
 
@@ -65,16 +61,18 @@ def get_tissue_elements(model, name):
     """
     gmsh.initialize()
     gmsh.open(model.mesh_path)
-    element_type_tags = [(entity, *gmsh.model.mesh.getElements(3, entity)[:2])
-                         for entity in model.tissues[name].volume_entity]
+    element_type_tags = [
+        (entity, *gmsh.model.mesh.getElements(3, entity)[:2])
+        for entity in model.tissues[name].volume_entity
+    ]
     element_tags = []
     element_coordinates = []
     for entity, types, tags in element_type_tags:
         for i, element_type in enumerate(types):
             element_tags.append(tags[i])
             element_coordinates.append(
-                gmsh.model.mesh.getBarycenters(element_type, entity,
-                                               False, False))
+                gmsh.model.mesh.getBarycenters(element_type, entity, False, False)
+            )
     gmsh.finalize()
     all_tags = np.hstack(element_tags)
     all_coordinates = np.hstack(element_coordinates).reshape((-1, 3))
