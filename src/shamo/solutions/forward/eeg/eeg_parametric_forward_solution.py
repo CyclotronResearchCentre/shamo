@@ -75,6 +75,15 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
         self["surrogate_model_path"] = surrogate_model_path
 
     def _get_x_y(self):
+        """Fetch the design set.
+
+        Returns
+        -------
+        list [list [float]]
+            The values of the conductivities.
+        list [numpy.ndarray]
+            The serialized leadfield matrices.
+        """
         varying = [
             name
             for name, tissue in self.problem.electrical_conductivity.items()

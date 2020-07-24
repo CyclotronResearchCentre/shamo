@@ -1,3 +1,4 @@
+"""Implement sources methods."""
 import gmsh
 import numpy as np
 

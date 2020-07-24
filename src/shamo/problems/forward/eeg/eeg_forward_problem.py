@@ -330,6 +330,26 @@ class EEGForwardProblem(ForwardProblem):
 
     @staticmethod
     def _generate_matrix(sensors, path, n_values_per_element):
+        """Generate the final matrix.
+
+        Parameters
+        ----------
+        sensors : dict [str, shamo.model.sensor.Sensor]
+            The sensors for which the matrix is computed.
+        path : str
+            The path were the solutions of the problem are stored.
+        n_values_per_element : int
+            The number of values recorded by element.
+
+        Returns
+        -------
+        numpy.ndarray
+            The generated matrix.
+        numpy.ndarray
+            The element types.
+        numpy.ndarray
+            The element tags.
+        """
         matrix = None
         n_sensors = len(sensors)
         for i_sensor, name in enumerate(sensors):
