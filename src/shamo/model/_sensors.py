@@ -1,3 +1,4 @@
+"""Implement sensors methods."""
 from scipy.spatial.distance import cdist
 import numpy as np
 import gmsh

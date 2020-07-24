@@ -1,3 +1,4 @@
+"""Implement anisotropy methods."""
 from pathlib import Path
 
 import nibabel as nib

@@ -1,3 +1,4 @@
+"""Implement path methods."""
 from pathlib import Path
 
 
