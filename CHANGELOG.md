@@ -4,6 +4,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Use [black](https://github.com/psf/black) as a codestyle formatter.
+- Use the [src layout](https://blog.ionelmc.ro/2014/05/25/python-packaging/).
+
 
 
 ## [0.1.0] - 2020-05-13
