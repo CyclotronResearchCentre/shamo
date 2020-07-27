@@ -1,7 +1,7 @@
 name: Docker Image Tag
 
 on:
-  create:
+  push:
     tags: [ '*' ]
 
 jobs:
