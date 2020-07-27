@@ -4,7 +4,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.1.1] - 2020-07-27
 
+### Added
+
+- Automated docker images build.
+- Automated PyPI package build.
+- Docstrings for non documented functions.
+
+### Changed
+
+- Use [black](https://github.com/psf/black) as a codestyle formatter.
+- Use the [src layout](https://blog.ionelmc.ro/2014/05/25/python-packaging/).
+- Tox test environments.
 
 ## [0.1.0] - 2020-05-13
 

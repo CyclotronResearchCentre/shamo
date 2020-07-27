@@ -11,7 +11,8 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 import os
 import sys
-sys.path.insert(0, os.path.abspath("../.."))
+
+sys.path.insert(0, os.path.abspath("../../src"))
 
 
 # -- Project information -----------------------------------------------------
@@ -34,7 +35,7 @@ extensions = [
     "sphinx.ext.inheritance_diagram",
     "sphinx.ext.intersphinx",
     "sphinx.ext.mathjax",
-    "sphinx.ext.viewcode"
+    "sphinx.ext.viewcode",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -43,9 +44,7 @@ templates_path = ["_templates"]
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = [
-    "test"
-]
+exclude_patterns = ["test"]
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -55,10 +54,10 @@ html_static_path = ["_static"]
 # -- Option for intersphinx --------------------------------------------------
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
-    "numpy": ("https://docs.scipy.org/doc/numpy", None),
+    "numpy": ("https://numpy.org/doc/stable", None),
     "scipy": ("https://docs.scipy.org/doc/scipy/reference", None),
     "matplotlib": ("https://matplotlib.org", None),
-    "chaospy": ("https://chaospy.readthedocs.io/en/master", None)
+    "chaospy": ("https://chaospy.readthedocs.io/en/master", None),
 }
 
 # -- Options for numpydoc ----------------------------------------------------
@@ -72,6 +71,4 @@ numpydoc_xref_param_type = True
 
 html_theme = "sphinx_rtd_theme"
 html_theme_path = ["_themes"]
-html_theme_options = {
-    "collapse_navigation": False
-}
+html_theme_options = {"collapse_navigation": False}

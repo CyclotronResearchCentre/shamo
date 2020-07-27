@@ -1,5 +1,6 @@
 .ipynb_checkpoints
 .venv
+.tox
 *.egg-info
 __pycache__
 derivatives
