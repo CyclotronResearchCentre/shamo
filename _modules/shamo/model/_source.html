@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
@@ -29,11 +35,6 @@
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
@@ -49,7 +50,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> shamo
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> shamo
           
 
           
@@ -72,6 +73,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -204,6 +206,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -242,7 +245,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
@@ -262,10 +265,11 @@
            <div itemprop="articleBody">
             
   <h1>Source code for shamo.model._source</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">gmsh</span>
+<span></span><span class="sd">&quot;&quot;&quot;Implement sources methods.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">gmsh</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">.sources.fe_source</span> <span class="k">import</span> <span class="n">FESource</span>
+<span class="kn">from</span> <span class="nn">.sources.fe_source</span> <span class="kn">import</span> <span class="n">FESource</span>
 
 
 <span class="k">def</span> <span class="nf">add_sources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sources</span><span class="p">,</span> <span class="n">in_tissue</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">lc</span><span class="o">=</span><span class="mf">0.001</span><span class="p">):</span>
@@ -290,47 +294,49 @@
     <span class="c1"># Define points offset</span>
     <span class="n">size</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="o">*</span> <span class="n">size</span>
     <span class="n">lc</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="o">*</span> <span class="n">lc</span>
-    <span class="n">point_offsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-        <span class="p">(</span><span class="o">-</span><span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-        <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-        <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="p">])</span>
+    <span class="n">point_offsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="o">-</span><span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
     <span class="c1"># Remove original mesh for the tissue</span>
     <span class="n">gmsh</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
     <span class="n">gmsh</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh_path</span><span class="p">)</span>
     <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">removeEntities</span><span class="p">([(</span><span class="mi">3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">[</span><span class="n">in_tissue</span><span class="p">]</span><span class="o">.</span><span class="n">volume_entity</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">removePhysicalGroups</span><span class="p">([</span>
-        <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">[</span><span class="n">in_tissue</span><span class="p">]</span><span class="o">.</span><span class="n">volume_group</span><span class="p">)</span>
-    <span class="p">])</span>
+    <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">removePhysicalGroups</span><span class="p">([(</span><span class="mi">3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">[</span><span class="n">in_tissue</span><span class="p">]</span><span class="o">.</span><span class="n">volume_group</span><span class="p">)])</span>
     <span class="c1"># Add the points</span>
     <span class="n">all_points</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">:</span>
         <span class="n">i_source</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sources</span><span class="p">)</span>
         <span class="n">points_coordinates</span> <span class="o">=</span> <span class="n">point_offsets</span> <span class="o">+</span> <span class="n">source</span><span class="o">.</span><span class="n">coordinates</span>
-        <span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">addPoint</span><span class="p">(</span><span class="o">*</span><span class="n">point</span><span class="p">,</span> <span class="n">lc</span><span class="p">)</span>
-                  <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">points_coordinates</span><span class="p">]</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">addPoint</span><span class="p">(</span><span class="o">*</span><span class="n">point</span><span class="p">,</span> <span class="n">lc</span><span class="p">)</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">points_coordinates</span><span class="p">]</span>
         <span class="n">group</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">addPhysicalGroup</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="mi">1000</span> <span class="o">+</span> <span class="n">i_source</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
         <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">setPhysicalName</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="s2">&quot;source</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i_source</span><span class="p">))</span>
-        <span class="n">groups</span> <span class="o">=</span> <span class="p">[</span><span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">addPhysicalGroup</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="n">point</span><span class="p">])</span>
-                  <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">points</span><span class="p">]</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="p">[</span><span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">addPhysicalGroup</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="n">point</span><span class="p">])</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">points</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">i_point</span><span class="p">,</span> <span class="n">point_group</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">groups</span><span class="p">):</span>
-            <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">setPhysicalName</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">point_group</span><span class="p">,</span>
-                                       <span class="s2">&quot;source</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i_source</span><span class="p">,</span> <span class="n">i_point</span><span class="p">))</span>
-        <span class="n">point_groups</span> <span class="o">=</span> <span class="p">[(</span><span class="n">groups</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">groups</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
-                        <span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">groups</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span>
-                        <span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">groups</span><span class="p">[</span><span class="mi">5</span><span class="p">])]</span>
-        <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;sources&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">FESource</span><span class="p">([</span><span class="n">c</span> <span class="o">*</span> <span class="mi">1000</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">source</span><span class="o">.</span><span class="n">coordinates</span><span class="p">],</span>
-                                        <span class="n">size</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">point_groups</span><span class="p">))</span>
+            <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">setPhysicalName</span><span class="p">(</span>
+                <span class="mi">0</span><span class="p">,</span> <span class="n">point_group</span><span class="p">,</span> <span class="s2">&quot;source</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i_source</span><span class="p">,</span> <span class="n">i_point</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="n">point_groups</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">groups</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">groups</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span>
+            <span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">groups</span><span class="p">[</span><span class="mi">5</span><span class="p">]),</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;sources&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">FESource</span><span class="p">([</span><span class="n">c</span> <span class="o">*</span> <span class="mi">1000</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">source</span><span class="o">.</span><span class="n">coordinates</span><span class="p">],</span> <span class="n">size</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">point_groups</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="n">all_points</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
     <span class="c1"># Remesh</span>
-    <span class="n">surface_loop</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">addSurfaceLoop</span><span class="p">(</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">[</span><span class="n">in_tissue</span><span class="p">]</span><span class="o">.</span><span class="n">surface_entity</span>
+    <span class="n">surface_loop</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">addSurfaceLoop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">[</span><span class="n">in_tissue</span><span class="p">]</span><span class="o">.</span><span class="n">surface_entity</span><span class="p">)</span>
+    <span class="n">volume</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">addVolume</span><span class="p">([</span><span class="n">surface_loop</span><span class="p">])</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">addPhysicalGroup</span><span class="p">(</span>
+        <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="n">volume</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">[</span><span class="n">in_tissue</span><span class="p">]</span><span class="o">.</span><span class="n">volume_group</span>
     <span class="p">)</span>
-    <span class="n">volume</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">addVolume</span><span class="p">(</span>
-        <span class="p">[</span><span class="n">surface_loop</span><span class="p">]</span>
-    <span class="p">)</span>
-    <span class="n">group</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">addPhysicalGroup</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="n">volume</span><span class="p">],</span>
-                                        <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">[</span><span class="n">in_tissue</span><span class="p">]</span><span class="o">.</span><span class="n">volume_group</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">[</span><span class="n">in_tissue</span><span class="p">][</span><span class="s2">&quot;volume_entity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">volume</span><span class="p">]</span>
     <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">setPhysicalName</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">in_tissue</span><span class="p">)</span>
     <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">synchronize</span><span class="p">()</span>
@@ -393,11 +399,19 @@
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Martin Grignard
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -408,7 +422,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

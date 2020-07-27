@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
@@ -29,11 +35,6 @@
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="shamo.solutions.forward.eeg.eeg_simulation_solution" href="eeg_simulation_solution.html" />
@@ -51,7 +52,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home"> shamo
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> shamo
           
 
           
@@ -74,6 +75,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -206,6 +208,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -244,7 +247,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../../reference.html">Code reference</a> &raquo;</li>
         
@@ -347,12 +350,12 @@
 </div>
 <dl class="py attribute">
 <dt id="shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGForwardProblem.TEMPLATE_PATH">
-<code class="sig-name descname">TEMPLATE_PATH</code><em class="property"> = '/home/martin/CRC/projects/shamo/shamo/problems/forward/eeg/eeg_forward_problem.pro'</em><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGForwardProblem.TEMPLATE_PATH" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">TEMPLATE_PATH</code><em class="property"> = '/home/martin/Documents/crc/projects/shamo/shamo/src/shamo/problems/forward/eeg/eeg_forward_problem.pro'</em><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGForwardProblem.TEMPLATE_PATH" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGForwardProblem.check_settings">
-<code class="sig-name descname">check_settings</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">model</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGForwardProblem.check_settings" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_settings</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGForwardProblem.check_settings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check wether the current settings fit to the model.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -411,7 +414,7 @@ conductivity.</p>
 
 <dl class="py method">
 <dt id="shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGForwardProblem.solve">
-<code class="sig-name descname">solve</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">name</em>, <em class="sig-param">parent_path</em>, <em class="sig-param">model</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGForwardProblem.solve" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">solve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">parent_path</span></em>, <em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGForwardProblem.solve" title="Permalink to this definition">¶</a></dt>
 <dd><p>Solve the problem.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -474,7 +477,7 @@ conductivity.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="../../../../solutions/forward/forward_solution.html#shamo.solutions.forward.forward_solution.ForwardSolution" title="shamo.solutions.forward.forward_solution.ForwardSolution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shamo.solutions.forward.forward_solution.ForwardSolution</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="../forward_solution.html#shamo.solutions.forward.forward_solution.ForwardSolution" title="shamo.solutions.forward.forward_solution.ForwardSolution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shamo.solutions.forward.forward_solution.ForwardSolution</span></code></a></dt><dd></dd>
 </dl>
 </div>
 <dl class="py class">
@@ -503,12 +506,12 @@ conductivity.</p>
 </div>
 <dl class="py attribute">
 <dt id="shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGForwardSolution.EEGForwardProblem.TEMPLATE_PATH">
-<code class="sig-name descname">TEMPLATE_PATH</code><em class="property"> = '/home/martin/CRC/projects/shamo/shamo/problems/forward/eeg/eeg_forward_problem.pro'</em><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGForwardSolution.EEGForwardProblem.TEMPLATE_PATH" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">TEMPLATE_PATH</code><em class="property"> = '/home/martin/Documents/crc/projects/shamo/shamo/src/shamo/problems/forward/eeg/eeg_forward_problem.pro'</em><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGForwardSolution.EEGForwardProblem.TEMPLATE_PATH" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGForwardSolution.EEGForwardProblem.check_settings">
-<code class="sig-name descname">check_settings</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">model</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGForwardSolution.EEGForwardProblem.check_settings" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_settings</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGForwardSolution.EEGForwardProblem.check_settings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check wether the current settings fit to the model.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -567,7 +570,7 @@ conductivity.</p>
 
 <dl class="py method">
 <dt id="shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGForwardSolution.EEGForwardProblem.solve">
-<code class="sig-name descname">solve</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">name</em>, <em class="sig-param">parent_path</em>, <em class="sig-param">model</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGForwardSolution.EEGForwardProblem.solve" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">solve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">parent_path</span></em>, <em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGForwardSolution.EEGForwardProblem.solve" title="Permalink to this definition">¶</a></dt>
 <dd><p>Solve the problem.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -609,7 +612,7 @@ conductivity.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>sources_vector</strong><span class="classifier"><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The s vector from L.s=r.</p>
+<dt><strong>sources_vector</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The s vector from L.s=r.</p>
 </dd>
 <dt><strong>memory_map</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.8)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, matrix is never loaded in memory. (The default
 is <code class="docutils literal notranslate"><span class="pre">False</span></code>)</p>
@@ -720,12 +723,12 @@ values [Am].</p>
 
 <dl class="py attribute">
 <dt id="shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGParametricForwardProblem.TEMPLATE_PATH">
-<code class="sig-name descname">TEMPLATE_PATH</code><em class="property"> = '/home/martin/CRC/projects/shamo/shamo/problems/forward/eeg/eeg_forward_problem.template'</em><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGParametricForwardProblem.TEMPLATE_PATH" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">TEMPLATE_PATH</code><em class="property"> = '/home/martin/Documents/crc/projects/shamo/shamo/src/shamo/problems/forward/eeg/eeg_forward_problem.template'</em><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGParametricForwardProblem.TEMPLATE_PATH" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGParametricForwardProblem.solve">
-<code class="sig-name descname">solve</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">name</em>, <em class="sig-param">parent_path</em>, <em class="sig-param">model</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGParametricForwardProblem.solve" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">solve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">parent_path</span></em>, <em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.EEGParametricForwardProblem.solve" title="Permalink to this definition">¶</a></dt>
 <dd><p>Solve the problem.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -740,7 +743,7 @@ values [Am].</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><a class="reference internal" href="../../../../solutions/forward/eeg/eeg_forward_solution.html#shamo.solutions.forward.eeg.eeg_forward_solution.EEGForwardSolution" title="shamo.solutions.forward.eeg.eeg_forward_solution.EEGForwardSolution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shamo.solutions.forward.eeg.eeg_forward_solution.EEGForwardSolution</span></code></a></dt><dd><p>The solution of the problem for the specified model.</p>
+<dt><a class="reference internal" href="eeg_forward_solution.html#shamo.solutions.forward.eeg.eeg_forward_solution.EEGForwardSolution" title="shamo.solutions.forward.eeg.eeg_forward_solution.EEGForwardSolution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shamo.solutions.forward.eeg.eeg_forward_solution.EEGForwardSolution</span></code></a></dt><dd><p>The solution of the problem for the specified model.</p>
 </dd>
 </dl>
 </dd>
@@ -781,7 +784,7 @@ are defined in <code class="docutils literal notranslate"><span class="pre">chao
 <dl class="py attribute">
 <dt id="shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.SOLUTION_FACTORY">
 <code class="sig-name descname">SOLUTION_FACTORY</code><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.SOLUTION_FACTORY" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <a class="reference internal" href="../../../../solutions/forward/eeg/eeg_forward_solution.html#shamo.solutions.forward.eeg.eeg_forward_solution.EEGForwardSolution" title="shamo.solutions.forward.eeg.eeg_forward_solution.EEGForwardSolution"><code class="xref py py-class docutils literal notranslate"><span class="pre">shamo.solutions.forward.eeg.eeg_forward_solution.EEGForwardSolution</span></code></a></p>
+<dd><p>alias of <a class="reference internal" href="eeg_forward_solution.html#shamo.solutions.forward.eeg.eeg_forward_solution.EEGForwardSolution" title="shamo.solutions.forward.eeg.eeg_forward_solution.EEGForwardSolution"><code class="xref py py-class docutils literal notranslate"><span class="pre">shamo.solutions.forward.eeg.eeg_forward_solution.EEGForwardSolution</span></code></a></p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -792,12 +795,12 @@ are defined in <code class="docutils literal notranslate"><span class="pre">chao
 
 <dl class="py method">
 <dt id="shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.generate_matrix">
-<code class="sig-name descname">generate_matrix</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/shamo/solutions/forward/eeg/eeg_parametric_forward_solution.html#EEGParametricForwardSolution.generate_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.generate_matrix" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">generate_matrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/shamo/solutions/forward/eeg/eeg_parametric_forward_solution.html#EEGParametricForwardSolution.generate_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.generate_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a new matrix based on the surrogate model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></dt><dd><p>The generated matrix.</p>
+<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></dt><dd><p>The generated matrix.</p>
 </dd>
 </dl>
 </dd>
@@ -806,7 +809,7 @@ are defined in <code class="docutils literal notranslate"><span class="pre">chao
 
 <dl class="py method">
 <dt id="shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.generate_solution">
-<code class="sig-name descname">generate_solution</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">name</em>, <em class="sig-param">parent_path</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/shamo/solutions/forward/eeg/eeg_parametric_forward_solution.html#EEGParametricForwardSolution.generate_solution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.generate_solution" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">generate_solution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">parent_path</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/shamo/solutions/forward/eeg/eeg_parametric_forward_solution.html#EEGParametricForwardSolution.generate_solution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.generate_solution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a solution based on the surrogate model.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -867,11 +870,19 @@ are defined in <code class="docutils literal notranslate"><span class="pre">chao
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Martin Grignard
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -882,7 +893,6 @@ are defined in <code class="docutils literal notranslate"><span class="pre">chao
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

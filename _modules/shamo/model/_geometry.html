@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
@@ -29,11 +35,6 @@
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
@@ -49,7 +50,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> shamo
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> shamo
           
 
           
@@ -72,6 +73,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -204,6 +206,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -242,7 +245,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
@@ -262,9 +265,10 @@
            <div itemprop="articleBody">
             
   <h1>Source code for shamo.model._geometry</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">tempfile</span> <span class="k">import</span> <span class="n">TemporaryDirectory</span>
+<span></span><span class="sd">&quot;&quot;&quot;Implement geometry methods.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">TemporaryDirectory</span>
 
 <span class="kn">import</span> <span class="nn">pygalmesh</span> <span class="k">as</span> <span class="nn">cgal</span>
 <span class="kn">import</span> <span class="nn">meshio</span> <span class="k">as</span> <span class="nn">mio</span>
@@ -272,8 +276,8 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">gmsh</span>
 
-<span class="kn">from</span> <span class="nn">.mesh_config</span> <span class="k">import</span> <span class="n">MeshConfig</span>
-<span class="kn">from</span> <span class="nn">.tissue</span> <span class="k">import</span> <span class="n">Tissue</span>
+<span class="kn">from</span> <span class="nn">.mesh_config</span> <span class="kn">import</span> <span class="n">MeshConfig</span>
+<span class="kn">from</span> <span class="nn">.tissue</span> <span class="kn">import</span> <span class="n">Tissue</span>
 
 <span class="n">MILLIMETER_AFFINE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">((</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
@@ -319,17 +323,17 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Argument `affine` must be a 2D 4x4 array.&quot;</span><span class="p">)</span>
     <span class="n">n_tissues</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tissues</span><span class="p">)</span> <span class="o">!=</span> <span class="n">n_tissues</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="s2">&quot;Argument `tissue` must contain </span><span class="si">{}</span><span class="s2"> &quot;</span>
-                          <span class="s2">&quot;names.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_tissues</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="p">(</span><span class="s2">&quot;Argument `tissue` must contain </span><span class="si">{}</span><span class="s2"> &quot;</span> <span class="s2">&quot;names.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_tissues</span><span class="p">)</span>
+        <span class="p">)</span>
     <span class="c1"># Generate the mesh</span>
     <span class="n">scratch_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;SCRATCH_DIR&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
     <span class="k">with</span> <span class="n">TemporaryDirectory</span><span class="p">(</span><span class="nb">dir</span><span class="o">=</span><span class="n">scratch_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">parent_path</span><span class="p">:</span>
         <span class="n">inr_path</span> <span class="o">=</span> <span class="n">_inr_file_from_labels</span><span class="p">(</span><span class="n">parent_path</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
-        <span class="n">mesh_path</span> <span class="o">=</span> <span class="n">_mesh_from_inr_file</span><span class="p">(</span><span class="n">parent_path</span><span class="p">,</span> <span class="n">inr_path</span><span class="p">,</span>
-                                        <span class="n">mesh_config</span><span class="p">)</span>
-        <span class="n">transformed_path</span> <span class="o">=</span> <span class="n">_affine_transform</span><span class="p">(</span><span class="n">parent_path</span><span class="p">,</span>
-                                             <span class="n">mesh_path</span><span class="p">,</span>
-                                             <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">MILLIMETER_AFFINE</span><span class="p">,</span> <span class="n">affine</span><span class="p">))</span>
+        <span class="n">mesh_path</span> <span class="o">=</span> <span class="n">_mesh_from_inr_file</span><span class="p">(</span><span class="n">parent_path</span><span class="p">,</span> <span class="n">inr_path</span><span class="p">,</span> <span class="n">mesh_config</span><span class="p">)</span>
+        <span class="n">transformed_path</span> <span class="o">=</span> <span class="n">_affine_transform</span><span class="p">(</span>
+            <span class="n">parent_path</span><span class="p">,</span> <span class="n">mesh_path</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">MILLIMETER_AFFINE</span><span class="p">,</span> <span class="n">affine</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="n">msh_path</span> <span class="o">=</span> <span class="n">_finalize_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transformed_path</span><span class="p">,</span> <span class="n">tissues</span><span class="p">)</span>
         <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;mesh_path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">msh_path</span><span class="p">)</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
         <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;tissues&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_tissues_from_mesh</span><span class="p">(</span><span class="n">msh_path</span><span class="p">)</span>
@@ -439,8 +443,10 @@
 <span class="sd">    If a particular temporary directory must be used (e.g. working on a</span>
 <span class="sd">    cluster), simply set a environment variable called ``SCRATCH_DIR``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">tissue_masks</span> <span class="o">=</span> <span class="p">{</span><span class="n">tissue</span><span class="p">:</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
-                    <span class="k">for</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">tissue_paths</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="n">tissue_masks</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">tissue</span><span class="p">:</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">tissue_paths</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="p">}</span>
     <span class="n">image</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">tissue_paths</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">affine</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">affine</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">mesh_from_masks</span><span class="p">(</span><span class="n">tissue_masks</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="n">mesh_config</span><span class="p">)</span>
@@ -471,15 +477,14 @@
             <span class="n">entity</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">getEntitiesForPhysicalGroup</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tissues_data</span><span class="p">:</span>
                 <span class="n">tissues_data</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_group&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dimension</span><span class="p">)]</span> <span class="o">=</span> <span class="n">group</span>
-                <span class="n">tissues_data</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_entity&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dimension</span><span class="p">)]</span> <span class="o">=</span> \
-                    <span class="n">entity</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="n">tissues_data</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_entity&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dimension</span><span class="p">)]</span> <span class="o">=</span> <span class="n">entity</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">tissues_data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_group&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dimension</span><span class="p">):</span> <span class="n">group</span><span class="p">,</span>
-                                      <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_entity&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dimension</span><span class="p">):</span>
-                                      <span class="n">entity</span><span class="o">.</span><span class="n">tolist</span><span class="p">()}</span>
+                <span class="n">tissues_data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_group&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dimension</span><span class="p">):</span> <span class="n">group</span><span class="p">,</span>
+                    <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_entity&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dimension</span><span class="p">):</span> <span class="n">entity</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+                <span class="p">}</span>
     <span class="n">gmsh</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
-    <span class="k">return</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">Tissue</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">tissues_data</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">Tissue</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">tissues_data</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 
 
 <span class="k">def</span> <span class="nf">_inr_file_from_labels</span><span class="p">(</span><span class="n">parent_path</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;model&quot;</span><span class="p">):</span>
@@ -516,17 +521,19 @@
     <span class="c1"># Generate the file</span>
     <span class="n">bytes_type</span> <span class="o">=</span> <span class="s2">&quot;unsigned fixed&quot;</span>
     <span class="n">n_bits</span> <span class="o">=</span> <span class="mi">8</span>
-    <span class="n">header</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;#INRIMAGE-4#{{</span><span class="se">\n</span><span class="s2">&quot;</span>
-              <span class="s2">&quot;XDIM=</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span>
-              <span class="s2">&quot;YDIM=</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span>
-              <span class="s2">&quot;ZDIM=</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span>
-              <span class="s2">&quot;VDIM=1</span><span class="se">\n</span><span class="s2">&quot;</span>
-              <span class="s2">&quot;TYPE=</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span>
-              <span class="s2">&quot;PIXSIZE=</span><span class="si">{}</span><span class="s2"> bits</span><span class="se">\n</span><span class="s2">&quot;</span>
-              <span class="s2">&quot;CPU=decm</span><span class="se">\n</span><span class="s2">&quot;</span>
-              <span class="s2">&quot;VX=1</span><span class="se">\n</span><span class="s2">&quot;</span>
-              <span class="s2">&quot;VY=1</span><span class="se">\n</span><span class="s2">&quot;</span>
-              <span class="s2">&quot;VZ=1</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">labels</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">bytes_type</span><span class="p">,</span> <span class="n">n_bits</span><span class="p">)</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;#INRIMAGE-4#{{</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;XDIM=</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;YDIM=</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;ZDIM=</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;VDIM=1</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;TYPE=</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;PIXSIZE=</span><span class="si">{}</span><span class="s2"> bits</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;CPU=decm</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;VX=1</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;VY=1</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;VZ=1</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">labels</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">bytes_type</span><span class="p">,</span> <span class="n">n_bits</span><span class="p">)</span>
     <span class="n">header</span> <span class="o">=</span> <span class="n">header</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="mi">256</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;##}</span><span class="se">\n</span><span class="s2">&quot;</span>
     <span class="n">inr_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">parent_path</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.inr&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">inr_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">inr_file</span><span class="p">:</span>
@@ -554,10 +561,7 @@
 <span class="sd">    str</span>
 <span class="sd">        The path to the generated ``.mesh`` file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">mesh</span> <span class="o">=</span> <span class="n">cgal</span><span class="o">.</span><span class="n">generate_from_inr</span><span class="p">(</span>
-        <span class="n">inr_path</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">mesh_config</span><span class="p">,</span>
-        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">mesh</span> <span class="o">=</span> <span class="n">cgal</span><span class="o">.</span><span class="n">generate_from_inr</span><span class="p">(</span><span class="n">inr_path</span><span class="p">,</span> <span class="o">**</span><span class="n">mesh_config</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">mesh_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">parent_path</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.mesh&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
     <span class="n">mio</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">mesh_path</span><span class="p">),</span> <span class="n">mesh</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">mesh_path</span><span class="p">)</span>
@@ -588,11 +592,10 @@
     <span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-            <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;Transform&quot;</span><span class="p">,</span> <span class="s2">&quot;A</span><span class="si">{}{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
-                                                              <span class="n">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
-                                  <span class="n">affine</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">])</span>
-        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;Transform&quot;</span><span class="p">,</span> <span class="s2">&quot;T</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="n">row</span><span class="p">]),</span>
-                              <span class="n">affine</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span>
+                <span class="s2">&quot;Transform&quot;</span><span class="p">,</span> <span class="s2">&quot;A</span><span class="si">{}{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">affine</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;Transform&quot;</span><span class="p">,</span> <span class="s2">&quot;T</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="n">row</span><span class="p">]),</span> <span class="n">affine</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Transform&quot;</span><span class="p">)</span>
     <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">reclassifyNodes</span><span class="p">()</span>
     <span class="n">msh_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">parent_path</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.msh&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
@@ -646,11 +649,19 @@
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Martin Grignard
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -661,7 +672,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
@@ -29,11 +35,6 @@
     <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" /> 
 </head>
@@ -49,7 +50,7 @@
           
 
           
-            <a href="../../../../../index.html" class="icon icon-home"> shamo
+            <a href="../../../../../index.html" class="icon icon-home" alt="Documentation Home"> shamo
           
 
           
@@ -72,6 +73,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -204,6 +206,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -242,7 +245,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../../../index.html">Module code</a> &raquo;</li>
         
@@ -268,16 +271,16 @@
 <span class="sd">for the EEG forward problem.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">subprocess</span> <span class="k">as</span> <span class="nn">sp</span>
-<span class="kn">from</span> <span class="nn">tempfile</span> <span class="k">import</span> <span class="n">TemporaryDirectory</span>
-<span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="k">import</span> <span class="n">resource_filename</span>
+<span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">TemporaryDirectory</span>
+<span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="kn">import</span> <span class="n">resource_filename</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="k">import</span> <span class="n">csc_matrix</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">csc_matrix</span>
 
-<span class="kn">from</span> <span class="nn">shamo.problems</span> <span class="k">import</span> <span class="n">ForwardProblem</span>
-<span class="kn">from</span> <span class="nn">shamo.utils</span> <span class="k">import</span> <span class="n">TemplateFile</span><span class="p">,</span> <span class="n">get_elements_coordinates</span>
+<span class="kn">from</span> <span class="nn">shamo.problems</span> <span class="kn">import</span> <span class="n">ForwardProblem</span>
+<span class="kn">from</span> <span class="nn">shamo.utils</span> <span class="kn">import</span> <span class="n">TemplateFile</span><span class="p">,</span> <span class="n">get_elements_coordinates</span>
 
 
 <div class="viewcode-block" id="EEGForwardProblem"><a class="viewcode-back" href="../../../../../reference/problems/forward/eeg/eeg_forward_problem.html#shamo.problems.forward.eeg.eeg_forward_problem.EEGForwardProblem">[docs]</a><span class="k">class</span> <span class="nc">EEGForwardProblem</span><span class="p">(</span><span class="n">ForwardProblem</span><span class="p">):</span>
@@ -299,10 +302,11 @@
 <span class="sd">    shamo.problems.ForwardProblem</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">TEMPLATE_PATH</span> <span class="o">=</span> <span class="n">resource_filename</span><span class="p">(</span><span class="s2">&quot;shamo&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span>
-        <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;problems/forward/eeg/eeg_forward_problem.pro&quot;</span><span class="p">)))</span>
+    <span class="n">TEMPLATE_PATH</span> <span class="o">=</span> <span class="n">resource_filename</span><span class="p">(</span>
+        <span class="s2">&quot;shamo&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;problems/forward/eeg/eeg_forward_problem.pro&quot;</span><span class="p">))</span>
+    <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="c1"># Reference</span>
         <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;reference&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;reference&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
@@ -355,8 +359,11 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">check_settings</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">is_roi_required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="c1"># Check reference</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">sensors</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="s2">&quot;Missing reference sensor with name &#39;</span><span class="si">{}</span><span class="s2">&#39; can be &quot;</span>
-                              <span class="s2">&quot;found.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="p">))</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="p">(</span><span class="s2">&quot;Missing reference sensor with name &#39;</span><span class="si">{}</span><span class="s2">&#39; can be &quot;</span> <span class="s2">&quot;found.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">reference</span>
+                <span class="p">)</span>
+            <span class="p">)</span></div>
 
 <div class="viewcode-block" id="EEGForwardProblem.solve"><a class="viewcode-back" href="../../../../../reference/problems/forward/eeg/eeg_forward_problem.html#shamo.problems.forward.eeg.eeg_forward_problem.EEGForwardProblem.solve">[docs]</a>    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Solve the problem.</span>
@@ -375,7 +382,8 @@
 <span class="sd">        shamo.EEGForwardSolution</span>
 <span class="sd">            The solution of the problem for the specified model.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">shamo</span> <span class="k">import</span> <span class="n">EEGForwardSolution</span>
+        <span class="kn">from</span> <span class="nn">shamo</span> <span class="kn">import</span> <span class="n">EEGForwardSolution</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">check_settings</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
         <span class="c1"># Initialize the solution</span>
         <span class="n">solution</span> <span class="o">=</span> <span class="n">EEGForwardSolution</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">)</span>
@@ -386,26 +394,37 @@
         <span class="k">with</span> <span class="n">TemporaryDirectory</span><span class="p">(</span><span class="nb">dir</span><span class="o">=</span><span class="n">scratch_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">temporary_path</span><span class="p">:</span>
             <span class="c1"># Get sensors and reference</span>
             <span class="n">reference</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="p">]</span>
-            <span class="n">sensors</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">sensor</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">sensor</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">sensors</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                       <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">markers</span> <span class="ow">and</span> <span class="n">name</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="p">}</span>
+            <span class="n">sensors</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">name</span><span class="p">:</span> <span class="n">sensor</span>
+                <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">sensor</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">sensors</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">markers</span> <span class="ow">and</span> <span class="n">name</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference</span>
+            <span class="p">}</span>
             <span class="n">n_sensors</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sensors</span><span class="p">)</span>
             <span class="c1"># Generate right hand side files</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_generate_rhs</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">n_nodes</span><span class="p">,</span> <span class="n">sensors</span><span class="p">,</span> <span class="n">reference</span><span class="p">,</span>
-                               <span class="n">temporary_path</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_generate_rhs</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">n_nodes</span><span class="p">,</span> <span class="n">sensors</span><span class="p">,</span> <span class="n">reference</span><span class="p">,</span> <span class="n">temporary_path</span><span class="p">)</span>
             <span class="c1"># Generate problem file</span>
             <span class="n">problem_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">temporary_path</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;problem.pro&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_generate_problem_file</span><span class="p">(</span><span class="n">problem_path</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">n_sensors</span><span class="p">)</span>
             <span class="c1"># Solve for each sensor</span>
-            <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;getdp&quot;</span><span class="p">,</span> <span class="n">problem_path</span><span class="p">,</span> <span class="s2">&quot;-msh&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">mesh_path</span><span class="p">,</span>
-                       <span class="s2">&quot;-solve&quot;</span><span class="p">,</span> <span class="s2">&quot;resolution&quot;</span><span class="p">,</span> <span class="s2">&quot;-pos&quot;</span><span class="p">,</span> <span class="s2">&quot;post_operation&quot;</span><span class="p">]</span>
+            <span class="n">command</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="s2">&quot;getdp&quot;</span><span class="p">,</span>
+                <span class="n">problem_path</span><span class="p">,</span>
+                <span class="s2">&quot;-msh&quot;</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">mesh_path</span><span class="p">,</span>
+                <span class="s2">&quot;-solve&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;resolution&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;-pos&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;post_operation&quot;</span><span class="p">,</span>
+            <span class="p">]</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">sp</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                       <span class="n">cwd</span><span class="o">=</span><span class="n">temporary_path</span><span class="p">)</span>
+                <span class="n">sp</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="n">temporary_path</span><span class="p">)</span>
             <span class="k">except</span> <span class="n">sp</span><span class="o">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">exception</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">((</span><span class="s2">&quot;GetDP exit with code &#39;</span><span class="si">{}</span><span class="s2">&#39; on command:&quot;</span>
-                                        <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exception</span><span class="o">.</span><span class="n">returncode</span><span class="p">,</span>
-                                                         <span class="n">exception</span><span class="o">.</span><span class="n">stdout</span><span class="p">))</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                        <span class="p">(</span><span class="s2">&quot;GetDP exit with code &#39;</span><span class="si">{}</span><span class="s2">&#39; on command:&quot;</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                            <span class="n">exception</span><span class="o">.</span><span class="n">returncode</span><span class="p">,</span> <span class="n">exception</span><span class="o">.</span><span class="n">stdout</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
             <span class="c1"># Generate leadfield matrix</span>
             <span class="n">matrix</span><span class="p">,</span> <span class="n">element_types</span><span class="p">,</span> <span class="n">element_tags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_matrix</span><span class="p">(</span>
                 <span class="n">sensors</span><span class="p">,</span> <span class="n">temporary_path</span><span class="p">,</span> <span class="n">solution</span><span class="o">.</span><span class="n">n_values_per_element</span>
@@ -414,7 +433,8 @@
             <span class="n">solution</span><span class="o">.</span><span class="n">set_sensors</span><span class="p">([</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">sensors</span><span class="p">])</span>
             <span class="c1"># Generate element data</span>
             <span class="n">element_coords</span> <span class="o">=</span> <span class="n">get_elements_coordinates</span><span class="p">(</span>
-                <span class="n">model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">regions_of_interest</span><span class="p">,</span> <span class="n">element_types</span><span class="p">,</span> <span class="n">element_tags</span><span class="p">)</span>
+                <span class="n">model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">regions_of_interest</span><span class="p">,</span> <span class="n">element_types</span><span class="p">,</span> <span class="n">element_tags</span>
+            <span class="p">)</span>
             <span class="n">solution</span><span class="o">.</span><span class="n">set_elements</span><span class="p">(</span><span class="n">element_tags</span><span class="p">,</span> <span class="n">element_coords</span><span class="p">)</span>
         <span class="n">solution</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">solution</span></div>
@@ -434,58 +454,82 @@
         <span class="n">path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
         <span class="k">with</span> <span class="n">TemplateFile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">TEMPLATE_PATH</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">template_file</span><span class="p">:</span>
             <span class="c1"># Add the regions</span>
-            <span class="n">tissue_groups</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">tissue</span><span class="o">.</span><span class="n">volume_group</span>
-                             <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">tissue</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">tissues</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-            <span class="n">template_file</span><span class="o">.</span><span class="n">replace_with_dict</span><span class="p">(</span><span class="s2">&quot;region&quot;</span><span class="p">,</span> <span class="s2">&quot;group&quot;</span><span class="p">,</span> <span class="n">tissue_groups</span><span class="p">,</span>
-                                            <span class="n">key_value_separator</span><span class="o">=</span><span class="s2">&quot; = Region[{&quot;</span><span class="p">,</span>
-                                            <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;}];&quot;</span><span class="p">,</span> <span class="n">separator</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">    &quot;</span><span class="p">)</span>
+            <span class="n">tissue_groups</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">name</span><span class="p">:</span> <span class="n">tissue</span><span class="o">.</span><span class="n">volume_group</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">tissue</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">tissues</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">}</span>
+            <span class="n">template_file</span><span class="o">.</span><span class="n">replace_with_dict</span><span class="p">(</span>
+                <span class="s2">&quot;region&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;group&quot;</span><span class="p">,</span>
+                <span class="n">tissue_groups</span><span class="p">,</span>
+                <span class="n">key_value_separator</span><span class="o">=</span><span class="s2">&quot; = Region[{&quot;</span><span class="p">,</span>
+                <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;}];&quot;</span><span class="p">,</span>
+                <span class="n">separator</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">    &quot;</span><span class="p">,</span>
+            <span class="p">)</span>
             <span class="n">tissue_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">tissue</span> <span class="k">for</span> <span class="n">tissue</span> <span class="ow">in</span> <span class="n">tissue_groups</span><span class="p">]</span>
-            <span class="n">template_file</span><span class="o">.</span><span class="n">replace_with_list</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;region&quot;</span><span class="p">,</span> <span class="n">tissue_names</span><span class="p">,</span>
-                                            <span class="n">separator</span><span class="o">=</span><span class="s2">&quot;, &quot;</span><span class="p">)</span>
+            <span class="n">template_file</span><span class="o">.</span><span class="n">replace_with_list</span><span class="p">(</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;region&quot;</span><span class="p">,</span> <span class="n">tissue_names</span><span class="p">,</span> <span class="n">separator</span><span class="o">=</span><span class="s2">&quot;, &quot;</span>
+            <span class="p">)</span>
             <span class="c1"># Add region of interest</span>
-            <span class="n">regions_of_interest</span> <span class="o">=</span> <span class="p">[</span><span class="n">tissue</span> <span class="k">for</span> <span class="n">tissue</span>
-                                   <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">regions_of_interest</span>
-                                   <span class="k">if</span> <span class="n">tissue</span> <span class="ow">in</span> <span class="n">tissue_names</span><span class="p">]</span>
-            <span class="n">template_file</span><span class="o">.</span><span class="n">replace_with_list</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;roi&quot;</span><span class="p">,</span> <span class="n">regions_of_interest</span><span class="p">,</span>
-                                            <span class="n">separator</span><span class="o">=</span><span class="s2">&quot;, &quot;</span><span class="p">)</span>
+            <span class="n">regions_of_interest</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">tissue</span> <span class="k">for</span> <span class="n">tissue</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">regions_of_interest</span> <span class="k">if</span> <span class="n">tissue</span> <span class="ow">in</span> <span class="n">tissue_names</span>
+            <span class="p">]</span>
+            <span class="n">template_file</span><span class="o">.</span><span class="n">replace_with_list</span><span class="p">(</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;roi&quot;</span><span class="p">,</span> <span class="n">regions_of_interest</span><span class="p">,</span> <span class="n">separator</span><span class="o">=</span><span class="s2">&quot;, &quot;</span>
+            <span class="p">)</span>
             <span class="c1"># Add reference</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">sensors</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="s2">&quot;Reference sensor &#39;</span><span class="si">{}</span><span class="s2">&#39; not defined in &quot;</span>
-                                  <span class="s2">&quot;model&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="p">))</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="p">(</span><span class="s2">&quot;Reference sensor &#39;</span><span class="si">{}</span><span class="s2">&#39; not defined in &quot;</span> <span class="s2">&quot;model&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">reference</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
             <span class="n">template_file</span><span class="o">.</span><span class="n">replace_with_text</span><span class="p">(</span>
-                <span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;sink&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="p">]</span><span class="o">.</span><span class="n">group</span><span class="p">))</span>
+                <span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;sink&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="p">]</span><span class="o">.</span><span class="n">group</span><span class="p">)</span>
+            <span class="p">)</span>
             <span class="c1"># Add source</span>
-            <span class="n">source_name</span> <span class="o">=</span> <span class="p">[</span><span class="n">sensor</span> <span class="k">for</span> <span class="n">sensor</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">sensors</span>
-                           <span class="k">if</span> <span class="n">sensor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">markers</span>
-                           <span class="ow">and</span> <span class="n">sensor</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">source_name</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">sensor</span>
+                <span class="k">for</span> <span class="n">sensor</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">sensors</span>
+                <span class="k">if</span> <span class="n">sensor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">markers</span> <span class="ow">and</span> <span class="n">sensor</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference</span>
+            <span class="p">][</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">template_file</span><span class="o">.</span><span class="n">replace_with_text</span><span class="p">(</span>
-                <span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="n">source_name</span><span class="p">]</span><span class="o">.</span><span class="n">group</span><span class="p">))</span>
+                <span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="n">source_name</span><span class="p">]</span><span class="o">.</span><span class="n">group</span><span class="p">)</span>
+            <span class="p">)</span>
             <span class="c1"># Add electrical conductivity</span>
-            <span class="n">all_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">sigma</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">sigma</span>
-                              <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">electrical_conductivity</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+            <span class="n">all_parameters</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">name</span><span class="p">:</span> <span class="n">sigma</span><span class="o">.</span><span class="n">value</span>
+                <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">electrical_conductivity</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">}</span>
             <span class="n">electrical_conductivity</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="k">for</span> <span class="n">tissue</span> <span class="ow">in</span> <span class="n">tissue_names</span><span class="p">:</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">electrical_conductivity</span><span class="p">[</span><span class="n">tissue</span><span class="p">]</span><span class="o">.</span><span class="n">is_anisotropic</span><span class="p">:</span>
-                    <span class="n">anisotropy</span> <span class="o">=</span> \
-                        <span class="bp">self</span><span class="o">.</span><span class="n">electrical_conductivity</span><span class="p">[</span><span class="n">tissue</span><span class="p">]</span><span class="o">.</span><span class="n">anisotropy</span>
+                    <span class="n">anisotropy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">electrical_conductivity</span><span class="p">[</span><span class="n">tissue</span><span class="p">]</span><span class="o">.</span><span class="n">anisotropy</span>
                     <span class="k">if</span> <span class="n">anisotropy</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">anisotropy</span><span class="p">:</span>
-                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="s2">&quot;Anisotropic field with name &#39;</span><span class="si">{}</span><span class="s2">&#39; &quot;</span>
-                                          <span class="s2">&quot;not found in &quot;</span>
-                                          <span class="s2">&quot;model.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">anisotropy</span><span class="p">))</span>
-                    <span class="n">electrical_conductivity</span><span class="p">[</span><span class="n">tissue</span><span class="p">]</span> <span class="o">=</span> \
-                        <span class="n">model</span><span class="o">.</span><span class="n">anisotropy</span><span class="p">[</span><span class="n">anisotropy</span><span class="p">]</span><span class="o">.</span><span class="n">generate_formula_text</span><span class="p">(</span>
-                        <span class="o">**</span><span class="n">all_parameters</span><span class="p">)</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                            <span class="p">(</span>
+                                <span class="s2">&quot;Anisotropic field with name &#39;</span><span class="si">{}</span><span class="s2">&#39; &quot;</span>
+                                <span class="s2">&quot;not found in &quot;</span>
+                                <span class="s2">&quot;model.&quot;</span>
+                            <span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">anisotropy</span><span class="p">)</span>
+                        <span class="p">)</span>
+                    <span class="n">electrical_conductivity</span><span class="p">[</span><span class="n">tissue</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">anisotropy</span><span class="p">[</span>
+                        <span class="n">anisotropy</span>
+                    <span class="p">]</span><span class="o">.</span><span class="n">generate_formula_text</span><span class="p">(</span><span class="o">**</span><span class="n">all_parameters</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">electrical_conductivity</span><span class="p">[</span><span class="n">tissue</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">electrical_conductivity</span><span class="p">[</span><span class="n">tissue</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-            <span class="n">template_file</span><span class="o">.</span><span class="n">replace_with_dict</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma&quot;</span><span class="p">,</span>
-                                            <span class="n">electrical_conductivity</span><span class="p">,</span>
-                                            <span class="n">key_value_separator</span><span class="o">=</span><span class="s2">&quot;] = &quot;</span><span class="p">,</span>
-                                            <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;sigma[&quot;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span>
-                                            <span class="n">separator</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">    &quot;</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">electrical_conductivity</span><span class="p">[</span><span class="n">tissue</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+                    <span class="p">)</span>
+            <span class="n">template_file</span><span class="o">.</span><span class="n">replace_with_dict</span><span class="p">(</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;sigma&quot;</span><span class="p">,</span>
+                <span class="n">electrical_conductivity</span><span class="p">,</span>
+                <span class="n">key_value_separator</span><span class="o">=</span><span class="s2">&quot;] = &quot;</span><span class="p">,</span>
+                <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;sigma[&quot;</span><span class="p">,</span>
+                <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span>
+                <span class="n">separator</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">    &quot;</span><span class="p">,</span>
+            <span class="p">)</span>
             <span class="c1"># Set the number of sensors to compute for</span>
-            <span class="n">template_file</span><span class="o">.</span><span class="n">replace_with_text</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="s2">&quot;sensors&quot;</span><span class="p">,</span>
-                                            <span class="nb">str</span><span class="p">(</span><span class="n">n_sensors</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">template_file</span><span class="o">.</span><span class="n">replace_with_text</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="s2">&quot;sensors&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">n_sensors</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_generate_rhs</span><span class="p">(</span><span class="n">n_values</span><span class="p">,</span> <span class="n">sensors</span><span class="p">,</span> <span class="n">reference</span><span class="p">,</span> <span class="n">out_path</span><span class="p">):</span>
@@ -507,8 +551,11 @@
             <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
             <span class="n">row_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">sensor</span><span class="o">.</span><span class="n">node</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">reference</span><span class="o">.</span><span class="n">node</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
             <span class="n">column_indices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-            <span class="n">b</span> <span class="o">=</span> <span class="n">csc_matrix</span><span class="p">((</span><span class="n">values</span><span class="p">,</span> <span class="p">(</span><span class="n">row_indices</span><span class="p">,</span> <span class="n">column_indices</span><span class="p">)),</span>
-                           <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n_values</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">csc_matrix</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="p">(</span><span class="n">row_indices</span><span class="p">,</span> <span class="n">column_indices</span><span class="p">)),</span>
+                <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n_values</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">,</span>
+            <span class="p">)</span>
             <span class="n">b_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">out_path</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.b&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
             <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">b_path</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
 
@@ -542,23 +589,45 @@
                     <span class="n">element_types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element_type</span><span class="p">)</span>
                     <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
                     <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">split</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]])</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">element_types</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">values</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">element_types</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">values</span><span class="p">),</span>
+        <span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_generate_matrix</span><span class="p">(</span><span class="n">sensors</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">n_values_per_element</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate the final matrix.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        sensors : dict [str, shamo.model.sensor.Sensor]</span>
+<span class="sd">            The sensors for which the matrix is computed.</span>
+<span class="sd">        path : str</span>
+<span class="sd">            The path were the solutions of the problem are stored.</span>
+<span class="sd">        n_values_per_element : int</span>
+<span class="sd">            The number of values recorded by element.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">            The generated matrix.</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">            The element types.</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">            The element tags.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">matrix</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">n_sensors</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sensors</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i_sensor</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sensors</span><span class="p">):</span>
             <span class="n">e_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.e&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i_sensor</span><span class="p">))</span>
-            <span class="n">element_types</span><span class="p">,</span> <span class="n">element_tags</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> \
-                <span class="n">EEGForwardProblem</span><span class="o">.</span><span class="n">_read_out_file</span><span class="p">(</span><span class="n">e_path</span><span class="p">)</span>
+            <span class="n">element_types</span><span class="p">,</span> <span class="n">element_tags</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="n">EEGForwardProblem</span><span class="o">.</span><span class="n">_read_out_file</span><span class="p">(</span>
+                <span class="n">e_path</span>
+            <span class="p">)</span>
             <span class="k">if</span> <span class="n">matrix</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">n_elements</span> <span class="o">=</span> <span class="n">element_tags</span><span class="o">.</span><span class="n">size</span>
                 <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span>
-                    <span class="p">(</span><span class="n">n_sensors</span><span class="p">,</span> <span class="n">n_elements</span> <span class="o">*</span> <span class="n">n_values_per_element</span><span class="p">),</span>
-                    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span>
+                    <span class="p">(</span><span class="n">n_sensors</span><span class="p">,</span> <span class="n">n_elements</span> <span class="o">*</span> <span class="n">n_values_per_element</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span>
                 <span class="p">)</span>
             <span class="n">matrix</span><span class="p">[</span><span class="n">i_sensor</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">element_types</span><span class="p">,</span> <span class="n">element_tags</span></div>
@@ -574,11 +643,19 @@
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Martin Grignard
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -589,7 +666,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

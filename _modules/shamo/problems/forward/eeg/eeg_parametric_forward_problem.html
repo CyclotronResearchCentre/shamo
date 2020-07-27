@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
@@ -29,11 +35,6 @@
     <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" /> 
 </head>
@@ -49,7 +50,7 @@
           
 
           
-            <a href="../../../../../index.html" class="icon icon-home"> shamo
+            <a href="../../../../../index.html" class="icon icon-home" alt="Documentation Home"> shamo
           
 
           
@@ -72,6 +73,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -204,6 +206,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -242,7 +245,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../../../index.html">Module code</a> &raquo;</li>
         
@@ -269,13 +272,13 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">itertools</span> <span class="k">as</span> <span class="nn">iter</span>
 <span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="k">import</span> <span class="n">resource_filename</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="kn">import</span> <span class="n">resource_filename</span>
 
 <span class="kn">import</span> <span class="nn">chaospy</span> <span class="k">as</span> <span class="nn">cp</span>
 
-<span class="kn">from</span> <span class="nn">shamo</span> <span class="k">import</span> <span class="n">EEGForwardProblem</span>
-<span class="kn">from</span> <span class="nn">shamo.utils</span> <span class="k">import</span> <span class="n">TemplateFile</span><span class="p">,</span> <span class="n">get_relative_path</span>
+<span class="kn">from</span> <span class="nn">shamo</span> <span class="kn">import</span> <span class="n">EEGForwardProblem</span>
+<span class="kn">from</span> <span class="nn">shamo.utils</span> <span class="kn">import</span> <span class="n">TemplateFile</span><span class="p">,</span> <span class="n">get_relative_path</span>
 
 
 <div class="viewcode-block" id="EEGParametricForwardProblem"><a class="viewcode-back" href="../../../../../reference/problems/forward/eeg/eeg_parametric_forward_problem.html#shamo.problems.forward.eeg.eeg_parametric_forward_problem.EEGParametricForwardProblem">[docs]</a><span class="k">class</span> <span class="nc">EEGParametricForwardProblem</span><span class="p">(</span><span class="n">EEGForwardProblem</span><span class="p">):</span>
@@ -304,8 +307,9 @@
 
     <span class="n">SUB_PROBLEM_FACTORY</span> <span class="o">=</span> <span class="n">EEGForwardProblem</span>
 
-    <span class="n">TEMPLATE_PATH</span> <span class="o">=</span> <span class="n">resource_filename</span><span class="p">(</span><span class="s2">&quot;shamo&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span>
-        <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;problems/forward/eeg/eeg_forward_problem.template&quot;</span><span class="p">)))</span>
+    <span class="n">TEMPLATE_PATH</span> <span class="o">=</span> <span class="n">resource_filename</span><span class="p">(</span>
+        <span class="s2">&quot;shamo&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;problems/forward/eeg/eeg_forward_problem.template&quot;</span><span class="p">))</span>
+    <span class="p">)</span>
 
 <div class="viewcode-block" id="EEGParametricForwardProblem.solve"><a class="viewcode-back" href="../../../../../reference/problems/forward/eeg/eeg_parametric_forward_problem.html#shamo.problems.forward.eeg.eeg_parametric_forward_problem.EEGParametricForwardProblem.solve">[docs]</a>    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Solve the problem.</span>
@@ -341,7 +345,8 @@
 <span class="sd">        shamo.solutions.forward.eeg.eeg_forward_solution.EEGForwardSolution</span>
 <span class="sd">            The solution of the problem for the specified model.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">shamo</span> <span class="k">import</span> <span class="n">EEGParametricForwardSolution</span>
+        <span class="kn">from</span> <span class="nn">shamo</span> <span class="kn">import</span> <span class="n">EEGParametricForwardSolution</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">check_settings</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
         <span class="c1"># Initialize the solution</span>
         <span class="n">solution</span> <span class="o">=</span> <span class="n">EEGParametricForwardSolution</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">)</span>
@@ -352,30 +357,30 @@
         <span class="n">order</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;order&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
         <span class="n">rule</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;rule&quot;</span><span class="p">,</span> <span class="s2">&quot;leja&quot;</span><span class="p">)</span>
         <span class="n">sparse</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;sparse&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-        <span class="n">n_evals</span><span class="p">,</span> <span class="n">eval_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_evaluation_points</span><span class="p">(</span>
-            <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">rule</span><span class="p">)</span>
+        <span class="n">n_evals</span><span class="p">,</span> <span class="n">eval_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_evaluation_points</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">rule</span><span class="p">)</span>
         <span class="n">solution</span><span class="o">.</span><span class="n">set_quadrature</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">rule</span><span class="p">,</span> <span class="n">sparse</span><span class="p">)</span>
         <span class="c1"># Generate problems</span>
         <span class="n">sub_problems</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_sub_problems</span><span class="p">(</span><span class="n">n_evals</span><span class="p">,</span> <span class="n">eval_points</span><span class="p">)</span>
-        <span class="n">generator</span> <span class="o">=</span> <span class="p">((</span><span class="n">problem</span><span class="p">,</span> <span class="s2">&quot;sol_</span><span class="si">{:08d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">solution</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
-                     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">problem</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sub_problems</span><span class="p">))</span>
+        <span class="n">generator</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="s2">&quot;sol_</span><span class="si">{:08d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">solution</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">problem</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sub_problems</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="c1"># Solve using the right method</span>
         <span class="n">method</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;method&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">METHOD_SEQ</span><span class="p">)</span>
         <span class="n">n_process</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;n_process&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">METHOD_SEQ</span> <span class="ow">or</span> <span class="n">n_process</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">solutions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">iter</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_solve_single_sub_problem</span><span class="p">,</span> <span class="n">generator</span><span class="p">))</span>
+            <span class="n">solutions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">iter</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_solve_single_sub_problem</span><span class="p">,</span> <span class="n">generator</span><span class="p">))</span>
             <span class="n">solution</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
         <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">METHOD_MULTI</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">mp</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="n">n_process</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
-                <span class="n">solutions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_solve_single_sub_problem</span><span class="p">,</span> <span class="n">generator</span><span class="p">))</span>
+                <span class="n">solutions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+                    <span class="n">pool</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_solve_single_sub_problem</span><span class="p">,</span> <span class="n">generator</span><span class="p">)</span>
+                <span class="p">)</span>
             <span class="n">solution</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
         <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">METHOD_MPI</span><span class="p">:</span>
             <span class="k">pass</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">solutions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">iter</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_print_single_sub_problem</span><span class="p">,</span> <span class="n">generator</span><span class="p">))</span>
+            <span class="n">solutions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">iter</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_print_single_sub_problem</span><span class="p">,</span> <span class="n">generator</span><span class="p">))</span>
         <span class="c1"># Check if all the solutions or scripts were generated</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">solutions</span><span class="p">)</span> <span class="o">!=</span> <span class="n">n_evals</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Some solutions were not computed.&quot;</span><span class="p">)</span>
@@ -398,22 +403,25 @@
 <span class="sd">        dict [str, float|numpy.ndarray]</span>
 <span class="sd">            The points to evaluate.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">tissue_distributions</span> <span class="o">=</span> <span class="p">[(</span><span class="n">name</span><span class="p">,</span> <span class="n">tissue</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">distribution</span><span class="p">)</span>
-                                <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">tissue</span>
-                                <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">electrical_conductivity</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+        <span class="n">tissue_distributions</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">tissue</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">distribution</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">tissue</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">electrical_conductivity</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">]</span>
         <span class="c1"># Only consider non constant parameters</span>
-        <span class="n">varying</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">tissue_distributions</span>
-                   <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="n">varying</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">tissue_distributions</span> <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">varying</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">((</span><span class="s2">&quot;No varying parameter given. Use &quot;</span>
-                                <span class="s2">&quot;&#39;EEGForwardProblem&#39; instead.&quot;</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="p">(</span><span class="s2">&quot;No varying parameter given. Use &quot;</span> <span class="s2">&quot;&#39;EEGForwardProblem&#39; instead.&quot;</span><span class="p">)</span>
+            <span class="p">)</span>
         <span class="n">distribution</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">J</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">distribution</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">distribution</span> <span class="ow">in</span> <span class="n">varying</span><span class="p">])</span>
-        <span class="n">absissas</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">generate_quadrature</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">distribution</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">rule</span><span class="p">,</span>
-                                          <span class="n">sparse</span><span class="o">=</span><span class="n">sparse</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">points</span> <span class="o">=</span> <span class="p">{</span><span class="n">varying</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span> <span class="n">absissas</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-                  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">varying</span><span class="p">))}</span>
-        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">tissue_distributions</span>
-                        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">]:</span>
+        <span class="n">absissas</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">generate_quadrature</span><span class="p">(</span>
+            <span class="n">order</span><span class="p">,</span> <span class="n">distribution</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">rule</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="n">sparse</span>
+        <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">varying</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span> <span class="n">absissas</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">varying</span><span class="p">))</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">tissue_distributions</span> <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">]:</span>
             <span class="n">points</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">electrical_conductivity</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">value</span>
         <span class="k">return</span> <span class="n">absissas</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">points</span>
 
@@ -445,8 +453,7 @@
                     <span class="n">value</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">i_problem</span><span class="p">]</span>
                 <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
                     <span class="n">value</span> <span class="o">=</span> <span class="n">values</span>
-                <span class="n">sub_problem</span><span class="o">.</span><span class="n">set_electrical_conductivity</span><span class="p">(</span>
-                    <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">anisotropy</span><span class="p">)</span>
+                <span class="n">sub_problem</span><span class="o">.</span><span class="n">set_electrical_conductivity</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">anisotropy</span><span class="p">)</span>
             <span class="n">sub_problems</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_problem</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">sub_problems</span>
 
@@ -491,8 +498,9 @@
 <span class="sd">            The path to the generated script.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">parent_path</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.py&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
-        <span class="k">with</span> <span class="n">TemplateFile</span><span class="p">(</span><span class="n">EEGParametricForwardProblem</span><span class="o">.</span><span class="n">TEMPLATE_PATH</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span> \
-                <span class="k">as</span> <span class="n">template_file</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">TemplateFile</span><span class="p">(</span>
+            <span class="n">EEGParametricForwardProblem</span><span class="o">.</span><span class="n">TEMPLATE_PATH</span><span class="p">,</span> <span class="n">path</span>
+        <span class="p">)</span> <span class="k">as</span> <span class="n">template_file</span><span class="p">:</span>
             <span class="n">model_path</span> <span class="o">=</span> <span class="n">get_relative_path</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">json_path</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">)</span>
             <span class="n">template_file</span><span class="o">.</span><span class="n">replace_with_text</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">,</span> <span class="n">model_path</span><span class="p">)</span>
             <span class="n">template_file</span><span class="o">.</span><span class="n">replace_with_text</span><span class="p">(</span><span class="s2">&quot;problem&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">problem</span><span class="p">))</span>
@@ -510,11 +518,19 @@
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Martin Grignard
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -525,7 +541,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

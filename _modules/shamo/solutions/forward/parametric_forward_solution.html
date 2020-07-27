@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
@@ -29,11 +35,6 @@
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
 </head>
@@ -49,7 +50,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home"> shamo
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> shamo
           
 
           
@@ -72,6 +73,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -204,6 +206,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -242,7 +245,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
         
@@ -268,16 +271,16 @@
 <span class="sd">for any parametric forward solution.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">abc</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
 
-<span class="kn">from</span> <span class="nn">shamo.solutions</span> <span class="k">import</span> <span class="n">CommonForwardSolution</span>
-<span class="kn">from</span> <span class="nn">shamo.utils</span> <span class="k">import</span> <span class="n">none_callable</span>
+<span class="kn">from</span> <span class="nn">shamo.solutions</span> <span class="kn">import</span> <span class="n">CommonForwardSolution</span>
+<span class="kn">from</span> <span class="nn">shamo.utils</span> <span class="kn">import</span> <span class="n">none_callable</span>
 
 
-<div class="viewcode-block" id="ParametricForwardSolution"><a class="viewcode-back" href="../../../../solutions/forward/parametric_forward_solution.html#shamo.solutions.forward.parametric_forward_solution.ParametricForwardSolution">[docs]</a><span class="k">class</span> <span class="nc">ParametricForwardSolution</span><span class="p">(</span><span class="n">CommonForwardSolution</span><span class="p">):</span>
+<div class="viewcode-block" id="ParametricForwardSolution"><a class="viewcode-back" href="../../../../reference/solutions/forward/parametric_forward_solution.html#shamo.solutions.forward.parametric_forward_solution.ParametricForwardSolution">[docs]</a><span class="k">class</span> <span class="nc">ParametricForwardSolution</span><span class="p">(</span><span class="n">CommonForwardSolution</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;The base for any parametric forward problem solution.</span>
 
 <span class="sd">    Parameters</span>
@@ -317,13 +320,14 @@
 
     <span class="n">SOLUTION_FACTORY</span> <span class="o">=</span> <span class="n">none_callable</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="c1"># Quadrature</span>
         <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;quadrature&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;quadrature&quot;</span><span class="p">,</span> <span class="p">{})</span>
         <span class="c1"># Sub-solutions paths</span>
-        <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;solution_paths&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
-                                  <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;solution_paths&quot;</span><span class="p">,</span> <span class="p">[])]</span>
+        <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;solution_paths&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">))</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;solution_paths&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="p">]</span>
         <span class="c1"># Is finalized</span>
         <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;is_finalized&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;is_finalized&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
         <span class="c1"># Surrogate model path</span>
@@ -354,8 +358,7 @@
 <span class="sd">        list [str]</span>
 <span class="sd">            The paths to the solutions.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="o">/</span> <span class="n">path</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;solution_paths&quot;</span><span class="p">]]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="o">/</span> <span class="n">path</span><span class="p">)</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;solution_paths&quot;</span><span class="p">]]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">is_finalized</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -388,11 +391,10 @@
             <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;The model does not contain a model.&quot;</span><span class="p">)</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;surrogate_model_path&quot;</span><span class="p">]</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">((</span><span class="s2">&quot;The specified model file no longer &quot;</span>
-                                     <span class="s2">&quot;exists.&quot;</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">((</span><span class="s2">&quot;The specified model file no longer &quot;</span> <span class="s2">&quot;exists.&quot;</span><span class="p">))</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ParametricForwardSolution.set_quadrature"><a class="viewcode-back" href="../../../../solutions/forward/parametric_forward_solution.html#shamo.solutions.forward.parametric_forward_solution.ParametricForwardSolution.set_quadrature">[docs]</a>    <span class="k">def</span> <span class="nf">set_quadrature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">rule</span><span class="p">,</span> <span class="n">sparse</span><span class="p">):</span>
+<div class="viewcode-block" id="ParametricForwardSolution.set_quadrature"><a class="viewcode-back" href="../../../../reference/solutions/forward/parametric_forward_solution.html#shamo.solutions.forward.parametric_forward_solution.ParametricForwardSolution.set_quadrature">[docs]</a>    <span class="k">def</span> <span class="nf">set_quadrature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">rule</span><span class="p">,</span> <span class="n">sparse</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the quadrature settings.</span>
 
 <span class="sd">        Parameters</span>
@@ -409,14 +411,10 @@
 <span class="sd">        shamo.solutions.ParametricForwardSolution</span>
 <span class="sd">            The current solution.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;quadrature&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;order&quot;</span><span class="p">:</span> <span class="n">order</span><span class="p">,</span>
-            <span class="s2">&quot;rule&quot;</span><span class="p">:</span> <span class="n">rule</span><span class="p">,</span>
-            <span class="s2">&quot;sparse&quot;</span><span class="p">:</span> <span class="n">sparse</span>
-        <span class="p">}</span>
+        <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;quadrature&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;order&quot;</span><span class="p">:</span> <span class="n">order</span><span class="p">,</span> <span class="s2">&quot;rule&quot;</span><span class="p">:</span> <span class="n">rule</span><span class="p">,</span> <span class="s2">&quot;sparse&quot;</span><span class="p">:</span> <span class="n">sparse</span><span class="p">}</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="ParametricForwardSolution.get_solutions"><a class="viewcode-back" href="../../../../solutions/forward/parametric_forward_solution.html#shamo.solutions.forward.parametric_forward_solution.ParametricForwardSolution.get_solutions">[docs]</a>    <span class="k">def</span> <span class="nf">get_solutions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ParametricForwardSolution.get_solutions"><a class="viewcode-back" href="../../../../reference/solutions/forward/parametric_forward_solution.html#shamo.solutions.forward.parametric_forward_solution.ParametricForwardSolution.get_solutions">[docs]</a>    <span class="k">def</span> <span class="nf">get_solutions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the solutions.</span>
 
 <span class="sd">        Returns</span>
@@ -424,10 +422,9 @@
 <span class="sd">        list [shamo.core.solution.Solution]</span>
 <span class="sd">            The solutions.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">SOLUTION_FACTORY</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">solution_paths</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">SOLUTION_FACTORY</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">solution_paths</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="ParametricForwardSolution.get_surrogate_model"><a class="viewcode-back" href="../../../../solutions/forward/parametric_forward_solution.html#shamo.solutions.forward.parametric_forward_solution.ParametricForwardSolution.get_surrogate_model">[docs]</a>    <span class="k">def</span> <span class="nf">get_surrogate_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ParametricForwardSolution.get_surrogate_model"><a class="viewcode-back" href="../../../../reference/solutions/forward/parametric_forward_solution.html#shamo.solutions.forward.parametric_forward_solution.ParametricForwardSolution.get_surrogate_model">[docs]</a>    <span class="k">def</span> <span class="nf">get_surrogate_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load the surrogate model.</span>
 
 <span class="sd">        Returns</span>
@@ -437,11 +434,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Make sure to only load it once</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_surrogate_model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_surrogate_model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
-                <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surrogate_model_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_surrogate_model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surrogate_model_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">))</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_surrogate_model</span></div>
 
-<div class="viewcode-block" id="ParametricForwardSolution.finalize"><a class="viewcode-back" href="../../../../solutions/forward/parametric_forward_solution.html#shamo.solutions.forward.parametric_forward_solution.ParametricForwardSolution.finalize">[docs]</a>    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="ParametricForwardSolution.finalize"><a class="viewcode-back" href="../../../../reference/solutions/forward/parametric_forward_solution.html#shamo.solutions.forward.parametric_forward_solution.ParametricForwardSolution.finalize">[docs]</a>    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Finalize the generation of the parametric solution.</span>
 
 <span class="sd">        Parameters</span>
@@ -483,8 +479,7 @@
         <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;sensors&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">solutions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sensors</span>
         <span class="c1"># Remove duplicated elements files</span>
         <span class="n">elements_path</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_elements.npz&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">solutions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">elements_path</span><span class="p">,</span>
-                    <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="o">/</span> <span class="n">elements_path</span><span class="p">))</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">solutions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">elements_path</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="o">/</span> <span class="n">elements_path</span><span class="p">))</span>
         <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;elements_path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">elements_path</span>
         <span class="k">for</span> <span class="n">solution</span> <span class="ow">in</span> <span class="n">solutions</span><span class="p">:</span>
             <span class="n">Path</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">elements_path</span><span class="p">)</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
@@ -496,7 +491,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="ParametricForwardSolution.generate_surrogate_model"><a class="viewcode-back" href="../../../../solutions/forward/parametric_forward_solution.html#shamo.solutions.forward.parametric_forward_solution.ParametricForwardSolution.generate_surrogate_model">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+<div class="viewcode-block" id="ParametricForwardSolution.generate_surrogate_model"><a class="viewcode-back" href="../../../../reference/solutions/forward/parametric_forward_solution.html#shamo.solutions.forward.parametric_forward_solution.ParametricForwardSolution.generate_surrogate_model">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">def</span> <span class="nf">generate_surrogate_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generate the surrogate model.</span>
 
@@ -506,7 +501,7 @@
 <span class="sd">            The current solution.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="ParametricForwardSolution.generate_matrix"><a class="viewcode-back" href="../../../../solutions/forward/parametric_forward_solution.html#shamo.solutions.forward.parametric_forward_solution.ParametricForwardSolution.generate_matrix">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+<div class="viewcode-block" id="ParametricForwardSolution.generate_matrix"><a class="viewcode-back" href="../../../../reference/solutions/forward/parametric_forward_solution.html#shamo.solutions.forward.parametric_forward_solution.ParametricForwardSolution.generate_matrix">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">def</span> <span class="nf">generate_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generate a new matrix based on the surrogate model.</span>
 
@@ -520,7 +515,7 @@
 <span class="sd">        You can pass any named parameter corresponding to a varying parameter.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="ParametricForwardSolution.generate_solution"><a class="viewcode-back" href="../../../../solutions/forward/parametric_forward_solution.html#shamo.solutions.forward.parametric_forward_solution.ParametricForwardSolution.generate_solution">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+<div class="viewcode-block" id="ParametricForwardSolution.generate_solution"><a class="viewcode-back" href="../../../../reference/solutions/forward/parametric_forward_solution.html#shamo.solutions.forward.parametric_forward_solution.ParametricForwardSolution.generate_solution">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">def</span> <span class="nf">generate_solution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generate a solution based on the surrogate model.</span>
 
@@ -552,11 +547,19 @@
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Martin Grignard
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -567,7 +570,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -29,11 +35,6 @@
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="EEG" href="eeg/eeg.html" />
@@ -51,7 +52,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> shamo
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> shamo
           
 
           
@@ -74,6 +75,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -206,6 +208,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -244,7 +247,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../quickstart.html">Quickstart guide</a> &raquo;</li>
         
@@ -293,12 +296,12 @@ A folder with this name should have appeared.</p>
 To do so, we need a labeled volume.
 In <code class="xref py py-mod docutils literal notranslate"><span class="pre">shamo</span></code>, you can achieve this using multiple methods:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.mesh_from_labels" title="shamo.model.fe_model.FEModel.mesh_from_labels"><code class="xref py py-func docutils literal notranslate"><span class="pre">mesh_from_labels</span></code></a>: Use this if you have a <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> containing <code class="docutils literal notranslate"><span class="pre">uint8</span></code> labels from <code class="docutils literal notranslate"><span class="pre">0</span></code> (air) to <code class="docutils literal notranslate"><span class="pre">n</span></code> (the n-th tissue).</p></li>
+<li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.mesh_from_labels" title="shamo.model.fe_model.FEModel.mesh_from_labels"><code class="xref py py-func docutils literal notranslate"><span class="pre">mesh_from_labels</span></code></a>: Use this if you have a <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> containing <code class="docutils literal notranslate"><span class="pre">uint8</span></code> labels from <code class="docutils literal notranslate"><span class="pre">0</span></code> (air) to <code class="docutils literal notranslate"><span class="pre">n</span></code> (the n-th tissue).</p></li>
 <li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.mesh_from_nii" title="shamo.model.fe_model.FEModel.mesh_from_nii"><code class="xref py py-func docutils literal notranslate"><span class="pre">mesh_from_nii</span></code></a>: Use this if you have stored the exact same data as above in a <code class="docutils literal notranslate"><span class="pre">.nii</span></code> image.</p></li>
-<li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.mesh_from_masks" title="shamo.model.fe_model.FEModel.mesh_from_masks"><code class="xref py py-func docutils literal notranslate"><span class="pre">mesh_from_masks</span></code></a>: Use this if you have stored each tissue class in separate <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>.</p></li>
+<li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.mesh_from_masks" title="shamo.model.fe_model.FEModel.mesh_from_masks"><code class="xref py py-func docutils literal notranslate"><span class="pre">mesh_from_masks</span></code></a>: Use this if you have stored each tissue class in separate <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>.</p></li>
 <li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.mesh_from_niis" title="shamo.model.fe_model.FEModel.mesh_from_niis"><code class="xref py py-func docutils literal notranslate"><span class="pre">mesh_from_niis</span></code></a>: Use this if you have stored each tissue class in separate <code class="docutils literal notranslate"><span class="pre">.nii</span></code> images.</p></li>
 </ul>
-<p>In this example, we will generate a single <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> containing all the labels and thus we will be using <a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.mesh_from_labels" title="shamo.model.fe_model.FEModel.mesh_from_labels"><code class="xref py py-func docutils literal notranslate"><span class="pre">mesh_from_labels</span></code></a>.
+<p>In this example, we will generate a single <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> containing all the labels and thus we will be using <a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.mesh_from_labels" title="shamo.model.fe_model.FEModel.mesh_from_labels"><code class="xref py py-func docutils literal notranslate"><span class="pre">mesh_from_labels</span></code></a>.
 For more information on the methods, refer to the corresponding documentation.</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -307,7 +310,7 @@ For more information on the methods, refer to the corresponding documentation.</
 5
 6
 7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># Generate the labels</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
@@ -359,7 +362,7 @@ Once the locations and the names of the sensors are defined, we can add them to 
 <p>Anisotropic fields can be added to the model (e.g. white matter anisotropy). Once again, we can do this by using several methods:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.add_anisotropy_from_elements" title="shamo.model.fe_model.FEModel.add_anisotropy_from_elements"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_anisotropy_from_elements</span></code></a>: You might never use this as it requires the values of the field correspondign to each elements of the tissue you want to add anisotropy in.</p></li>
-<li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.add_anisotropy_from_array" title="shamo.model.fe_model.FEModel.add_anisotropy_from_array"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_anisotropy_from_array</span></code></a>: Use this if you have a <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> containing the field.</p></li>
+<li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.add_anisotropy_from_array" title="shamo.model.fe_model.FEModel.add_anisotropy_from_array"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_anisotropy_from_array</span></code></a>: Use this if you have a <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> containing the field.</p></li>
 <li><p><a class="reference internal" href="../../reference/model/fe_model.html#shamo.model.fe_model.FEModel.add_anisotropy_from_nii" title="shamo.model.fe_model.FEModel.add_anisotropy_from_nii"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_anisotropy_from_nii</span></code></a>: Use this if you have a <code class="docutils literal notranslate"><span class="pre">.nii</span></code> image containing the field.</p></li>
 </ul>
 <p>The fields can either be scalar fields or tensor fields. For the sake of this example, we generate a fake scalar field.</p>
@@ -426,7 +429,7 @@ This file contains all the information about the model and allow us to load it b
 31
 32
 33</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shamo</span> <span class="kn">import</span> <span class="n">FEModel</span><span class="p">,</span> <span class="n">MeshConfig</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># Model initialization</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">FEModel</span><span class="p">(</span><span class="s2">&quot;example_model&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
@@ -483,11 +486,19 @@ This file contains all the information about the model and allow us to load it b
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Martin Grignard
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -498,7 +509,6 @@ This file contains all the information about the model and allow us to load it b
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
