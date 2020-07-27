@@ -78,4 +78,6 @@ FROM install as jupyter
 
 RUN python3 -m pip install jupyterlab
 
+EXPOSE 8888
+
 ENTRYPOINT [ "python3", "-m", "jupyter", "lab" ]
