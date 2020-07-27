@@ -1,16 +1,12 @@
-ARG PY=3.7
+# BASE IMAGE --------------------------------------------------------------------------
+FROM ubuntu:20.04 AS base
 
-# SYSTEM DEPENDENCIES ---------------------------------------------------------
-# This stage installs all required system dependencies and makes sure to add
-# them to the path.
-FROM python:${PY}-buster AS sys-deps
+# Set timezone
+RUN export TZ=Europe/Brussels && \
+    ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && \
+    echo ${TZ} > /etc/timezone
 
-MAINTAINER "Martin Grignard, mar.grignard@uliege.be"
-LABEL maintainer="Martin Grignard, mar.grignard@uliege.be"
-LABEL affiliation="GIGA CRC In vivo imaging, University of Liège, Liège, Belgium"
-LABEL description="A tool for electromagnetic modelling of the head and sensitivity analysis."
-LABEL link="https://github.com/CyclotronResearchCentre/shamo"
-
+# Install dependencies
 RUN apt-get update && \
     apt-get install -y \
         libglu1-mesa \
@@ -20,52 +16,60 @@ RUN apt-get update && \
         libxcursor-dev \
         libxft2 \
         libxinerama1 \
-        wget \
-        openmpi-bin \
+        curl \
         libcgal-dev \
-        libeigen3-dev && \
+        libeigen3-dev \
+        python3.8 \
+        python3-pip && \
     rm -rf /var/lib/apt/lists/*
 
-# Install GetDP (http://getdp.info/)
-RUN wget -O /tmp/getdp.tgz http://getdp.info/bin/Linux/getdp-3.3.0-Linux64c.tgz && \
-    tar -zxvf /tmp/getdp.tgz -C /opt && \
+# DOWNLOAD IMAGE ----------------------------------------------------------------------
+FROM base as download
+
+# Install GetDP
+ENV APPS_PATH=/opt/apps \
+    GETDP_VERSION=3.3.0 \
+    GMSH_VERSION=4.6.0
+
+RUN curl --progress-bar -o /tmp/getdp.tgz https://getdp.info/bin/Linux/getdp-${GETDP_VERSION}-Linux64c.tgz && \
+    mkdir --parents ${APPS_PATH}/getdp && \
+    tar -zxf /tmp/getdp.tgz -C ${APPS_PATH}/getdp && \
     rm /tmp/getdp* && \
-    mv /opt/getdp* /opt/getdp
+    mv ${APPS_PATH}/getdp/getdp-${GETDP_VERSION}-Linux64 ${APPS_PATH}/getdp/${GETDP_VERSION} && \
+    ln -s ${APPS_PATH}/getdp/${GETDP_VERSION} ${APPS_PATH}/getdp/getdp
 
-# Add Gmsh and GetDP to the path
-ENV PATH=${PATH}:/opt/gmsh/bin/:/opt/getdp/bin/ \
-    PYTHONPATH=${PYTHONPATH}:/opt/gmsh/lib/
+RUN curl --progress-bar -o /tmp/gmsh.tgz https://gmsh.info/bin/Linux/gmsh-${GMSH_VERSION}-Linux64-sdk.tgz && \
+    mkdir --parents ${APPS_PATH}/gmsh && \
+    tar -zxf /tmp/gmsh.tgz -C ${APPS_PATH}/gmsh && \
+    rm /tmp/gmsh* && \
+    mv ${APPS_PATH}/gmsh/gmsh-${GMSH_VERSION}-Linux64-sdk ${APPS_PATH}/gmsh/${GMSH_VERSION} && \
+    ln -s ${APPS_PATH}/gmsh/${GMSH_VERSION} ${APPS_PATH}/gmsh/gmsh
 
-# PYTHON DEPENDENCIES ---------------------------------------------------------
-# Install python dependencies.
-FROM sys-deps AS py-deps
+ENV PATH=${PATH}:${APPS_PATH}/getdp/${GETDP_VERSION}/bin
 
-COPY requirements.txt /tmp/
+# PYTHON IMAGE ------------------------------------------------------------------------
+FROM base AS python
 
-RUN python -m pip install -r /tmp/requirements.txt
+COPY --from=download /opt /opt
 
-# TEST ------------------------------------------------------------------------
-# Install dependencies for test stages and create a test user.
-FROM py-deps AS test
+ENV PATH=${PATH}:/opt/apps/getdp/getdp/bin:/opt/apps/gmsh/gmsh/bin \
+    PYTHONPATH=${PYTHONPATH}:/opt/apps/gmsh/gmsh/lib \
+    SHAMO_PATH=/opt/packages/shamo
 
-RUN python -m pip install flake8 pytest tox
+RUN mkdir --parents ${SHAMO_PATH}
 
-RUN useradd --create-home test
-WORKDIR /home/test
-USER test
+COPY . ${SHAMO_PATH}
 
-# DEPLOY ----------------------------------------------------------------------
-# Create a usable docker with shamo installed.
-FROM py-deps AS deploy
+RUN python3 -m pip install -r ${SHAMO_PATH}/requirements.txt && \
+    python3 -m pip install -e ${SHAMO_PATH}
 
+
+# SHAMO ONLY IMAGE --------------------------------------------------------------------
+FROM python as shamo-only
+
+# Create user
 RUN useradd --create-home shamo
 USER shamo
-
-WORKDIR /tmp
-COPY . /tmp/
-RUN python setup.py install --user
-
 WORKDIR /home/shamo
 
-
-ENTRYPOINT ["python"]
+ENTRYPOINT [ "python3" ]
