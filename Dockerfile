@@ -48,7 +48,7 @@ RUN curl --progress-bar -o /tmp/gmsh.tgz https://gmsh.info/bin/Linux/gmsh-${GMSH
 ENV PATH=${PATH}:${APPS_PATH}/getdp/${GETDP_VERSION}/bin
 
 # PYTHON IMAGE ------------------------------------------------------------------------
-FROM base AS python
+FROM base AS install
 
 COPY --from=download /opt /opt
 
@@ -63,13 +63,19 @@ COPY . ${SHAMO_PATH}
 RUN python3 -m pip install -r ${SHAMO_PATH}/requirements.txt && \
     python3 -m pip install -e ${SHAMO_PATH}
 
-
-# SHAMO ONLY IMAGE --------------------------------------------------------------------
-FROM python as shamo-only
-
 # Create user
 RUN useradd --create-home shamo
 USER shamo
 WORKDIR /home/shamo
 
+# SHAMO ONLY IMAGE --------------------------------------------------------------------
+FROM install as python
+
 ENTRYPOINT [ "python3" ]
+
+# JUPYTER LAB -------------------------------------------------------------------------
+FROM install as jupyter
+
+RUN python3 -m pip install jupyterlab
+
+ENTRYPOINT [ "python3", "-m", "jupyter", "lab" ]
