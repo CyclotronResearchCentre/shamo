@@ -5,7 +5,8 @@ on:
     tags: [ '*' ]
 
 jobs:
-  build:
+  build-and-publish:
+    name: Build and publish deployment docker images 🐋
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
