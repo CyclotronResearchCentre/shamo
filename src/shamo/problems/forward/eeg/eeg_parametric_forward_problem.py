@@ -58,20 +58,11 @@ class EEGParametricForwardProblem(EEGForwardProblem):
 
         Other Parameters
         ----------------
-        order : int, optional
-            The order of the quadrature to generate the evaluation points. (The
-            default is ``2``)
-        rule : str, optional
-            The quadrature rule to generate the evaluation points. Those rules
-            are defined in ``chaospy`` and the accepted values are
-            ``'clenshaw_curtis'``, ``'fejer'``, ``'gaussian'``,
-            ``'gauss_legendre'``, ``'gauss_lobatto'``, ``'gauss_kronrod'``,
-            ``'gauss_patterson'``, ``'gauss_radau'``, ``'genz_keister'``,
-            ``'leja'`` and ``'newton_cotes'``.
-            (The default is ``'leja'``)
-        sparse : bool, optional
-            If set to ``True``, the quadrature rule is sparse. (The default is
-            ``True``)
+        n_evals : int
+            The number of points to generate.
+        skip : int
+            If set to a value different from ``0``, the Halton sequence skips the `skip`
+            first points.
 
         Returns
         -------
@@ -87,10 +78,9 @@ class EEGParametricForwardProblem(EEGForwardProblem):
         solution.set_model(model)
         solution.save()
         # Generate evaluation points
-        order = kwargs.get("order", 2)
-        rule = kwargs.get("rule", "leja")
-        sparse = kwargs.get("sparse", True)
-        n_evals, eval_points = self._generate_evaluation_points(order=order, rule=rule)
+        n_evals = kwargs.get("n_evals", 20)
+        skip = kwargs.get("skip", 0)
+        n_evals, eval_points = self._generate_evaluation_points(n_evals)
         solution.set_quadrature(order, rule, sparse)
         # Generate problems
         sub_problems = self._generate_sub_problems(n_evals, eval_points)
@@ -119,20 +109,19 @@ class EEGParametricForwardProblem(EEGForwardProblem):
             raise RuntimeError("Some solutions were not computed.")
         return solution
 
-    def _generate_evaluation_points(self, order=2, rule="leja", sparse=True):
+    def _generate_evaluation_points(self, n_evals, skip=0):
         """Generate the coordinates of the points to evaluate.
 
         Parameters
         ----------
-        order : int
-            The order of the quadrature to generate.
-        rule : str
-            The quadrature rule to use.
+        n_evals : int
+            The number of points to generate.
+        skip : int
+            If set to a value different from ``0``, the Halton sequence skips the `skip`
+            first points. (The default is ``0``)
 
         Returns
         -------
-        int
-            The number of points to evaluate.
         dict [str, float|numpy.ndarray]
             The points to evaluate.
         """
@@ -147,16 +136,16 @@ class EEGParametricForwardProblem(EEGForwardProblem):
                 ("No varying parameter given. Use " "'EEGForwardProblem' instead.")
             )
         distribution = cp.J(*[distribution for _, distribution in varying])
-        absissas = cp.generate_quadrature(
-            order, distribution, rule=rule, sparse=sparse
-        )[0]
+        absissas = distribution.sample(n_evals, rule="halton")
+        if skip != 0:
+            absissas = absissas[:, skip:]
         points = {
             varying[i][0]: absissas[i, :].flatten().tolist()
             for i in range(len(varying))
         }
         for name, _ in [item for item in tissue_distributions if item[1] is None]:
             points[name] = self.electrical_conductivity[name].value.value
-        return absissas.shape[1], points
+        return points
 
     def _generate_sub_problems(self, n_evals, eval_points):
         """Generate a problem for each evaluation point.
