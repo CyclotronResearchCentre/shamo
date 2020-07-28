@@ -6,9 +6,9 @@ data corresponding to the solution of the EEG parametric forward problem.
 from pathlib import Path
 import pickle
 
-from sklearn.gaussian_process import GaussianProcessRegressor
+from sklearn.gaussian_process import GaussianProcessRegressor, kernels
 
-from shamo.solutions import ParametricForwardSolution
+from shamo.solutions import ParametricForwardSolution, MaternProd
 
 
 class EEGParametricForwardSolution(ParametricForwardSolution):
@@ -64,10 +64,11 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
         shamo.solutions.ParametricForwardSolution
             The current solution.
         """
-        # TODO: Take a look at Sparse Gaussian Process Regressor (SGPR)
         x, y = self._get_x_y()
-        model = GaussianProcessRegressor()
-        model.fit(x, y)
+        kernel = kernels.ConstantKernel() * MaternProd(
+            length_scale=[1.0] * x.shape[1], nu=1.5
+        )
+        model = GaussianProcessRegressor(kernel=kernel, normalize_y=True).fit(x, y)
         surrogate_model_path = str(
             Path(self.path) / "{}_surrogate.bin".format(self.name)
         )
@@ -79,9 +80,9 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
 
         Returns
         -------
-        list [list [float]]
+        numpy.ndarray
             The values of the conductivities.
-        list [numpy.ndarray]
+        numpy.ndarray
             The serialized leadfield matrices.
         """
         varying = [
@@ -101,7 +102,7 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
                 ]
             )
             y.append(solution.get_matrix(memory_map=True).reshape((-1,)))
-        return x, y
+        return np.array(x), np.array(y)
 
     def generate_matrix(self, **kwargs):
         """Generate a new matrix based on the surrogate model.
