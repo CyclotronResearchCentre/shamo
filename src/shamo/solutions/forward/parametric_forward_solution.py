@@ -49,7 +49,7 @@ class MaternProd(kernels.Matern):
         if y is not None and eval_gradient:
             raise ValueError("Gradient can only be evaluated when y is None.")
 
-        K = np.prod(self.R(x, y, length_scale), axis=2)
+        K = np.prod(self.r(x, y, length_scale), axis=2)
 
         if eval_gradient:
             if self.hyperparameter_length_scale.fixed:
