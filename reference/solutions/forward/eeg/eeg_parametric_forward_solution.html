@@ -749,19 +749,10 @@ values [Am].</p>
 </dd>
 <dt class="field-odd">Other Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>order</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>The order of the quadrature to generate the evaluation points. (The
-default is <code class="docutils literal notranslate"><span class="pre">2</span></code>)</p>
+<dt><strong>n_evals</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>The number of points to generate.</p>
 </dd>
-<dt><strong>rule</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>The quadrature rule to generate the evaluation points. Those rules
-are defined in <code class="docutils literal notranslate"><span class="pre">chaospy</span></code> and the accepted values are
-<code class="docutils literal notranslate"><span class="pre">'clenshaw_curtis'</span></code>, <code class="docutils literal notranslate"><span class="pre">'fejer'</span></code>, <code class="docutils literal notranslate"><span class="pre">'gaussian'</span></code>,
-<code class="docutils literal notranslate"><span class="pre">'gauss_legendre'</span></code>, <code class="docutils literal notranslate"><span class="pre">'gauss_lobatto'</span></code>, <code class="docutils literal notranslate"><span class="pre">'gauss_kronrod'</span></code>,
-<code class="docutils literal notranslate"><span class="pre">'gauss_patterson'</span></code>, <code class="docutils literal notranslate"><span class="pre">'gauss_radau'</span></code>, <code class="docutils literal notranslate"><span class="pre">'genz_keister'</span></code>,
-<code class="docutils literal notranslate"><span class="pre">'leja'</span></code> and <code class="docutils literal notranslate"><span class="pre">'newton_cotes'</span></code>.
-(The default is <code class="docutils literal notranslate"><span class="pre">'leja'</span></code>)</p>
-</dd>
-<dt><strong>sparse</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.8)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, the quadrature rule is sparse. (The default is
-<code class="docutils literal notranslate"><span class="pre">True</span></code>)</p>
+<dt><strong>skip</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>If set to a value different from <code class="docutils literal notranslate"><span class="pre">0</span></code>, the Halton sequence skips the <cite>skip</cite>
+first points.</p>
 </dd>
 </dl>
 </dd>

@@ -325,20 +325,11 @@
 
 <span class="sd">        Other Parameters</span>
 <span class="sd">        ----------------</span>
-<span class="sd">        order : int, optional</span>
-<span class="sd">            The order of the quadrature to generate the evaluation points. (The</span>
-<span class="sd">            default is ``2``)</span>
-<span class="sd">        rule : str, optional</span>
-<span class="sd">            The quadrature rule to generate the evaluation points. Those rules</span>
-<span class="sd">            are defined in ``chaospy`` and the accepted values are</span>
-<span class="sd">            ``&#39;clenshaw_curtis&#39;``, ``&#39;fejer&#39;``, ``&#39;gaussian&#39;``,</span>
-<span class="sd">            ``&#39;gauss_legendre&#39;``, ``&#39;gauss_lobatto&#39;``, ``&#39;gauss_kronrod&#39;``,</span>
-<span class="sd">            ``&#39;gauss_patterson&#39;``, ``&#39;gauss_radau&#39;``, ``&#39;genz_keister&#39;``,</span>
-<span class="sd">            ``&#39;leja&#39;`` and ``&#39;newton_cotes&#39;``.</span>
-<span class="sd">            (The default is ``&#39;leja&#39;``)</span>
-<span class="sd">        sparse : bool, optional</span>
-<span class="sd">            If set to ``True``, the quadrature rule is sparse. (The default is</span>
-<span class="sd">            ``True``)</span>
+<span class="sd">        n_evals : int</span>
+<span class="sd">            The number of points to generate.</span>
+<span class="sd">        skip : int</span>
+<span class="sd">            If set to a value different from ``0``, the Halton sequence skips the `skip`</span>
+<span class="sd">            first points.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -354,11 +345,9 @@
         <span class="n">solution</span><span class="o">.</span><span class="n">set_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
         <span class="n">solution</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
         <span class="c1"># Generate evaluation points</span>
-        <span class="n">order</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;order&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">rule</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;rule&quot;</span><span class="p">,</span> <span class="s2">&quot;leja&quot;</span><span class="p">)</span>
-        <span class="n">sparse</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;sparse&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-        <span class="n">n_evals</span><span class="p">,</span> <span class="n">eval_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_evaluation_points</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">rule</span><span class="p">)</span>
-        <span class="n">solution</span><span class="o">.</span><span class="n">set_quadrature</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">rule</span><span class="p">,</span> <span class="n">sparse</span><span class="p">)</span>
+        <span class="n">n_evals</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;n_evals&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+        <span class="n">skip</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;skip&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">eval_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_evaluation_points</span><span class="p">(</span><span class="n">n_evals</span><span class="p">)</span>
         <span class="c1"># Generate problems</span>
         <span class="n">sub_problems</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_sub_problems</span><span class="p">(</span><span class="n">n_evals</span><span class="p">,</span> <span class="n">eval_points</span><span class="p">)</span>
         <span class="n">generator</span> <span class="o">=</span> <span class="p">(</span>
@@ -386,20 +375,19 @@
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Some solutions were not computed.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">solution</span></div>
 
-    <span class="k">def</span> <span class="nf">_generate_evaluation_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="s2">&quot;leja&quot;</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_generate_evaluation_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_evals</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generate the coordinates of the points to evaluate.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        order : int</span>
-<span class="sd">            The order of the quadrature to generate.</span>
-<span class="sd">        rule : str</span>
-<span class="sd">            The quadrature rule to use.</span>
+<span class="sd">        n_evals : int</span>
+<span class="sd">            The number of points to generate.</span>
+<span class="sd">        skip : int</span>
+<span class="sd">            If set to a value different from ``0``, the Halton sequence skips the `skip`</span>
+<span class="sd">            first points. (The default is ``0``)</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        int</span>
-<span class="sd">            The number of points to evaluate.</span>
 <span class="sd">        dict [str, float|numpy.ndarray]</span>
 <span class="sd">            The points to evaluate.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -414,16 +402,16 @@
                 <span class="p">(</span><span class="s2">&quot;No varying parameter given. Use &quot;</span> <span class="s2">&quot;&#39;EEGForwardProblem&#39; instead.&quot;</span><span class="p">)</span>
             <span class="p">)</span>
         <span class="n">distribution</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">J</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">distribution</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">distribution</span> <span class="ow">in</span> <span class="n">varying</span><span class="p">])</span>
-        <span class="n">absissas</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">generate_quadrature</span><span class="p">(</span>
-            <span class="n">order</span><span class="p">,</span> <span class="n">distribution</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">rule</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="n">sparse</span>
-        <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">absissas</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n_evals</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="s2">&quot;halton&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">skip</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">absissas</span> <span class="o">=</span> <span class="n">absissas</span><span class="p">[:,</span> <span class="n">skip</span><span class="p">:]</span>
         <span class="n">points</span> <span class="o">=</span> <span class="p">{</span>
             <span class="n">varying</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span> <span class="n">absissas</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">varying</span><span class="p">))</span>
         <span class="p">}</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">tissue_distributions</span> <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">]:</span>
             <span class="n">points</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">electrical_conductivity</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">value</span>
-        <span class="k">return</span> <span class="n">absissas</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">points</span>
+        <span class="k">return</span> <span class="n">points</span>
 
     <span class="k">def</span> <span class="nf">_generate_sub_problems</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_evals</span><span class="p">,</span> <span class="n">eval_points</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generate a problem for each evaluation point.</span>

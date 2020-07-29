@@ -273,9 +273,10 @@
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
 
-<span class="kn">from</span> <span class="nn">sklearn.gaussian_process</span> <span class="kn">import</span> <span class="n">GaussianProcessRegressor</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.gaussian_process</span> <span class="kn">import</span> <span class="n">GaussianProcessRegressor</span><span class="p">,</span> <span class="n">kernels</span>
 
-<span class="kn">from</span> <span class="nn">shamo.solutions</span> <span class="kn">import</span> <span class="n">ParametricForwardSolution</span>
+<span class="kn">from</span> <span class="nn">shamo.solutions</span> <span class="kn">import</span> <span class="n">ParametricForwardSolution</span><span class="p">,</span> <span class="n">MaternProd</span>
 
 
 <div class="viewcode-block" id="EEGParametricForwardSolution"><a class="viewcode-back" href="../../../../../reference/solutions/forward/eeg/eeg_parametric_forward_solution.html#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution">[docs]</a><span class="k">class</span> <span class="nc">EEGParametricForwardSolution</span><span class="p">(</span><span class="n">ParametricForwardSolution</span><span class="p">):</span>
@@ -331,10 +332,11 @@
 <span class="sd">        shamo.solutions.ParametricForwardSolution</span>
 <span class="sd">            The current solution.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># TODO: Take a look at Sparse Gaussian Process Regressor (SGPR)</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_x_y</span><span class="p">()</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="n">GaussianProcessRegressor</span><span class="p">()</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">kernel</span> <span class="o">=</span> <span class="n">kernels</span><span class="o">.</span><span class="n">ConstantKernel</span><span class="p">()</span> <span class="o">*</span> <span class="n">MaternProd</span><span class="p">(</span>
+            <span class="n">length_scale</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">nu</span><span class="o">=</span><span class="mf">1.5</span>
+        <span class="p">)</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">GaussianProcessRegressor</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span> <span class="n">normalize_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
         <span class="n">surrogate_model_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span>
             <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_surrogate.bin&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="p">)</span>
@@ -346,9 +348,9 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        list [list [float]]</span>
+<span class="sd">        numpy.ndarray</span>
 <span class="sd">            The values of the conductivities.</span>
-<span class="sd">        list [numpy.ndarray]</span>
+<span class="sd">        numpy.ndarray</span>
 <span class="sd">            The serialized leadfield matrices.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">varying</span> <span class="o">=</span> <span class="p">[</span>
@@ -368,7 +370,7 @@
                 <span class="p">]</span>
             <span class="p">)</span>
             <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">get_matrix</span><span class="p">(</span><span class="n">memory_map</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,)))</span>
-        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 
 <div class="viewcode-block" id="EEGParametricForwardSolution.generate_matrix"><a class="viewcode-back" href="../../../../../reference/solutions/forward/eeg/eeg_parametric_forward_solution.html#shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution.generate_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">generate_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generate a new matrix based on the surrogate model.</span>
