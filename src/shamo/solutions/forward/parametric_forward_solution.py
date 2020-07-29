@@ -205,8 +205,6 @@ class ParametricForwardSolution(CommonForwardSolution):
 
     def __init__(self, name, parent_path, **kwargs):
         super().__init__(name, parent_path, **kwargs)
-        # Quadrature
-        self["quadrature"] = kwargs.get("quadrature", {})
         # Sub-solutions paths
         self["solution_paths"] = [
             str(Path(path)) for path in kwargs.get("solution_paths", [])
@@ -220,17 +218,6 @@ class ParametricForwardSolution(CommonForwardSolution):
         else:
             self["surrogate_model_path"] = None
         self._surrogate_model = None
-
-    @property
-    def quadrature(self):
-        """Return the quadrature settings.
-
-        Returns
-        -------
-        dict [str, Any]
-            The quadrature settings.
-        """
-        return self["quadrature"]
 
     @property
     def solution_paths(self):
@@ -276,26 +263,6 @@ class ParametricForwardSolution(CommonForwardSolution):
         if not path.exists():
             raise FileNotFoundError(("The specified model file no longer " "exists."))
         return str(path)
-
-    def set_quadrature(self, order, rule, sparse):
-        """Set the quadrature settings.
-
-        Parameters
-        ----------
-        order : int
-            The order of the quadrature.
-        rule : str
-            The quadrature rule.
-        sparse : bool
-            If set to ``True``, the quadrature is sparse.
-
-        Returns
-        -------
-        shamo.solutions.ParametricForwardSolution
-            The current solution.
-        """
-        self["quadrature"] = {"order": order, "rule": rule, "sparse": sparse}
-        return self
 
     def get_solutions(self):
         """Return the solutions.

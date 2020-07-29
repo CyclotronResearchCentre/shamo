@@ -80,8 +80,7 @@ class EEGParametricForwardProblem(EEGForwardProblem):
         # Generate evaluation points
         n_evals = kwargs.get("n_evals", 20)
         skip = kwargs.get("skip", 0)
-        n_evals, eval_points = self._generate_evaluation_points(n_evals)
-        solution.set_quadrature(order, rule, sparse)
+        eval_points = self._generate_evaluation_points(n_evals)
         # Generate problems
         sub_problems = self._generate_sub_problems(n_evals, eval_points)
         generator = (
