@@ -4,6 +4,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.2.0] - 2020-07-29
+
+### Added
+
+- MaternProd kernel to provide proper implementation of the kernel fr further computations.
+
+### Changed
+
+- Use Halton sequence rather than quadrature rule to define evaluation points.
+- The kernel used in parametric problems is now a compound of a constant kernel and a MaternProd kernel.
+
 ## [0.1.1] - 2020-07-27
 
 ### Added
