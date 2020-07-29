@@ -6,6 +6,7 @@ data corresponding to the solution of the EEG parametric forward problem.
 from pathlib import Path
 import pickle
 
+import numpy as np
 from sklearn.gaussian_process import GaussianProcessRegressor, kernels
 
 from shamo.solutions import ParametricForwardSolution, MaternProd
