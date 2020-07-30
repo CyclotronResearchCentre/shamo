@@ -22,7 +22,7 @@ copyright = "2020, Martin Grignard"
 author = "Martin Grignard"
 
 # The full version, including alpha/beta/rc tags
-release = "0.1.0"
+release = "0.2.0"
 
 # -- General configuration ---------------------------------------------------
 
@@ -36,6 +36,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.mathjax",
     "sphinx.ext.viewcode",
+    "nbsphinx",
 ]
 
 # Add any paths that contain templates here, relative to this directory.

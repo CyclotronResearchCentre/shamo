@@ -1,0 +1,3 @@
+[submodule "docs/src/quickstart/usage/tutorials"]
+	path = docs/src/quickstart/usage/tutorials
+	url = https://github.com/CyclotronResearchCentre/shamo-tutorials
