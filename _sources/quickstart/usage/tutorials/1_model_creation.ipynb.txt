@@ -1,0 +1,266 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Model creation\n",
+    "\n",
+    "In this example, we go through the process of generating a `FEModel` which can then be used for further computations.\n",
+    "\n",
+    "## Model initialization\n",
+    "\n",
+    "First, we initialize the `FEModel`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from shamo import FEModel\n",
+    "\n",
+    "model = FEModel(\"model\", \"./derivatives/1_model_creation\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "After that, a directory named `1_model_creation/model` appears in the derivatives directory.\n",
+    "\n",
+    "## Mesh generation\n",
+    "\n",
+    "First, the model must have a mesh to store geometric information. The `FEModel` class provides four methods to generate a mesh depending on the data you have at the beginning:\n",
+    "- `model.mesh_from_labels()` is used if the input data is a `np.ndarray` containing multiple integer labels from `0` (void) to `n` (n-th tissue).\n",
+    "- `model.mesh_from_nii()` is used if the input data is a `.nii` image containing the exact same data as the `np.ndarray` described above.\n",
+    "- `model.mesh_from_masks()` is used if the input data is a series of `np.ndarray` containing each separate tissue binary masks.\n",
+    "- `model.mesh_from_niis()` is used if the input data is a series of `.nii` images containing the data described above.\n",
+    "\n",
+    "For the purpose of this example, we generate a multilabel `np.array` from scratch and pass it to `model.mesh_from_labels()` but all the methods described above give the same result.\n",
+    "\n",
+    "> **Note:**  \n",
+    "> The quality of the resulting mesh depends on the parameters you choose in you `MeshConfig`. The most important parameters are `facet_distance`, `cell_size` and `cell_radius_edge_ratio`. You should try different combinations of those parameters in order to create a proper mesh."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Model generated.\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "/usr/lib/python3/dist-packages/numpy/ctypeslib.py:531: RuntimeWarning: A builtin ctypes object gave a PEP3118 format string that does not match its itemsize, so a best-guess will be made of the data type. Newer versions of python may behave correctly.\n",
+      "  return array(obj, copy=False)\n"
+     ]
+    }
+   ],
+   "source": [
+    "import numpy as np\n",
+    "from shamo import MeshConfig\n",
+    "\n",
+    "# Generate the parameters\n",
+    "labels = np.ones((11, 11, 11), dtype=np.uint8)\n",
+    "labels[3:-3, 3:-3, 3:-3] = 2\n",
+    "labels[2:-5, 2:-5, 2:-5] = 3\n",
+    "\n",
+    "tissues = [\"a\", \"b\", \"c\"]\n",
+    "\n",
+    "affine = np.diag([1, 1, 1, 1])\n",
+    "\n",
+    "mesh_config = MeshConfig(facet_distance=1.5, cell_size=1)\n",
+    "\n",
+    "# Generate the mesh\n",
+    "model.mesh_from_labels(labels, tissues, affine, \n",
+    "                       mesh_config=mesh_config)\n",
+    "print(\"Model generated.\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "After this, a file named `example_model.msh` is created under the previously created `example_model/` directory. You can open it with [Gmsh](http://gmsh.info/). The `FEModel` also has a new attribute `tissues`. Each key-value pair represents a tissue of the model determined by a `Tissue` object.\n",
+    "\n",
+    "## Sensors placement\n",
+    "\n",
+    "Now that we have a proper mesh, it is time to add the sensors. To do so, we can use the two following methods:\n",
+    "- `model.add_sensor()` to add a single sensor.\n",
+    "- `model.add_sensors()` to add multiple sensors at once.\n",
+    "\n",
+    "In this example, we define 8 sensors located. For each, we set a name and a location."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Sensors placed.\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Define the sensors\n",
+    "coordinates = [(x, y, z) for x in (0, 10) for y in (0, 10) \n",
+    "               for z in (0, 10)]\n",
+    "sensors = {chr(ord(\"A\") + i): c for i, c in enumerate(coordinates)}\n",
+    "\n",
+    "# Add the sensors\n",
+    "model.add_sensors(sensors, \"a\")\n",
+    "print(\"Sensors placed.\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Now, the mesh contains multiple sensors. To know the error of placement of each of them, simply call `Sensor.coordinates_error`:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "A: 0.530[mm]\n",
+      "B: 0.853[mm]\n",
+      "C: 0.850[mm]\n",
+      "D: 1.161[mm]\n",
+      "E: 0.823[mm]\n",
+      "F: 0.488[mm]\n",
+      "G: 1.026[mm]\n",
+      "H: 0.409[mm]\n"
+     ]
+    }
+   ],
+   "source": [
+    "for name, sensor in model.sensors.items():\n",
+    "    print(\"{}: {:0.3f}[mm]\".format(name, sensor.coordinates_error))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "> **Note:**  \n",
+    "> These errors highly depend on the resolution of your mesh so pay attention to the `MeshConfig` you use in the process. Smallest elements in the surface you place sensors on will result in smaller error values but increase the computational cost.\n",
+    "\n",
+    "## Anisotropy definition\n",
+    "\n",
+    "If you want to produce a realistic head model, you need to include anisotropic information in some important tissues such as white matter. For this purpose, three methods are embedded in `FEModel` class:\n",
+    "- `add_anisotropy_from_elements()` is used if you know the values of the field elementwise.\n",
+    "- `add_anisotropy_from_array()` is used if you have a regular grid field contained in an array.\n",
+    "- `add_anisotropy_from_nii()` is used if the previous array is saved in a `.nii` image.\n",
+    "\n",
+    "For this example, we generate a vector field and add it to the model using `add_anisotropy_from_array()`.\n",
+    "\n",
+    "> **Note:**  \n",
+    "> These methods can be used for scalar fields, vector fields and tensor fields in the same way. If you want to add a vector field or a tensor field, you must make sure that the values are stored in the last dimension of the array.\n",
+    "\n",
+    "> **Note:**  \n",
+    "> You can choose between nearest and linear interpolation methods."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Anisotropy added.\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Create a scalar field\n",
+    "field = np.ones((2, 2, 2)) * 0.1\n",
+    "field[1, :, :] = 1\n",
+    "field[:, 1, :] = 1\n",
+    "field[:, :, 1] = 1\n",
+    "affine = np.diag([10, 10, 10, 1])\n",
+    "\n",
+    "# Add the anisotropy\n",
+    "model.add_anisotropy_from_array(field, affine, \"b\",\n",
+    "                                fill_value=1e-8, formula=\"<b>\")\n",
+    "print(\"Anisotropy added.\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We now have a proper `FEModel` to run further computation on. Before continuing, we make sure to save it."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "model.save()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "You should see a file called `example_model.json` appear in the model directory. If you open it, it should contain all the information we have added.\n",
+    "\n",
+    "From now on, we can load the model from this `.json` file and use it in other scripts or"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "model = FEModel.load(model.json_path)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.2"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

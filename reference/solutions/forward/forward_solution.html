@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>shamo.solutions.forward.forward_solution &mdash; shamo 0.1.0 documentation</title>
+  <title>shamo.solutions.forward.forward_solution &mdash; shamo 0.2.0 documentation</title>
   
 
   
@@ -31,6 +31,7 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -92,17 +93,19 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../quickstart/install.html#install-python-dependencies">Install python dependencies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../quickstart/install.html#install-shamo">Install shamo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart/install.html#install-shamo">Install shamo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/install.html#pip">Pip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/install.html#setup-py">Setup.py</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../quickstart/usage/usage.html">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../quickstart/usage/model_creation.html">Finite element model creation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/model_creation.html#model-initialization">Model initialization</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/model_creation.html#mesh-generation">Mesh generation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/model_creation.html#sensors-placement">Sensors placement</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/model_creation.html#anisotropy-definition">Anisotropy definition</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/model_creation.html#model-finalization">Model finalization</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/model_creation.html#full-code">Full code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart/usage/1_model_creation.html">Model creation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/1_model_creation.html#Model-initialization">Model initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/1_model_creation.html#Mesh-generation">Mesh generation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/1_model_creation.html#Sensors-placement">Sensors placement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/1_model_creation.html#Anisotropy-definition">Anisotropy definition</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../quickstart/usage/eeg/eeg.html">EEG</a><ul>
@@ -274,7 +277,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="shamo-solutions-forward-forward-solution">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="shamo-solutions-forward-forward-solution">
 <h1>shamo.solutions.forward.forward_solution<a class="headerlink" href="#shamo-solutions-forward-forward-solution" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="shamo-solutions-forward-forward-solution-forwardsolution">
 <h2>shamo.solutions.forward.forward_solution.ForwardSolution<a class="headerlink" href="#shamo-solutions-forward-forward-solution-forwardsolution" title="Permalink to this headline">¶</a></h2>
