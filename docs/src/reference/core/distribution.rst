@@ -16,7 +16,7 @@ shamo.core.distribution.ConstantDistribution
     :undoc-members:
 
 shamo.core.distribution.TruncatedNormalDistribution
--------------------------------------------
+---------------------------------------------------
 
 .. autoclass:: shamo.core.distribution.TruncatedNormalDistribution
     :members:
