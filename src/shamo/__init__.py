@@ -31,15 +31,11 @@ from .solutions.forward.eeg.eeg_parametric_forward_solution import (
 
 # Remove unnecessary warnings
 warnings.filterwarnings(
-    "ignore",
-    category=RuntimeWarning,
-    lineno=523,
-    message="A builtin ctypes object gave a PEP3118",
+    "ignore", category=RuntimeWarning, message="A builtin ctypes object gave a PEP3118",
 )
 warnings.filterwarnings(
     "ignore",
     category=RuntimeWarning,
-    lineno=49,
     message="divide by zero encountered in true_divide",
 )
 warnings.filterwarnings(
