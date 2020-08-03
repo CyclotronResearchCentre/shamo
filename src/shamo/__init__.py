@@ -3,7 +3,11 @@
 import warnings
 
 # Core
-from .core.distribution import ConstantDistribution, UniformDistribution
+from .core.distribution import (
+    ConstantDistribution,
+    UniformDistribution,
+    TruncatedNormalDistribution,
+)
 
 # Model
 from .model.fe_model import FEModel
@@ -45,6 +49,7 @@ warnings.filterwarnings(
 __all__ = [
     "ConstantDistribution",
     "UniformDistribution",
+    "TruncatedNormalDistribution",
     "FEModel",
     "MeshConfig",
     "FESource",
