@@ -4,6 +4,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.3.1] - 2020-08-05
+
+### Hotfix
+
+- Fix MANIFEST error.
+
 ## [0.3.0] - 2020-08-05
 
 ### Added
