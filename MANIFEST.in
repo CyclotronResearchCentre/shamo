@@ -1,2 +1,2 @@
-recursive-include src *.txt
-recursive-include src *.txt
+recursive-include src *.pro
+recursive-include src *.template
