@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Solve EEG parametric forward problem &mdash; shamo 0.3.0 documentation</title>
+  <title>Solve EEG parametric forward problem &mdash; shamo 0.3.2 documentation</title>
   
 
   
@@ -593,7 +593,8 @@ div.rendered_html tbody tr:hover {
  &#39;reference&#39;: &#39;A&#39;}
 </pre></div></div>
 </div>
-<p>The only thing that changes here is how we define the electrical conductivity of the tissues. Indeed, as we want them to be parametric, we have to provide the problem with distributions for their values. The available distributions are: - <code class="docutils literal notranslate"><span class="pre">ConstantDistribution</span></code>: It defines a fixed variable and only takes one parameter which is the value. - <code class="docutils literal notranslate"><span class="pre">UniformDistribution</span></code>: It defines a uniform distribution and takes two parameters (its min and max values).</p>
+<p>The only thing that changes here is how we define the electrical conductivity of the tissues. Indeed, as we want them to be parametric, we have to provide the problem with distributions for their values. The available distributions are: - <code class="docutils literal notranslate"><span class="pre">ConstantDistribution</span></code>: It defines a fixed variable and only takes one parameter which is the value. - <code class="docutils literal notranslate"><span class="pre">TruncatedNormalDistribution</span></code>: It defines a bounded normal distribution. - <code class="docutils literal notranslate"><span class="pre">UniformDistribution</span></code>: It defines a uniform distribution and takes two
+parameters (its min and max values).</p>
 <p>As for the <code class="docutils literal notranslate"><span class="pre">EEGForwardProblem</span></code>, we can specify an anisotropic field for each tissue.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
