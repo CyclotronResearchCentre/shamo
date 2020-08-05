@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Solve EEG parametric forward problem &mdash; shamo 0.2.0 documentation</title>
+  <title>Solve EEG parametric forward problem &mdash; shamo 0.3.0 documentation</title>
   
 
   
@@ -139,6 +139,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../reference/core/distribution.html">shamo.core.distribution</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/core/distribution.html#shamo-core-distribution-distribution">shamo.core.distribution.Distribution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/core/distribution.html#shamo-core-distribution-constantdistribution">shamo.core.distribution.ConstantDistribution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/core/distribution.html#shamo-core-distribution-truncatednormaldistribution">shamo.core.distribution.TruncatedNormalDistribution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/core/distribution.html#shamo-core-distribution-uniformdistribution">shamo.core.distribution.UniformDistribution</a></li>
 </ul>
 </li>
@@ -628,7 +629,6 @@ div.rendered_html tbody tr:hover {
 <h2>Problem resolution<a class="headerlink" href="#Problem-resolution" title="Permalink to this headline">¶</a></h2>
 <p>Finally, we can solve the problem. This solver can accept more arguments. For instance, we can provide a <code class="docutils literal notranslate"><span class="pre">method</span></code> argument which defines how we want to solve the problem: - <code class="docutils literal notranslate"><span class="pre">METHOD_SEQ</span></code> to use only one core. - <code class="docutils literal notranslate"><span class="pre">METHOD_MULTI</span></code> to use multiple cores on a single machine. - <code class="docutils literal notranslate"><span class="pre">METHOD_MPI</span></code> to use multiple cores on a distributed system. - <code class="docutils literal notranslate"><span class="pre">METHOD_JOBS</span></code> to generate one python script by sub-problem. Those scripts can then be run to generate separate <code class="docutils literal notranslate"><span class="pre">EEGForwardSolution</span></code>. When using this method,
 you must call the <code class="docutils literal notranslate"><span class="pre">finalize()</span></code> method after loading the solution to allow it to discover the sub-solutions and generate the surrogate model.</p>
-<p>It also accepts a <code class="docutils literal notranslate"><span class="pre">rule</span></code> argument defining the quadrature rule used to generate the evaluation points (see <a class="reference external" href="https://chaospy.readthedocs.io/en/master/quadrature.html#gaussian-quadratures-rules">chaospy</a>) and an <code class="docutils literal notranslate"><span class="pre">order</span></code> parameter which determines the order of the quadrature (The greatest the order, the more points are evaluated).</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>

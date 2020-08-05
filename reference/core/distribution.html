@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>shamo.core.distribution &mdash; shamo 0.2.0 documentation</title>
+  <title>shamo.core.distribution &mdash; shamo 0.3.0 documentation</title>
   
 
   
@@ -32,6 +32,8 @@
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -101,17 +103,17 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../quickstart/usage/usage.html">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/1_model_creation.html">Model creation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/1_model_creation.html#Model-initialization">Model initialization</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/1_model_creation.html#Mesh-generation">Mesh generation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/1_model_creation.html#Sensors-placement">Sensors placement</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/1_model_creation.html#Anisotropy-definition">Anisotropy definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/tutorials/1_model_creation.html">Model creation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/1_model_creation.html#Model-initialization">Model initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/1_model_creation.html#Mesh-generation">Mesh generation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/1_model_creation.html#Sensors-placement">Sensors placement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/1_model_creation.html#Anisotropy-definition">Anisotropy definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/eeg/eeg.html">EEG</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/eeg/forward_problem.html">EEG forward problem resolution</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/eeg/parametric_forward_problem.html">EEG parametric forward problem resolution</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/eeg/simulation.html">EEG simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/eeg.html">EEG</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/2_eeg_forward.html">Solve EEG forward problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/4_eeg_parametric_forward.html">Solve EEG parametric forward problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/3_eeg_simulation.html">Simulate EEG source(s)</a></li>
 </ul>
 </li>
 </ul>
@@ -137,6 +139,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">shamo.core.distribution</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#shamo-core-distribution-distribution">shamo.core.distribution.Distribution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#shamo-core-distribution-constantdistribution">shamo.core.distribution.ConstantDistribution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#shamo-core-distribution-truncatednormaldistribution">shamo.core.distribution.TruncatedNormalDistribution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#shamo-core-distribution-uniformdistribution">shamo.core.distribution.UniformDistribution</a></li>
 </ul>
 </li>
@@ -426,6 +429,71 @@ them in other methods, they should correspond to distributions from
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></dt><dd><p>The value.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="shamo-core-distribution-truncatednormaldistribution">
+<h2>shamo.core.distribution.TruncatedNormalDistribution<a class="headerlink" href="#shamo-core-distribution-truncatednormaldistribution" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="shamo.core.distribution.TruncatedNormalDistribution">
+<em class="property">class </em><code class="sig-prename descclassname">shamo.core.distribution.</code><code class="sig-name descname">TruncatedNormalDistribution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">minimum</span></em>, <em class="sig-param"><span class="n">maximum</span></em>, <em class="sig-param"><span class="n">mu</span></em>, <em class="sig-param"><span class="n">sigma</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/shamo/core/distribution.html#TruncatedNormalDistribution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shamo.core.distribution.TruncatedNormalDistribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a truncated normal distribution.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>minimum</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The minimum value.</p>
+</dd>
+<dt><strong>maximum</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The maximum value.</p>
+</dd>
+<dt><strong>mu</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The mean value.</p>
+</dd>
+<dt><strong>sigma</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The standard deviation.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="shamo.core.distribution.TruncatedNormalDistribution.distribution">
+<em class="property">property </em><code class="sig-name descname">distribution</code><a class="headerlink" href="#shamo.core.distribution.TruncatedNormalDistribution.distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the actual distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference external" href="https://chaospy.readthedocs.io/en/master/distributions/collection.html#chaospy.distributions.collection.trunc_normal.TruncNormal" title="(in ChaosPy)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chaospy.distributions.collection.trunc_normal.TruncNormal</span></code></a></dt><dd><p>The distribution.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.core.distribution.TruncatedNormalDistribution.mu">
+<em class="property">property </em><code class="sig-name descname">mu</code><a class="headerlink" href="#shamo.core.distribution.TruncatedNormalDistribution.mu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the mean value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></dt><dd><p>The mean value.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.core.distribution.TruncatedNormalDistribution.sigma">
+<em class="property">property </em><code class="sig-name descname">sigma</code><a class="headerlink" href="#shamo.core.distribution.TruncatedNormalDistribution.sigma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the standard deviation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></dt><dd><p>The standard deviation.</p>
 </dd>
 </dl>
 </dd>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API reference &mdash; shamo 0.2.0 documentation</title>
+  <title>API reference &mdash; shamo 0.3.0 documentation</title>
   
 
   
@@ -32,6 +32,8 @@
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,7 +41,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Code reference" href="../reference/reference.html" />
-    <link rel="prev" title="EEG simulation" href="../quickstart/usage/eeg/simulation.html" /> 
+    <link rel="prev" title="Simulate EEG source(s)" href="../quickstart/usage/tutorials/3_eeg_simulation.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -101,17 +103,17 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../quickstart/usage/usage.html">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../quickstart/usage/1_model_creation.html">Model creation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../quickstart/usage/1_model_creation.html#Model-initialization">Model initialization</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../quickstart/usage/1_model_creation.html#Mesh-generation">Mesh generation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../quickstart/usage/1_model_creation.html#Sensors-placement">Sensors placement</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../quickstart/usage/1_model_creation.html#Anisotropy-definition">Anisotropy definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart/usage/tutorials/1_model_creation.html">Model creation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../quickstart/usage/tutorials/1_model_creation.html#Model-initialization">Model initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../quickstart/usage/tutorials/1_model_creation.html#Mesh-generation">Mesh generation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../quickstart/usage/tutorials/1_model_creation.html#Sensors-placement">Sensors placement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../quickstart/usage/tutorials/1_model_creation.html#Anisotropy-definition">Anisotropy definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../quickstart/usage/eeg/eeg.html">EEG</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../quickstart/usage/eeg/forward_problem.html">EEG forward problem resolution</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../quickstart/usage/eeg/parametric_forward_problem.html">EEG parametric forward problem resolution</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../quickstart/usage/eeg/simulation.html">EEG simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart/usage/eeg.html">EEG</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../quickstart/usage/tutorials/2_eeg_forward.html">Solve EEG forward problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../quickstart/usage/tutorials/4_eeg_parametric_forward.html">Solve EEG parametric forward problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../quickstart/usage/tutorials/3_eeg_simulation.html">Simulate EEG source(s)</a></li>
 </ul>
 </li>
 </ul>
@@ -137,6 +139,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../reference/core/distribution.html">shamo.core.distribution</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../reference/core/distribution.html#shamo-core-distribution-distribution">shamo.core.distribution.Distribution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../reference/core/distribution.html#shamo-core-distribution-constantdistribution">shamo.core.distribution.ConstantDistribution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/core/distribution.html#shamo-core-distribution-truncatednormaldistribution">shamo.core.distribution.TruncatedNormalDistribution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../reference/core/distribution.html#shamo-core-distribution-uniformdistribution">shamo.core.distribution.UniformDistribution</a></li>
 </ul>
 </li>
@@ -339,6 +342,7 @@ Here is a quick description of the exposed classes.</p>
 <h2>Distributions<a class="headerlink" href="#distributions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="../reference/core/distribution.html#shamo.core.distribution.ConstantDistribution" title="shamo.core.distribution.ConstantDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConstantDistribution</span></code></a>: For a property with a fixed value.</p></li>
+<li><p><a class="reference internal" href="../reference/core/distribution.html#shamo.core.distribution.TruncatedNormalDistribution" title="shamo.core.distribution.TruncatedNormalDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">TruncatedNormalDistribution</span></code></a>: For a property with a bounded normal distribution.</p></li>
 <li><p><a class="reference internal" href="../reference/core/distribution.html#shamo.core.distribution.UniformDistribution" title="shamo.core.distribution.UniformDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">UniformDistribution</span></code></a>: For a property with uniformly distributed values.</p></li>
 </ul>
 </div>
@@ -355,7 +359,7 @@ Here is a quick description of the exposed classes.</p>
         <a href="../reference/reference.html" class="btn btn-neutral float-right" title="Code reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../quickstart/usage/eeg/simulation.html" class="btn btn-neutral float-left" title="EEG simulation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../quickstart/usage/tutorials/3_eeg_simulation.html" class="btn btn-neutral float-left" title="Simulate EEG source(s)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
