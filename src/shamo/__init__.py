@@ -3,7 +3,11 @@
 import warnings
 
 # Core
-from .core.distribution import ConstantDistribution, UniformDistribution
+from .core.distribution import (
+    ConstantDistribution,
+    UniformDistribution,
+    TruncatedNormalDistribution,
+)
 
 # Model
 from .model.fe_model import FEModel
@@ -27,15 +31,11 @@ from .solutions.forward.eeg.eeg_parametric_forward_solution import (
 
 # Remove unnecessary warnings
 warnings.filterwarnings(
-    "ignore",
-    category=RuntimeWarning,
-    lineno=523,
-    message="A builtin ctypes object gave a PEP3118",
+    "ignore", category=RuntimeWarning, message="A builtin ctypes object gave a PEP3118",
 )
 warnings.filterwarnings(
     "ignore",
     category=RuntimeWarning,
-    lineno=49,
     message="divide by zero encountered in true_divide",
 )
 warnings.filterwarnings(
@@ -45,6 +45,7 @@ warnings.filterwarnings(
 __all__ = [
     "ConstantDistribution",
     "UniformDistribution",
+    "TruncatedNormalDistribution",
     "FEModel",
     "MeshConfig",
     "FESource",

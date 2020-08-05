@@ -39,4 +39,5 @@ Distributions
 -------------
 
 - :class:`ConstantDistribution <shamo.core.distribution.ConstantDistribution>`: For a property with a fixed value.
+- :class:`TruncatedNormalDistribution <shamo.core.distribution.TruncatedNormalDistribution>`: For a property with a bounded normal distribution.
 - :class:`UniformDistribution <shamo.core.distribution.UniformDistribution>`: For a property with uniformly distributed values.

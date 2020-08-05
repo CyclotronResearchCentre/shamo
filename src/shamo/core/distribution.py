@@ -167,3 +167,57 @@ class UniformDistribution(Distribution):
             The distribution.
         """
         return chaos.Uniform(self.minimum, self.maximum)
+
+
+class TruncatedNormalDistribution(UniformDistribution):
+    """Define a truncated normal distribution.
+
+    Parameters
+    ----------
+    minimum : float
+        The minimum value.
+    maximum : float
+        The maximum value.
+    mu : float
+        The mean value.
+    sigma : float
+        The standard deviation.
+    """
+
+    def __init__(self, minimum, maximum, mu, sigma):
+        super().__init__(minimum, maximum)
+        self["mu"] = mu
+        self["sigma"] = sigma
+
+    @property
+    def mu(self):
+        """Return the mean value.
+
+        Returns
+        -------
+        float
+            The mean value.
+        """
+        return self["mu"]
+
+    @property
+    def sigma(self):
+        """Return the standard deviation.
+
+        Returns
+        -------
+        float
+            The standard deviation.
+        """
+        return self["sigma"]
+
+    @property
+    def distribution(self):
+        """Return the actual distribution.
+
+        Returns
+        -------
+        chaospy.distributions.collection.trunc_normal.TruncNormal
+            The distribution.
+        """
+        return chaos.TruncNormal(self.minimum, self.maximum, self.mu, self.sigma)

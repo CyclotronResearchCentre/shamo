@@ -20,7 +20,7 @@ We recommend you to use the package manager of your OS.
 .. list-table:: CGAL
     :widths: 25 50 50
     :header-rows: 1
-    
+
     * - OS
       - Package manager
       - Link
@@ -43,7 +43,7 @@ Download the latest version corresponding to your OS.
 .. list-table:: GetDP
     :widths: 25 100
     :header-rows: 1
-    
+
     * - OS
       - Link
     * - Linux
@@ -63,7 +63,7 @@ Using ``pip``, install the following packages:
 .. list-table:: Python packages
     :widths: 25 50 50
     :header-rows: 1
-    
+
     * - Package
       - Version
       - Link
@@ -77,7 +77,7 @@ Using ``pip``, install the following packages:
       - >=2.5.0
       - `nipy.org <https://nipy.org/nibabel/>`_
     * - Pygalmesh
-      - ==0.4.0
+      - >=0.4.0
       - `pygalmesh <https://github.com/nschloe/pygalmesh>`_
     * - Gmsh
       - >=4.5.6
@@ -89,15 +89,26 @@ Using ``pip``, install the following packages:
 You simply have to issue the following command in a terminal:
 
 .. code-block:: shell
-    
-    python3 -m pip install --user numpy scipy nibabel pygalmesh==0.4.0 gmsh chaospy
+
+    python3 -m pip install --user numpy scipy nibabel pygalmesh>=0.4.0 gmsh chaospy
 
 Install shamo
 -------------
 
-For now, ``shamo`` is still not available using ``pip`` so clone or download the latest release from `github <https://github.com/CyclotronResearchCentre/shamo>`_
-and issue the following command:
+Pip
+~~~
+
+Since ``shamo`` is available on [PyPI](https://pypi.org/project/shamo/), the easiest way to install the latest release is to use the following command:
 
 .. code-block:: shell
-    
+
+    python3 -m pip install shamo
+
+Setup.py
+~~~~~~~~
+
+If you want to install from source, simply clone the repository and use the following command:
+
+.. code-block:: shell
+
     python3 setup.py install --user
