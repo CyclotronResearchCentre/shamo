@@ -76,6 +76,13 @@ class Distribution(dict, abc.ABC):
             return ConstantDistribution(data.get("value"))
         elif name == "uniform":
             return UniformDistribution(data.get("minimum"), data.get("maximum"))
+        elif name == "truncated_normal":
+            return TruncatedNormalDistribution(
+                data.get("minimum"),
+                data.get("maximum"),
+                data.get("sigma"),
+                data.get("mu"),
+            )
 
 
 class ConstantDistribution(Distribution):
@@ -169,7 +176,7 @@ class UniformDistribution(Distribution):
         return chaos.Uniform(self.minimum, self.maximum)
 
 
-class TruncatedNormalDistribution(UniformDistribution):
+class TruncatedNormalDistribution(Distribution):
     """Define a truncated normal distribution.
 
     Parameters
@@ -185,9 +192,33 @@ class TruncatedNormalDistribution(UniformDistribution):
     """
 
     def __init__(self, minimum, maximum, mu, sigma):
-        super().__init__(minimum, maximum)
+        super().__init__("truncated_normal")
+        self["minimum"] = minimum
+        self["maximum"] = maximum
         self["mu"] = mu
         self["sigma"] = sigma
+
+    @property
+    def minimum(self):
+        """Return the minimum value.
+
+        Returns
+        -------
+        float
+            The minimum value.
+        """
+        return self["minimum"]
+
+    @property
+    def maximum(self):
+        """Return the maximum value.
+
+        Returns
+        -------
+        float
+            The maximum value.
+        """
+        return self["maximum"]
 
     @property
     def mu(self):
