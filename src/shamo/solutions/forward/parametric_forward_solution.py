@@ -329,10 +329,10 @@ class ParametricForwardSolution(CommonForwardSolution):
         self["sensors"] = solutions[0].sensors
         # Remove duplicated elements files
         elements_path = "{}_elements.npz".format(self.name)
-        shutil.copy(solutions[0].elements_path, str(Path(self.path) / elements_path))
+        shutil.copy(solutions[-1].elements_path, str(Path(self.path) / elements_path))
         self["elements_path"] = elements_path
         for solution in solutions:
-            Path(solution.elements_path).unlink()
+            Path(solution.elements_path).unlink(missing_ok=True)
             solution["elements_path"] = str(Path("..") / elements_path)
             solution.save()
         # Generate the surrogate model
