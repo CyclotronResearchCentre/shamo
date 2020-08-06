@@ -84,7 +84,7 @@ class EEGParametricForwardProblem(EEGForwardProblem):
         # Generate problems
         sub_problems = self._generate_sub_problems(n_evals, eval_points)
         generator = (
-            (problem, "sol_{:08d}".format(i), solution.path, model)
+            (problem, "sol_{:08d}".format(i + skip), solution.path, model)
             for i, problem in enumerate(sub_problems)
         )
         # Solve using the right method
