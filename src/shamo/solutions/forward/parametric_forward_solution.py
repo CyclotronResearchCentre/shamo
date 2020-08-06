@@ -332,7 +332,10 @@ class ParametricForwardSolution(CommonForwardSolution):
         shutil.copy(solutions[-1].elements_path, str(Path(self.path) / elements_path))
         self["elements_path"] = elements_path
         for solution in solutions:
-            Path(solution.elements_path).unlink(missing_ok=True)
+            try:
+                Path(solution.elements_path).unlink()
+            except FileNotFoundError:
+                pass
             solution["elements_path"] = str(Path("..") / elements_path)
             solution.save()
         # Generate the surrogate model
