@@ -135,7 +135,7 @@ class EEGParametricForwardProblem(EEGForwardProblem):
                 ("No varying parameter given. Use " "'EEGForwardProblem' instead.")
             )
         distribution = cp.J(*[distribution for _, distribution in varying])
-        absissas = distribution.sample(n_evals, rule="halton")
+        absissas = distribution.sample(n_evals + skip, rule="halton")
         if skip != 0:
             absissas = absissas[:, skip:]
         points = {
