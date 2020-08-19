@@ -4,6 +4,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Fixed
+
+- Using `skip` parameter in `EEGParametricForwardSolution.solve` now works as expected.
+
 ## [0.3.2] - 2020-08-05
 
 ### Fixed
