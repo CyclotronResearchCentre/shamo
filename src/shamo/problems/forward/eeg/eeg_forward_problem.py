@@ -310,23 +310,15 @@ class EEGForwardProblem(ForwardProblem):
         numpy.ndarray
             The values.
         """
-        element_types = []
-        elements = []
-        values = []
-        with open(path, "rb") as out_file:
-            for line in out_file:
-                split = line.split()
-                element = int(split[1])
-                element_type = int(split[0])
-                if element not in elements:
-                    element_types.append(element_type)
-                    elements.append(element)
-                    values.append([float(v) for v in split[-3:]])
-        return (
-            np.array(element_types).flatten(),
-            np.array(elements).flatten(),
-            np.array(values),
+        data = np.loadtxt(
+            path,
+            dtype={
+                "names": ("type", "tag", "x", "y", "z"),
+                "formats": (np.uint8, np.uint, np.float, np.float, np.float),
+            },
+            usecols=(0, 1, -3, -2, -1),
         )
+        return data["type"], data["tag"], np.vstack((data["x"], data["y"], data["z"])).T
 
     @staticmethod
     def _generate_matrix(sensors, path, n_values_per_element):
