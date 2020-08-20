@@ -188,10 +188,7 @@ class EEGForwardProblem(ForwardProblem):
                         element_coords, element_tags, min_source_dist
                     )
                 matrix = self._reduce_matrix(
-                    matrix,
-                    element_tags,
-                    source_elems,
-                    EEGForwardSolution.n_values_per_element,
+                    matrix, element_tags, source_elems, solution.n_values_per_element,
                 )
                 element_tags = source_elems["tags"]
                 element_coords = source_elems["coords"]
