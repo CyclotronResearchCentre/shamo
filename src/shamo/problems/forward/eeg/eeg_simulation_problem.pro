@@ -98,6 +98,8 @@ Resolution {
             { Name Sys_v; NameOfFormulation Form_v; }
         }
         Operation {
+            SetGlobalSolverOptions["-ksp_type gmres -ksp_gmres_restart 1000 -ksp_rtol 1e-8"];
+            SetGlobalSolverOptions["-pc_type ilu -pc_factor_levels 2 "];
             Generate[Sys_v];
             Solve[Sys_v];
             SaveSolution[Sys_v];

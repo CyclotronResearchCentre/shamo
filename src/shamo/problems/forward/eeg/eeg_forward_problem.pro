@@ -118,6 +118,8 @@ Resolution {
             }
         }
         Operation {
+            SetGlobalSolverOptions["-ksp_type gmres -ksp_gmres_restart 1000 -ksp_rtol 1e-8"];
+            SetGlobalSolverOptions["-pc_type ilu -pc_factor_levels 2 "];
             Generate[system];
             For i_sensor In {0:<count:sensors>}
                 Evaluate[ $i_solution = i_sensor ];
