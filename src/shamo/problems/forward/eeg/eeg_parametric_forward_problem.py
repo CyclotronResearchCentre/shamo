@@ -58,11 +58,11 @@ class EEGParametricForwardProblem(EEGForwardProblem):
 
         Other Parameters
         ----------------
-        n_evals : int
-            The number of points to generate.
-        skip : int
+        n_evals : int, optional
+            The number of points to generate. (The default is ``20``)
+        skip : int, optional
             If set to a value different from ``0``, the Halton sequence skips the `skip`
-            first points.
+            first points. (The default is ``0``)
         source_elems : dict [str, numpy.ndarray], optional
             A dictionary containing both the tags and the coordinates of the elements of
             the region of interest to keep. If set to ``None``, `min_source_dist` is
@@ -86,6 +86,7 @@ class EEGParametricForwardProblem(EEGForwardProblem):
         skip = kwargs.get("skip", 0)
         eval_points = self._generate_evaluation_points(n_evals, skip)
         # Generate problems
+        source_elems = kwargs.get("source_elems", None)
         sub_problems = self._generate_sub_problems(n_evals, eval_points)
         generator = (
             (problem, "sol_{:08d}".format(i + skip), solution.path, model, source_elems)
