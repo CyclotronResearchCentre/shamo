@@ -11,6 +11,7 @@ from pkg_resources import resource_filename
 
 import numpy as np
 from scipy.sparse import csc_matrix
+from scipy.spatial.distance import cdist
 
 from shamo.problems import ForwardProblem
 from shamo.utils import TemplateFile, get_elements_coordinates
@@ -110,6 +111,17 @@ class EEGForwardProblem(ForwardProblem):
         model : shamo.core.objects.FileObject
             The model to solve the problem on.
 
+        Other Parameters
+        ----------------
+        min_source_dist : float, optional
+            The minimum distance between two sources. If set to ``None``, all the
+            elements of the region of interest are kept. Otherwise, equidistant elements
+            are kept. (The default is ``None``)
+        source_elems : dict [str, numpy.ndarray], optional
+            A dictionary containing both the tags and the coordinates of the elements of
+            the region of interest to keep. If set to ``None``, `min_source_dist` is
+            used. Otherwise, `min_source_dist` is ignored. (The default is ``None``)
+
         Returns
         -------
         shamo.EEGForwardSolution
@@ -162,12 +174,25 @@ class EEGForwardProblem(ForwardProblem):
             matrix, element_types, element_tags = self._generate_matrix(
                 sensors, temporary_path, solution.n_values_per_element
             )
-            solution.set_matrix(matrix)
             solution.set_sensors([name for name in sensors])
             # Generate element data
             element_coords = get_elements_coordinates(
                 model, self.regions_of_interest, element_types, element_tags
             )
+            # Reduce source density
+            min_source_dist = kwargs.get("min_source_dist", None)
+            source_elems = kwargs.get("source_elems", None)
+            if min_source_dist is not None or source_elems is not None:
+                if source_elems is None:
+                    source_elems = self._reduce_source_density(
+                        element_coords, element_tags, min_source_dist
+                    )
+                matrix = self._reduce_matrix(
+                    matrix, element_tags, source_elems, solution.n_values_per_element,
+                )
+                element_tags = source_elems["tags"]
+                element_coords = source_elems["coords"]
+            solution.set_matrix(matrix)
             solution.set_elements(element_tags, element_coords)
         solution.save()
         return solution
@@ -356,3 +381,74 @@ class EEGForwardProblem(ForwardProblem):
                 )
             matrix[i_sensor, :] = values.flatten()
         return matrix, element_types, element_tags
+
+    @staticmethod
+    def _reduce_source_density(element_coords, element_tags, min_source_dist):
+        """Remove unnecessary elements to reduce the size of the leadfield matrix.
+
+        Parameters
+        ----------
+        element_coords : numpy.ndarray
+            The coordinates of all the elements of the region of interest.
+        element_tags : numpy.ndarray
+            The tags of all the elements of the region of interest.
+        min_source_dist : float
+            Thee minimum distance between two sources.
+
+        Returns
+        -------
+        dict [str, numpy.ndarray]
+            A dictionary containing both the tags and the coordinates of the elements of
+            the region of interest to keep.
+        """
+        init_size = element_tags.size
+        used = []
+        current_index = 0
+        current_tag = element_tags[current_index]
+        current_coords = element_coords[current_index]
+        while len(used) != element_tags.size:
+            # Compute distances
+            distances = cdist([current_coords], element_coords).ravel()
+            # Remove elements closer than min_source_dist
+            min_index = np.where(
+                np.logical_and(distances <= min_source_dist, distances != 0)
+            )[0]
+            element_coords = np.delete(element_coords, min_index, 0)
+            element_tags = np.delete(element_tags, min_index)
+            distances = np.delete(distances, min_index)
+            # Set new current point
+            used.append(current_tag)
+            new_current_tag = current_tag
+            current_dist = min_source_dist
+            while np.isin(new_current_tag, used) and len(used) != element_tags.size:
+                current_dist = np.min(distances[distances > current_dist])
+                current_index = np.where(distances == current_dist)[0][0]
+                new_current_tag = element_tags[current_index]
+                current_coords = element_coords[current_index]
+            current_tag = new_current_tag
+        return {"tags": element_tags, "coords": element_coords}
+
+    @staticmethod
+    def _reduce_matrix(matrix, element_tags, source_elems, n_values_per_element):
+        """Remove unnecessary columns from the leadfield matrix.
+
+        Parameters
+        ----------
+        matrix : numpy.ndarray
+            The full leadfield matrix.
+        element_tags : numpy.ndarray
+            The tags of all the elements of the region of interest.
+        source_elems : dict [str, numpy.ndarray]
+            A dictionary containing both the tags and the coordinates of the elements of
+            the region of interest to keep.
+        n_values_per_element : int
+            The number of columns by element.
+
+        Returns
+        -------
+        numpy.ndarray
+            The reduced leadfield matrix.
+        """
+        source_tags = source_elems["tags"]
+        mask = np.repeat(np.isin(element_tags, source_tags), n_values_per_element)
+        return matrix[:, mask]
