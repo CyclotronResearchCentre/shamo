@@ -12,6 +12,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Speed up `EEGForwardProblem._read_out_file` by using `numpy` loading capabilities.
 
+### Added
+
+- Allow source space reduction in both `EEGForwardProblem` and `EEGParametricForwardSolution`.
+
 ## [0.3.2] - 2020-08-05
 
 ### Fixed
