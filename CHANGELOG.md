@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Speed up `EEGForwardProblem._read_out_file` by using `numpy` loading capabilities.
+- GetDP now uses GMRES to solve the problems.
 
 ### Added
 
