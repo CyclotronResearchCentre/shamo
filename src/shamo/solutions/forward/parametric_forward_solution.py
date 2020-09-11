@@ -287,14 +287,22 @@ class ParametricForwardSolution(CommonForwardSolution):
             self._surrogate_model = pickle.load(open(self.surrogate_model_path, "rb"))
         return self._surrogate_model
 
-    def finalize(self, clean=True):
+    def finalize(self, force=False, clean=True, n_restarts_optimizer=0, n_subs=0):
         """Finalize the generation of the parametric solution.
 
         Parameters
         ----------
+        force : bool, optional
+            If set to ``True``, the solution is finalized no matter if it already was.
+            (The default is ``False``)
         clean : bool, optional
             If set to ``True``, all the temporary files created during the
             generation are removed. (The default is ``True``)
+        n_restarts_optimizer : int, optional
+            The number of trials for the optimizer. (The default is ``0``)
+        n_subs : int, optional
+            If set to ``0``, all the sub solutions are used. Otherwise, only the
+            `n_subs` first sub solutions are considered. (The default is ``0``)
 
         Returns
         -------
@@ -306,7 +314,7 @@ class ParametricForwardSolution(CommonForwardSolution):
         RuntimeError
             If the solution is not finalized and no sub-solution was found.
         """
-        if self.is_finalized:
+        if self.is_finalized and not force:
             return self
         # Check if can be finalized
         sub_paths = []
@@ -317,7 +325,10 @@ class ParametricForwardSolution(CommonForwardSolution):
                 sub_paths.append(str(Path(name) / "{}.json".format(name)))
         if len(sub_paths) == 0:
             raise RuntimeError("No sub-solution found.")
-        self["solution_paths"] = sorted(sub_paths)
+        if n_subs == 0:
+            self["solution_paths"] = sorted(sub_paths)
+        else:
+            self["solution_paths"] = sorted(sub_paths)[:n_subs]
         # Remove all `.py` files
         if clean:
             for entry in Path(self.path).iterdir():
@@ -329,7 +340,12 @@ class ParametricForwardSolution(CommonForwardSolution):
         self["sensors"] = solutions[0].sensors
         # Remove duplicated elements files
         elements_path = "{}_elements.npz".format(self.name)
-        shutil.copy(solutions[-1].elements_path, str(Path(self.path) / elements_path))
+        try:
+            shutil.copy(
+                solutions[-1].elements_path, str(Path(self.path) / elements_path)
+            )
+        except FileNotFoundError:
+            pass
         self["elements_path"] = elements_path
         for solution in solutions:
             try:
@@ -339,14 +355,19 @@ class ParametricForwardSolution(CommonForwardSolution):
             solution["elements_path"] = str(Path("..") / elements_path)
             solution.save()
         # Generate the surrogate model
-        self.generate_surrogate_model()
+        self.generate_surrogate_model(n_restarts_optimizer)
         self["is_finalized"] = True
         self.save()
         return self
 
     @abc.abstractmethod
-    def generate_surrogate_model(self):
+    def generate_surrogate_model(self, n_restarts_optimizer=0):
         """Generate the surrogate model.
+
+        Parameters
+        ----------
+        n_restarts_optimizer : int, optional
+            The number of trials for the optimizer. (The default is ``0``)
 
         Returns
         -------

@@ -67,6 +67,8 @@ class EEGParametricForwardProblem(EEGForwardProblem):
             A dictionary containing both the tags and the coordinates of the elements of
             the region of interest to keep. If set to ``None``, `min_source_dist` is
             used. Otherwise, `min_source_dist` is ignored. (The default is ``None``)
+        n_restarts_optimizer : int, optional
+            The number of trials for the optimizer. (The default is ``0``)
 
         Returns
         -------
@@ -95,15 +97,16 @@ class EEGParametricForwardProblem(EEGForwardProblem):
         # Solve using the right method
         method = kwargs.get("method", self.METHOD_SEQ)
         n_process = kwargs.get("n_process", None)
+        n_restarts_optimizer = kwargs.get("n_restarts_optimizer", 0)
         if method == self.METHOD_SEQ or n_process == 1:
             solutions = list(iter.starmap(self._solve_single_sub_problem, generator))
-            solution.finalize()
+            solution.finalize(n_restarts_optimizer)
         elif method == self.METHOD_MULTI:
             with mp.Pool(processes=n_process) as pool:
                 solutions = list(
                     pool.starmap(self._solve_single_sub_problem, generator)
                 )
-            solution.finalize()
+            solution.finalize(n_restarts_optimizer)
         elif method == self.METHOD_MPI:
             pass
         else:

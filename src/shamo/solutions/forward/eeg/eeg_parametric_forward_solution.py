@@ -57,8 +57,13 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
     SOLUTION_FACTORY = EEGForwardSolution
     SUB_PROBLEM_FACTORY = EEGForwardProblem
 
-    def generate_surrogate_model(self):
+    def generate_surrogate_model(self, n_restarts_optimizer=0):
         """Generate the surrogate model.
+
+        Parameters
+        ----------
+        n_restarts_optimizer : int, optional
+            The number of trials for the optimizer. (The default is ``0``)
 
         Returns
         -------
@@ -69,7 +74,9 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
         kernel = kernels.ConstantKernel() * MaternProd(
             length_scale=[1.0] * x.shape[1], nu=1.5
         )
-        model = GaussianProcessRegressor(kernel=kernel, normalize_y=True).fit(x, y)
+        model = GaussianProcessRegressor(
+            kernel=kernel, n_restarts_optimizer=n_restarts_optimizer, normalize_y=True
+        ).fit(x, y)
         surrogate_model_path = str(
             Path(self.path) / "{}_surrogate.bin".format(self.name)
         )
