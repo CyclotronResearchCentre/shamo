@@ -10,6 +10,7 @@ import numpy as np
 from sklearn.gaussian_process import GaussianProcessRegressor, kernels
 
 from shamo.solutions import ParametricForwardSolution, MaternProd
+from shamo.utils.path import get_relative_path
 
 
 class EEGParametricForwardSolution(ParametricForwardSolution):
@@ -81,7 +82,9 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
             Path(self.path) / "{}_surrogate.bin".format(self.name)
         )
         pickle.dump(model, open(surrogate_model_path, "wb"))
-        self["surrogate_model_path"] = surrogate_model_path
+        self["surrogate_model_path"] = get_relative_path(
+            surrogate_model_path, self.path
+        )
 
     def _get_x_y(self):
         """Fetch the design set.

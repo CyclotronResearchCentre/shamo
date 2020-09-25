@@ -218,6 +218,8 @@ class ParametricForwardSolution(CommonForwardSolution):
         else:
             self["surrogate_model_path"] = None
         self._surrogate_model = None
+        # Varying
+        self["varying"] = kwargs.get("varying", None)
 
     @property
     def solution_paths(self):
