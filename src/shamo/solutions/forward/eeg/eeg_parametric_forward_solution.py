@@ -10,6 +10,7 @@ import numpy as np
 from sklearn.gaussian_process import GaussianProcessRegressor, kernels
 
 from shamo.solutions import ParametricForwardSolution, MaternProd
+from shamo.utils.path import get_relative_path
 
 
 class EEGParametricForwardSolution(ParametricForwardSolution):
@@ -57,8 +58,13 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
     SOLUTION_FACTORY = EEGForwardSolution
     SUB_PROBLEM_FACTORY = EEGForwardProblem
 
-    def generate_surrogate_model(self):
+    def generate_surrogate_model(self, n_restarts_optimizer=0):
         """Generate the surrogate model.
+
+        Parameters
+        ----------
+        n_restarts_optimizer : int, optional
+            The number of trials for the optimizer. (The default is ``0``)
 
         Returns
         -------
@@ -69,12 +75,16 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
         kernel = kernels.ConstantKernel() * MaternProd(
             length_scale=[1.0] * x.shape[1], nu=1.5
         )
-        model = GaussianProcessRegressor(kernel=kernel, normalize_y=True).fit(x, y)
+        model = GaussianProcessRegressor(
+            kernel=kernel, n_restarts_optimizer=n_restarts_optimizer, normalize_y=True
+        ).fit(x, y)
         surrogate_model_path = str(
             Path(self.path) / "{}_surrogate.bin".format(self.name)
         )
         pickle.dump(model, open(surrogate_model_path, "wb"))
-        self["surrogate_model_path"] = surrogate_model_path
+        self["surrogate_model_path"] = get_relative_path(
+            surrogate_model_path, self.path
+        )
 
     def _get_x_y(self):
         """Fetch the design set.

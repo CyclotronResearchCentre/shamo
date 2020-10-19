@@ -41,6 +41,7 @@ warnings.filterwarnings(
 warnings.filterwarnings(
     "ignore", category=RuntimeWarning, lineno=49, message="invalid value encountered in"
 )
+warnings.filterwarnings("ignore", lineno=504, message="lbfgs failed to converge")
 
 __all__ = [
     "ConstantDistribution",

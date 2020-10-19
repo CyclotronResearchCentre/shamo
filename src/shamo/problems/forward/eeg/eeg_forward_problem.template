@@ -1,12 +1,19 @@
 from pathlib import Path
 
+import numpy as np
+
 from shamo import FEModel, EEGForwardProblem
 
 if __name__ == "__main__":
     # Load model
     model_path = "<model:path>"
     model = FEModel.load(model_path)
+    # Load elements
+    elements_path = "<elements:path>"
+    elements = None
+    if elements_path != "":
+        elements = np.load(elements_path)
     # Load problem
     problem_data = <problem:data>
     problem = EEGForwardProblem(**problem_data)
-    solution = problem.solve("<solution:name>", ".", model)
+    solution = problem.solve("<solution:name>", ".", model, source_elems=elements)
