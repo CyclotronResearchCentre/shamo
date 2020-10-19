@@ -14,7 +14,7 @@ from scipy.sparse import csc_matrix
 from scipy.spatial.distance import cdist
 
 from shamo.problems import ForwardProblem
-from shamo.utils import TemplateFile, get_elements_coordinates
+from shamo.utils import TemplateFile, get_elements_coordinates, get_relative_path
 
 
 class EEGForwardProblem(ForwardProblem):
@@ -117,10 +117,12 @@ class EEGForwardProblem(ForwardProblem):
             The minimum distance between two sources. If set to ``None``, all the
             elements of the region of interest are kept. Otherwise, equidistant elements
             are kept. (The default is ``None``)
-        source_elems : dict [str, numpy.ndarray], optional
+        source_elems : dict [str, numpy.ndarray] | PathLike, optional
             A dictionary containing both the tags and the coordinates of the elements of
             the region of interest to keep. If set to ``None``, `min_source_dist` is
             used. Otherwise, `min_source_dist` is ignored. (The default is ``None``)
+            If the method is ``METHOD_JOBS``, this must be the path to the elements
+            file.
 
         Returns
         -------

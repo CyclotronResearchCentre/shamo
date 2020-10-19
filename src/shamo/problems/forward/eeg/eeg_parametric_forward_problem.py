@@ -90,6 +90,8 @@ class EEGParametricForwardProblem(EEGForwardProblem):
         # Generate problems
         source_elems = kwargs.get("source_elems", None)
         sub_problems = self._generate_sub_problems(n_evals, eval_points)
+        if not isinstance(source_elems, dict):
+            source_elems = get_relative_path(source_elems, solution.path)
         generator = (
             (problem, "sol_{:08d}".format(i + skip), solution.path, model, source_elems)
             for i, problem in enumerate(sub_problems)
@@ -211,7 +213,7 @@ class EEGParametricForwardProblem(EEGForwardProblem):
         return problem.solve(name, parent_path, model, source_elems=source_elems)
 
     @staticmethod
-    def _print_single_sub_problem(problem, name, parent_path, model):
+    def _print_single_sub_problem(problem, name, parent_path, model, source_elems=""):
         """Generate a script which can be used to solve one sub-problem.
 
         Parameters
@@ -224,6 +226,8 @@ class EEGParametricForwardProblem(EEGForwardProblem):
             The path to the parent directory of the sub-solution.
         model : shamo.model.fe_model.FEModel
             The model used to solve the problem.
+        source_elems : PathLike, optional
+            The path to the source elements. (The default is ``None``)
 
         Returns
         -------
@@ -236,6 +240,7 @@ class EEGParametricForwardProblem(EEGForwardProblem):
         ) as template_file:
             model_path = get_relative_path(model.json_path, parent_path)
             template_file.replace_with_text("model", "path", model_path)
+            template_file.replace_with_text("elements", "path", source_elems)
             template_file.replace_with_text("problem", "data", str(problem))
             template_file.replace_with_text("solution", "name", name)
         return str(Path(path).relative_to(parent_path))
