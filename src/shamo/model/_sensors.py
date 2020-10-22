@@ -160,6 +160,7 @@ def _add_sensor_on_node(name, node_tag, node_coordinates):
     entity = gmsh.model.addDiscreteEntity(0)
     gmsh.model.mesh.addNodes(0, entity, [node_tag], node_coordinates)
     gmsh.model.mesh.removeDuplicateNodes()
+    gmsh.model.mesh.addElementsByType(entity, 15, [], [node_tag])
     group = gmsh.model.addPhysicalGroup(0, [entity], max_group + 1)
     gmsh.model.setPhysicalName(0, group, name)
     return entity, group
