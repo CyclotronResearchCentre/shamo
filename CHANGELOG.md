@@ -14,3 +14,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added `ProbParamABC`, `CompParamTissueProp`, `CompParamValue`, and `ProbParamGetDP` classes to define any parametric problem.
 - Added `SolParamABC` and `SolParamGetDP` classes to store information about the solution of a `ProbParamABC` problem.
 - Added `ProbEEGLeadfield` and `SolEEGLeadfield` classes to solve the EEG forward problem.
+- Added `ProbParamEEGLeadfield` and `SolParamEEGLeadfield` classes to solve the parametric EEG forward problem.
