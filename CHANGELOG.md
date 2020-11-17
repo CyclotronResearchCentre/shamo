@@ -10,3 +10,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added `Group`, `Tissue`, `Field`, `Sensor`, `PointSensor` and `FEM` classes to provide a way to generate realistic finite element model based on labelled volumes.
 - Added `ProbABC`, `CompABC`, `CompGridSampler`, `CompSensors`, `CompTissueProp`, `CompTissues` and `ProbGetDP` classes to define any problem.
 - Added `SolGetDP` class to store information about the solution of a `ProbGetDP` problem.
+- Added `DistABC`, `DistConstant`, `DistNormal`, `DistTruncNormal` and `DistUniform` to model random parameters for parametric problems.
