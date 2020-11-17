@@ -35,6 +35,8 @@ class ProbEEGLeadfield(ProbGetDP):
         The electrode to use as the reference.
     rois : shamo.core.problems.single.CompTissues
         The tissues in which the leadfield must be computed.
+    grid : shamo.core.problems.single.CompGridSampler
+        The grid sampler if the source space must be based on a grid.
     """
 
     def __init__(self, **kwargs):
