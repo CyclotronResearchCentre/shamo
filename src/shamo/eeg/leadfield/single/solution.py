@@ -18,6 +18,10 @@ class SolEEGLeadfield(SolGetDP):
 
     Other Parameters
     ----------------
+    sigmas : dict [str, list [float, str]]
+        The electrical conductivity of the tissues.
+    model_json_path : str
+        The relative path of the model JSON file.
     markers : list [str]
         The names of the markers.
     reference : list [str]
