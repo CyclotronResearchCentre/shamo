@@ -13,3 +13,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added `DistABC`, `DistConstant`, `DistNormal`, `DistTruncNormal` and `DistUniform` to model random parameters for parametric problems.
 - Added `ProbParamABC`, `CompParamTissueProp`, `CompParamValue`, and `ProbParamGetDP` classes to define any parametric problem.
 - Added `SolParamABC` and `SolParamGetDP` classes to store information about the solution of a `ProbParamABC` problem.
+- Added `ProbEEGLeadfield` and `SolEEGLeadfield` classes to solve the EEG forward problem.
