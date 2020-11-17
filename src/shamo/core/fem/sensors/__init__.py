@@ -1,1 +1,1 @@
-"""API for `shamo.fem.sensors`."""
+"""API for `shamo.core.fem.sensors`."""

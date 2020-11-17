@@ -1,4 +1,4 @@
-"""API for `shamo.fem`."""
+"""API for `shamo.core.fem`."""
 from .group import Group
 from .field import Field
 from .tissue import Tissue
