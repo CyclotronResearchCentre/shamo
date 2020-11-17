@@ -1,0 +1,2 @@
+    source = Region[{ {% for s in sources -%}{{ s.sensor }}{{ ", " if not loop.last }}{%- endfor %} }];
+    sink = Region[{ {% for s in sinks -%}{{ s.sensor }}{{ ", " if not loop.last }}{%- endfor %} }];

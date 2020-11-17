@@ -1,0 +1,96 @@
+// Template for simulating HD-tDCS.
+Group {
+{% include "dom.tmplt" %}
+
+{% include "dom_active.tmplt" %}
+    dom_active = Region[{ source }];
+}
+
+Function {
+    {% include "sigma.tmplt" %}
+
+    current[source] = {{ current }};
+}
+
+Constraint {
+    { Name set_potential; Type Assign; Case { { Region sink; Value 0.; } } }
+}
+
+FunctionSpace {
+    {
+        Name func_space; Type Form0;
+        BasisFunction {
+            {
+                Name sn; NameOfCoef vn; Function BF_Node;
+                Support Region[{ dom, dom_active }]; Entity NodesOf[ All ];
+            }
+        }
+        Constraint {
+            { NameOfCoef vn; EntityType NodesOf; NameOfConstraint set_potential; }
+        }
+    }
+}
+
+{% include "jacobian.tmplt" %}
+
+{% include "integration.tmplt" %}
+
+Formulation {
+    {
+        Name form; Type FemEquation;
+        Quantity {
+            { Name v; Type Local; NameOfSpace func_space; }
+        }
+        Equation {
+            Integral {
+                [ sigma[] * Dof{ d v } , { d v } ];
+                In dom; Jacobian jac_vol; Integration int;
+            }
+            Integral {
+                [ -current[] , { v } ];
+                In dom_active; Jacobian jac_vol; Integration int;
+            }
+        }
+    }
+}
+
+Resolution {
+    {
+        Name res;
+        System {
+            { Name sys; NameOfFormulation form; }
+        }
+        Operation {
+            SetGlobalSolverOptions["-ksp_type gmres -ksp_gmres_restart 1000 -ksp_rtol 1e-8"];
+            SetGlobalSolverOptions["-pc_type ilu -pc_factor_levels 2 "];
+            Generate[sys];
+            SolveAgain[sys];
+            SaveSolution[sys];
+            PostOperation[post_op];
+        }
+    }
+}
+
+PostProcessing {
+    {
+        Name post_pro; NameOfFormulation form;
+        Quantity {
+            {% import "post_pro.tmplt" as post_pro %}
+            {{ post_pro.v() }}
+            {{ post_pro.j() }}
+            {{ post_pro.mag_j() }}
+        }
+    }
+}
+
+PostOperation {
+    {
+        Name post_op; NameOfPostProcessing post_pro;
+        Operation {
+            {% import "post_op.tmplt" as post_op %}
+            {{ post_op.pos("v") }}
+            {{ post_op.pos("j") }}
+            {{ post_op.pos("mag_j") }}
+        }
+    }
+}

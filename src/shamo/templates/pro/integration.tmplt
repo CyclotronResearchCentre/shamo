@@ -1,0 +1,16 @@
+Integration {
+    {
+        Name int;
+        Case {
+            {
+                Type Gauss;
+                Case {
+                    { GeoElement Triangle; NumberOfPoints 1; }
+                    { GeoElement Tetrahedron; NumberOfPoints 1; }
+                    { GeoElement Line; NumberOfPoints 1; }
+                    { GeoElement Point; NumberOfPoints 1; }
+                }
+            }
+        }
+    }
+}

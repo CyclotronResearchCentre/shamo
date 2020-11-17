@@ -1,0 +1,23 @@
+# Template for solving a `ProbHDTDCSSim` problem.
+import numpy as np
+
+from shamo.fem import FEM
+from shamo.hd_tdcs import ProbHDTDCSSim
+
+if __name__ == "__main__":
+    model = FEM.load("{{ model_path }}")
+    prob = ProbHDTDCSSim()
+
+    {% for s in sigmas %}
+    prob.sigmas.set("{{ s.tissue }}", {{ s.prop }}, {{ s.field }})
+    {%- endfor %}
+
+    prob.source.adds([{% for s in source -%}"{{ s }}"{{ ", " if not loop.last }}{%- endfor %}])
+    prob.references.adds([{% for r in references -%}"{{ r }}"{{ ", " if not loop.last }}{%- endfor %}])
+    prob.current = {{ current }}
+
+    {% if use_grid %}
+    prob.grid.set(np.array({{ grid.affine }}), {{ grid.shape }}, mask=np.array({{ grid.mask }}).astype(bool))
+    {% endif %}
+
+    prob.solve("{{ name }}", "{{ parent_path }}", model)

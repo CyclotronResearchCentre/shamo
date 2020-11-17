@@ -1,0 +1,107 @@
+// Template for solving the EEG forward problem and producing the leadfield matrix.
+Group {
+{% include "dom.tmplt" %}
+
+    roi = Region[{ {% for r in rois -%}{{ r.tissue }}{{ ", " if not loop.last }}{%- endfor %} }];
+
+{% include "dom_active.tmplt" %}
+    dom_active = Region[{ source, sink }];
+}
+
+Function {
+    {% include "sigma.tmplt" %}
+
+    current[source] = 1;
+    current[sink] = -1;
+}
+
+FunctionSpace {
+    {
+        Name func_space; Type Form0;
+        BasisFunction {
+            {
+                Name sn; NameOfCoef vn; Function BF_Node;
+                Support Region[{dom, dom_active}]; Entity NodesOf[All];
+            }
+        }
+    }
+}
+
+{% include "jacobian.tmplt" %}
+
+{% include "integration.tmplt" %}
+
+Formulation {
+    {
+        Name form; Type FemEquation;
+        Quantity { { Name v; Type Local; NameOfSpace func_space; } }
+        Equation {
+            Integral {
+                [ sigma[] * Dof{ d v } , { d v } ];
+                In dom; Jacobian jac_vol; Integration int;
+            }
+            Integral {
+                [ -current[] , { v } ];
+                In dom_active; Jacobian jac_vol; Integration int;
+            }
+        }
+    }
+}
+
+Function {
+    For i_sensor In { 0:{{ n_sensors }} }
+        rhs_path = Sprintf["%g.rhs", i_sensor];
+        rhs~{i_sensor}() = ListFromFile[rhs_path];
+    EndFor
+}
+
+Resolution {
+    {
+        Name res;
+        System {
+            {
+                Name sys; NameOfFormulation form;
+            }
+        }
+        Operation {
+            SetGlobalSolverOptions["-ksp_type gmres -ksp_gmres_restart 1000 -ksp_rtol 1e-8"];
+            SetGlobalSolverOptions["-pc_type ilu -pc_factor_levels 2 "];
+            Generate[sys];
+            For i_sensor In { 0:{{ n_sensors }} }
+                Evaluate[ $i_solution = i_sensor ];
+                CopyRHS[rhs~{i_sensor}(), sys];
+                SolveAgain[sys];
+                SaveSolution[sys];
+                PostOperation[post_op];
+            EndFor
+        }
+    }
+}
+
+PostProcessing {
+    {
+        Name post_pro; NameOfFormulation form;
+        Quantity {
+            {% import "post_pro.tmplt" as post_pro %}
+            {{ post_pro.v() }}
+            {{ post_pro.e() }}
+        }
+    }
+}
+
+PostOperation {
+    {
+        Name post_op; NameOfPostProcessing post_pro;
+        Operation {
+        {% if use_grid %}
+            Print[ e, OnElementsOf dom,
+                   File "", AppendExpressionToFileName $i_solution,
+                   AppendStringToFileName ".pos" ];
+        {% else %}
+            Print[ e, OnElementsOf roi, Format Table,
+                   File "", AppendExpressionToFileName $i_solution,
+                   AppendStringToFileName ".e" ];
+        {% endif %}
+        }
+    }
+}
