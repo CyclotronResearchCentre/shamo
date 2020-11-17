@@ -95,6 +95,11 @@ class ProbParamABC(ProbABC):
         ----------
         i : int
             The index of the sub-problem.
+
+        Returns
+        -------
+        shamo.core.problems.single.ProbABC
+            The generated sub-problem.
         """
 
     @abstractmethod
