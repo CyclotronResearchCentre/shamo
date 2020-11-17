@@ -9,3 +9,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added `ObjABC`, `ObjFile` and `ObjDir` classes to provide a base for any savable/loadable object.
 - Added `Group`, `Tissue`, `Field`, `Sensor`, `PointSensor` and `FEM` classes to provide a way to generate realistic finite element model based on labelled volumes.
 - Added `ProbABC`, `CompABC`, `CompGridSampler`, `CompSensors`, `CompTissueProp`, `CompTissues` and `ProbGetDP` classes to define any problem.
+- Added `SolGetDP` class to store information about the solution of a `ProbGetDP` problem.
