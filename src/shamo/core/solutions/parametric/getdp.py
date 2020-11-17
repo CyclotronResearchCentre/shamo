@@ -1,11 +1,10 @@
-"""Implement the `SolGetDP` class."""
-from pathlib import Path
+"""Implement `SolParamGetDP` class."""
+from .abc import SolParamABC
+from shamo.core.distributions import DistABC
 
-from shamo.core.objects import ObjDir
 
-
-class SolGetDP(ObjDir):
-    """Store information about the solution of a `shamo.core.problems.single.ProbGetDP`.
+class SolParamGetDP(SolParamABC):
+    """Store information about the solution of a parametric problem depending on Getdp.
 
     Parameters
     ----------
@@ -16,17 +15,26 @@ class SolGetDP(ObjDir):
 
     Other Parameters
     ----------------
-    sigmas : dict [str, list [float, str]]
+    sub_json_paths : list [str]
+        The relative paths to the sub-solutions.
+    sigmas : dict [str, list [shamo.DistABC, str]]
         The electrical conductivity of the tissues.
     model_json_path : str
-        The relative path of the model JSON file.
+        The relative path to the model JSON file.
+
+    See Also
+    --------
+    shamo.core.solutions.parametric.SolParamABC
     """
 
     def __init__(self, name, parent_path, **kwargs):
-        super().__init__(name, parent_path)
+        super().__init__(name, parent_path, **kwargs)
         self.update(
             {
-                "sigmas": kwargs.get("sigmas", {}),
+                "sigmas": {
+                    t: [DistABC.load(**p[0]), p[1]]
+                    for t, p in kwargs.get("sigmas", {}).items()
+                },
                 "model_json_path": kwargs.get("model_json_path", None),
             }
         )
@@ -37,7 +45,7 @@ class SolGetDP(ObjDir):
 
         Returns
         -------
-        dict [str, list [float, str]]
+        dict [str, list [shamo.DistABC, str]]
             The electrical conductivity of the tissues.
         """
         return self["sigmas"]
