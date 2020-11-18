@@ -18,3 +18,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added `ProbHDTDCSSim` and `SolHDTDCSSim` classes to simulate a HD-tDCS.
 - Added `ProbParamHDTDCSSim` and `SolParamHDTDCSSim` classes to simulate a parametric HD-tDCS.
 - Added `SurrogateABC` class to define any surrogate model based on a `SolParamABC`.
+- Added `shamo-report` command to facilitate bug report.
