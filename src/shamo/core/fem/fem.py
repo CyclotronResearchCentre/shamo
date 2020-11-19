@@ -730,7 +730,15 @@ class FEM(ObjDir):
         logger.info(f"Field '{name}' added in tissue '{tissue}'.")
 
     def field_from_array(
-        self, name, field, affine, tissue, fill_val, formula="1", nearest=True
+        self,
+        name,
+        field,
+        affine,
+        tissue,
+        fill_val,
+        formula="1",
+        nearest=True,
+        resize=True,
     ):
         """Add a field to the mesh from an array.
 
@@ -752,6 +760,9 @@ class FEM(ObjDir):
         nearest : bool, optional
             If set to ``True``, no interpolation is performed. Otherwise, a linear
             interpolation is used. The default value is ``True``.
+        resize : bool, optional
+            If set to ``True``, the affine matrix is converted from [mm] to [m]. The
+            default is ``True``.
 
         Raises
         ------
@@ -791,7 +802,8 @@ class FEM(ObjDir):
             raise ValueError("Argument 'affine' expects shape (3,4) or (4,4).")
         affine = np.vstack((affine[:3, :], np.array([0, 0, 0, 1])))
         # Convert [mm] to [m]
-        affine = np.diag([1e-3] * 3 + [1]) @ affine
+        if resize:
+            affine = np.diag([1e-3] * 3 + [1]) @ affine
         if tissue not in self.tissues:
             raise KeyError(f"Tissue '{tissue}' not found in model.")
 
@@ -804,7 +816,7 @@ class FEM(ObjDir):
         )
 
     def field_from_nii(
-        self, name, nii_path, tissue, fill_val, formula="1", nearest=True
+        self, name, nii_path, tissue, fill_val, formula="1", nearest=True, resize=True
     ):
         """Add a field to the mesh from a NIFTI image.
 
@@ -824,6 +836,9 @@ class FEM(ObjDir):
         nearest : bool, optional
             If set to ``True``, no interpolation is performed. Otherwise, a linear
             interpolation is used. The default value is ``True``.
+        resize : bool, optional
+            If set to ``True``, the affine matrix is converted from [mm] to [m]. The
+            default is ``True``.
 
         Raises
         ------
@@ -838,7 +853,14 @@ class FEM(ObjDir):
 
         img = nib.load(str(nii_path))
         return self.field_from_array(
-            name, img.get_fdata(), img.affine, tissue, fill_val, formula, nearest
+            name,
+            img.get_fdata(),
+            img.affine,
+            tissue,
+            fill_val,
+            formula,
+            nearest,
+            resize,
         )
 
     def _get_tissue_elems(self, tissue, dim):
