@@ -66,7 +66,7 @@ class SolParamABC(ObjDir):
         list [shamo.core.objects.ObjDir]
             The sub-solutions.
         """
-        return [self.sub_class.load(self.path / p) for p in self.sub_json_paths]
+        return [self.sub_class.load(p) for p in self.sub_json_paths]
 
     def get_sub_file(self, suffix):
         """Return the relative paths to the same file in all the sub-solutions.
