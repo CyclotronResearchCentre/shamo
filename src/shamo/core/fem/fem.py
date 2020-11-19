@@ -46,6 +46,7 @@ class FEM(ObjDir):
                 },
             }
         )
+        logger.info(f"Model '{name}' initialized in '{parent_path}'  directory.")
 
     @property
     def nii_path(self):
@@ -411,12 +412,12 @@ class FEM(ObjDir):
 
     def _gen_init_mesh(self, labels, affine, tmp_dir, **kwargs):
         """Generate the initial mesh usign CGAL."""
-        logger.info("Generating initial mesh from labels.")
         init_mesh = cgal.generate_from_array(
             labels, nib.affines.voxel_sizes(affine), **kwargs
         )
         meshio.write(str(Path(tmp_dir) / "init_mesh.mesh"), init_mesh)
         self["mesh_params"] = kwargs
+        logger.info("Initial mesh generated.")
 
     def _apply_transform(self, affine, tmp_dir):
         """Apply the affine transform to the mesh."""
@@ -436,10 +437,10 @@ class FEM(ObjDir):
         gmsh.option.setNumber("Mesh.Binary", 1)
         gmsh.write(str(Path(tmp_dir) / "init_mesh.msh"))
         gmsh.finalize()
+        logger.info("Affine transformation applied.")
 
     def _add_tissues(self, tissues, tmp_dir):
         """Add the tissues as physical groups."""
-        logger.info("Adding physical groups.")
         gmsh.initialize()
         gmsh.option.setNumber("General.Terminal", 1)
         gmsh.merge(str(Path(tmp_dir) / "init_mesh.msh"))
@@ -452,7 +453,7 @@ class FEM(ObjDir):
             self["tissues"][t] = Tissue(
                 Group(2, [entity], surf_group), Group(3, [entity], vol_group)
             )
-            logger.info(f"Tissue '{t}' added on entity '{entity}'.")
+            logger.info(f"Tissue '{t}' added.")
         gmsh.option.setNumber("Mesh.Binary", 1)
         gmsh.write(str(self.mesh_path))
         gmsh.finalize()
@@ -511,9 +512,7 @@ class FEM(ObjDir):
         gmsh.write(str(self.mesh_path))
         gmsh.finalize()
         self.save()
-        logger.info(
-            f"Sensor '{name}' added {'on' if dim == 2 else 'in'} tissue '{tissue}'."
-        )
+        logger.info(f"Sensor '{name}' added.")
 
     add_point_sensor_on = partialmethod(add_point_sensor, dim=2)
     add_point_sensor_in = partialmethod(add_point_sensor, dim=3)
@@ -547,7 +546,7 @@ class FEM(ObjDir):
         logger.debug(
             (
                 f"Adding {len(coords)} sensors {'on' if dim == 2 else 'in'} "
-                f"tissue '{tissue}' with coords:\n{coords}"
+                f"tissue '{tissue}' with coords:\n{pformat(coords)}"
             )
         )
         gmsh.initialize()
