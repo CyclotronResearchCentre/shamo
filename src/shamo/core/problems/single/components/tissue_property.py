@@ -67,9 +67,12 @@ class CompTissueProp(CompABC):
             if p[1] is None:
                 params.append({"tissue": t, "prop": p[0]})
             else:
-                params.append[
-                    {"tissue": t, "prop": tissues[p[1]].gen_formula(**prop, **kwargs)}
-                ]
+                params.append(
+                    {
+                        "tissue": t,
+                        "prop": tissues[t].fields[p[1]].gen_formula(**prop, **kwargs),
+                    }
+                )
         return params
 
     def to_py_param(self, **kwargs):

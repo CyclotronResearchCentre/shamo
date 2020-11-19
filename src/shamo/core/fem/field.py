@@ -81,4 +81,4 @@ class Field(dict):
         """
         formula = self.formula.format(**kwargs)
         field_type = f"{self.field_type.capitalize()}Field"
-        return f"{formula} * {field}[XYZ[]]{{ {self.view} }}"
+        return f"{formula} * {field_type}[XYZ[]]{{ {self.view} }}"
