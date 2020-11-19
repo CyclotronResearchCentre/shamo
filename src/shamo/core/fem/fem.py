@@ -3,6 +3,7 @@ from collections.abc import Mapping, Iterable
 from functools import partialmethod
 import logging
 from pathlib import Path
+from pprint import pformat
 from tempfile import TemporaryDirectory
 
 import gmsh
@@ -566,6 +567,36 @@ class FEM(ObjDir):
 
     add_point_sensors_on = partialmethod(add_point_sensors, dim=2)
     add_point_sensors_in = partialmethod(add_point_sensors, dim=3)
+
+    def add_point_sensors_from_tsv(self, tsv_path, tissue, dim):
+        """Add multiple point sensors to the mesh from a TSV file.
+
+        Parameters
+        ----------
+        tsv_path : str, byte or os.PathLike
+            The path to the TSV file.
+        tissue : str
+            The name of the tissue the sensor is on/in.
+        dim : int
+            If set to ``2``, the sensor is added on the surface of the tissue. If set to
+            ``3``, it is placed inside the tissue.
+
+        Raises
+        ------
+        TypeError
+            If argument `coords` is not a Mapping of coordinates.
+            If argument `dim` is not an `int`.
+        ValueError
+            If argument `tissue` refers to a non existing tissue.
+        """
+        tsv_path = Path(tsv_path)
+        data = np.genfromtxt(
+            tsv_path, delimiter="\t", skip_header=1, dtype=None, encoding="utf-8"
+        )
+        coords = {d[0]: [d[1], d[2], d[3]] for d in data}
+        logger.info(f"{len(coords)} sensors coordinates extracted from '{tsv_path}'.")
+        logger.debug(pformat(coords))
+        return self.add_point_sensors(coords, tissue, dim)
 
     def _get_tissue_nodes(self, tissue, dim):
         """Return all the nodes of the tissue in specified dimensio entities."""
