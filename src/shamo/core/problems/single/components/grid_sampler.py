@@ -116,13 +116,14 @@ class CompGridSampler(CompABC):
             If argument `affine` is not (3, 4) or (4, 4) `numpy.ndarray`.
             If argument `shape` is not a 3D shape.
         """
-        logger.info(f"Checking grid sampler '{name}'.")
-        if not isinstance(self["affine"], np.ndarray):
-            raise TypeError("Argument 'affine' expects type numpy.ndarray.")
-        if self["affine"].shape not in ((3, 4), (4, 4)):
-            raise ValueError("Argument 'affine' expects shape (3,4) or (4,4).")
-        if len(self["shape"]) != 3:
-            raise ValueError("Argument 'shape' expects 3 values.")
+        if self.use_grid:
+            logger.info(f"Checking grid sampler '{name}'.")
+            if not isinstance(self["affine"], np.ndarray):
+                raise TypeError("Argument 'affine' expects type numpy.ndarray.")
+            if self["affine"].shape not in ((3, 4), (4, 4)):
+                raise ValueError("Argument 'affine' expects shape (3,4) or (4,4).")
+            if len(self["shape"]) != 3:
+                raise ValueError("Argument 'shape' expects 3 values.")
 
     def to_pro_param(self, **kwargs):
         """Return if the grid can be used.

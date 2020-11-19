@@ -37,7 +37,7 @@ class ProbParamHDTDCSSim(ProbParamGetDP):
         method="sequential",
         n_proc=1,
         skip=0,
-        **kwargs
+        **kwargs,
     ):
         """Simulate a parametric HD-tDCS.
 
@@ -100,8 +100,7 @@ class ProbParamHDTDCSSim(ProbParamGetDP):
 
     def _check_components(self, **kwargs):
         """Check if the components are properly set."""
-        if self.grid.use_grid:
-            self.grid.check("grid", **kwargs)
+        self.grid.check("grid", **kwargs)
         self.source.check("source", **kwargs)
         self.references.check("references", **kwargs)
         self.current.check("current", **kwargs)

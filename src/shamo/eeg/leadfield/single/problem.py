@@ -166,8 +166,7 @@ class ProbEEGLeadfield(ProbGetDP):
         self._source.check("source", **kwargs)
         self.reference.check("reference", **kwargs)
         self.rois.check("region of interest", **kwargs)
-        if self.grid.use_grid:
-            self.grid.check("grid", **kwargs)
+        self.grid.check("grid", **kwargs)
 
     def _prepare_pro_file_params(self, **kwargs):
         """Return the parameters required to generate the PRO file.
