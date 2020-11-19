@@ -838,7 +838,7 @@ class FEM(ObjDir):
 
         img = nib.load(str(nii_path))
         return self.field_from_array(
-            name, img.get_fdata(), img.affine, tissues, fill_val, formula, nearest
+            name, img.get_fdata(), img.affine, tissue, fill_val, formula, nearest
         )
 
     def _get_tissue_elems(self, tissue, dim):
