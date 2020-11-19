@@ -41,6 +41,10 @@ class SolParamHDTDCSSim(SolParamGetDP):
         )
 
     @property
+    def sub_class(self):
+        return SolHDTDCSSim
+
+    @property
     def references(self):
         """Return the names of the electrodes used as references.
 
