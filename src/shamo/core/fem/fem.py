@@ -114,6 +114,17 @@ class FEM(ObjDir):
         """
         return self["sensors"]
 
+    @property
+    def mesh_params(self):
+        """Return the parameters used to produce the mesh.
+
+        Returns
+        -------
+        dict [str, float]
+            The parameters used to produce the mesh.
+        """
+        return self["mesh_params"]
+
     # Mesh -----------------------------------------------------------------------------
 
     def mesh_from_array(self, labels, affine, tissues, **kwargs):
