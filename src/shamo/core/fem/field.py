@@ -72,4 +72,13 @@ class Field(dict):
         return self["formula"]
 
     def gen_formula(self, **kwargs):
-        return self.formula.format(**kwargs)
+        """Generate the formula to use the field in a property.
+
+        Returns
+        -------
+        str
+            The generated formula.
+        """
+        formula = self.formula.format(**kwargs)
+        field_type = f"{self.field_type.capitalize()}Field"
+        return f"{formula} * {field}[XYZ[]]{{ {self.view} }}"
