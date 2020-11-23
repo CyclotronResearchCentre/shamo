@@ -37,6 +37,26 @@ class DistABC(dict, ABC):
             The actual distribution.
         """
 
+    @abstractproperty
+    def salib_name(self):
+        """Return the name of the distribution in SALib.
+
+        Returns
+        -------
+        str
+            The name of the distribution in SALib.
+        """
+
+    @abstractproperty
+    def salib_bounds(self):
+        """Return the bounds of the distribution in SALib.
+
+        Returns
+        -------
+        list [float]
+            The bounds of the distribution in SALib.
+        """
+
     @property
     def expect(self):
         """Return the expected value of the distribution.

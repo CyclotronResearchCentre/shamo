@@ -48,6 +48,28 @@ class DistNormal(DistABC):
         """
         return chaos.Normal(mu=self.mu, sigma=self.sigma)
 
+    @property
+    def salib_name(self):
+        """Return the name of the distribution in SALib.
+
+        Returns
+        -------
+        str
+            The name of the distribution in SALib.
+        """
+        return "norm"
+
+    @property
+    def salib_bounds(self):
+        """Return the bounds of the distribution in SALib.
+
+        Returns
+        -------
+        list [float]
+            The bounds of the distribution in SALib.
+        """
+        return [self.mu, self.sigma]
+
 
 class DistTruncNormal(DistABC):
     """A truncated normal distribution.
@@ -120,3 +142,25 @@ class DistTruncNormal(DistABC):
         return chaos.Normal(
             mu=self.mu, sigma=self.sigma, lower=self.lower, upper=self.upper
         )
+
+    @property
+    def salib_name(self):
+        """Return the name of the distribution in SALib.
+
+        Returns
+        -------
+        str
+            The name of the distribution in SALib.
+        """
+        return "truncnorm"
+
+    @property
+    def salib_bounds(self):
+        """Return the bounds of the distribution in SALib.
+
+        Returns
+        -------
+        list [float]
+            The bounds of the distribution in SALib.
+        """
+        return [self.lower, self.upper, self.mu, self.sigma]

@@ -51,3 +51,25 @@ class DistUniform(DistABC):
             The actual distribution.
         """
         return chaos.Uniform(self.lower, self.upper)
+
+    @property
+    def salib_name(self):
+        """Return the name of the distribution in SALib.
+
+        Returns
+        -------
+        str
+            The name of the distribution in SALib.
+        """
+        return "unif"
+
+    @property
+    def salib_bounds(self):
+        """Return the bounds of the distribution in SALib.
+
+        Returns
+        -------
+        list [float]
+            The bounds of the distribution in SALib.
+        """
+        return [self.lower, self.upper]

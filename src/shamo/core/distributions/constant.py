@@ -44,3 +44,25 @@ class DistConstant(DistABC):
     def dist(self):
         """Return ``None``."""
         return None
+
+    @property
+    def salib_name(self):
+        """Return the name of the distribution in SALib.
+
+        Returns
+        -------
+        str
+            The name of the distribution in SALib.
+        """
+        return ""
+
+    @property
+    def salib_bounds(self):
+        """Return the bounds of the distribution in SALib.
+
+        Returns
+        -------
+        list [float]
+            The bounds of the distribution in SALib.
+        """
+        return []
