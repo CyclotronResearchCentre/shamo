@@ -4,12 +4,13 @@ from .leadfield.single.solution import SolEEGLeadfield
 
 from .leadfield.parametric.problem import ProbParamEEGLeadfield
 from .leadfield.parametric.solution import SolParamEEGLeadfield
-from .leadfield.parametric.surrogate import SurrEEGLeadfieldDifToRef
+from .leadfield.parametric.surrogate import SurrEEGLeadfield, SurrEEGLeadfieldDifToRef
 
 __all__ = [
     "ProbEEGLeadfield",
     "SolEEGLeadfield",
     "ProbParamEEGLeadfield",
     "SolParamEEGLeadfield",
+    "SurrEEGLeadfield",
     "SurrEEGLeadfieldDifToRef",
 ]
