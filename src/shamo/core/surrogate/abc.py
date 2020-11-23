@@ -21,9 +21,9 @@ class SurrABC(ObjDir):
 
     Other Parameters
     ----------------
-    params : dict [str, shamo.DistABC]
-        A dict containing the names of the parameters as keys and the corresponding
-        distributions as values.
+    params : list [tuple [str, shamo.DistABC]]
+        A list of tuples containing the names of the parameters and the
+        corresponding distributions as values.
     sol_json_path : str
         The path to the parametric solution the surrogate is built of.
     """
@@ -60,8 +60,9 @@ class SurrABC(ObjDir):
 
         Returns
         -------
-        dict [str, shamo.DistABC]
-            The the parameters of the surrogate model.
+        list [tuple [str, shamo.DistABC]]
+            A list of tuples containing the names of the parameters and the
+            corresponding distributions as values.
         """
         return self["params"]
 
@@ -82,9 +83,9 @@ class SurrABC(ObjDir):
         numpy.ndarray
             The observations of the actual model at each coordinate from `x`. Each row
             represents an observation.
-        dict [str, shamo.DistABC]
-            A dict containing the names of the parameters as keys and the corresponding
-            distributions as values.
+        list [tuple [str, shamo.DistABC]]
+            A list of tuples containing the names of the parameters and the
+            corresponding distributions as values.
 
         Notes
         -----
