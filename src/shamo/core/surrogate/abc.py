@@ -185,8 +185,10 @@ class SurrABC(ObjDir):
     def _post_pro(self, x, y_mean, y_std, **kwargs):
         """Applies a post-processing operation to the predictions.
 
-        Returns
-        -------
+        Parameters
+        ----------
+        numpy.ndarray
+            The evaluation points.
         numpy.ndarray
             The evaluations mean.
         numpy.ndarray
