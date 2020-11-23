@@ -32,9 +32,7 @@ class SurrABC(ObjDir):
         super().__init__(name, parent_path)
         self.update(
             {
-                "params": {
-                    n: DistABC.load(d) for n, d in kwargs.get("params", {}).items()
-                },
+                "params": [[n, DistABC.load(**d)] for n, d in kwargs.get("params", [])],
                 "sol_json_path": kwargs.get("sol_json_path", None),
             }
         )
@@ -48,7 +46,7 @@ class SurrABC(ObjDir):
         pathlib.Path
             The path of the Gaussian process file.
         """
-        return self.path / f"{name}.gp"
+        return self.path / f"{self.name}.gp"
 
     @property
     def sol_json_path(self):
@@ -146,7 +144,7 @@ class SurrABC(ObjDir):
             alpha=alpha,
         ).fit(x, y)
         surr = cls(name, parent_path, params=params)
-        surr["sol_json_path"] = surr.get_relative_path(sol.json_path)
+        surr["sol_json_path"] = str(surr.get_relative_path(sol.json_path))
         pickle.dump(gp, open(surr.gp_path, "wb"))
         surr.save()
         return surr
