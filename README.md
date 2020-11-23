@@ -1,7 +1,12 @@
 # shamo
 
-![version](https://img.shields.io/badge/version-0.3.2-black?style=flat-square)
-[![black](https://img.shields.io/badge/codestyle-black-black?style=flat-square)](https://github.com/psf/black)
+[![version](https://img.shields.io/pypi/v/shamo?color=black&logo=pypi&logoColor=white&style=flat-square)](https://pypi.org/project/shamo/)
+![Python](https://img.shields.io/pypi/pyversions/shamo?logo=python&logoColor=white&color=black&style=flat-square)
+[![codestyle](https://img.shields.io/badge/codestyle-black-black?style=flat-square)](https://github.com/psf/black)
+[![docstyle](https://img.shields.io/badge/docstyle-numpydoc-black?style=flat-square)](https://numpydoc.readthedocs.io/en/latest/)
+[![license](https://img.shields.io/pypi/l/shamo?color=black&style=flat-square)](https://github.com/CyclotronResearchCentre/shamo/blob/master/LICENSE.md)
+
+Constructing accurate subject specific head model is of main interest in the fields of source imaging (EEG/MEG) and brain stimulation (tDCS/tMS). shamo is an open source python package to calculate EEG leadfields, current flows, and electric potential distribution in the head. From a labelled 3D image of the head, the whole process is fully automatized, relying only on a few parameter files, e.g. conductivities (including white matter anisotropy) plus source and electrode locations. Since there is no non-invasive method to measure the electromagnetic (EM) properties of the head tissues, shamo can also be used to assess the sensitivity of the EM head model to these parameters.
 
 ## FAQ
 
