@@ -54,7 +54,7 @@ class ProbParamEEGLeadfield(ProbParamGetDP):
         method="sequential",
         n_proc=1,
         skip=0,
-        **kwargs
+        **kwargs,
     ):
         """Solve the EEG parametric forward problem.
 
@@ -95,6 +95,7 @@ class ProbParamEEGLeadfield(ProbParamGetDP):
             reference=self.reference["sensors"],
             rois=self.rois["tissues"],
             sigmas=self.sigmas,
+            use_grid=self.grid.use_grid,
         )
         sol["model_json_path"] = str(sol.get_relative_path(model.json_path))
         sub_sols = self._solve_sub_probs(

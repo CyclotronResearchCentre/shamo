@@ -44,6 +44,7 @@ class SolParamEEGLeadfield(SolParamGetDP):
                 "rois": kwargs.get("rois", []),
                 "sensors": kwargs.get("sensors", []),
                 "shape": tuple(kwargs.get("shape", [])),
+                "use_grid": kwargs.get("use_grid", False),
             }
         )
 
@@ -127,6 +128,10 @@ class SolParamEEGLeadfield(SolParamGetDP):
             The names of the tissues of the region of interest.
         """
         return self["rois"]
+
+    @property
+    def use_grid(self):
+        return self["use_grid"]
 
     def finalize(self, **kwargs):
         """Finalize the solution."""
