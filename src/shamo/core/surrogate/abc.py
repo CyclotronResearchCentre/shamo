@@ -66,7 +66,11 @@ class SurrABC(ObjDir):
         """
         return self["params"]
 
-    @classmethod
+    @abstractclassmethod
+    def _check_params(cls, **kwargs):
+        """Check if the parameters are properly set."""
+
+    @abstractclassmethod
     def _get_data(cls, sol, **kwargs):
         """Extract relevant data from a parametric solution.
 
@@ -125,6 +129,7 @@ class SurrABC(ObjDir):
         --------
         sklearn.gaussian_process.GaussianProcessRegressor
         """
+        cls._check_params(**kwargs)
         x, y, params = cls._get_data(sol, **kwargs)
         kernel = kwargs.get(
             "kernel",
