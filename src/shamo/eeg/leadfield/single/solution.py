@@ -175,3 +175,13 @@ class SolEEGLeadfield(SolGetDP):
             )
             data[...] = matrix
         self["shape"] = matrix.shape
+
+    def get_matrix(self):
+        """Return the matrix.
+
+        Returns
+        -------
+        h5py.Dataset
+            The dataset containing the matrix.
+        """
+        return h5py.File(self.matrix_path, "r")["e_field"]
