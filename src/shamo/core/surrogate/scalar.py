@@ -22,6 +22,10 @@ class SurrScalar(SurrABC):
         corresponding distributions as values.
     sol_json_path : str
         The path to the parametric solution the surrogate is built of.
+
+    See Also
+    --------
+    shamo.core.surrogate.SurrABC
     """
 
     def gen_sobol_indices(self, n=1000, n_resamples=100, conf_level=0.95):
