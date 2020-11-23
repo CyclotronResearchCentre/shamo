@@ -24,7 +24,7 @@ class SurrScalar(SurrABC):
         The path to the parametric solution the surrogate is built of.
     """
 
-    def gen_sobol_indices(n=1000, n_resamples=100, conf_level=0.95):
+    def gen_sobol_indices(self, n=1000, n_resamples=100, conf_level=0.95):
         """Compute Sobol sensitivity indices.
 
         Parameters
@@ -39,27 +39,28 @@ class SurrScalar(SurrABC):
 
         Returns
         -------
-        list [float]
+        numpy.ndarray
             The first order Sobol indices.
-        list [float]
+        numpy.ndarray
             The confidence in the first ordr Sobol indices.
-        list [float]
+        numpy.ndarray
             The second order Sobol indices.
-        list [float]
+        numpy.ndarray
             The confidence in the second ordr Sobol indices.
-        list [float]
+        numpy.ndarray
             The total order Sobol indices.
-        list [float]
+        numpy.ndarray
             The confidence in the total ordr Sobol indices.
         """
+        print(self.params)
         prob = {
             "num_vars": len(self.params),
             "names": [n for n, _ in self.params],
             "dists": [d.salib_name for _, d in self.params],
-            "bound": [d.salib_bounds for _, d in self.params],
+            "bounds": [d.salib_bounds for _, d in self.params],
         }
         x = saltelli.sample(prob, n)
-        y = self.predict(x)
+        y, _ = self.predict(x)
         s_i = sobol.analyze(prob, y, num_resamples=n_resamples, conf_level=conf_level)
         return (
             s_i["S1"],
