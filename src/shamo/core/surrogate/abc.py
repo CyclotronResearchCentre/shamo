@@ -1,4 +1,4 @@
-"""Implement the `Surrogate` class."""
+"""Implement the `SurrABC` class."""
 from abc import abstractclassmethod
 import pickle
 
@@ -6,9 +6,10 @@ from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import Matern, ConstantKernel
 
 from shamo.core.objects import ObjDir
+from shamo import DistABC
 
 
-class SurrogateABC(ObjDir):
+class SurrABC(ObjDir):
     """Generate a Gaussian process from a set of training data.
 
     Parameters
@@ -20,15 +21,20 @@ class SurrogateABC(ObjDir):
 
     Other Parameters
     ----------------
-    params : list [str]
-        The names of the parameters.
+    params : dict [str, shamo.DistABC]
+        A dict containing the names of the parameters as keys and the corresponding
+        distributions as values.
+    sol_json_path : str
+        The path to the parametric solution the surrogate is built of.
     """
 
     def __init__(self, name, parent_path, **kwargs):
         super().__init__(name, parent_path)
         self.update(
             {
-                "params": kwargs.get("params", []),
+                "params": {
+                    n: DistABC.load(d) for n, d in kwargs.get("params", {}).items()
+                },
                 "sol_json_path": kwargs.get("sol_json_path", None),
             }
         )
@@ -50,12 +56,12 @@ class SurrogateABC(ObjDir):
 
     @property
     def params(self):
-        """Return the names of the parameters of the surrogate model.
+        """Return the parameters of the surrogate model.
 
         Returns
         -------
-        list [str]
-            The names of the parameters of the surrogate model.
+        dict [str, shamo.DistABC]
+            The the parameters of the surrogate model.
         """
         return self["params"]
 
@@ -76,8 +82,9 @@ class SurrogateABC(ObjDir):
         numpy.ndarray
             The observations of the actual model at each coordinate from `x`. Each row
             represents an observation.
-        list [str]
-            The names of the parameters.
+        dict [str, shamo.DistABC]
+            A dict containing the names of the parameters as keys and the corresponding
+            distributions as values.
 
         Notes
         -----

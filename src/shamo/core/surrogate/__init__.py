@@ -1,5 +1,5 @@
 """API for `shamo.core.surrogate`."""
-from .abc import SurrogateABC
+from .abc import SurrABC
 
 
-__all__ = ["SurrogateABC"]
+__all__ = ["SurrABC"]
