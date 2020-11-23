@@ -66,7 +66,12 @@ class SurrABC(ObjDir):
 
     @abstractclassmethod
     def _check_params(cls, **kwargs):
-        """Check if the parameters are properly set."""
+        """Check if the parameters are properly set.
+
+        Notes
+        -----
+        This method must be implemented to be able to generate a surrogate model.
+        """
 
     @abstractclassmethod
     def _get_data(cls, sol, **kwargs):
