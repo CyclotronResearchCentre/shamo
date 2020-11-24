@@ -3,6 +3,7 @@ from .abc import ProbABC
 from .getdp import ProbGetDP
 
 from .components.abc import CompABC
+from .components.file_path import CompFilePath
 from .components.grid_sampler import CompGridSampler
 from .components.sensors import CompSensors
 from .components.tissue_property import CompTissueProp
@@ -13,6 +14,7 @@ __all__ = [
     "ProbABC",
     "ProbGetDP",
     "CompABC",
+    "CompFilePath",
     "CompGridSampler",
     "CompSensors",
     "CompTissueProp",
