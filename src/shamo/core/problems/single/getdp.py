@@ -2,6 +2,7 @@
 from abc import abstractproperty, abstractmethod
 import logging
 from pathlib import Path
+import re
 from subprocess import CalledProcessError, Popen, PIPE, STDOUT
 
 from jinja2 import Environment, PackageLoader
@@ -123,7 +124,7 @@ class ProbGetDP(ProbABC):
                 if l != prev_line:
                     if n_lines > 1:
                         logger.info(f"{prev_line.decode('utf-8').strip()} (x{n_lines})")
-                    logger.info(l.decode().strip())
+                    logger.info(re.sub(r"[A-Z][a-z ]+: ", "", l.decode().strip()))
                     n_lines = 1
                 prev_line = l
         exitcode = process.wait()
