@@ -3,6 +3,7 @@ from pathlib import Path
 import gmsh
 import nibabel as nib
 import numpy as np
+from scipy.spatial.distance import cdist
 
 
 def read_vector_file(path):
@@ -67,6 +68,48 @@ def get_elems_coords(elem_type, elems_tags):
     idx = elems_tags - tags[0]
     coords = coords[idx, :]
     return coords
+
+
+def get_elems_subset(dim, tags, min_dist):
+    """Get a subset of elements based on a minimal distance between them.
+
+    Parameters
+    ----------
+    dim : int
+        The dimension of the elements.
+    tags : list [int]
+        The entity tags.
+    min_dist : float
+        The minimal distance between elements.
+
+    Returns
+    -------
+    numpy.ndarray
+        The elements tags.
+    numpy.ndarray
+        The elements coordinates.
+    """
+    elems_tags = []
+    for t in tags:
+        elems_type, ts, _ = gmsh.model.mesh.getElements(dim, t)
+        elems_tags.append(ts)
+    elems_tags = np.hstack(elems_tags)
+    elems_type = elems_type[0]
+    elems_tags = elems_tags[0]
+    coords = get_elems_coords(elems_type, elems_tags)
+    sub_elems_tags = [elems_tags[0]]
+    sub_elems_coords = [coords[0]]
+    while elems_tags.size > 0:
+        dist = cdist([sub_elems_coords[-1]], coords)[0]
+        idx = dist < min_dist
+        elems_tags = np.delete(elems_tags, idx)
+        coords = np.delete(coords, idx, axis=0)
+        dist = np.delete(dist, idx)
+        if elems_tags.size > 0:
+            idx = np.argmin(dist)
+            sub_elems_tags.append(elems_tags[idx])
+            sub_elems_coords.append(coords[idx])
+    return sub_elems_tags, sub_elems_coords
 
 
 def pos_to_nii(src, dst, affine, shape, mask=None):

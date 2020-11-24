@@ -11,12 +11,18 @@ from scipy.sparse import csc_matrix
 
 from shamo.core.problems.single import (
     ProbGetDP,
+    CompFilePath,
     CompGridSampler,
     CompTissueProp,
     CompSensors,
     CompTissues,
 )
-from shamo.utils.onelab import read_vector_file, get_elems_coords, pos_to_nii
+from shamo.utils.onelab import (
+    read_vector_file,
+    get_elems_coords,
+    get_elems_subset,
+    pos_to_nii,
+)
 from .solution import SolEEGLeadfield
 
 logger = logging.getLogger(__name__)
@@ -35,9 +41,15 @@ class ProbEEGLeadfield(ProbGetDP):
         The electrode to use as the reference.
     rois : shamo.core.problems.single.CompTissues
         The tissues in which the leadfield must be computed.
+    min_elems_dist : float
+        The minimal distance between two elements in the region of interest.
+    elems_path : shamo.core.problems.single.CompFilePath
+        The path to the elements subset.
     grid : shamo.core.problems.single.CompGridSampler
         The grid sampler if the source space must be based on a grid.
     """
+
+    _tmp_sort_idx = []
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -45,6 +57,8 @@ class ProbEEGLeadfield(ProbGetDP):
         self.markers = CompSensors()
         self.reference = CompSensors()
         self.rois = CompTissues()
+        self.min_elems_dist = 0
+        self.elems_path = CompFilePath()
         self.grid = CompGridSampler()
 
     @property
@@ -84,21 +98,35 @@ class ProbEEGLeadfield(ProbGetDP):
                 break
 
         with TemporaryDirectory() as d:
+            if self.min_elems_dist > 0:
+                gmsh.initialize()
+                gmsh.merge(str(model.mesh_path))
+                entities = []
+                for roi in self.rois["tissues"]:
+                    entities.extend(model.tissues[roi].vol.entities)
+                tags, coords = get_elems_subset(3, entities, self.min_elems_dist)
+                gmsh.finalize()
+                np.savez(Path(d) / "source_sp.npz", tags=tags, coords=coords)
+                self.elems_path.set(Path(d) / "source_sp.npz")
             self._check_components(**model)
             sensors = self._gen_rhs(model, d)
             self._gen_pro_file(d, **kwargs, **model, active_sensors=sensors)
             self._run_getdp(model, d)
             src = Path(d) / f"{name}.hdf5"
+            if self.elems_path.use_path:
+                elems = np.load(self.elems_path.path)
+                source_sp = [elems["tags"], elems["coords"]]
             with h5py.File(src, "w") as f:
                 for i, s in enumerate(sensors):
-                    if i == 0:
+                    if i == 0 and not self.elems_path.use_path:
                         row, source_sp = self._gen_row(i, d, model)
+                    else:
+                        row, _ = self._gen_row(i, d, model, source_sp)
+                    if i == 0:
                         shape = (len(sensors), row.size)
                         data = f.create_dataset(
                             "e_field", shape, dtype="f", compression="lzf",
                         )
-                    else:
-                        row, _ = self._gen_row(i, d, model)
                     data[i, :] = row
             sol = SolEEGLeadfield(
                 name,
@@ -120,7 +148,7 @@ class ProbEEGLeadfield(ProbGetDP):
             sol.save()
         return sol
 
-    def _gen_row(self, i, tmp_dir, model):
+    def _gen_row(self, i, tmp_dir, model, source_sp=None):
         """Generate a single row of the leadfield matrix.
 
         Parameters
@@ -131,6 +159,8 @@ class ProbEEGLeadfield(ProbGetDP):
             The path to the temporary directory.
         model : shamo.FEM
             The finite element model.
+        source_sp : list [numpy.ndarray], optional
+            The source space. The default is ``None``.
 
         Returns
         -------
@@ -140,7 +170,6 @@ class ProbEEGLeadfield(ProbGetDP):
             The source space.
         """
         tmp_dir = Path(tmp_dir)
-        source_sp = None
         if self.grid.use_grid:
             img = self.grid.nii_from_pos(tmp_dir / f"{i}.pos", tmp_dir / f"{i}.nii")
             row = img.get_fdata()[self.grid.mask].ravel()
@@ -150,15 +179,46 @@ class ProbEEGLeadfield(ProbGetDP):
                 )
         else:
             elem_type, elems_tags, row = read_vector_file(tmp_dir / f"{i}.e")
-            if i == 0:
+            if i == 0 and not self.elems_path.use_path:
                 logger.info("Acquiring elements coordinates.")
                 gmsh.initialize()
                 gmsh.merge(str(model.mesh_path))
                 coords = get_elems_coords(elem_type, elems_tags)
                 gmsh.finalize()
                 source_sp = (elems_tags, coords)
+            elif self.elems_path.use_path:
+                row = self._get_row_for_elems(i, elems_tags, row, source_sp)
             row = row.ravel()
         return row, source_sp
+
+    def _get_row_for_elems(self, i, elems_tags, row, source_sp):
+        """Get a subset of the values.
+
+        Parameters
+        ----------
+        i : int
+            The iteration index.
+        elems_tags : numpy.ndarray
+            The elements tags.
+        row : numpy.ndarray
+            The elements values.
+        source_sp : list [numpy.ndarray]
+            The subset of elements to get the values for.
+
+        Returns
+        -------
+        numpy.ndarray
+            The subset of values.
+        """
+        if i == 0:
+            mask = np.in1d(elems_tags, source_sp[0], assume_unique=True)
+            idx_tags = np.argsort(elems_tags[mask])
+            idx_sp = np.argsort(source_sp[0])
+            self._tmp_sort_idx = [mask, idx_tags, idx_sp]
+        row = row[self._tmp_sort_idx[0]]
+        new_row = np.zeros((source_sp[0].size, 3))
+        new_row[self._tmp_sort_idx[2]] = row[self._tmp_sort_idx[1]]
+        return new_row
 
     def _check_components(self, **kwargs):
         """Check if the components are properly set."""
@@ -166,7 +226,12 @@ class ProbEEGLeadfield(ProbGetDP):
         self._source.check("source", **kwargs)
         self.reference.check("reference", **kwargs)
         self.rois.check("region of interest", **kwargs)
+        self.elems_path.check("elements path", **kwargs)
         self.grid.check("grid", **kwargs)
+        if self.elems_path.use_path and self.grid.use_grid:
+            raise RuntimeError(
+                "Both 'elems_path' and 'grid' are set. Only one of them is allowed."
+            )
 
     def _prepare_pro_file_params(self, **kwargs):
         """Return the parameters required to generate the PRO file.
@@ -202,9 +267,12 @@ class ProbEEGLeadfield(ProbGetDP):
                 "rois": self.rois.to_py_param(**kwargs),
                 "reference": self.reference.to_py_param(**kwargs),
                 "markers": self.markers.to_py_param(**kwargs),
+                "use_elems_path": self.elems_path.use_path,
                 "use_grid": self.grid.use_grid,
             }
         )
+        if self.elems_path.use_path:
+            params["elems_path"] = self.elems_path.to_py_param(**kwargs)
         if self.grid.use_grid:
             params["grid"] = self.grid.to_py_param(**kwargs)
         return params
