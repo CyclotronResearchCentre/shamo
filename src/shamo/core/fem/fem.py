@@ -597,6 +597,9 @@ class FEM(ObjDir):
         logger.debug(pformat(coords))
         return self.add_point_sensors(coords, tissue, dim)
 
+    add_point_sensors_from_tsv_on = partialmethod(add_point_sensors_from_tsv, dim=2)
+    add_point_sensors_from_tsv_in = partialmethod(add_point_sensors_from_tsv, dim=3)
+
     def _get_tissue_nodes(self, tissue, dim):
         """Return all the nodes of the tissue in specified dimensio entities."""
         if dim == 2:
