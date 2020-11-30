@@ -4,6 +4,7 @@ import pickle
 
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import Matern, ConstantKernel
+from sklearn.multioutput import MultiOutputRegressor
 
 from shamo.core.objects import ObjDir
 from shamo import DistABC
@@ -136,18 +137,29 @@ class SurrABC(ObjDir):
         x, y, params = cls._get_data(sol, **kwargs)
         kernel = kwargs.get(
             "kernel",
-            ConstantKernel() * Matern(length_scale=[1.0] * len(params), nu=1.5),
+            ConstantKernel() * Matern(length_scale=[1.0] * len(params), nu=2.5),
         )
         n_restarts_optimizer = kwargs.get("n_restarts_optimizer", 0)
         random_state = kwargs.get("random_state", 0)
         alpha = kwargs.get("alpha", 1e-10)
-        gp = GaussianProcessRegressor(
-            kernel=kernel,
-            n_restarts_optimizer=n_restarts_optimizer,
-            random_state=random_state,
-            normalize_y=True,
-            alpha=alpha,
-        ).fit(x, y)
+        if y.ndim > 1 and y.shape[1] > 1:
+            gp = MultiOutputRegressor(
+                GaussianProcessRegressor(
+                    kernel=kernel,
+                    n_restarts_optimizer=n_restarts_optimizer,
+                    random_state=random_state,
+                    normalize_y=True,
+                    alpha=alpha,
+                )
+            ).fit(x, y)
+        else:
+            gp = GaussianProcessRegressor(
+                kernel=kernel,
+                n_restarts_optimizer=n_restarts_optimizer,
+                random_state=random_state,
+                normalize_y=True,
+                alpha=alpha,
+            ).fit(x, y)
         surr = cls(name, parent_path, params=params)
         surr["sol_json_path"] = str(surr.get_relative_path(sol.json_path))
         pickle.dump(gp, open(surr.gp_path, "wb"))
