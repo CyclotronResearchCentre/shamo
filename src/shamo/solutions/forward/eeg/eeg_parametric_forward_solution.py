@@ -86,7 +86,8 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
                 n_restarts_optimizer=n_restarts_optimizer,
                 normalize_y=True,
                 random_state=0,
-            )
+            ),
+            n_jobs=n_jobs,
         ).fit(x, y)
         surrogate_model_path = str(
             Path(self.path) / "{}_surrogate.bin".format(self.name)
