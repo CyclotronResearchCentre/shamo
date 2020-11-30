@@ -289,7 +289,9 @@ class ParametricForwardSolution(CommonForwardSolution):
             self._surrogate_model = pickle.load(open(self.surrogate_model_path, "rb"))
         return self._surrogate_model
 
-    def finalize(self, force=False, clean=True, n_restarts_optimizer=0, n_subs=0):
+    def finalize(
+        self, force=False, clean=True, n_restarts_optimizer=0, n_jobs=None, n_subs=0
+    ):
         """Finalize the generation of the parametric solution.
 
         Parameters
@@ -302,6 +304,10 @@ class ParametricForwardSolution(CommonForwardSolution):
             generation are removed. (The default is ``True``)
         n_restarts_optimizer : int, optional
             The number of trials for the optimizer. (The default is ``0``)
+        n_jobs : int, optional
+            The number of elements for which the regression is performed in parallel.
+            ``None`` means one and ``-1`` means all the cores are used. (The default is
+            ``None``)
         n_subs : int, optional
             If set to ``0``, all the sub solutions are used. Otherwise, only the
             `n_subs` first sub solutions are considered. (The default is ``0``)
@@ -357,7 +363,7 @@ class ParametricForwardSolution(CommonForwardSolution):
             solution["elements_path"] = str(Path("..") / elements_path)
             solution.save()
         # Generate the surrogate model
-        self.generate_surrogate_model(n_restarts_optimizer)
+        self.generate_surrogate_model(n_restarts_optimizer, n_jobs)
         self["is_finalized"] = True
         self.save()
         return self

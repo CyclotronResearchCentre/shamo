@@ -59,13 +59,17 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
     SOLUTION_FACTORY = EEGForwardSolution
     SUB_PROBLEM_FACTORY = EEGForwardProblem
 
-    def generate_surrogate_model(self, n_restarts_optimizer=0):
+    def generate_surrogate_model(self, n_restarts_optimizer=0, n_jobs=None):
         """Generate the surrogate model.
 
         Parameters
         ----------
         n_restarts_optimizer : int, optional
             The number of trials for the optimizer. (The default is ``0``)
+        n_jobs : int, optional
+            The number of elements for which the regression is performed in parallel.
+            ``None`` means one and ``-1`` means all the cores are used. (The default is
+            ``None``)
 
         Returns
         -------
