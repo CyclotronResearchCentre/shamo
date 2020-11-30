@@ -8,6 +8,7 @@ import pickle
 
 import numpy as np
 from sklearn.gaussian_process import GaussianProcessRegressor, kernels
+from sklearn.multioutput import MultiOutputRegressor
 
 from shamo.solutions import ParametricForwardSolution, MaternProd
 from shamo.utils.path import get_relative_path
@@ -72,11 +73,15 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
             The current solution.
         """
         x, y = self._get_x_y()
-        kernel = kernels.ConstantKernel() * MaternProd(
-            length_scale=[1.0] * x.shape[1], nu=1.5
+        kernel = kernels.ConstantKernel() * kernels.Matern(
+            length_scale=[1.0] * x.shape[1], nu=2.5
         )
-        model = GaussianProcessRegressor(
-            kernel=kernel, n_restarts_optimizer=n_restarts_optimizer, normalize_y=True
+        model = MultiOutputRegressor(
+            GaussianProcessRegressor(
+                kernel=kernel,
+                n_restarts_optimizer=n_restarts_optimizer,
+                normalize_y=True,
+            )
         ).fit(x, y)
         surrogate_model_path = str(
             Path(self.path) / "{}_surrogate.bin".format(self.name)
