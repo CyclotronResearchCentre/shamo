@@ -306,7 +306,7 @@ class ParametricForwardSolution(CommonForwardSolution):
             The number of trials for the optimizer. (The default is ``0``)
         n_jobs : int, optional
             The number of elements for which the regression is performed in parallel.
-            ``None`` means one and ``-1`` means all the cores are used. (The default is
+            ``1`` means one and ``None`` means all the cores are used. (The default is
             ``None``)
         n_subs : int, optional
             If set to ``0``, all the sub solutions are used. Otherwise, only the

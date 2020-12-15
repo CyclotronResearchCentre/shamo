@@ -3,8 +3,11 @@
 This module implements the `EEGParametricForwardSolution` class which holds the
 data corresponding to the solution of the EEG parametric forward problem.
 """
+import itertools as iter
+import multiprocessing as mp
 from pathlib import Path
 import pickle
+from tempfile import TemporaryDirectory
 
 import numpy as np
 from sklearn.gaussian_process import GaussianProcessRegressor, kernels
@@ -68,7 +71,7 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
             The number of trials for the optimizer. (The default is ``0``)
         n_jobs : int, optional
             The number of elements for which the regression is performed in parallel.
-            ``None`` means one and ``-1`` means all the cores are used. (The default is
+            ``1`` means one and ``None`` means all the cores are used. (The default is
             ``None``)
 
         Returns
@@ -88,7 +91,20 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
                 random_state=0,
             ),
             n_jobs=n_jobs,
-        ).fit(x, y)
+        )
+        tmp = Path(self.path) / "tmp"
+        tmp.mkdir(parents=True, exist_ok=True)
+        print(tmp)
+        gen = (
+            [i, x, y[:, i], kernel, tmp, n_restarts_optimizer]
+            for i in range(y.shape[1])
+        )
+        if n_jobs == 1:
+            paths = iter.starmap(self._fit_single, gen)
+        else:
+            with mp.Pool(n_jobs) as p:
+                paths = p.starmap(self._fit_single, gen)
+        model.estimators_ = [pickle.load(open(p, "rb")) for p in paths]
         surrogate_model_path = str(
             Path(self.path) / "{}_surrogate.bin".format(self.name)
         )
@@ -96,6 +112,18 @@ class EEGParametricForwardSolution(ParametricForwardSolution):
         self["surrogate_model_path"] = get_relative_path(
             surrogate_model_path, self.path
         )
+
+    @staticmethod
+    def _fit_single(i, x, y, kernel, tmp_dir, n_restarts_optimizer=0):
+        gp = GaussianProcessRegressor(
+            kernel=kernel,
+            n_restarts_optimizer=n_restarts_optimizer,
+            normalize_y=True,
+            random_state=0,
+        ).fit(x, y)
+        gp_path = Path(tmp_dir) / f"gp_{i:08d}.bin"
+        pickle.dump(gp, open(gp_path, "wb"))
+        return gp_path
 
     def _get_x_y(self):
         """Fetch the design set.
