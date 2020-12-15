@@ -18,7 +18,7 @@ CGAL
 We recommend you to use the package manager of your OS.
 
 .. list-table:: CGAL
-    :widths: 25 50 50
+    :widths: 20 40 40
     :header-rows: 1
 
     * - OS
@@ -40,8 +40,8 @@ Gmsh
 `Gmsh <https://gmsh.info/>`_ is a 3D finite element mesher.
 Download the latest version corresponding to your OS.
 
-..list-table:: GetDP
-    :widths: 25 100
+.. list-table:: Gmsh
+    :widths: 20 80
     :header-rows: 1
 
     * - OS
@@ -62,7 +62,7 @@ GetDP
 Download the latest version corresponding to your OS.
 
 .. list-table:: GetDP
-    :widths: 25 100
+    :widths: 20 80
     :header-rows: 1
 
     * - OS
@@ -82,7 +82,7 @@ Install shamo
 Pip
 ~~~
 
-Since ``shamo`` is available on [PyPI](https://pypi.org/project/shamo/), the easiest way to install the latest release is to use the following command:
+Since ``shamo`` is available on `PyPI <https://pypi.org/project/shamo/>`_, the easiest way to install the latest release is to use the following command:
 
 .. code-block:: shell
 

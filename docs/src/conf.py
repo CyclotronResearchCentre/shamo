@@ -32,6 +32,7 @@ release = "0.3.2"
 extensions = [
     "numpydoc",
     "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
     "sphinx.ext.inheritance_diagram",
     "sphinx.ext.intersphinx",
     "sphinx.ext.mathjax",
@@ -40,7 +41,7 @@ extensions = [
 ]
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ["_templates"]
+templates_path = [".templates"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -62,14 +63,17 @@ intersphinx_mapping = {
 }
 
 # -- Options for numpydoc ----------------------------------------------------
-
 numpydoc_use_plots = True
 numpydoc_show_class_members = False
 numpydoc_attributes_as_param_list = False
 numpydoc_xref_param_type = True
 
 # -- Options for read the docs theme -----------------------------------------
-
 html_theme = "sphinx_rtd_theme"
 html_theme_path = ["_themes"]
 html_theme_options = {"collapse_navigation": False}
+
+# -- Options for autosummary -------------------------------------------------
+autosummary_generate = True
+autoclass_content = "both"
+autodoc_inherit_docstrings = True
