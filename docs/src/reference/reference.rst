@@ -1,5 +1,5 @@
-Reference
-=========
+Full reference
+==============
 
 Here is the full reference of the code. Check out the API for a reduced reference only containing useful classes and methods.
 
