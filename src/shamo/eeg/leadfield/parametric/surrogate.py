@@ -145,7 +145,7 @@ class SurrEEGLeadfield(SurrABC):
         return sols
 
 
-class SurrEEGLeadfieldDifToRef(SurrScalar):
+class SurrEEGLeadfieldScalar(SurrScalar):
     """Provide a way to evaluate the sensitivity of the EEG leadfield.
 
     Parameters
@@ -169,13 +169,16 @@ class SurrEEGLeadfieldDifToRef(SurrScalar):
     """
 
     @classmethod
-    def _get_data(cls, sol, **kwargs):
+    def _get_data(cls, sol, metric=None, **kwargs):
         """Extract relevant data from a parametric solution.
 
         Parameters
         ----------
         sol : shamo.core.solutions.parametric.SolParamABC
             The parametric solution to generate a surrogate model for.
+        metric : function
+            A function taking two parameters. First, the reference matrix and second the
+            leadfield matrix considered. It must return a single scalar.
 
         Returns
         -------
@@ -200,9 +203,9 @@ class SurrEEGLeadfieldDifToRef(SurrScalar):
         for s in sols:
             x.append([s.sigmas[t][0] for t, _ in params])
             m = s.get_matrix()
-            y.append(np.linalg.norm(m - m_ref, "fro"))
-        x = np.array(x)
-        y = np.array(y)
+            y.append(metric(m_ref, m))
+        x = np.array(x).reshape((len(sols), -1))
+        y = np.array(y).reshape((len(sols),))
         return x, y, params
 
     @classmethod
