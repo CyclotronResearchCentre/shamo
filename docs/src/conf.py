@@ -38,6 +38,7 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.viewcode",
     "nbsphinx",
+    "sphinxcontrib.bibtex",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -77,3 +78,6 @@ html_theme_options = {"collapse_navigation": False}
 autosummary_generate = True
 autoclass_content = "both"
 autodoc_inherit_docstrings = True
+
+# -- Options for bibtex ------------------------------------------------------
+bibtex_bibfiles = ["references.bib"]
