@@ -5,8 +5,8 @@ First, I would like to thank you for your interest in *shamo*. If you want to im
 - [Finding and reporting bugs](#finding-and-reporting-bugs)
 - [Enhancing documentation and examples](enhancing-documentation-and-examples)
 - [Developing shamo](#developing-shamo)
-    - [Adding new features](#adding-new-features)
     - [Enhancing existing features](#enhancing-existing-features-and-fixing-bugs)
+    - [Adding new features](#adding-new-features)
 
 ## Requesting new features
 
@@ -40,10 +40,31 @@ Once everything is properly setup, create a new branch called `feature/{feature_
 
 When you are done working, create a [pull request](https://github.com/CyclotronResearchCentre/shamo/pulls). We'll review the modifications you did as soon as possible.
 
-### Adding new features
-
-<!-- TODO: Add documentation about how to add a new problem-solution pair. -->
-
 ### Enhancing existing features and fixing bugs
 
 <!-- TODO: Add documentation about how to propose bug fixes and features enhancements. -->
+
+### Adding new features
+
+Many features can be implemented in *shamo*. Here are the instructions to add some of them.
+
+Everything in *shamo* is defined as a pair of objects where the problem defines the computation and the solution stores the result.
+
+The structure of *shamo* is split into the `core` package which contains all the features shared by all or at least some of the problems/solutions and the modalities such as `eeg` or `hd_tdcs` containing the actual processes. Those packages are further split into sub-packages focused on a single process.
+```shell
+src/shamo/
+├── cli/                # Contain the command line interface.
+├── core/               # Contain the features shared by many objects.
+└── modality/           # Define a new modality with one or multiple processes.
+    └── process/        # Define a process with its problems and solutions.
+        ├── parametric/ # Define the parametric problem-solution pair of the process.
+        └── single/     # Define the single problem-solution pair of the process.
+```
+
+#### Add a new problem-solution pair
+
+To add a new modality called `new_modality`, add the sub-package in the `src/shamo` directory as:
+
+#### Add a new parametric problem-solution pair
+
+#### Add a new surrogate model
