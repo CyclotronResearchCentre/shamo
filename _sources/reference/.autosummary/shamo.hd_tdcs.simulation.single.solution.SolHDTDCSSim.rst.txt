@@ -1,0 +1,55 @@
+shamo.hd\_tdcs.simulation.single.solution.SolHDTDCSSim
+======================================================
+
+.. currentmodule:: shamo.hd_tdcs.simulation.single.solution
+
+.. autoclass:: SolHDTDCSSim
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~SolHDTDCSSim.clear
+      ~SolHDTDCSSim.copy
+      ~SolHDTDCSSim.fromkeys
+      ~SolHDTDCSSim.get
+      ~SolHDTDCSSim.get_relative_path
+      ~SolHDTDCSSim.items
+      ~SolHDTDCSSim.keys
+      ~SolHDTDCSSim.load
+      ~SolHDTDCSSim.pop
+      ~SolHDTDCSSim.popitem
+      ~SolHDTDCSSim.save
+      ~SolHDTDCSSim.setdefault
+      ~SolHDTDCSSim.update
+      ~SolHDTDCSSim.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SolHDTDCSSim.current
+      ~SolHDTDCSSim.j_pro_path
+      ~SolHDTDCSSim.json_path
+      ~SolHDTDCSSim.mag_j_pro_path
+      ~SolHDTDCSSim.model_json_path
+      ~SolHDTDCSSim.name
+      ~SolHDTDCSSim.parent_path
+      ~SolHDTDCSSim.path
+      ~SolHDTDCSSim.references
+      ~SolHDTDCSSim.sigmas
+      ~SolHDTDCSSim.source
+      ~SolHDTDCSSim.v_pro_path
+   
+   

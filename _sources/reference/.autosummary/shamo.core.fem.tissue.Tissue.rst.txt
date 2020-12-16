@@ -1,0 +1,43 @@
+shamo.core.fem.tissue.Tissue
+============================
+
+.. currentmodule:: shamo.core.fem.tissue
+
+.. autoclass:: Tissue
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~Tissue.clear
+      ~Tissue.copy
+      ~Tissue.fromkeys
+      ~Tissue.get
+      ~Tissue.items
+      ~Tissue.keys
+      ~Tissue.pop
+      ~Tissue.popitem
+      ~Tissue.setdefault
+      ~Tissue.update
+      ~Tissue.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Tissue.fields
+      ~Tissue.surf
+      ~Tissue.vol
+   
+   

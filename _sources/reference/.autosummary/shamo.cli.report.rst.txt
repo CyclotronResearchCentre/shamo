@@ -1,0 +1,23 @@
+shamo.cli.report
+================
+
+.. automodule:: shamo.cli.report
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

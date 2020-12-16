@@ -1,0 +1,47 @@
+shamo.core.fem.sensors.point.PointSensor
+========================================
+
+.. currentmodule:: shamo.core.fem.sensors.point
+
+.. autoclass:: PointSensor
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~PointSensor.clear
+      ~PointSensor.copy
+      ~PointSensor.fromkeys
+      ~PointSensor.get
+      ~PointSensor.items
+      ~PointSensor.keys
+      ~PointSensor.pop
+      ~PointSensor.popitem
+      ~PointSensor.setdefault
+      ~PointSensor.update
+      ~PointSensor.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PointSensor.TYPE_POINT
+      ~PointSensor.mesh_coords
+      ~PointSensor.node
+      ~PointSensor.point
+      ~PointSensor.real_coords
+      ~PointSensor.sensor_type
+      ~PointSensor.tissue
+   
+   

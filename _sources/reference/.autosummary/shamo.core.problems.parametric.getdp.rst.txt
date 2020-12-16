@@ -1,0 +1,32 @@
+shamo.core.problems.parametric.getdp
+====================================
+
+.. automodule:: shamo.core.problems.parametric.getdp
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      ProbParamGetDP
+   
+   
+
+   
+   
+   
+
+
+

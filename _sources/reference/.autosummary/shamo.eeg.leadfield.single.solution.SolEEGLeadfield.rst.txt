@@ -1,0 +1,61 @@
+shamo.eeg.leadfield.single.solution.SolEEGLeadfield
+===================================================
+
+.. currentmodule:: shamo.eeg.leadfield.single.solution
+
+.. autoclass:: SolEEGLeadfield
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~SolEEGLeadfield.clear
+      ~SolEEGLeadfield.copy
+      ~SolEEGLeadfield.fromkeys
+      ~SolEEGLeadfield.get
+      ~SolEEGLeadfield.get_matrix
+      ~SolEEGLeadfield.get_relative_path
+      ~SolEEGLeadfield.items
+      ~SolEEGLeadfield.keys
+      ~SolEEGLeadfield.load
+      ~SolEEGLeadfield.pop
+      ~SolEEGLeadfield.popitem
+      ~SolEEGLeadfield.save
+      ~SolEEGLeadfield.set_matrix
+      ~SolEEGLeadfield.setdefault
+      ~SolEEGLeadfield.update
+      ~SolEEGLeadfield.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SolEEGLeadfield.json_path
+      ~SolEEGLeadfield.markers
+      ~SolEEGLeadfield.matrix_path
+      ~SolEEGLeadfield.model_json_path
+      ~SolEEGLeadfield.n_sensors
+      ~SolEEGLeadfield.n_sources
+      ~SolEEGLeadfield.name
+      ~SolEEGLeadfield.parent_path
+      ~SolEEGLeadfield.path
+      ~SolEEGLeadfield.reference
+      ~SolEEGLeadfield.rois
+      ~SolEEGLeadfield.sensors
+      ~SolEEGLeadfield.shape
+      ~SolEEGLeadfield.sigmas
+      ~SolEEGLeadfield.source_sp_path
+      ~SolEEGLeadfield.use_grid
+   
+   

@@ -1,0 +1,46 @@
+shamo.core.objects.file.ObjFile
+===============================
+
+.. currentmodule:: shamo.core.objects.file
+
+.. autoclass:: ObjFile
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~ObjFile.clear
+      ~ObjFile.copy
+      ~ObjFile.fromkeys
+      ~ObjFile.get
+      ~ObjFile.items
+      ~ObjFile.keys
+      ~ObjFile.load
+      ~ObjFile.pop
+      ~ObjFile.popitem
+      ~ObjFile.save
+      ~ObjFile.setdefault
+      ~ObjFile.update
+      ~ObjFile.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ObjFile.json_path
+      ~ObjFile.name
+      ~ObjFile.parent_path
+      ~ObjFile.path
+   
+   

@@ -1,0 +1,49 @@
+shamo.core.distributions.normal.DistNormal
+==========================================
+
+.. currentmodule:: shamo.core.distributions.normal
+
+.. autoclass:: DistNormal
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~DistNormal.clear
+      ~DistNormal.copy
+      ~DistNormal.fromkeys
+      ~DistNormal.get
+      ~DistNormal.items
+      ~DistNormal.keys
+      ~DistNormal.load
+      ~DistNormal.pop
+      ~DistNormal.popitem
+      ~DistNormal.setdefault
+      ~DistNormal.update
+      ~DistNormal.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DistNormal.dist
+      ~DistNormal.dist_type
+      ~DistNormal.expect
+      ~DistNormal.mu
+      ~DistNormal.salib_bounds
+      ~DistNormal.salib_name
+      ~DistNormal.sigma
+      ~DistNormal.uniform_dist
+   
+   

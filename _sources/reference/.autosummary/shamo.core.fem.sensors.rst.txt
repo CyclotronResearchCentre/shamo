@@ -1,0 +1,31 @@
+shamo.core.fem.sensors
+======================
+
+.. automodule:: shamo.core.fem.sensors
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   shamo.core.fem.sensors.point
+   shamo.core.fem.sensors.sensor
+

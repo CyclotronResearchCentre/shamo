@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HD-tDCS &mdash; shamo 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="HD-tDCS simulation" href="tutorials/code/hd_tdcs/hd_tdcs_simulation.html" />
+    <link rel="prev" title="EEG parametric leadfield sensitivity analysis" href="tutorials/code/eeg/eeg_param_leadfield_ssp-dist_surr-toref.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> shamo
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../quickstart.html">Quickstart guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../install.html">Install</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install.html#install-binary-dependencies">Install binary dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../install.html#cgal">CGAL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install.html#gmsh">Gmsh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install.html#getdp">GetDP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../install.html#install-shamo">Install shamo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../install.html#pip">Pip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install.html#setup-py">Setup.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="usage.html">Usage</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="tutorials/code/fem/fem.html">Finite element model creation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/code/fem/fem.html#Mesh-generation">Mesh generation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/code/fem/fem.html#Sensors-additions">Sensors additions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/code/fem/fem.html#Field-addition">Field addition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="eeg.html">EEG</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/code/eeg/eeg_leadfield_ssp-elems.html">EEG leadfield computation - On all ROI elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/code/eeg/eeg_leadfield_ssp-dist.html">EEG leadfield computation - On equidistant elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/code/eeg/eeg_leadfield_ssp-grid.html">EEG leadfield computation - On regular grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/code/eeg/eeg_param_leadfield_ssp-elems.html">EEG parametric leadfield computation - On all ROI elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/code/eeg/eeg_param_leadfield_ssp-dist.html">EEG parametric leadfield computation - On equidistant elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/code/eeg/eeg_param_leadfield_ssp-grid.html">EEG parametric leadfield computation - On regular grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/code/eeg/eeg_param_leadfield_ssp-dist_surr-mat.html">EEG parametric leadfield surrogate model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/code/eeg/eeg_param_leadfield_ssp-dist_surr-toref.html">EEG parametric leadfield sensitivity analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">HD-tDCS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/code/hd_tdcs/hd_tdcs_simulation.html">HD-tDCS simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/code/hd_tdcs/hd_tdcs_param_simulation.html">HD-tDCS parametric simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/api.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/api.html#fem">FEM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/api.html#eeg">EEG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/api.html#leadfield">Leadfield</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/api.html#hd-tdcs">HD-tDCS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/reference.html">Full reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/.autosummary/shamo.cli.html">shamo.cli</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/.autosummary/shamo.cli.report.html">shamo.cli.report</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/.autosummary/shamo.core.html">shamo.core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/.autosummary/shamo.core.distributions.html">shamo.core.distributions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.core.distributions.abc.html">shamo.core.distributions.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.core.distributions.constant.html">shamo.core.distributions.constant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.core.distributions.normal.html">shamo.core.distributions.normal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.core.distributions.uniform.html">shamo.core.distributions.uniform</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/.autosummary/shamo.core.fem.html">shamo.core.fem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.core.fem.fem.html">shamo.core.fem.fem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.core.fem.field.html">shamo.core.fem.field</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.core.fem.group.html">shamo.core.fem.group</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.core.fem.sensors.html">shamo.core.fem.sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.core.fem.tissue.html">shamo.core.fem.tissue</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/.autosummary/shamo.core.objects.html">shamo.core.objects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.core.objects.abc.html">shamo.core.objects.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.core.objects.dir.html">shamo.core.objects.dir</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.core.objects.file.html">shamo.core.objects.file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/.autosummary/shamo.core.problems.html">shamo.core.problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.core.problems.parametric.html">shamo.core.problems.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.core.problems.single.html">shamo.core.problems.single</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/.autosummary/shamo.core.solutions.html">shamo.core.solutions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.core.solutions.parametric.html">shamo.core.solutions.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.core.solutions.single.html">shamo.core.solutions.single</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/.autosummary/shamo.core.surrogate.html">shamo.core.surrogate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.core.surrogate.abc.html">shamo.core.surrogate.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.core.surrogate.scalar.html">shamo.core.surrogate.scalar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/.autosummary/shamo.eeg.html">shamo.eeg</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/.autosummary/shamo.eeg.leadfield.html">shamo.eeg.leadfield</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.eeg.leadfield.parametric.html">shamo.eeg.leadfield.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.eeg.leadfield.single.html">shamo.eeg.leadfield.single</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/.autosummary/shamo.hd_tdcs.html">shamo.hd_tdcs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/.autosummary/shamo.hd_tdcs.simulation.html">shamo.hd_tdcs.simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.hd_tdcs.simulation.parametric.html">shamo.hd_tdcs.simulation.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.hd_tdcs.simulation.single.html">shamo.hd_tdcs.simulation.single</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/.autosummary/shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/.autosummary/shamo.utils.onelab.html">shamo.utils.onelab</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.utils.onelab.get_elems_coords.html">shamo.utils.onelab.get_elems_coords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.utils.onelab.get_elems_subset.html">shamo.utils.onelab.get_elems_subset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.utils.onelab.pos_to_nii.html">shamo.utils.onelab.pos_to_nii</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.utils.onelab.read_vector_file.html">shamo.utils.onelab.read_vector_file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/.autosummary/shamo.utils.path.html">shamo.utils.path</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/.autosummary/shamo.utils.path.get_relative_path.html">shamo.utils.path.get_relative_path</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">shamo</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../quickstart.html">Quickstart guide</a> &raquo;</li>
+        
+          <li><a href="usage.html">Usage</a> &raquo;</li>
+        
+      <li>HD-tDCS</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/quickstart/usage/hd_tdcs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="hd-tdcs">
+<h1>HD-tDCS<a class="headerlink" href="#hd-tdcs" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/code/hd_tdcs/hd_tdcs_simulation.html">HD-tDCS simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/code/hd_tdcs/hd_tdcs_param_simulation.html">HD-tDCS parametric simulation</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorials/code/hd_tdcs/hd_tdcs_simulation.html" class="btn btn-neutral float-right" title="HD-tDCS simulation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tutorials/code/eeg/eeg_param_leadfield_ssp-dist_surr-toref.html" class="btn btn-neutral float-left" title="EEG parametric leadfield sensitivity analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, GIGA CRC In-Vivo Imaging
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

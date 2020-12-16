@@ -1,0 +1,47 @@
+shamo.core.fem.field.Field
+==========================
+
+.. currentmodule:: shamo.core.fem.field
+
+.. autoclass:: Field
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~Field.clear
+      ~Field.copy
+      ~Field.fromkeys
+      ~Field.gen_formula
+      ~Field.get
+      ~Field.items
+      ~Field.keys
+      ~Field.pop
+      ~Field.popitem
+      ~Field.setdefault
+      ~Field.update
+      ~Field.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Field.SCALAR
+      ~Field.TENSOR
+      ~Field.VECTOR
+      ~Field.field_type
+      ~Field.formula
+      ~Field.view
+   
+   

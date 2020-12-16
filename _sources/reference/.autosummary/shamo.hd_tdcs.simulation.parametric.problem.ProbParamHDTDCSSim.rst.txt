@@ -1,0 +1,45 @@
+shamo.hd\_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim
+===============================================================
+
+.. currentmodule:: shamo.hd_tdcs.simulation.parametric.problem
+
+.. autoclass:: ProbParamHDTDCSSim
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~ProbParamHDTDCSSim.clear
+      ~ProbParamHDTDCSSim.copy
+      ~ProbParamHDTDCSSim.fromkeys
+      ~ProbParamHDTDCSSim.get
+      ~ProbParamHDTDCSSim.items
+      ~ProbParamHDTDCSSim.keys
+      ~ProbParamHDTDCSSim.pop
+      ~ProbParamHDTDCSSim.popitem
+      ~ProbParamHDTDCSSim.setdefault
+      ~ProbParamHDTDCSSim.solve
+      ~ProbParamHDTDCSSim.update
+      ~ProbParamHDTDCSSim.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProbParamHDTDCSSim.METHOD_JOB
+      ~ProbParamHDTDCSSim.METHOD_MUL
+      ~ProbParamHDTDCSSim.METHOD_SEQ
+      ~ProbParamHDTDCSSim.template
+   
+   

@@ -1,0 +1,32 @@
+shamo.core.surrogate.abc
+========================
+
+.. automodule:: shamo.core.surrogate.abc
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      SurrABC
+   
+   
+
+   
+   
+   
+
+
+

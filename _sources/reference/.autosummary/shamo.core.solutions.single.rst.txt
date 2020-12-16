@@ -1,0 +1,30 @@
+shamo.core.solutions.single
+===========================
+
+.. automodule:: shamo.core.solutions.single
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   shamo.core.solutions.single.getdp
+

@@ -1,0 +1,32 @@
+shamo.eeg.leadfield.parametric.solution
+=======================================
+
+.. automodule:: shamo.eeg.leadfield.parametric.solution
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      SolParamEEGLeadfield
+   
+   
+
+   
+   
+   
+
+
+

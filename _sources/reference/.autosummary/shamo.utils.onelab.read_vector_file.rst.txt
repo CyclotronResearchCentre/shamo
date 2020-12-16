@@ -1,0 +1,6 @@
+shamo.utils.onelab.read\_vector\_file
+=====================================
+
+.. currentmodule:: shamo.utils.onelab
+
+.. autofunction:: read_vector_file

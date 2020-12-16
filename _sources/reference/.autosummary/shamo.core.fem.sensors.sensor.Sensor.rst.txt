@@ -1,0 +1,43 @@
+shamo.core.fem.sensors.sensor.Sensor
+====================================
+
+.. currentmodule:: shamo.core.fem.sensors.sensor
+
+.. autoclass:: Sensor
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~Sensor.clear
+      ~Sensor.copy
+      ~Sensor.fromkeys
+      ~Sensor.get
+      ~Sensor.items
+      ~Sensor.keys
+      ~Sensor.pop
+      ~Sensor.popitem
+      ~Sensor.setdefault
+      ~Sensor.update
+      ~Sensor.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Sensor.TYPE_POINT
+      ~Sensor.sensor_type
+      ~Sensor.tissue
+   
+   

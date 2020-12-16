@@ -1,0 +1,49 @@
+shamo.core.problems.single.components.grid\_sampler.CompGridSampler
+===================================================================
+
+.. currentmodule:: shamo.core.problems.single.components.grid_sampler
+
+.. autoclass:: CompGridSampler
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~CompGridSampler.check
+      ~CompGridSampler.clear
+      ~CompGridSampler.copy
+      ~CompGridSampler.fromkeys
+      ~CompGridSampler.get
+      ~CompGridSampler.items
+      ~CompGridSampler.keys
+      ~CompGridSampler.nii_from_pos
+      ~CompGridSampler.pop
+      ~CompGridSampler.popitem
+      ~CompGridSampler.set
+      ~CompGridSampler.setdefault
+      ~CompGridSampler.to_pro_param
+      ~CompGridSampler.to_py_param
+      ~CompGridSampler.update
+      ~CompGridSampler.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~CompGridSampler.affine
+      ~CompGridSampler.mask
+      ~CompGridSampler.shape
+      ~CompGridSampler.use_grid
+   
+   

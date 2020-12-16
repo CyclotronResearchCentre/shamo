@@ -1,0 +1,40 @@
+shamo.core.problems.single.components.tissues.CompTissues
+=========================================================
+
+.. currentmodule:: shamo.core.problems.single.components.tissues
+
+.. autoclass:: CompTissues
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~CompTissues.add
+      ~CompTissues.adds
+      ~CompTissues.check
+      ~CompTissues.clear
+      ~CompTissues.copy
+      ~CompTissues.fromkeys
+      ~CompTissues.get
+      ~CompTissues.items
+      ~CompTissues.keys
+      ~CompTissues.pop
+      ~CompTissues.popitem
+      ~CompTissues.setdefault
+      ~CompTissues.to_pro_param
+      ~CompTissues.to_py_param
+      ~CompTissues.update
+      ~CompTissues.values
+   
+   
+
+   
+   
+   

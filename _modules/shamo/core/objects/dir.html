@@ -1,0 +1,408 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>shamo.core.objects.dir &mdash; shamo 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> shamo
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/quickstart.html">Quickstart guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../quickstart/install.html">Install</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/install.html#install-binary-dependencies">Install binary dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/install.html#cgal">CGAL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/install.html#gmsh">Gmsh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/install.html#getdp">GetDP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/install.html#install-shamo">Install shamo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/install.html#pip">Pip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/install.html#setup-py">Setup.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../quickstart/usage/usage.html">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/fem/fem.html">Finite element model creation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/fem/fem.html#Mesh-generation">Mesh generation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/fem/fem.html#Sensors-additions">Sensors additions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/fem/fem.html#Field-addition">Field addition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/usage/eeg.html">EEG</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_leadfield_ssp-elems.html">EEG leadfield computation - On all ROI elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_leadfield_ssp-dist.html">EEG leadfield computation - On equidistant elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_leadfield_ssp-grid.html">EEG leadfield computation - On regular grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-elems.html">EEG parametric leadfield computation - On all ROI elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-dist.html">EEG parametric leadfield computation - On equidistant elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-grid.html">EEG parametric leadfield computation - On regular grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-dist_surr-mat.html">EEG parametric leadfield surrogate model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-dist_surr-toref.html">EEG parametric leadfield sensitivity analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/usage/hd_tdcs.html">HD-tDCS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation.html">HD-tDCS simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_param_simulation.html">HD-tDCS parametric simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/api.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/api.html#fem">FEM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/api.html#eeg">EEG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/api.html#leadfield">Leadfield</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/api.html#hd-tdcs">HD-tDCS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/reference.html">Full reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/.autosummary/shamo.cli.html">shamo.cli</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.cli.report.html">shamo.cli.report</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.html">shamo.core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.distributions.html">shamo.core.distributions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.distributions.abc.html">shamo.core.distributions.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.distributions.constant.html">shamo.core.distributions.constant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.distributions.normal.html">shamo.core.distributions.normal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.distributions.uniform.html">shamo.core.distributions.uniform</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.fem.html">shamo.core.fem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.fem.fem.html">shamo.core.fem.fem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.fem.field.html">shamo.core.fem.field</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.fem.group.html">shamo.core.fem.group</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.fem.sensors.html">shamo.core.fem.sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.fem.tissue.html">shamo.core.fem.tissue</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.objects.html">shamo.core.objects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.objects.abc.html">shamo.core.objects.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.objects.dir.html">shamo.core.objects.dir</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.objects.file.html">shamo.core.objects.file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.problems.html">shamo.core.problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.problems.parametric.html">shamo.core.problems.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.problems.single.html">shamo.core.problems.single</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.solutions.html">shamo.core.solutions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.solutions.parametric.html">shamo.core.solutions.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.solutions.single.html">shamo.core.solutions.single</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.surrogate.html">shamo.core.surrogate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.surrogate.abc.html">shamo.core.surrogate.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.surrogate.scalar.html">shamo.core.surrogate.scalar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/.autosummary/shamo.eeg.html">shamo.eeg</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.eeg.leadfield.html">shamo.eeg.leadfield</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.eeg.leadfield.parametric.html">shamo.eeg.leadfield.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.eeg.leadfield.single.html">shamo.eeg.leadfield.single</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/.autosummary/shamo.hd_tdcs.html">shamo.hd_tdcs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.hd_tdcs.simulation.html">shamo.hd_tdcs.simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.hd_tdcs.simulation.parametric.html">shamo.hd_tdcs.simulation.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.hd_tdcs.simulation.single.html">shamo.hd_tdcs.simulation.single</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.onelab.html">shamo.utils.onelab</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.onelab.get_elems_coords.html">shamo.utils.onelab.get_elems_coords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.onelab.get_elems_subset.html">shamo.utils.onelab.get_elems_subset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.onelab.pos_to_nii.html">shamo.utils.onelab.pos_to_nii</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.onelab.read_vector_file.html">shamo.utils.onelab.read_vector_file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.path.html">shamo.utils.path</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.path.get_relative_path.html">shamo.utils.path.get_relative_path</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">shamo</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>shamo.core.objects.dir</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for shamo.core.objects.dir</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Implement the `ObjDir` class.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span> <span class="nn">.abc</span> <span class="kn">import</span> <span class="n">ObjABC</span>
+<span class="kn">from</span> <span class="nn">shamo.utils.path</span> <span class="kn">import</span> <span class="n">get_relative_path</span> <span class="k">as</span> <span class="n">get_rel_path</span>
+
+
+<div class="viewcode-block" id="ObjDir"><a class="viewcode-back" href="../../../../reference/.autosummary/shamo.core.objects.dir.ObjDir.html#shamo.core.fem.fem.ObjDir">[docs]</a><span class="k">class</span> <span class="nc">ObjDir</span><span class="p">(</span><span class="n">ObjABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A base class for any savable/loadable object stored as a directory.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        The name of the object.</span>
+<span class="sd">    parent_path : str, byte or os.PathLike</span>
+<span class="sd">        The path to the parent directory of the object.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    shamo.core.ObjABC</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the path to the object directory.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pathlib.Path</span>
+<span class="sd">            The path to the object directory.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent_path</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">json_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the path to the object JSON file.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pathlib.Path</span>
+<span class="sd">            The path to the object JSON file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.json&quot;</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_split_json_path</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">json_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the path and the name of the object from the path of the JSON file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        json_path : pathlib.Path</span>
+<span class="sd">            The path to the JSON file containing the object data.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            The name of the object.</span>
+<span class="sd">        pathlib.Path</span>
+<span class="sd">            The path to the parent directory of the object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">json_path</span><span class="o">.</span><span class="n">stem</span><span class="p">,</span> <span class="n">json_path</span><span class="o">.</span><span class="n">parents</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<div class="viewcode-block" id="ObjDir.get_relative_path"><a class="viewcode-back" href="../../../../reference/.autosummary/shamo.core.objects.dir.ObjDir.html#shamo.core.fem.fem.ObjDir.get_relative_path">[docs]</a>    <span class="k">def</span> <span class="nf">get_relative_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the relative path from the object to a file or directory.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str, byte or os.PathLike</span>
+<span class="sd">            The path to the file or directory to compute the relative path for.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pathlib.Path</span>
+<span class="sd">            The relative path to the file or directory.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">get_rel_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, GIGA CRC In-Vivo Imaging
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

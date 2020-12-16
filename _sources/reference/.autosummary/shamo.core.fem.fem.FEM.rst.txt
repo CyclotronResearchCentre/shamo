@@ -1,0 +1,70 @@
+shamo.core.fem.fem.FEM
+======================
+
+.. currentmodule:: shamo.core.fem.fem
+
+.. autoclass:: FEM
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~FEM.add_point_sensor
+      ~FEM.add_point_sensor_in
+      ~FEM.add_point_sensor_on
+      ~FEM.add_point_sensors
+      ~FEM.add_point_sensors_from_tsv
+      ~FEM.add_point_sensors_from_tsv_in
+      ~FEM.add_point_sensors_from_tsv_on
+      ~FEM.add_point_sensors_in
+      ~FEM.add_point_sensors_on
+      ~FEM.clear
+      ~FEM.copy
+      ~FEM.field_from_array
+      ~FEM.field_from_elems
+      ~FEM.field_from_nii
+      ~FEM.fromkeys
+      ~FEM.get
+      ~FEM.get_relative_path
+      ~FEM.items
+      ~FEM.keys
+      ~FEM.load
+      ~FEM.mesh_from_array
+      ~FEM.mesh_from_masks
+      ~FEM.mesh_from_nii
+      ~FEM.mesh_from_niis
+      ~FEM.pop
+      ~FEM.popitem
+      ~FEM.save
+      ~FEM.setdefault
+      ~FEM.update
+      ~FEM.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FEM.affine
+      ~FEM.json_path
+      ~FEM.mesh_params
+      ~FEM.mesh_path
+      ~FEM.name
+      ~FEM.nii_path
+      ~FEM.parent_path
+      ~FEM.path
+      ~FEM.sensors
+      ~FEM.shape
+      ~FEM.tissues
+   
+   

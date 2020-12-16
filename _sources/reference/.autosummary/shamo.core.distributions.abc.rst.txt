@@ -1,0 +1,32 @@
+shamo.core.distributions.abc
+============================
+
+.. automodule:: shamo.core.distributions.abc
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      DistABC
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,52 @@
+shamo.core.solutions.parametric.abc.SolParamABC
+===============================================
+
+.. currentmodule:: shamo.core.solutions.parametric.abc
+
+.. autoclass:: SolParamABC
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~SolParamABC.clear
+      ~SolParamABC.copy
+      ~SolParamABC.finalize
+      ~SolParamABC.fromkeys
+      ~SolParamABC.get
+      ~SolParamABC.get_relative_path
+      ~SolParamABC.get_sub_file
+      ~SolParamABC.get_sub_sols
+      ~SolParamABC.items
+      ~SolParamABC.keys
+      ~SolParamABC.load
+      ~SolParamABC.pop
+      ~SolParamABC.popitem
+      ~SolParamABC.save
+      ~SolParamABC.setdefault
+      ~SolParamABC.update
+      ~SolParamABC.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SolParamABC.json_path
+      ~SolParamABC.name
+      ~SolParamABC.parent_path
+      ~SolParamABC.path
+      ~SolParamABC.sub_class
+      ~SolParamABC.sub_json_paths
+   
+   

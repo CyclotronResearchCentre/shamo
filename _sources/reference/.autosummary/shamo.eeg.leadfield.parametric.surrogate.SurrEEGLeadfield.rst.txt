@@ -1,0 +1,54 @@
+shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield
+=========================================================
+
+.. currentmodule:: shamo.eeg.leadfield.parametric.surrogate
+
+.. autoclass:: SurrEEGLeadfield
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~SurrEEGLeadfield.clear
+      ~SurrEEGLeadfield.copy
+      ~SurrEEGLeadfield.fit
+      ~SurrEEGLeadfield.fromkeys
+      ~SurrEEGLeadfield.get
+      ~SurrEEGLeadfield.get_gp
+      ~SurrEEGLeadfield.get_relative_path
+      ~SurrEEGLeadfield.items
+      ~SurrEEGLeadfield.keys
+      ~SurrEEGLeadfield.load
+      ~SurrEEGLeadfield.pop
+      ~SurrEEGLeadfield.popitem
+      ~SurrEEGLeadfield.predict
+      ~SurrEEGLeadfield.predict_sol
+      ~SurrEEGLeadfield.save
+      ~SurrEEGLeadfield.setdefault
+      ~SurrEEGLeadfield.update
+      ~SurrEEGLeadfield.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SurrEEGLeadfield.gp_path
+      ~SurrEEGLeadfield.json_path
+      ~SurrEEGLeadfield.name
+      ~SurrEEGLeadfield.params
+      ~SurrEEGLeadfield.parent_path
+      ~SurrEEGLeadfield.path
+      ~SurrEEGLeadfield.sol_json_path
+   
+   

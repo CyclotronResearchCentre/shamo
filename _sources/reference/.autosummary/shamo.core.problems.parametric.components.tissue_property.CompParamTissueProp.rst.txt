@@ -1,0 +1,41 @@
+shamo.core.problems.parametric.components.tissue\_property.CompParamTissueProp
+==============================================================================
+
+.. currentmodule:: shamo.core.problems.parametric.components.tissue_property
+
+.. autoclass:: CompParamTissueProp
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~CompParamTissueProp.check
+      ~CompParamTissueProp.clear
+      ~CompParamTissueProp.copy
+      ~CompParamTissueProp.fromkeys
+      ~CompParamTissueProp.get
+      ~CompParamTissueProp.items
+      ~CompParamTissueProp.keys
+      ~CompParamTissueProp.pop
+      ~CompParamTissueProp.popitem
+      ~CompParamTissueProp.set
+      ~CompParamTissueProp.setdefault
+      ~CompParamTissueProp.sets
+      ~CompParamTissueProp.to_param
+      ~CompParamTissueProp.to_pro_param
+      ~CompParamTissueProp.to_py_param
+      ~CompParamTissueProp.update
+      ~CompParamTissueProp.values
+   
+   
+
+   
+   
+   

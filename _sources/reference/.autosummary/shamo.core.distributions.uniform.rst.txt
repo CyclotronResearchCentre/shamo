@@ -1,0 +1,32 @@
+shamo.core.distributions.uniform
+================================
+
+.. automodule:: shamo.core.distributions.uniform
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      DistUniform
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,1275 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>shamo.core.fem.fem &mdash; shamo 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> shamo
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/quickstart.html">Quickstart guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../quickstart/install.html">Install</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/install.html#install-binary-dependencies">Install binary dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/install.html#cgal">CGAL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/install.html#gmsh">Gmsh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/install.html#getdp">GetDP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/install.html#install-shamo">Install shamo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/install.html#pip">Pip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/install.html#setup-py">Setup.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../quickstart/usage/usage.html">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/fem/fem.html">Finite element model creation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/fem/fem.html#Mesh-generation">Mesh generation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/fem/fem.html#Sensors-additions">Sensors additions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/fem/fem.html#Field-addition">Field addition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/usage/eeg.html">EEG</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_leadfield_ssp-elems.html">EEG leadfield computation - On all ROI elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_leadfield_ssp-dist.html">EEG leadfield computation - On equidistant elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_leadfield_ssp-grid.html">EEG leadfield computation - On regular grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-elems.html">EEG parametric leadfield computation - On all ROI elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-dist.html">EEG parametric leadfield computation - On equidistant elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-grid.html">EEG parametric leadfield computation - On regular grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-dist_surr-mat.html">EEG parametric leadfield surrogate model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-dist_surr-toref.html">EEG parametric leadfield sensitivity analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/usage/hd_tdcs.html">HD-tDCS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation.html">HD-tDCS simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_param_simulation.html">HD-tDCS parametric simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/api.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/api.html#fem">FEM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/api.html#eeg">EEG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/api.html#leadfield">Leadfield</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/api.html#hd-tdcs">HD-tDCS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/reference.html">Full reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/.autosummary/shamo.cli.html">shamo.cli</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.cli.report.html">shamo.cli.report</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.html">shamo.core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.distributions.html">shamo.core.distributions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.distributions.abc.html">shamo.core.distributions.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.distributions.constant.html">shamo.core.distributions.constant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.distributions.normal.html">shamo.core.distributions.normal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.distributions.uniform.html">shamo.core.distributions.uniform</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.fem.html">shamo.core.fem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.fem.fem.html">shamo.core.fem.fem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.fem.field.html">shamo.core.fem.field</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.fem.group.html">shamo.core.fem.group</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.fem.sensors.html">shamo.core.fem.sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.fem.tissue.html">shamo.core.fem.tissue</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.objects.html">shamo.core.objects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.objects.abc.html">shamo.core.objects.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.objects.dir.html">shamo.core.objects.dir</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.objects.file.html">shamo.core.objects.file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.problems.html">shamo.core.problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.problems.parametric.html">shamo.core.problems.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.problems.single.html">shamo.core.problems.single</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.solutions.html">shamo.core.solutions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.solutions.parametric.html">shamo.core.solutions.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.solutions.single.html">shamo.core.solutions.single</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.surrogate.html">shamo.core.surrogate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.surrogate.abc.html">shamo.core.surrogate.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.surrogate.scalar.html">shamo.core.surrogate.scalar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/.autosummary/shamo.eeg.html">shamo.eeg</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.eeg.leadfield.html">shamo.eeg.leadfield</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.eeg.leadfield.parametric.html">shamo.eeg.leadfield.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.eeg.leadfield.single.html">shamo.eeg.leadfield.single</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/.autosummary/shamo.hd_tdcs.html">shamo.hd_tdcs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.hd_tdcs.simulation.html">shamo.hd_tdcs.simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.hd_tdcs.simulation.parametric.html">shamo.hd_tdcs.simulation.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.hd_tdcs.simulation.single.html">shamo.hd_tdcs.simulation.single</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.onelab.html">shamo.utils.onelab</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.onelab.get_elems_coords.html">shamo.utils.onelab.get_elems_coords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.onelab.get_elems_subset.html">shamo.utils.onelab.get_elems_subset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.onelab.pos_to_nii.html">shamo.utils.onelab.pos_to_nii</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.onelab.read_vector_file.html">shamo.utils.onelab.read_vector_file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.path.html">shamo.utils.path</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.path.get_relative_path.html">shamo.utils.path.get_relative_path</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">shamo</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>shamo.core.fem.fem</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for shamo.core.fem.fem</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Implement the `FEM` class.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Iterable</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partialmethod</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pformat</span>
+<span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">TemporaryDirectory</span>
+
+<span class="kn">import</span> <span class="nn">gmsh</span>
+<span class="kn">import</span> <span class="nn">meshio</span>
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
+<span class="kn">from</span> <span class="nn">nilearn.image</span> <span class="kn">import</span> <span class="n">crop_img</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pygalmesh</span> <span class="k">as</span> <span class="nn">cgal</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">RegularGridInterpolator</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">cdist</span>
+
+<span class="kn">from</span> <span class="nn">shamo.core.objects</span> <span class="kn">import</span> <span class="n">ObjDir</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Field</span><span class="p">,</span> <span class="n">Group</span><span class="p">,</span> <span class="n">Tissue</span><span class="p">,</span> <span class="n">Sensor</span><span class="p">,</span> <span class="n">PointSensor</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="FEM"><a class="viewcode-back" href="../../../../reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM">[docs]</a><span class="k">class</span> <span class="nc">FEM</span><span class="p">(</span><span class="n">ObjDir</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A finite element model.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        The name of the model.</span>
+<span class="sd">    parent_path : str, byte or os.PathLike</span>
+<span class="sd">        The path to the parent directory of the model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;tissues&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="n">t</span><span class="p">:</span> <span class="n">Tissue</span><span class="p">(</span><span class="o">**</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tissues&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;mesh_params&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;mesh_params&quot;</span><span class="p">,</span> <span class="p">{}),</span>
+                <span class="s2">&quot;sensors&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="n">s</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_sensor</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;sensors&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="p">},</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model &#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; initialized in &#39;</span><span class="si">{</span><span class="n">parent_path</span><span class="si">}</span><span class="s2">&#39;  directory.&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">nii_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the path to the NIFTI file.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pathlib.Path</span>
+<span class="sd">            The path to the NIFTI file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.nii&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">affine</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the affine matrix of the NIFTI file.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">            The affine matrix of the NIFTI file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nii_path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">img</span><span class="o">.</span><span class="n">affine</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the shape of the NIFTI file.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">            The shape of the NIFTI file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nii_path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mesh_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the path to the MSH file.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pathlib.Path</span>
+<span class="sd">            The path to the MSH file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.msh&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">tissues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the tissues of the model.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict [str, shamo.fem.Tissue]</span>
+<span class="sd">            The tissues of the model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;tissues&quot;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">sensors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the sensors of the model.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict [str, shamo.fem.Sensor]</span>
+<span class="sd">            The sensors of the model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;sensors&quot;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mesh_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the parameters used to produce the mesh.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict [str, float]</span>
+<span class="sd">            The parameters used to produce the mesh.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;mesh_params&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Mesh -----------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="FEM.mesh_from_array"><a class="viewcode-back" href="../../../../reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.mesh_from_array">[docs]</a>    <span class="k">def</span> <span class="nf">mesh_from_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="n">tissues</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate a MSH file from a labelled array.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        labels : numpy.ndarray</span>
+<span class="sd">            A labelled array corresponding to a multi-segments image. The array must</span>
+<span class="sd">            contain int labels starting from ``0`` (air) without skipping a number.</span>
+<span class="sd">        affine : numpy.ndarray</span>
+<span class="sd">            The affine matrix of the volume.</span>
+<span class="sd">        tissues : iterable [str]</span>
+<span class="sd">            The names of the tissues in the same order as the labels.</span>
+
+<span class="sd">        Other Parameters</span>
+<span class="sd">        ----------------</span>
+<span class="sd">        lloyd : bool, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        odt : bool, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        perturb : bool, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        exude : bool, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_edge_size_at_feature_edges: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        min_facet_angle: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_radius_surface_delaunay_ball: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_cell_circumradius: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_facet_distance: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_circumradius_edge_ratio: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        seed : int, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        TypeError</span>
+<span class="sd">            If argument &#39;labels&#39; is not a `numpy.ndarray`.</span>
+<span class="sd">            If argument &#39;affine&#39; is not a `numpy.ndarray`.</span>
+<span class="sd">            If an element of argument &#39;tissues&#39; is not a `str`.</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If argument &#39;labels&#39; is not a 3D array.</span>
+<span class="sd">            If argument &#39;affine&#39; is neither a (3, 4) nor a (4, 4) array.</span>
+<span class="sd">            If argument &#39;tissues&#39; does not contain as many elements as there are labels</span>
+<span class="sd">            in &#39;labels&#39;.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        pygalmesh.generate_from_array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Argument &#39;labels&#39; expects type numpy.ndarray.&quot;</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">labels</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Argument &#39;labels&#39; must be a 3D array.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">affine</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Argument &#39;affine&#39; expects type numpy.ndarray.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">affine</span><span class="o">.</span><span class="n">shape</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Argument &#39;affine&#39; expects shape (3,4) or (4,4).&quot;</span><span class="p">)</span>
+        <span class="n">affine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">affine</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])))</span>
+        <span class="c1"># Convert [mm] to [m]</span>
+        <span class="n">affine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mf">1e-3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">@</span> <span class="n">affine</span>
+        <span class="n">tissues</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tissues</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tissues</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Argument &#39;tissues&#39; expects an iterable of str.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tissues</span><span class="p">)</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="p">(</span>
+                    <span class="s2">&quot;Argument &#39;tissues&#39; must contain as many names &quot;</span>
+                    <span class="s2">&quot;as there are unique labels in &#39;labels&#39;.&quot;</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">Nifti1Image</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">affine</span><span class="p">)</span>
+        <span class="n">cropped_img</span> <span class="o">=</span> <span class="n">crop_img</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+        <span class="n">cropped_img</span><span class="o">.</span><span class="n">to_filename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nii_path</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">cropped_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">)</span>
+        <span class="n">affine</span> <span class="o">=</span> <span class="n">cropped_img</span><span class="o">.</span><span class="n">affine</span>
+
+        <span class="k">with</span> <span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_gen_init_mesh</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">d</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_apply_transform</span><span class="p">(</span><span class="n">affine</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_tissues</span><span class="p">(</span><span class="n">tissues</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Mesh generated.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FEM.mesh_from_nii"><a class="viewcode-back" href="../../../../reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.mesh_from_nii">[docs]</a>    <span class="k">def</span> <span class="nf">mesh_from_nii</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nii_path</span><span class="p">,</span> <span class="n">tissues</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate a MSH file from a labelled NIFTI file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        nii_path : str, byte or os.PathLike</span>
+<span class="sd">            The path to the NIFTI file containing the labelled volume.</span>
+<span class="sd">        tissues : iterable [str]</span>
+<span class="sd">            The names of the tissues in the same order as the labels.</span>
+
+<span class="sd">        Other Parameters</span>
+<span class="sd">        ----------------</span>
+<span class="sd">        lloyd : bool, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        odt : bool, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        perturb : bool, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        exude : bool, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_edge_size_at_feature_edges: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        min_facet_angle: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_radius_surface_delaunay_ball: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_cell_circumradius: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_facet_distance: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_circumradius_edge_ratio: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        seed : int, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        TypeError</span>
+<span class="sd">            If argument `nii_path` is not a `str`, `byte` or `os.PathLike`.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        FEM.mesh_from_array</span>
+<span class="sd">        pygalmesh.generate_from_array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">nii_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">nii_path</span><span class="p">)</span>
+
+        <span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">nii_path</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh_from_array</span><span class="p">(</span>
+            <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">),</span> <span class="n">img</span><span class="o">.</span><span class="n">affine</span><span class="p">,</span> <span class="n">tissues</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="FEM.mesh_from_masks"><a class="viewcode-back" href="../../../../reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.mesh_from_masks">[docs]</a>    <span class="k">def</span> <span class="nf">mesh_from_masks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">masks</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate a MSH file from multiple binary masks.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        mask : Mapping [str, numpy.ndarray]</span>
+<span class="sd">            A mapping from the names of the tissues to the corresponding binary masks.</span>
+<span class="sd">        affine : numpy.ndarray</span>
+<span class="sd">            The affine matrix of the volume.</span>
+
+<span class="sd">        Other Parameters</span>
+<span class="sd">        ----------------</span>
+<span class="sd">        lloyd : bool, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        odt : bool, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        perturb : bool, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        exude : bool, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_edge_size_at_feature_edges: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        min_facet_angle: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_radius_surface_delaunay_ball: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_cell_circumradius: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_facet_distance: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_circumradius_edge_ratio: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        seed : int, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        TypeError</span>
+<span class="sd">            If argument `masks` is not a mapping from `str` to `numpy.ndarray`.</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If the masks in &#39;masks&#39; are not all of the same shape.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        FEM.mesh_from_array</span>
+<span class="sd">        pygalmesh.generate_from_array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">masks</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;Argument &#39;masks&#39; expects a mapping from str to numpy.ndarray.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">masks</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="s2">&quot;Argument &#39;masks&#39; expects a mapping from str to numpy.ndarray.&quot;</span>
+                <span class="p">)</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">masks</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="s2">&quot;Argument &#39;masks&#39; expects a mapping from str to numpy.ndarray.&quot;</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">shape</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">m</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">shape</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Values in argument &#39;masks&#39; must all have the same shape.&quot;</span>
+                <span class="p">)</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">shape</span>
+
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">masks</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">tissues</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">masks</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+            <span class="n">labels</span><span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)]</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">tissues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh_from_array</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="n">tissues</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FEM.mesh_from_niis"><a class="viewcode-back" href="../../../../reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.mesh_from_niis">[docs]</a>    <span class="k">def</span> <span class="nf">mesh_from_niis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">niis</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate a MSH file from multiple binary masks.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        niis : Mapping [str, str, byte or os.PathLike]</span>
+<span class="sd">            A mapping from the names of the tissues to the path to the corresponding</span>
+<span class="sd">            NIFTI binary masks.</span>
+
+<span class="sd">        Other Parameters</span>
+<span class="sd">        ----------------</span>
+<span class="sd">        lloyd : bool, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        odt : bool, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        perturb : bool, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        exude : bool, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_edge_size_at_feature_edges: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        min_facet_angle: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_radius_surface_delaunay_ball: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_cell_circumradius: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_facet_distance: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        max_circumradius_edge_ratio: float, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+<span class="sd">        seed : int, optional</span>
+<span class="sd">            For more information, refer to the documentation of `pygalmesh`.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        TypeError</span>
+<span class="sd">            If argument `niis` is not a mapping from `str` to `str`, `byte` or</span>
+<span class="sd">            `os.PathLike`.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        FEM.mesh_from_masks</span>
+<span class="sd">        FEM.mesh_from_array</span>
+<span class="sd">        pygalmesh.generate_from_array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">niis</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="p">(</span>
+                    <span class="s2">&quot;Argument &#39;niis&#39; expects a mapping from str &quot;</span>
+                    <span class="s2">&quot;to str, byte or os.PathLike.&quot;</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">niis</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">niis</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+        <span class="n">imgs</span> <span class="o">=</span> <span class="p">{</span><span class="n">t</span><span class="p">:</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">niis</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh_from_masks</span><span class="p">(</span>
+            <span class="p">{</span><span class="n">t</span><span class="p">:</span> <span class="n">i</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span> <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">imgs</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
+            <span class="nb">list</span><span class="p">(</span><span class="n">imgs</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">affine</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_gen_init_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="n">tmp_dir</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate the initial mesh usign CGAL.&quot;&quot;&quot;</span>
+        <span class="n">init_mesh</span> <span class="o">=</span> <span class="n">cgal</span><span class="o">.</span><span class="n">generate_from_array</span><span class="p">(</span>
+            <span class="n">labels</span><span class="p">,</span> <span class="n">nib</span><span class="o">.</span><span class="n">affines</span><span class="o">.</span><span class="n">voxel_sizes</span><span class="p">(</span><span class="n">affine</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+        <span class="n">meshio</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;init_mesh.mesh&quot;</span><span class="p">),</span> <span class="n">init_mesh</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;mesh_params&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Initial mesh generated.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_apply_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="n">tmp_dir</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Apply the affine transform to the mesh.&quot;&quot;&quot;</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;General.Terminal&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;init_mesh.mesh&quot;</span><span class="p">))</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;NewView&quot;</span><span class="p">)</span>
+        <span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+                <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span>
+                    <span class="s2">&quot;Transform&quot;</span><span class="p">,</span> <span class="s2">&quot;A</span><span class="si">{}{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">c</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">affine</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span>
+                <span class="p">)</span>
+            <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;Transform&quot;</span><span class="p">,</span> <span class="s2">&quot;T</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="n">r</span><span class="p">]),</span> <span class="n">affine</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Transform&quot;</span><span class="p">)</span>
+        <span class="c1"># gmsh.model.mesh.reclassifyNodes()</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;Mesh.Binary&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;init_mesh.msh&quot;</span><span class="p">))</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Affine transformation applied.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_add_tissues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tissues</span><span class="p">,</span> <span class="n">tmp_dir</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add the tissues as physical groups.&quot;&quot;&quot;</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;General.Terminal&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;init_mesh.msh&quot;</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tissues</span><span class="p">):</span>
+            <span class="n">entity</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">surf_group</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">addPhysicalGroup</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="n">entity</span><span class="p">])</span>
+            <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">setPhysicalName</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">surf_group</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+            <span class="n">vol_group</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">addPhysicalGroup</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="n">entity</span><span class="p">])</span>
+            <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">setPhysicalName</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">vol_group</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;tissues&quot;</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tissue</span><span class="p">(</span>
+                <span class="n">Group</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="n">entity</span><span class="p">],</span> <span class="n">surf_group</span><span class="p">),</span> <span class="n">Group</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="n">entity</span><span class="p">],</span> <span class="n">vol_group</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tissue &#39;</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">&#39; added.&quot;</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;Mesh.Binary&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh_path</span><span class="p">))</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+
+    <span class="c1"># Sensors --------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="FEM.add_point_sensor"><a class="viewcode-back" href="../../../../reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.add_point_sensor">[docs]</a>    <span class="k">def</span> <span class="nf">add_point_sensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">dim</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a point sensor to the mesh.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            The name of the sensor.</span>
+<span class="sd">        coords : Iterable [float] or numpy.ndarray</span>
+<span class="sd">            The coordinates of the sensor.</span>
+<span class="sd">        tissue : str</span>
+<span class="sd">            The name of the tissue the sensor is on/in.</span>
+<span class="sd">        dim : int</span>
+<span class="sd">            If set to ``2``, the sensor is added on the surface of the tissue. If set to</span>
+<span class="sd">            ``3``, it is placed inside the tissue.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        TypeError</span>
+<span class="sd">            If argument `coords` is neither an `Iterable` or a `numpy.ndarray`.</span>
+<span class="sd">            If argument `dim` is not an `int`.</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If argument `name` refers to an existing sensor.</span>
+<span class="sd">            If argument `coords` is not a proper 3D coordinate.</span>
+<span class="sd">            If argument `tissue` refers to a non existing tissue.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sensors</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sensor &#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; already exists in model.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="p">(</span><span class="n">Iterable</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Argument &#39;coords&#39; expects type Iterable or numpy.ndarray.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Argument &#39;coords&#39; must be a 3D coordinate.&quot;</span><span class="p">)</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="mf">1e-3</span> <span class="o">*</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">coords</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">tissue</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tissue &#39;</span><span class="si">{</span><span class="n">tissue</span><span class="si">}</span><span class="s2">&#39; not found in model.&quot;</span><span class="p">)</span>
+        <span class="n">dim</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Adding 1 sensor </span><span class="si">{</span><span class="s1">&#39;on&#39;</span> <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="s1">&#39;in&#39;</span><span class="si">}</span><span class="s2"> &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;tissue &#39;</span><span class="si">{</span><span class="n">tissue</span><span class="si">}</span><span class="s2">&#39; with coords:</span><span class="se">\n</span><span class="si">{</span><span class="n">coords</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;General.Terminal&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh_path</span><span class="p">))</span>
+        <span class="n">nodes_tags</span><span class="p">,</span> <span class="n">nodes_coords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tissue_nodes</span><span class="p">(</span><span class="n">tissue</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_point_sensor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">nodes_tags</span><span class="p">,</span> <span class="n">nodes_coords</span><span class="p">,</span> <span class="n">tissue</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">removeDuplicateNodes</span><span class="p">()</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;Mesh.Binary&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh_path</span><span class="p">))</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sensor &#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; added.&quot;</span><span class="p">)</span></div>
+
+    <span class="n">add_point_sensor_on</span> <span class="o">=</span> <span class="n">partialmethod</span><span class="p">(</span><span class="n">add_point_sensor</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">add_point_sensor_in</span> <span class="o">=</span> <span class="n">partialmethod</span><span class="p">(</span><span class="n">add_point_sensor</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<div class="viewcode-block" id="FEM.add_point_sensors"><a class="viewcode-back" href="../../../../reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.add_point_sensors">[docs]</a>    <span class="k">def</span> <span class="nf">add_point_sensors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">dim</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add multiple point sensors to the mesh.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        coords : Mapping [str, Iterable [float]]</span>
+<span class="sd">            The coordinates of the sensor.</span>
+<span class="sd">        tissue : str</span>
+<span class="sd">            The name of the tissue the sensor is on/in.</span>
+<span class="sd">        dim : int</span>
+<span class="sd">            If set to ``2``, the sensor is added on the surface of the tissue. If set to</span>
+<span class="sd">            ``3``, it is placed inside the tissue.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        TypeError</span>
+<span class="sd">            If argument `coords` is not a Mapping of coordinates.</span>
+<span class="sd">            If argument `dim` is not an `int`.</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If argument `tissue` refers to a non existing tissue.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="p">{</span><span class="n">s</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">([</span><span class="mf">1e-3</span> <span class="o">*</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">c</span><span class="p">])</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">coords</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="k">if</span> <span class="n">tissue</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tissue &#39;</span><span class="si">{</span><span class="n">tissue</span><span class="si">}</span><span class="s2">&#39; not found in model.&quot;</span><span class="p">)</span>
+        <span class="n">dim</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Adding </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span><span class="si">}</span><span class="s2"> sensors </span><span class="si">{</span><span class="s1">&#39;on&#39;</span> <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="s1">&#39;in&#39;</span><span class="si">}</span><span class="s2"> &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;tissue &#39;</span><span class="si">{</span><span class="n">tissue</span><span class="si">}</span><span class="s2">&#39; with coords:</span><span class="se">\n</span><span class="si">{</span><span class="n">pformat</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;General.Terminal&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh_path</span><span class="p">))</span>
+        <span class="n">nodes_tags</span><span class="p">,</span> <span class="n">nodes_coords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tissue_nodes</span><span class="p">(</span><span class="n">tissue</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">coords</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_point_sensor</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">nodes_tags</span><span class="p">,</span> <span class="n">nodes_coords</span><span class="p">,</span> <span class="n">tissue</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Sensor &#39;</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&#39; added </span><span class="si">{</span><span class="s1">&#39;on&#39;</span> <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="s1">&#39;in&#39;</span><span class="si">}</span><span class="s2"> tissue &#39;</span><span class="si">{</span><span class="n">tissue</span><span class="si">}</span><span class="s2">&#39;.&quot;</span>
+            <span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">removeDuplicateNodes</span><span class="p">()</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;Mesh.Binary&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh_path</span><span class="p">))</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span></div>
+
+    <span class="n">add_point_sensors_on</span> <span class="o">=</span> <span class="n">partialmethod</span><span class="p">(</span><span class="n">add_point_sensors</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">add_point_sensors_in</span> <span class="o">=</span> <span class="n">partialmethod</span><span class="p">(</span><span class="n">add_point_sensors</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<div class="viewcode-block" id="FEM.add_point_sensors_from_tsv"><a class="viewcode-back" href="../../../../reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.add_point_sensors_from_tsv">[docs]</a>    <span class="k">def</span> <span class="nf">add_point_sensors_from_tsv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tsv_path</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">dim</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add multiple point sensors to the mesh from a TSV file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        tsv_path : str, byte or os.PathLike</span>
+<span class="sd">            The path to the TSV file.</span>
+<span class="sd">        tissue : str</span>
+<span class="sd">            The name of the tissue the sensor is on/in.</span>
+<span class="sd">        dim : int</span>
+<span class="sd">            If set to ``2``, the sensor is added on the surface of the tissue. If set to</span>
+<span class="sd">            ``3``, it is placed inside the tissue.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        TypeError</span>
+<span class="sd">            If argument `coords` is not a Mapping of coordinates.</span>
+<span class="sd">            If argument `dim` is not an `int`.</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If argument `tissue` refers to a non existing tissue.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tsv_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">tsv_path</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span>
+            <span class="n">tsv_path</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">skip_header</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span>
+        <span class="p">)</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="p">{</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">}</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span><span class="si">}</span><span class="s2"> sensors coordinates extracted from &#39;</span><span class="si">{</span><span class="n">tsv_path</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">pformat</span><span class="p">(</span><span class="n">coords</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_point_sensors</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span></div>
+
+    <span class="n">add_point_sensors_from_tsv_on</span> <span class="o">=</span> <span class="n">partialmethod</span><span class="p">(</span><span class="n">add_point_sensors_from_tsv</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">add_point_sensors_from_tsv_in</span> <span class="o">=</span> <span class="n">partialmethod</span><span class="p">(</span><span class="n">add_point_sensors_from_tsv</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_tissue_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">dim</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return all the nodes of the tissue in specified dimensio entities.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">entities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">[</span><span class="n">tissue</span><span class="p">]</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">entities</span>
+        <span class="k">elif</span> <span class="n">dim</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">entities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">[</span><span class="n">tissue</span><span class="p">]</span><span class="o">.</span><span class="n">vol</span><span class="o">.</span><span class="n">entities</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Acquiring nodes from tissue &#39;</span><span class="si">{</span><span class="n">tissue</span><span class="si">}</span><span class="s2">&#39; &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;surface&#39;</span> <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="s1">&#39;volume&#39;</span><span class="si">}</span><span class="s2"> with entities:</span><span class="se">\n</span><span class="si">{</span><span class="n">entities</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;All </span><span class="si">{</span><span class="s1">&#39;surface&#39;</span> <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="s1">&#39;volume&#39;</span><span class="si">}</span><span class="s2"> entities:&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">getEntities</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">getNodes</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="kc">True</span><span class="p">)[:</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">entities</span><span class="p">]</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Acquired </span><span class="si">{</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2"> nodes:</span><span class="se">\n</span><span class="si">{</span><span class="n">nodes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">tags</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">])</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">c</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">tags</span><span class="p">,</span> <span class="n">coords</span>
+
+    <span class="n">_get_tissue_surf_nodes</span> <span class="o">=</span> <span class="n">partialmethod</span><span class="p">(</span><span class="n">_get_tissue_nodes</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">_get_tissue_vol_nodes</span> <span class="o">=</span> <span class="n">partialmethod</span><span class="p">(</span><span class="n">_get_tissue_nodes</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_add_point_sensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">nodes_tags</span><span class="p">,</span> <span class="n">nodes_coords</span><span class="p">,</span> <span class="n">tissue</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a point sensor.&quot;&quot;&quot;</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">cdist</span><span class="p">([</span><span class="n">coords</span><span class="p">],</span> <span class="n">nodes_coords</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+        <span class="n">min_dist_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span>
+        <span class="n">node_tag</span> <span class="o">=</span> <span class="n">nodes_tags</span><span class="p">[</span><span class="n">min_dist_idx</span><span class="p">]</span>
+        <span class="n">mesh_coords</span> <span class="o">=</span> <span class="n">nodes_coords</span><span class="p">[</span><span class="n">min_dist_idx</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+        <span class="n">entity</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_point_sensor_on_node</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">node_tag</span><span class="p">,</span> <span class="n">mesh_coords</span><span class="p">)</span>
+        <span class="n">sensor</span> <span class="o">=</span> <span class="n">PointSensor</span><span class="p">(</span>
+            <span class="n">tissue</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">mesh_coords</span><span class="p">,</span> <span class="n">Group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="n">entity</span><span class="p">],</span> <span class="n">group</span><span class="p">),</span> <span class="n">node_tag</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;sensors&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">sensor</span>
+
+    <span class="k">def</span> <span class="nf">_add_point_sensor_on_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">node_tag</span><span class="p">,</span> <span class="n">node_coords</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a point sensor on a node.&quot;&quot;&quot;</span>
+        <span class="n">entity</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">addDiscreteEntity</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">addNodes</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="p">[</span><span class="n">node_tag</span><span class="p">],</span> <span class="n">node_coords</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">addElementsByType</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[</span><span class="n">node_tag</span><span class="p">])</span>
+        <span class="n">max_group</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">tag</span> <span class="k">for</span> <span class="n">dim</span><span class="p">,</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">getPhysicalGroups</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+        <span class="n">group</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">addPhysicalGroup</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="n">entity</span><span class="p">],</span> <span class="n">max_group</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">setPhysicalName</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">entity</span><span class="p">,</span> <span class="n">group</span>
+
+    <span class="k">def</span> <span class="nf">_load_sensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load a sensor depending on its type.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">sensor</span><span class="p">[</span><span class="s2">&quot;sensor_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">Sensor</span><span class="o">.</span><span class="n">TYPE_POINT</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">PointSensor</span><span class="p">(</span><span class="o">**</span><span class="n">sensor</span><span class="p">)</span>
+
+    <span class="c1"># Fields ---------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="FEM.field_from_elems"><a class="viewcode-back" href="../../../../reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.field_from_elems">[docs]</a>    <span class="k">def</span> <span class="nf">field_from_elems</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">elems_tags</span><span class="p">,</span> <span class="n">elems_vals</span><span class="p">,</span> <span class="n">fill_val</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;1&quot;</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a field to the mesh from element data.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            The name of the field. In the mesh, it will be added as &#39;{tissue}_{name}&#39;.</span>
+<span class="sd">        tissue : str</span>
+<span class="sd">            The tissue in which the field must be added.</span>
+<span class="sd">        elems_tags : np.ndarray or Iterable [int]</span>
+<span class="sd">            The tags of the elements in which the value is available.</span>
+<span class="sd">        elems_vals : np.ndarray or Iterable</span>
+<span class="sd">            The values of the field on the corresponding elements.</span>
+<span class="sd">        fill_val : np.ndarray or Iterable</span>
+<span class="sd">            The value to add in elements of the tissue that are not in `elems_tags`.</span>
+<span class="sd">        formula : str</span>
+<span class="sd">            The formula linking the field to a physical property.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        KeyError</span>
+<span class="sd">            If argument `tissue` does not correspond to a tissue of the mesh.</span>
+<span class="sd">            If argument `name` refers to an already existing field.</span>
+<span class="sd">        TypeError</span>
+<span class="sd">            If argument `elems_tags` is neither a `numpy.ndarray` or a `Iterable` of</span>
+<span class="sd">            `int`.</span>
+<span class="sd">            If argument `elems_vals` is neither a `numpy.ndarray` or a `Iterable`.</span>
+<span class="sd">            If argument `fill_val` is neither a `numpy.ndarray` or a `Iterable`.</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If argument `elems_vals` does not contain a scalar, vector or tensor field.</span>
+<span class="sd">            If argument `fill_val` does not correspond to the values in `elems_vals`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">tissue</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tissue &#39;</span><span class="si">{</span><span class="n">tissue</span><span class="si">}</span><span class="s2">&#39; not found in model.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">[</span><span class="n">tissue</span><span class="p">]</span><span class="o">.</span><span class="n">fields</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Field &#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; already exists in tissue &#39;</span><span class="si">{</span><span class="n">tissue</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">elems_tags</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;Argument &#39;elems_tags&#39; expects numpy.ndarray or Iterable of int.&quot;</span>
+            <span class="p">)</span>
+        <span class="n">elems_tags</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">elems_tags</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">elems_vals</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;Argument &#39;elems_vals&#39; expects numpy.ndarray or Iterable of int.&quot;</span>
+            <span class="p">)</span>
+        <span class="n">elems_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">elems_vals</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+        <span class="n">n_vals</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">elems_vals</span><span class="o">.</span><span class="n">size</span> <span class="o">/</span> <span class="n">elems_tags</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+        <span class="n">field_types</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="n">Field</span><span class="o">.</span><span class="n">SCALAR</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="n">Field</span><span class="o">.</span><span class="n">VECTOR</span><span class="p">,</span> <span class="mi">9</span><span class="p">:</span> <span class="n">Field</span><span class="o">.</span><span class="n">TENSOR</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">n_vals</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">field_types</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Argument &#39;elems_vals&#39; must contain scalar, vector or tensor values.&quot;</span>
+            <span class="p">)</span>
+        <span class="n">field_type</span> <span class="o">=</span> <span class="n">field_types</span><span class="p">[</span><span class="n">n_vals</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fill_val</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Argument &#39;fill_val&#39; expects numpy.ndarray or Iterable.&quot;</span><span class="p">)</span>
+        <span class="n">fill_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fill_val</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">fill_val</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">n_vals</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Argument &#39;fill_val&#39; must be of the same type and size as &#39;elems_vals&#39;.&quot;</span>
+            <span class="p">)</span>
+        <span class="c1"># TODO: Check formula</span>
+
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh_path</span><span class="p">))</span>
+        <span class="n">elems_tags</span><span class="p">,</span> <span class="n">elems_vals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fill_empty_field_elems</span><span class="p">(</span>
+            <span class="n">tissue</span><span class="p">,</span> <span class="n">elems_tags</span><span class="p">,</span> <span class="n">elems_vals</span><span class="p">,</span> <span class="n">n_vals</span><span class="p">,</span> <span class="n">fill_val</span>
+        <span class="p">)</span>
+        <span class="n">view</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_field_view</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">elems_tags</span><span class="p">,</span> <span class="n">elems_vals</span><span class="p">,</span> <span class="n">n_vals</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;PostProcessing.SaveMesh&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;Mesh.Binary&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh_path</span><span class="p">),</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">[</span><span class="n">tissue</span><span class="p">]</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">field_type</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">formula</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Field &#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; added in tissue &#39;</span><span class="si">{</span><span class="n">tissue</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FEM.field_from_array"><a class="viewcode-back" href="../../../../reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.field_from_array">[docs]</a>    <span class="k">def</span> <span class="nf">field_from_array</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">,</span>
+        <span class="n">field</span><span class="p">,</span>
+        <span class="n">affine</span><span class="p">,</span>
+        <span class="n">tissue</span><span class="p">,</span>
+        <span class="n">fill_val</span><span class="p">,</span>
+        <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+        <span class="n">nearest</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">resize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a field to the mesh from an array.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            The name of the field. In the mesh, it will be added as &#39;{tissue}_{name}&#39;.</span>
+<span class="sd">        field : numpy.ndarray</span>
+<span class="sd">            The field values.</span>
+<span class="sd">        affine : numpy.ndarray</span>
+<span class="sd">            The affine matrix of the field.</span>
+<span class="sd">        tissue : str</span>
+<span class="sd">            The tissue in which the field must be added.</span>
+<span class="sd">        fill_val : np.ndarray or Iterable</span>
+<span class="sd">            The value to add in elements of the tissue that are not in `elems_tags`.</span>
+<span class="sd">        formula : str, optional</span>
+<span class="sd">            The formula linking the field to a physical property. The default value is</span>
+<span class="sd">            `&#39;1&#39;`.</span>
+<span class="sd">        nearest : bool, optional</span>
+<span class="sd">            If set to ``True``, no interpolation is performed. Otherwise, a linear</span>
+<span class="sd">            interpolation is used. The default value is ``True``.</span>
+<span class="sd">        resize : bool, optional</span>
+<span class="sd">            If set to ``True``, the affine matrix is converted from [mm] to [m]. The</span>
+<span class="sd">            default is ``True``.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        TypeError</span>
+<span class="sd">            If argument `field` is not a `numpy.ndarray`.</span>
+<span class="sd">            If argument `affine` is not a `numpy.ndarray`.</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If argument `field` is not a 3D or 4D array containing a scalar, vector or</span>
+<span class="sd">            tensor field.</span>
+<span class="sd">            If argument `affine` is neither a (3, 4) nor a (4, 4) array.</span>
+<span class="sd">        KeyError</span>
+<span class="sd">            If argument `tissue` does not correspond to a tissue of the mesh.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        FEM.field_from_array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Argument &#39;field&#39; expects type numpy.ndarray.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">field</span><span class="o">.</span><span class="n">ndim</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="p">(</span>
+                    <span class="s2">&quot;Argument &#39;field&#39; must be a 3D or 4D array containing scalar, &quot;</span>
+                    <span class="s2">&quot;vector or tensor values.&quot;</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">field</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">4</span> <span class="ow">and</span> <span class="n">field</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="p">(</span>
+                    <span class="s2">&quot;Argument &#39;field&#39; must be a 3D or 4D array containing scalar, &quot;</span>
+                    <span class="s2">&quot;vector or tensor values.&quot;</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">affine</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Argument &#39;affine&#39; expects type numpy.ndarray.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">affine</span><span class="o">.</span><span class="n">shape</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Argument &#39;affine&#39; expects shape (3,4) or (4,4).&quot;</span><span class="p">)</span>
+        <span class="n">affine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">affine</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])))</span>
+        <span class="c1"># Convert [mm] to [m]</span>
+        <span class="k">if</span> <span class="n">resize</span><span class="p">:</span>
+            <span class="n">affine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mf">1e-3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">@</span> <span class="n">affine</span>
+        <span class="k">if</span> <span class="n">tissue</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tissue &#39;</span><span class="si">{</span><span class="n">tissue</span><span class="si">}</span><span class="s2">&#39; not found in model.&quot;</span><span class="p">)</span>
+
+        <span class="n">coords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_field_coords</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">affine</span><span class="p">)</span>
+        <span class="n">elems_tags</span><span class="p">,</span> <span class="n">elems_vals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interp_field</span><span class="p">(</span>
+            <span class="n">tissue</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="s2">&quot;nearest&quot;</span> <span class="k">if</span> <span class="n">nearest</span> <span class="k">else</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">fill_val</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">field_from_elems</span><span class="p">(</span>
+            <span class="n">name</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">elems_tags</span><span class="p">,</span> <span class="n">elems_vals</span><span class="p">,</span> <span class="n">fill_val</span><span class="p">,</span> <span class="n">formula</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="FEM.field_from_nii"><a class="viewcode-back" href="../../../../reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.field_from_nii">[docs]</a>    <span class="k">def</span> <span class="nf">field_from_nii</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">nii_path</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">fill_val</span><span class="p">,</span> <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="n">nearest</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">resize</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a field to the mesh from a NIFTI image.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            The name of the field. In the mesh, it will be added as &#39;{tissue}_{name}&#39;.</span>
+<span class="sd">        nii_path : str, byte or os.PathLike</span>
+<span class="sd">            The path to the NIFTI file containing the field.</span>
+<span class="sd">        tissue : str</span>
+<span class="sd">            The tissue in which the field must be added.</span>
+<span class="sd">        fill_val : np.ndarray or Iterable</span>
+<span class="sd">            The value to add in elements of the tissue that are not in `elems_tags`.</span>
+<span class="sd">        formula : str, optional</span>
+<span class="sd">            The formula linking the field to a physical property. The default value is</span>
+<span class="sd">            `&#39;1&#39;`.</span>
+<span class="sd">        nearest : bool, optional</span>
+<span class="sd">            If set to ``True``, no interpolation is performed. Otherwise, a linear</span>
+<span class="sd">            interpolation is used. The default value is ``True``.</span>
+<span class="sd">        resize : bool, optional</span>
+<span class="sd">            If set to ``True``, the affine matrix is converted from [mm] to [m]. The</span>
+<span class="sd">            default is ``True``.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        TypeError</span>
+<span class="sd">            If argument `nii_path` is not a `str`, `byte` or `os.PathLike`.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        FEM.field_from_array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">nii_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">nii_path</span><span class="p">)</span>
+
+        <span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">nii_path</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">field_from_array</span><span class="p">(</span>
+            <span class="n">name</span><span class="p">,</span>
+            <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">(),</span>
+            <span class="n">img</span><span class="o">.</span><span class="n">affine</span><span class="p">,</span>
+            <span class="n">tissue</span><span class="p">,</span>
+            <span class="n">fill_val</span><span class="p">,</span>
+            <span class="n">formula</span><span class="p">,</span>
+            <span class="n">nearest</span><span class="p">,</span>
+            <span class="n">resize</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_tissue_elems</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">dim</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return all the elements of the tissue in specified dimension.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">entities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">[</span><span class="n">tissue</span><span class="p">]</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">entities</span>
+        <span class="k">elif</span> <span class="n">dim</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">entities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">[</span><span class="n">tissue</span><span class="p">]</span><span class="o">.</span><span class="n">vol</span><span class="o">.</span><span class="n">entities</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">getElements</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">e</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">entities</span><span class="p">])</span>
+
+    <span class="n">_get_tissue_surf_elems</span> <span class="o">=</span> <span class="n">partialmethod</span><span class="p">(</span><span class="n">_get_tissue_elems</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">_get_tissue_vol_elems</span> <span class="o">=</span> <span class="n">partialmethod</span><span class="p">(</span><span class="n">_get_tissue_elems</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_tissue_elems_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">dim</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the barycenters of all the elements of the tissue in specified</span>
+<span class="sd">        dimension.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">entities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">[</span><span class="n">tissue</span><span class="p">]</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">entities</span>
+            <span class="n">elems_type</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Triangle</span>
+        <span class="k">elif</span> <span class="n">dim</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">entities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tissues</span><span class="p">[</span><span class="n">tissue</span><span class="p">]</span><span class="o">.</span><span class="n">vol</span><span class="o">.</span><span class="n">entities</span>
+            <span class="n">elems_type</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># Tetrahedron</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">getBarycenters</span><span class="p">(</span><span class="n">elems_type</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">fast</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">primary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">entities</span>
+            <span class="p">]</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+    <span class="n">_get_tissue_surf_elems_coords</span> <span class="o">=</span> <span class="n">partialmethod</span><span class="p">(</span><span class="n">_get_tissue_elems_coords</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">_get_tissue_vol_elems_coords</span> <span class="o">=</span> <span class="n">partialmethod</span><span class="p">(</span><span class="n">_get_tissue_elems_coords</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_fill_empty_field_elems</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">elems_tags</span><span class="p">,</span> <span class="n">elems_vals</span><span class="p">,</span> <span class="n">n_vals</span><span class="p">,</span> <span class="n">fill_val</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a default value to empty elements.&quot;&quot;&quot;</span>
+        <span class="n">all_elems_tags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tissue_vol_elems</span><span class="p">(</span><span class="n">tissue</span><span class="p">)</span>
+        <span class="n">empty_elems_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span>
+            <span class="n">all_elems_tags</span><span class="p">,</span> <span class="n">elems_tags</span><span class="p">,</span> <span class="n">assume_unique</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">empty_elems_idx</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filling </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">empty_elems_idx</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2"> elements.&quot;</span><span class="p">)</span>
+            <span class="n">empty_elems_tags</span> <span class="o">=</span> <span class="n">all_elems_tags</span><span class="p">[</span><span class="n">empty_elems_idx</span><span class="p">]</span>
+            <span class="n">empty_elems_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">broadcast_to</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fill_val</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">empty_elems_tags</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="n">n_vals</span><span class="p">))</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+            <span class="n">elems_tags</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">elems_tags</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">empty_elems_tags</span><span class="p">))</span>
+            <span class="n">elems_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">elems_vals</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">empty_elems_vals</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">elems_tags</span><span class="p">,</span> <span class="n">elems_vals</span>
+
+    <span class="k">def</span> <span class="nf">_add_field_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">elems_tags</span><span class="p">,</span> <span class="n">elems_vals</span><span class="p">,</span> <span class="n">n_vals</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a view with the field values.&quot;&quot;&quot;</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">list</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">view</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tissue</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">elems_vals</span> <span class="o">=</span> <span class="n">elems_vals</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_vals</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">elems_tags</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">elems_vals</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">n_vals</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">addModelData</span><span class="p">(</span>
+            <span class="n">view</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="s2">&quot;ElementData&quot;</span><span class="p">,</span> <span class="n">elems_tags</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">elems_vals</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">view</span>
+
+    <span class="k">def</span> <span class="nf">_get_field_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">affine</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert cell indices into real coordinates.&quot;&quot;&quot;</span>
+        <span class="n">flat_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">shape</span><span class="p">[:</span><span class="mi">3</span><span class="p">]))</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">flat_idx</span><span class="p">,</span> <span class="n">shape</span><span class="p">[:</span><span class="mi">3</span><span class="p">]))</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">affines</span><span class="o">.</span><span class="n">apply_affine</span><span class="p">(</span><span class="n">affine</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">coords</span>
+
+    <span class="k">def</span> <span class="nf">_interp_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">fill_val</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Interpolate a field on a mesh grid.&quot;&quot;&quot;</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span>
+        <span class="n">interpolate</span> <span class="o">=</span> <span class="n">RegularGridInterpolator</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">),</span> <span class="n">field</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">fill_val</span>
+        <span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh_path</span><span class="p">))</span>
+        <span class="n">elems_tags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tissue_vol_elems</span><span class="p">(</span><span class="n">tissue</span><span class="p">)</span>
+        <span class="n">elems_coords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tissue_vol_elems_coords</span><span class="p">(</span><span class="n">tissue</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+        <span class="n">elems_vals</span> <span class="o">=</span> <span class="n">interpolate</span><span class="p">(</span><span class="n">elems_coords</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">elems_tags</span><span class="p">,</span> <span class="n">elems_vals</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, GIGA CRC In-Vivo Imaging
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

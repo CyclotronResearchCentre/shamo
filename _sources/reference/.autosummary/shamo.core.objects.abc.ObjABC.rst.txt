@@ -1,0 +1,46 @@
+shamo.core.objects.abc.ObjABC
+=============================
+
+.. currentmodule:: shamo.core.objects.abc
+
+.. autoclass:: ObjABC
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~ObjABC.clear
+      ~ObjABC.copy
+      ~ObjABC.fromkeys
+      ~ObjABC.get
+      ~ObjABC.items
+      ~ObjABC.keys
+      ~ObjABC.load
+      ~ObjABC.pop
+      ~ObjABC.popitem
+      ~ObjABC.save
+      ~ObjABC.setdefault
+      ~ObjABC.update
+      ~ObjABC.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ObjABC.json_path
+      ~ObjABC.name
+      ~ObjABC.parent_path
+      ~ObjABC.path
+   
+   

@@ -1,0 +1,45 @@
+shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield
+============================================================
+
+.. currentmodule:: shamo.eeg.leadfield.parametric.problem
+
+.. autoclass:: ProbParamEEGLeadfield
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~ProbParamEEGLeadfield.clear
+      ~ProbParamEEGLeadfield.copy
+      ~ProbParamEEGLeadfield.fromkeys
+      ~ProbParamEEGLeadfield.get
+      ~ProbParamEEGLeadfield.items
+      ~ProbParamEEGLeadfield.keys
+      ~ProbParamEEGLeadfield.pop
+      ~ProbParamEEGLeadfield.popitem
+      ~ProbParamEEGLeadfield.setdefault
+      ~ProbParamEEGLeadfield.solve
+      ~ProbParamEEGLeadfield.update
+      ~ProbParamEEGLeadfield.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProbParamEEGLeadfield.METHOD_JOB
+      ~ProbParamEEGLeadfield.METHOD_MUL
+      ~ProbParamEEGLeadfield.METHOD_SEQ
+      ~ProbParamEEGLeadfield.template
+   
+   

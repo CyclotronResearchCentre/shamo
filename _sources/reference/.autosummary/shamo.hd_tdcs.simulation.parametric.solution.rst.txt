@@ -1,0 +1,32 @@
+shamo.hd\_tdcs.simulation.parametric.solution
+=============================================
+
+.. automodule:: shamo.hd_tdcs.simulation.parametric.solution
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      SolParamHDTDCSSim
+   
+   
+
+   
+   
+   
+
+
+

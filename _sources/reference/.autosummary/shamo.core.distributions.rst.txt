@@ -1,0 +1,33 @@
+shamo.core.distributions
+========================
+
+.. automodule:: shamo.core.distributions
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   shamo.core.distributions.abc
+   shamo.core.distributions.constant
+   shamo.core.distributions.normal
+   shamo.core.distributions.uniform
+

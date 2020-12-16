@@ -1,0 +1,34 @@
+shamo.utils.onelab
+==================
+
+.. automodule:: shamo.utils.onelab
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+   
+      get_elems_coords
+      get_elems_subset
+      pos_to_nii
+      read_vector_file
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

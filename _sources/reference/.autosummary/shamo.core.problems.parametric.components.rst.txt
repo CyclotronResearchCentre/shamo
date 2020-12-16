@@ -1,0 +1,31 @@
+shamo.core.problems.parametric.components
+=========================================
+
+.. automodule:: shamo.core.problems.parametric.components
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   shamo.core.problems.parametric.components.tissue_property
+   shamo.core.problems.parametric.components.value
+

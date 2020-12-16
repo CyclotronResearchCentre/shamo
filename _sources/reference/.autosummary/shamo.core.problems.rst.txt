@@ -1,0 +1,31 @@
+shamo.core.problems
+===================
+
+.. automodule:: shamo.core.problems
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   shamo.core.problems.parametric
+   shamo.core.problems.single
+

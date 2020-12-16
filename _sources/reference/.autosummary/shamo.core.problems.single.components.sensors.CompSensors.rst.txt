@@ -1,0 +1,40 @@
+shamo.core.problems.single.components.sensors.CompSensors
+=========================================================
+
+.. currentmodule:: shamo.core.problems.single.components.sensors
+
+.. autoclass:: CompSensors
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~CompSensors.add
+      ~CompSensors.adds
+      ~CompSensors.check
+      ~CompSensors.clear
+      ~CompSensors.copy
+      ~CompSensors.fromkeys
+      ~CompSensors.get
+      ~CompSensors.items
+      ~CompSensors.keys
+      ~CompSensors.pop
+      ~CompSensors.popitem
+      ~CompSensors.setdefault
+      ~CompSensors.to_pro_param
+      ~CompSensors.to_py_param
+      ~CompSensors.update
+      ~CompSensors.values
+   
+   
+
+   
+   
+   

@@ -1,0 +1,32 @@
+shamo.core.objects.dir
+======================
+
+.. automodule:: shamo.core.objects.dir
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      ObjDir
+   
+   
+
+   
+   
+   
+
+
+

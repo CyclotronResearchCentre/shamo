@@ -1,0 +1,32 @@
+shamo.core.distributions.constant
+=================================
+
+.. automodule:: shamo.core.distributions.constant
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      DistConstant
+   
+   
+
+   
+   
+   
+
+
+

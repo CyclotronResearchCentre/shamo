@@ -1,0 +1,6 @@
+shamo.utils.onelab.pos\_to\_nii
+===============================
+
+.. currentmodule:: shamo.utils.onelab
+
+.. autofunction:: pos_to_nii

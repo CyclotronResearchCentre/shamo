@@ -18,7 +18,7 @@ CGAL
 We recommend you to use the package manager of your OS.
 
 .. list-table:: CGAL
-    :widths: 25 50 50
+    :widths: 20 40 40
     :header-rows: 1
 
     * - OS
@@ -34,6 +34,27 @@ We recommend you to use the package manager of your OS.
       - ``brew install cgal``
       - `CGAL for MacOS <https://www.cgal.org/download/macosx.html>`_
 
+Gmsh
+~~~~
+
+`Gmsh <https://gmsh.info/>`_ is a 3D finite element mesher.
+Download the latest version corresponding to your OS.
+
+.. list-table:: Gmsh
+    :widths: 20 80
+    :header-rows: 1
+
+    * - OS
+      - Link
+    * - Linux
+      - `Gmsh Linux 32-bit <https://gmsh.info/bin/Linux/gmsh-4.7.1-Linux32-sdk.tgz>`_ or `Gmsh Linux 64-bit <https://gmsh.info/bin/Linux/gmsh-4.7.1-Linux64-sdk.tgz>`_
+    * - Windows
+      - `Gmsh Windows 32-bit <https://gmsh.info/bin/Windows/gmsh-4.7.1-Windows32-sdk.zip>`_ or `Gmsh Windows 64-bit <https://gmsh.info/bin/Windows/gmsh-4.7.1-Windows64-sdk.zip>`_
+    * - MacOS
+      - `Gmsh MacOS <https://gmsh.info/bin/MacOSX/gmsh-4.7.1-MacOSX-sdk.tgz>`_
+
+Once downloaded, extract it and add it to the path.
+
 GetDP
 ~~~~~
 
@@ -41,7 +62,7 @@ GetDP
 Download the latest version corresponding to your OS.
 
 .. list-table:: GetDP
-    :widths: 25 100
+    :widths: 20 80
     :header-rows: 1
 
     * - OS
@@ -55,50 +76,13 @@ Download the latest version corresponding to your OS.
 
 Once downloaded, extract it and add it to the path.
 
-Install python dependencies
----------------------------
-
-Using ``pip``, install the following packages:
-
-.. list-table:: Python packages
-    :widths: 25 50 50
-    :header-rows: 1
-
-    * - Package
-      - Version
-      - Link
-    * - Numpy
-      - >=1.16.2
-      - `numpy.org <https://numpy.org/>`_
-    * - Scipy
-      - >=1.4.0
-      - `scipy.org <https://www.scipy.org/>`_
-    * - Nibabel
-      - >=2.5.0
-      - `nipy.org <https://nipy.org/nibabel/>`_
-    * - Pygalmesh
-      - >=0.4.0
-      - `pygalmesh <https://github.com/nschloe/pygalmesh>`_
-    * - Gmsh
-      - >=4.5.6
-      - `gmsh.info <http://gmsh.info/>`_
-    * - Chaospy
-      - >=3.2.8
-      - `chaospy.readthedocs.io <https://chaospy.readthedocs.io/en/master/>`_
-
-You simply have to issue the following command in a terminal:
-
-.. code-block:: shell
-
-    python3 -m pip install --user numpy scipy nibabel pygalmesh>=0.4.0 gmsh chaospy
-
 Install shamo
 -------------
 
 Pip
 ~~~
 
-Since ``shamo`` is available on [PyPI](https://pypi.org/project/shamo/), the easiest way to install the latest release is to use the following command:
+Since ``shamo`` is available on `PyPI <https://pypi.org/project/shamo/>`_, the easiest way to install the latest release is to use the following command:
 
 .. code-block:: shell
 

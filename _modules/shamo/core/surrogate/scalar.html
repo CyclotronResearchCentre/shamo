@@ -1,0 +1,445 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>shamo.core.surrogate.scalar &mdash; shamo 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> shamo
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/quickstart.html">Quickstart guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../quickstart/install.html">Install</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/install.html#install-binary-dependencies">Install binary dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/install.html#cgal">CGAL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/install.html#gmsh">Gmsh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/install.html#getdp">GetDP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/install.html#install-shamo">Install shamo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/install.html#pip">Pip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/install.html#setup-py">Setup.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../quickstart/usage/usage.html">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/fem/fem.html">Finite element model creation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/fem/fem.html#Mesh-generation">Mesh generation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/fem/fem.html#Sensors-additions">Sensors additions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/fem/fem.html#Field-addition">Field addition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/usage/eeg.html">EEG</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_leadfield_ssp-elems.html">EEG leadfield computation - On all ROI elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_leadfield_ssp-dist.html">EEG leadfield computation - On equidistant elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_leadfield_ssp-grid.html">EEG leadfield computation - On regular grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-elems.html">EEG parametric leadfield computation - On all ROI elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-dist.html">EEG parametric leadfield computation - On equidistant elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-grid.html">EEG parametric leadfield computation - On regular grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-dist_surr-mat.html">EEG parametric leadfield surrogate model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-dist_surr-toref.html">EEG parametric leadfield sensitivity analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../quickstart/usage/hd_tdcs.html">HD-tDCS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation.html">HD-tDCS simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_param_simulation.html">HD-tDCS parametric simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/api.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/api.html#fem">FEM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/api.html#eeg">EEG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/api.html#leadfield">Leadfield</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/api.html#hd-tdcs">HD-tDCS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/reference.html">Full reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/.autosummary/shamo.cli.html">shamo.cli</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.cli.report.html">shamo.cli.report</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.html">shamo.core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.distributions.html">shamo.core.distributions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.distributions.abc.html">shamo.core.distributions.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.distributions.constant.html">shamo.core.distributions.constant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.distributions.normal.html">shamo.core.distributions.normal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.distributions.uniform.html">shamo.core.distributions.uniform</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.fem.html">shamo.core.fem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.fem.fem.html">shamo.core.fem.fem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.fem.field.html">shamo.core.fem.field</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.fem.group.html">shamo.core.fem.group</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.fem.sensors.html">shamo.core.fem.sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.fem.tissue.html">shamo.core.fem.tissue</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.objects.html">shamo.core.objects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.objects.abc.html">shamo.core.objects.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.objects.dir.html">shamo.core.objects.dir</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.objects.file.html">shamo.core.objects.file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.problems.html">shamo.core.problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.problems.parametric.html">shamo.core.problems.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.problems.single.html">shamo.core.problems.single</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.solutions.html">shamo.core.solutions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.solutions.parametric.html">shamo.core.solutions.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.solutions.single.html">shamo.core.solutions.single</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.surrogate.html">shamo.core.surrogate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.surrogate.abc.html">shamo.core.surrogate.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.core.surrogate.scalar.html">shamo.core.surrogate.scalar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/.autosummary/shamo.eeg.html">shamo.eeg</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.eeg.leadfield.html">shamo.eeg.leadfield</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.eeg.leadfield.parametric.html">shamo.eeg.leadfield.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.eeg.leadfield.single.html">shamo.eeg.leadfield.single</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/.autosummary/shamo.hd_tdcs.html">shamo.hd_tdcs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.hd_tdcs.simulation.html">shamo.hd_tdcs.simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.hd_tdcs.simulation.parametric.html">shamo.hd_tdcs.simulation.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.hd_tdcs.simulation.single.html">shamo.hd_tdcs.simulation.single</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.onelab.html">shamo.utils.onelab</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.onelab.get_elems_coords.html">shamo.utils.onelab.get_elems_coords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.onelab.get_elems_subset.html">shamo.utils.onelab.get_elems_subset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.onelab.pos_to_nii.html">shamo.utils.onelab.pos_to_nii</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.onelab.read_vector_file.html">shamo.utils.onelab.read_vector_file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.path.html">shamo.utils.path</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/.autosummary/shamo.utils.path.get_relative_path.html">shamo.utils.path.get_relative_path</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">shamo</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>shamo.core.surrogate.scalar</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for shamo.core.surrogate.scalar</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Implement `SurrScalar` class.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">from</span> <span class="nn">SALib.sample</span> <span class="kn">import</span> <span class="n">saltelli</span>
+<span class="kn">from</span> <span class="nn">SALib.analyze</span> <span class="kn">import</span> <span class="n">sobol</span>
+
+<span class="kn">from</span> <span class="nn">.abc</span> <span class="kn">import</span> <span class="n">SurrABC</span>
+
+
+<div class="viewcode-block" id="SurrScalar"><a class="viewcode-back" href="../../../../reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar">[docs]</a><span class="k">class</span> <span class="nc">SurrScalar</span><span class="p">(</span><span class="n">SurrABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate a Gaussian process from a set of scalar training data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        The name of the generated surrogate model.</span>
+<span class="sd">    parent_path : str, byte or os.PathLike</span>
+<span class="sd">        The path to the parent directory of the surrogate model.</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ----------------</span>
+<span class="sd">    params : list [tuple [str, shamo.DistABC]]</span>
+<span class="sd">        A list of tuples containing the names of the parameters and the</span>
+<span class="sd">        corresponding distributions as values.</span>
+<span class="sd">    sol_json_path : str</span>
+<span class="sd">        The path to the parametric solution the surrogate is built of.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    shamo.core.surrogate.SurrABC</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;is_sobol_available&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;is_sobol_available&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)})</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_sobol_available</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return whether the Sobol indices are already computed.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">            Return ``True`` if the indices are already computed, ``False`` otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;is_sobol_available&quot;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">sobol_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the path to the file storing the Sobol indices.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pathlib.Path</span>
+<span class="sd">            The path to the file storing the Sobol indices.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_sobol.json&quot;</span>
+
+<div class="viewcode-block" id="SurrScalar.get_sobol"><a class="viewcode-back" href="../../../../reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.get_sobol">[docs]</a>    <span class="k">def</span> <span class="nf">get_sobol</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the precomputed Sobol indices.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict [str, list [str]|dict [str, float]]|None</span>
+<span class="sd">            A dictionary containing the names of the parameters, the values of the</span>
+<span class="sd">            first, second and total order Sobol indices and the corresponding</span>
+<span class="sd">            confidence with respect to the `conf_level`.</span>
+<span class="sd">            If the file does not exist, returns ``None``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_sobol_available</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sobol_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="SurrScalar.gen_sobol"><a class="viewcode-back" href="../../../../reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.gen_sobol">[docs]</a>    <span class="k">def</span> <span class="nf">gen_sobol</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">n_resamples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">conf_level</span><span class="o">=</span><span class="mf">0.95</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute Sobol sensitivity indices.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n : int, optional</span>
+<span class="sd">            The number of sample to predict with the Gaussian process. The default is</span>
+<span class="sd">            ``1000``.</span>
+<span class="sd">        n_resamples : int, optional</span>
+<span class="sd">            The number of resamples. The default is ``100``.</span>
+<span class="sd">        conf_level : float, optional</span>
+<span class="sd">            The confidence interval level. The default is ``0.95``.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict [str, list [str]|dict [str, float]]</span>
+<span class="sd">            A dictionary containing the names of the parameters, the values of the</span>
+<span class="sd">            first, second and total order Sobol indices and the corresponding</span>
+<span class="sd">            confidence with respect to the `conf_level`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sobol</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">indices</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">sobol</span>
+        <span class="n">params_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">]</span>
+        <span class="n">prob</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;num_vars&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">),</span>
+            <span class="s2">&quot;names&quot;</span><span class="p">:</span> <span class="n">params_names</span><span class="p">,</span>
+            <span class="s2">&quot;dists&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">salib_name</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">],</span>
+            <span class="s2">&quot;bounds&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">salib_bounds</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">],</span>
+        <span class="p">}</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">saltelli</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+        <span class="n">y</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">s_i</span> <span class="o">=</span> <span class="n">sobol</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">num_resamples</span><span class="o">=</span><span class="n">n_resamples</span><span class="p">,</span> <span class="n">conf_level</span><span class="o">=</span><span class="n">conf_level</span><span class="p">)</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="n">params_names</span><span class="p">,</span>
+            <span class="s2">&quot;s1&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;val&quot;</span><span class="p">:</span> <span class="n">s_i</span><span class="p">[</span><span class="s2">&quot;S1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="s2">&quot;conf&quot;</span><span class="p">:</span> <span class="n">s_i</span><span class="p">[</span><span class="s2">&quot;S1_conf&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()},</span>
+            <span class="s2">&quot;s2&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;val&quot;</span><span class="p">:</span> <span class="n">s_i</span><span class="p">[</span><span class="s2">&quot;S2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="s2">&quot;conf&quot;</span><span class="p">:</span> <span class="n">s_i</span><span class="p">[</span><span class="s2">&quot;S2_conf&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()},</span>
+            <span class="s2">&quot;st&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;val&quot;</span><span class="p">:</span> <span class="n">s_i</span><span class="p">[</span><span class="s2">&quot;ST&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="s2">&quot;conf&quot;</span><span class="p">:</span> <span class="n">s_i</span><span class="p">[</span><span class="s2">&quot;ST_conf&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()},</span>
+        <span class="p">}</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sobol_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span>
+                <span class="n">indices</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">indices</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, GIGA CRC In-Vivo Imaging
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

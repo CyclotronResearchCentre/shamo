@@ -1,0 +1,46 @@
+shamo.core.problems.single.components.file\_path.CompFilePath
+=============================================================
+
+.. currentmodule:: shamo.core.problems.single.components.file_path
+
+.. autoclass:: CompFilePath
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~CompFilePath.check
+      ~CompFilePath.clear
+      ~CompFilePath.copy
+      ~CompFilePath.fromkeys
+      ~CompFilePath.get
+      ~CompFilePath.items
+      ~CompFilePath.keys
+      ~CompFilePath.pop
+      ~CompFilePath.popitem
+      ~CompFilePath.set
+      ~CompFilePath.setdefault
+      ~CompFilePath.to_pro_param
+      ~CompFilePath.to_py_param
+      ~CompFilePath.update
+      ~CompFilePath.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~CompFilePath.path
+      ~CompFilePath.use_path
+   
+   

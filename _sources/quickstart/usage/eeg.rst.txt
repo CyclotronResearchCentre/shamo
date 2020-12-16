@@ -2,8 +2,13 @@ EEG
 ===
 
 .. toctree::
-    :maxdepth: 1
+   :maxdepth: 1
 
-    tutorials/2_eeg_forward
-    tutorials/4_eeg_parametric_forward
-    tutorials/3_eeg_simulation
+   tutorials/code/eeg/eeg_leadfield_ssp-elems.ipynb
+   tutorials/code/eeg/eeg_leadfield_ssp-dist.ipynb
+   tutorials/code/eeg/eeg_leadfield_ssp-grid.ipynb
+   tutorials/code/eeg/eeg_param_leadfield_ssp-elems.ipynb
+   tutorials/code/eeg/eeg_param_leadfield_ssp-dist.ipynb
+   tutorials/code/eeg/eeg_param_leadfield_ssp-grid.ipynb
+   tutorials/code/eeg/eeg_param_leadfield_ssp-dist_surr-mat.ipynb
+   tutorials/code/eeg/eeg_param_leadfield_ssp-dist_surr-toref.ipynb

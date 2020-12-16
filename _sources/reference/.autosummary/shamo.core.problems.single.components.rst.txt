@@ -1,0 +1,35 @@
+shamo.core.problems.single.components
+=====================================
+
+.. automodule:: shamo.core.problems.single.components
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   shamo.core.problems.single.components.abc
+   shamo.core.problems.single.components.file_path
+   shamo.core.problems.single.components.grid_sampler
+   shamo.core.problems.single.components.sensors
+   shamo.core.problems.single.components.tissue_property
+   shamo.core.problems.single.components.tissues
+

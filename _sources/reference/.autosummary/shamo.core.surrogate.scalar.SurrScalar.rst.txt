@@ -1,0 +1,57 @@
+shamo.core.surrogate.scalar.SurrScalar
+======================================
+
+.. currentmodule:: shamo.core.surrogate.scalar
+
+.. autoclass:: SurrScalar
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~SurrScalar.clear
+      ~SurrScalar.copy
+      ~SurrScalar.fit
+      ~SurrScalar.fromkeys
+      ~SurrScalar.gen_sobol
+      ~SurrScalar.get
+      ~SurrScalar.get_gp
+      ~SurrScalar.get_relative_path
+      ~SurrScalar.get_sobol
+      ~SurrScalar.items
+      ~SurrScalar.keys
+      ~SurrScalar.load
+      ~SurrScalar.pop
+      ~SurrScalar.popitem
+      ~SurrScalar.predict
+      ~SurrScalar.save
+      ~SurrScalar.setdefault
+      ~SurrScalar.update
+      ~SurrScalar.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SurrScalar.gp_path
+      ~SurrScalar.is_sobol_available
+      ~SurrScalar.json_path
+      ~SurrScalar.name
+      ~SurrScalar.params
+      ~SurrScalar.parent_path
+      ~SurrScalar.path
+      ~SurrScalar.sobol_path
+      ~SurrScalar.sol_json_path
+   
+   

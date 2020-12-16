@@ -1,0 +1,51 @@
+shamo.core.distributions.normal.DistTruncNormal
+===============================================
+
+.. currentmodule:: shamo.core.distributions.normal
+
+.. autoclass:: DistTruncNormal
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~DistTruncNormal.clear
+      ~DistTruncNormal.copy
+      ~DistTruncNormal.fromkeys
+      ~DistTruncNormal.get
+      ~DistTruncNormal.items
+      ~DistTruncNormal.keys
+      ~DistTruncNormal.load
+      ~DistTruncNormal.pop
+      ~DistTruncNormal.popitem
+      ~DistTruncNormal.setdefault
+      ~DistTruncNormal.update
+      ~DistTruncNormal.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DistTruncNormal.dist
+      ~DistTruncNormal.dist_type
+      ~DistTruncNormal.expect
+      ~DistTruncNormal.lower
+      ~DistTruncNormal.mu
+      ~DistTruncNormal.salib_bounds
+      ~DistTruncNormal.salib_name
+      ~DistTruncNormal.sigma
+      ~DistTruncNormal.uniform_dist
+      ~DistTruncNormal.upper
+   
+   

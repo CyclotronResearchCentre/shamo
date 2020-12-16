@@ -1,0 +1,48 @@
+shamo.core.distributions.constant.DistConstant
+==============================================
+
+.. currentmodule:: shamo.core.distributions.constant
+
+.. autoclass:: DistConstant
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~DistConstant.clear
+      ~DistConstant.copy
+      ~DistConstant.fromkeys
+      ~DistConstant.get
+      ~DistConstant.items
+      ~DistConstant.keys
+      ~DistConstant.load
+      ~DistConstant.pop
+      ~DistConstant.popitem
+      ~DistConstant.setdefault
+      ~DistConstant.update
+      ~DistConstant.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DistConstant.dist
+      ~DistConstant.dist_type
+      ~DistConstant.expect
+      ~DistConstant.salib_bounds
+      ~DistConstant.salib_name
+      ~DistConstant.uniform_dist
+      ~DistConstant.val
+   
+   

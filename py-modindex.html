@@ -1,0 +1,675 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Python Module Index &mdash; shamo 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+ 
+
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> shamo
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart/quickstart.html">Quickstart guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart/install.html">Install</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart/install.html#install-binary-dependencies">Install binary dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/install.html#cgal">CGAL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/install.html#gmsh">Gmsh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/install.html#getdp">GetDP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart/install.html#install-shamo">Install shamo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/install.html#pip">Pip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/install.html#setup-py">Setup.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart/usage/usage.html">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart/usage/tutorials/code/fem/fem.html">Finite element model creation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/fem/fem.html#Mesh-generation">Mesh generation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/fem/fem.html#Sensors-additions">Sensors additions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/fem/fem.html#Field-addition">Field addition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart/usage/eeg.html">EEG</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/eeg/eeg_leadfield_ssp-elems.html">EEG leadfield computation - On all ROI elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/eeg/eeg_leadfield_ssp-dist.html">EEG leadfield computation - On equidistant elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/eeg/eeg_leadfield_ssp-grid.html">EEG leadfield computation - On regular grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-elems.html">EEG parametric leadfield computation - On all ROI elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-dist.html">EEG parametric leadfield computation - On equidistant elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-grid.html">EEG parametric leadfield computation - On regular grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-dist_surr-mat.html">EEG parametric leadfield surrogate model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-dist_surr-toref.html">EEG parametric leadfield sensitivity analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart/usage/hd_tdcs.html">HD-tDCS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation.html">HD-tDCS simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_param_simulation.html">HD-tDCS parametric simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/api.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/api.html#fem">FEM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/api.html#eeg">EEG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/api.html#leadfield">Leadfield</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/api.html#hd-tdcs">HD-tDCS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference/reference.html">Full reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference/.autosummary/shamo.cli.html">shamo.cli</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/.autosummary/shamo.cli.report.html">shamo.cli.report</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/.autosummary/shamo.core.html">shamo.core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/.autosummary/shamo.core.distributions.html">shamo.core.distributions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.distributions.abc.html">shamo.core.distributions.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.distributions.constant.html">shamo.core.distributions.constant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.distributions.normal.html">shamo.core.distributions.normal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.distributions.uniform.html">shamo.core.distributions.uniform</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/.autosummary/shamo.core.fem.html">shamo.core.fem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.fem.fem.html">shamo.core.fem.fem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.fem.field.html">shamo.core.fem.field</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.fem.group.html">shamo.core.fem.group</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.fem.sensors.html">shamo.core.fem.sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.fem.tissue.html">shamo.core.fem.tissue</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/.autosummary/shamo.core.objects.html">shamo.core.objects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.objects.abc.html">shamo.core.objects.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.objects.dir.html">shamo.core.objects.dir</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.objects.file.html">shamo.core.objects.file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/.autosummary/shamo.core.problems.html">shamo.core.problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.problems.parametric.html">shamo.core.problems.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.problems.single.html">shamo.core.problems.single</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/.autosummary/shamo.core.solutions.html">shamo.core.solutions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.solutions.parametric.html">shamo.core.solutions.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.solutions.single.html">shamo.core.solutions.single</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/.autosummary/shamo.core.surrogate.html">shamo.core.surrogate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.surrogate.abc.html">shamo.core.surrogate.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.surrogate.scalar.html">shamo.core.surrogate.scalar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/.autosummary/shamo.eeg.html">shamo.eeg</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/.autosummary/shamo.eeg.leadfield.html">shamo.eeg.leadfield</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.eeg.leadfield.parametric.html">shamo.eeg.leadfield.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.eeg.leadfield.single.html">shamo.eeg.leadfield.single</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/.autosummary/shamo.hd_tdcs.html">shamo.hd_tdcs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/.autosummary/shamo.hd_tdcs.simulation.html">shamo.hd_tdcs.simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.html">shamo.hd_tdcs.simulation.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.hd_tdcs.simulation.single.html">shamo.hd_tdcs.simulation.single</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/.autosummary/shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/.autosummary/shamo.utils.onelab.html">shamo.utils.onelab</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.utils.onelab.get_elems_coords.html">shamo.utils.onelab.get_elems_coords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.utils.onelab.get_elems_subset.html">shamo.utils.onelab.get_elems_subset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.utils.onelab.pos_to_nii.html">shamo.utils.onelab.pos_to_nii</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.utils.onelab.read_vector_file.html">shamo.utils.onelab.read_vector_file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/.autosummary/shamo.utils.path.html">shamo.utils.path</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.utils.path.get_relative_path.html">shamo.utils.path.get_relative_path</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">shamo</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Python Module Index</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+
+   <h1>Python Module Index</h1>
+
+   <div class="modindex-jumpbox">
+   <a href="#cap-s"><strong>s</strong></a>
+   </div>
+
+   <table class="indextable modindextable">
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-s"><td></td><td>
+       <strong>s</strong></td><td></td></tr>
+     <tr>
+       <td><img src="_static/minus.png" class="toggler"
+              id="toggle-1" style="display: none" alt="-" /></td>
+       <td>
+       <code class="xref">shamo</code></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.cli.html#module-shamo.cli"><code class="xref">shamo.cli</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.cli.report.html#module-shamo.cli.report"><code class="xref">shamo.cli.report</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.html#module-shamo.core"><code class="xref">shamo.core</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.distributions.html#module-shamo.core.distributions"><code class="xref">shamo.core.distributions</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.distributions.abc.html#module-shamo.core.distributions.abc"><code class="xref">shamo.core.distributions.abc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.distributions.constant.html#module-shamo.core.distributions.constant"><code class="xref">shamo.core.distributions.constant</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.distributions.normal.html#module-shamo.core.distributions.normal"><code class="xref">shamo.core.distributions.normal</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.distributions.uniform.html#module-shamo.core.distributions.uniform"><code class="xref">shamo.core.distributions.uniform</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.fem.html#module-shamo.core.fem"><code class="xref">shamo.core.fem</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.fem.fem.html#module-shamo.core.fem.fem"><code class="xref">shamo.core.fem.fem</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.fem.field.html#module-shamo.core.fem.field"><code class="xref">shamo.core.fem.field</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.fem.group.html#module-shamo.core.fem.group"><code class="xref">shamo.core.fem.group</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.fem.sensors.html#module-shamo.core.fem.sensors"><code class="xref">shamo.core.fem.sensors</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.fem.sensors.point.html#module-shamo.core.fem.sensors.point"><code class="xref">shamo.core.fem.sensors.point</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.fem.sensors.sensor.html#module-shamo.core.fem.sensors.sensor"><code class="xref">shamo.core.fem.sensors.sensor</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.fem.tissue.html#module-shamo.core.fem.tissue"><code class="xref">shamo.core.fem.tissue</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.objects.html#module-shamo.core.objects"><code class="xref">shamo.core.objects</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.objects.abc.html#module-shamo.core.objects.abc"><code class="xref">shamo.core.objects.abc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.objects.dir.html#module-shamo.core.objects.dir"><code class="xref">shamo.core.objects.dir</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.objects.file.html#module-shamo.core.objects.file"><code class="xref">shamo.core.objects.file</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.problems.html#module-shamo.core.problems"><code class="xref">shamo.core.problems</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.problems.parametric.html#module-shamo.core.problems.parametric"><code class="xref">shamo.core.problems.parametric</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.problems.parametric.abc.html#module-shamo.core.problems.parametric.abc"><code class="xref">shamo.core.problems.parametric.abc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.problems.parametric.components.html#module-shamo.core.problems.parametric.components"><code class="xref">shamo.core.problems.parametric.components</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.problems.parametric.components.tissue_property.html#module-shamo.core.problems.parametric.components.tissue_property"><code class="xref">shamo.core.problems.parametric.components.tissue_property</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.problems.parametric.components.value.html#module-shamo.core.problems.parametric.components.value"><code class="xref">shamo.core.problems.parametric.components.value</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.problems.parametric.getdp.html#module-shamo.core.problems.parametric.getdp"><code class="xref">shamo.core.problems.parametric.getdp</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.problems.single.html#module-shamo.core.problems.single"><code class="xref">shamo.core.problems.single</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.problems.single.abc.html#module-shamo.core.problems.single.abc"><code class="xref">shamo.core.problems.single.abc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.problems.single.components.html#module-shamo.core.problems.single.components"><code class="xref">shamo.core.problems.single.components</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.problems.single.components.abc.html#module-shamo.core.problems.single.components.abc"><code class="xref">shamo.core.problems.single.components.abc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.problems.single.components.file_path.html#module-shamo.core.problems.single.components.file_path"><code class="xref">shamo.core.problems.single.components.file_path</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.problems.single.components.grid_sampler.html#module-shamo.core.problems.single.components.grid_sampler"><code class="xref">shamo.core.problems.single.components.grid_sampler</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.problems.single.components.sensors.html#module-shamo.core.problems.single.components.sensors"><code class="xref">shamo.core.problems.single.components.sensors</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.problems.single.components.tissue_property.html#module-shamo.core.problems.single.components.tissue_property"><code class="xref">shamo.core.problems.single.components.tissue_property</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.problems.single.components.tissues.html#module-shamo.core.problems.single.components.tissues"><code class="xref">shamo.core.problems.single.components.tissues</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.problems.single.getdp.html#module-shamo.core.problems.single.getdp"><code class="xref">shamo.core.problems.single.getdp</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.solutions.html#module-shamo.core.solutions"><code class="xref">shamo.core.solutions</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.solutions.parametric.html#module-shamo.core.solutions.parametric"><code class="xref">shamo.core.solutions.parametric</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.solutions.parametric.abc.html#module-shamo.core.solutions.parametric.abc"><code class="xref">shamo.core.solutions.parametric.abc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.solutions.parametric.getdp.html#module-shamo.core.solutions.parametric.getdp"><code class="xref">shamo.core.solutions.parametric.getdp</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.solutions.single.html#module-shamo.core.solutions.single"><code class="xref">shamo.core.solutions.single</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.solutions.single.getdp.html#module-shamo.core.solutions.single.getdp"><code class="xref">shamo.core.solutions.single.getdp</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.surrogate.html#module-shamo.core.surrogate"><code class="xref">shamo.core.surrogate</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.surrogate.abc.html#module-shamo.core.surrogate.abc"><code class="xref">shamo.core.surrogate.abc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.core.surrogate.scalar.html#module-shamo.core.surrogate.scalar"><code class="xref">shamo.core.surrogate.scalar</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.eeg.html#module-shamo.eeg"><code class="xref">shamo.eeg</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.eeg.leadfield.html#module-shamo.eeg.leadfield"><code class="xref">shamo.eeg.leadfield</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.eeg.leadfield.parametric.html#module-shamo.eeg.leadfield.parametric"><code class="xref">shamo.eeg.leadfield.parametric</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.eeg.leadfield.parametric.problem.html#module-shamo.eeg.leadfield.parametric.problem"><code class="xref">shamo.eeg.leadfield.parametric.problem</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.eeg.leadfield.parametric.solution.html#module-shamo.eeg.leadfield.parametric.solution"><code class="xref">shamo.eeg.leadfield.parametric.solution</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.html#module-shamo.eeg.leadfield.parametric.surrogate"><code class="xref">shamo.eeg.leadfield.parametric.surrogate</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.eeg.leadfield.single.html#module-shamo.eeg.leadfield.single"><code class="xref">shamo.eeg.leadfield.single</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.eeg.leadfield.single.problem.html#module-shamo.eeg.leadfield.single.problem"><code class="xref">shamo.eeg.leadfield.single.problem</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.eeg.leadfield.single.solution.html#module-shamo.eeg.leadfield.single.solution"><code class="xref">shamo.eeg.leadfield.single.solution</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.hd_tdcs.html#module-shamo.hd_tdcs"><code class="xref">shamo.hd_tdcs</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.hd_tdcs.simulation.html#module-shamo.hd_tdcs.simulation"><code class="xref">shamo.hd_tdcs.simulation</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.html#module-shamo.hd_tdcs.simulation.parametric"><code class="xref">shamo.hd_tdcs.simulation.parametric</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.problem.html#module-shamo.hd_tdcs.simulation.parametric.problem"><code class="xref">shamo.hd_tdcs.simulation.parametric.problem</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.html#module-shamo.hd_tdcs.simulation.parametric.solution"><code class="xref">shamo.hd_tdcs.simulation.parametric.solution</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.html#module-shamo.hd_tdcs.simulation.single"><code class="xref">shamo.hd_tdcs.simulation.single</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.problem.html#module-shamo.hd_tdcs.simulation.single.problem"><code class="xref">shamo.hd_tdcs.simulation.single.problem</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.solution.html#module-shamo.hd_tdcs.simulation.single.solution"><code class="xref">shamo.hd_tdcs.simulation.single.solution</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.utils.html#module-shamo.utils"><code class="xref">shamo.utils</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.utils.onelab.html#module-shamo.utils.onelab"><code class="xref">shamo.utils.onelab</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="reference/.autosummary/shamo.utils.path.html#module-shamo.utils.path"><code class="xref">shamo.utils.path</code></a></td><td>
+       <em></em></td></tr>
+   </table>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, GIGA CRC In-Vivo Imaging
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

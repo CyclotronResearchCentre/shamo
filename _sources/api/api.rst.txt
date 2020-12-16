@@ -1,43 +1,51 @@
 API reference
 =============
 
-The public API of :mod:`shamo` only provides a subset of the classes and methods defined in the package.
-Here is a quick description of the exposed classes.
+.. toctree::
+   :maxdepth: 1
 
-Finite element model
---------------------
+FEM
+~~~
 
-- :class:`FEModel <shamo.model.fe_model.FEModel>`: The model itself which holds all the data and provides all the methods.
-- :class:`MeshConfig <shamo.model.mesh_config.MeshConfig>`: The parameters passed to the meshing algorithm.
+The :py:class:`FEM <shamo.core.fem.fem.FEM>` class contains all the classes and methods required to build a proper finite element model.
 
-Problems
---------
+To construct the mesh, use one of the following methods:
+
+* :py:func:`mesh_from_array <shamo.core.fem.fem.FEM.mesh_from_array>`
+* :py:func:`mesh_from_nii <shamo.core.fem.fem.FEM.mesh_from_nii>`
+* :py:func:`mesh_from_masks <shamo.core.fem.fem.FEM.mesh_from_masks>`
+* :py:func:`mesh_from_niis <shamo.core.fem.fem.FEM.mesh_from_niis>`
+
+Next, add fields to the mesh with:
+
+* :py:func:`field_from_elems <shamo.core.fem.fem.FEM.field_from_elems>`
+* :py:func:`field_from_array <shamo.core.fem.fem.FEM.field_from_array>`
+* :py:func:`field_from_nii <shamo.core.fem.fem.FEM.field_from_nii>`
+
+Finally, add sensors with:
+
+* :py:func:`add_point_sensor <shamo.core.fem.fem.FEM.add_point_sensor>`
+* :py:func:`add_point_sensor_on <shamo.core.fem.fem.FEM.add_point_sensor_on>`
+* :py:func:`add_point_sensor_in <shamo.core.fem.fem.FEM.add_point_sensor_in>`
+* :py:func:`add_point_sensors <shamo.core.fem.fem.FEM.add_point_sensors>`
+* :py:func:`add_point_sensors_on <shamo.core.fem.fem.FEM.add_point_sensors_on>`
+* :py:func:`add_point_sensors_in <shamo.core.fem.fem.FEM.add_point_sensors_in>`
+* :py:func:`add_point_sensors_from_tsv <shamo.core.fem.fem.FEM.add_point_sensors_from_tsv>`
+* :py:func:`add_point_sensors_from_tsv_on <shamo.core.fem.fem.FEM.add_point_sensors_from_tsv_on>`
+* :py:func:`add_point_sensors_from_tsv_in <shamo.core.fem.fem.FEM.add_point_sensors_from_tsv_in>`
 
 EEG
 ~~~
-- :class:`EEGForwardProblem <shamo.problems.forward.eeg.eeg_forward_problem.EEGForwardProblem>`: A problem used to generate a single leadfield matrix.
-- :class:`EEGParametricForwardProblem <shamo.problems.forward.eeg.eeg_parametric_forward_problem.EEGParametricForwardProblem>`: A problem used to generate a parametric leadfield matrix.
-- :class:`EEGSimulationProblem <shamo.problems.forward.eeg.eeg_simulation_problem.EEGSimulationProblem>`: A problem to simulate sources in the brain for EEG.
 
-Solutions
+The :py:mod:`EEG <shamo.eeg>` module contains everything related with electroencephalography.
+
+Leadfield
 ---------
 
-EEG
-~~~
-- :class:`EEGForwardSolution <shamo.solutions.forward.eeg.eeg_forward_solution.EEGForwardSolution>`: A single leadfield matrix.
-- :class:`EEGParametricForwardSolution <shamo.solutions.forward.eeg.eeg_parametric_forward_solution.EEGParametricForwardSolution>`: A parametric leadfield matrix.
-- :class:`EEGSimulationSolution <shamo.solutions.forward.eeg.eeg_simulation_solution.EEGSimulationSolution>`: A simulation of sources in the brain for EEG.
+The :py:mod:`Leadfield <shamo.eeg.leadfield>` module provides both the single and parametric classes to compute respectively a single leadfield matrix and a parametric leadfield matrix.
 
+The single leadfield matrix can be obtained with the :py:class:`ProbEEGLeadfield <shamo.eeg.leadfield.single.problem.ProbEEGLeadfield>` and :py:class:`SolEEGLeadfield <shamo.eeg.leadfield.single.solution.SolEEGLeadfield>` classes.
+The parametric leadfield atrix on the other hand is computed with the :py:class:`ProbParamEEGLeadfield <shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield>`, :py:class:`SolParamEEGLeadfield <shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield>` and :py:class:`SurrEEGLeadfield <shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield>` classes.
 
-Sources
--------
-
-- :class:`FESource <shamo.model.sources.fe_source.FESource>`: A source defined in a finite element model.
-- :class:`EEGSource <shamo.model.sources.eeg_source.EEGSource>`: A source defined in an EEG problem.
-
-Distributions
--------------
-
-- :class:`ConstantDistribution <shamo.core.distribution.ConstantDistribution>`: For a property with a fixed value.
-- :class:`TruncatedNormalDistribution <shamo.core.distribution.TruncatedNormalDistribution>`: For a property with a bounded normal distribution.
-- :class:`UniformDistribution <shamo.core.distribution.UniformDistribution>`: For a property with uniformly distributed values.
+HD-tDCS
+~~~~~~~

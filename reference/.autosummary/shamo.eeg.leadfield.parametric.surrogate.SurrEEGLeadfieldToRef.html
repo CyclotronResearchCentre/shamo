@@ -1,0 +1,874 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef &mdash; shamo 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="shamo.eeg.leadfield.single" href="shamo.eeg.leadfield.single.html" />
+    <link rel="prev" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield" href="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> shamo
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart/quickstart.html">Quickstart guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/install.html">Install</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart/install.html#install-binary-dependencies">Install binary dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/install.html#cgal">CGAL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/install.html#gmsh">Gmsh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/install.html#getdp">GetDP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart/install.html#install-shamo">Install shamo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/install.html#pip">Pip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/install.html#setup-py">Setup.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/usage/usage.html">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem.html">Finite element model creation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem.html#Mesh-generation">Mesh generation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem.html#Sensors-additions">Sensors additions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem.html#Field-addition">Field addition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/eeg.html">EEG</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/eeg/eeg_leadfield_ssp-elems.html">EEG leadfield computation - On all ROI elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/eeg/eeg_leadfield_ssp-dist.html">EEG leadfield computation - On equidistant elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/eeg/eeg_leadfield_ssp-grid.html">EEG leadfield computation - On regular grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-elems.html">EEG parametric leadfield computation - On all ROI elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-dist.html">EEG parametric leadfield computation - On equidistant elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-grid.html">EEG parametric leadfield computation - On regular grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-dist_surr-mat.html">EEG parametric leadfield surrogate model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/eeg/eeg_param_leadfield_ssp-dist_surr-toref.html">EEG parametric leadfield sensitivity analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/hd_tdcs.html">HD-tDCS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation.html">HD-tDCS simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_param_simulation.html">HD-tDCS parametric simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/api.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/api.html#fem">FEM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/api.html#eeg">EEG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/api.html#leadfield">Leadfield</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/api.html#hd-tdcs">HD-tDCS</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Full reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="shamo.cli.html">shamo.cli</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shamo.cli.report.html">shamo.cli.report</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shamo.core.html">shamo.core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shamo.core.distributions.html">shamo.core.distributions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.distributions.abc.html">shamo.core.distributions.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.distributions.constant.html">shamo.core.distributions.constant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.distributions.normal.html">shamo.core.distributions.normal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.distributions.uniform.html">shamo.core.distributions.uniform</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="shamo.core.fem.html">shamo.core.fem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.fem.fem.html">shamo.core.fem.fem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.fem.field.html">shamo.core.fem.field</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.fem.group.html">shamo.core.fem.group</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.fem.sensors.html">shamo.core.fem.sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.fem.tissue.html">shamo.core.fem.tissue</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="shamo.core.objects.html">shamo.core.objects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.objects.abc.html">shamo.core.objects.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.objects.dir.html">shamo.core.objects.dir</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.objects.file.html">shamo.core.objects.file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="shamo.core.problems.html">shamo.core.problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.problems.parametric.html">shamo.core.problems.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.problems.single.html">shamo.core.problems.single</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="shamo.core.solutions.html">shamo.core.solutions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.solutions.parametric.html">shamo.core.solutions.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.solutions.single.html">shamo.core.solutions.single</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="shamo.core.surrogate.html">shamo.core.surrogate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.surrogate.abc.html">shamo.core.surrogate.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.surrogate.scalar.html">shamo.core.surrogate.scalar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="shamo.eeg.html">shamo.eeg</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="shamo.eeg.leadfield.html">shamo.eeg.leadfield</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="shamo.eeg.leadfield.parametric.html">shamo.eeg.leadfield.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.eeg.leadfield.single.html">shamo.eeg.leadfield.single</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shamo.hd_tdcs.html">shamo.hd_tdcs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shamo.hd_tdcs.simulation.html">shamo.hd_tdcs.simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shamo.hd_tdcs.simulation.parametric.html">shamo.hd_tdcs.simulation.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.hd_tdcs.simulation.single.html">shamo.hd_tdcs.simulation.single</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shamo.utils.onelab.html">shamo.utils.onelab</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.onelab.get_elems_coords.html">shamo.utils.onelab.get_elems_coords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.onelab.get_elems_subset.html">shamo.utils.onelab.get_elems_subset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.onelab.pos_to_nii.html">shamo.utils.onelab.pos_to_nii</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.onelab.read_vector_file.html">shamo.utils.onelab.read_vector_file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="shamo.utils.path.html">shamo.utils.path</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.path.get_relative_path.html">shamo.utils.path.get_relative_path</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">shamo</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../reference.html">Full reference</a> &raquo;</li>
+        
+          <li><a href="shamo.eeg.html">shamo.eeg</a> &raquo;</li>
+        
+          <li><a href="shamo.eeg.leadfield.html">shamo.eeg.leadfield</a> &raquo;</li>
+        
+          <li><a href="shamo.eeg.leadfield.parametric.html">shamo.eeg.leadfield.parametric</a> &raquo;</li>
+        
+          <li><a href="shamo.eeg.leadfield.parametric.surrogate.html">shamo.eeg.leadfield.parametric.surrogate</a> &raquo;</li>
+        
+      <li>shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="shamo-eeg-leadfield-parametric-surrogate-surreegleadfieldtoref">
+<h1>shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef<a class="headerlink" href="#shamo-eeg-leadfield-parametric-surrogate-surreegleadfieldtoref" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef">
+<em class="property">class </em><code class="sig-prename descclassname">shamo.eeg.leadfield.parametric.surrogate.</code><code class="sig-name descname">SurrEEGLeadfieldToRef</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">parent_path</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/shamo/eeg/leadfield/parametric/surrogate.html#SurrEEGLeadfieldToRef"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar" title="shamo.core.surrogate.scalar.SurrScalar"><code class="xref py py-class docutils literal notranslate"><span class="pre">shamo.core.surrogate.scalar.SurrScalar</span></code></a></p>
+<p>Provide a way to evaluate the sensitivity of the EEG leadfield.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the generated surrogate model.</p>
+</dd>
+<dt><strong>parent_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the parent directory of the surrogate model.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Other Parameters</dt>
+<dd class="field-even"><dl>
+<dt><strong>params</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">list</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">shamo.DistABC</span></code>]]</span></dt><dd><p>A list of tuples containing the names of the parameters and the
+corresponding distributions as values.</p>
+</dd>
+<dt><strong>sol_json_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The path to the parametric solution the surrogate is built of.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">shamo.core.surrogate.SurrScalar</span></code></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.clear" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.copy" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.fit" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a></p></td>
+<td><p>Generate a Gaussian process from a set of training data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.fromkeys" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.fromkeys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fromkeys</span></code></a></p></td>
+<td><p>Create a new dictionary with keys from iterable and values set to value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.gen_sobol" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.gen_sobol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gen_sobol</span></code></a></p></td>
+<td><p>Compute Sobol sensitivity indices.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.get" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code></a></p></td>
+<td><p>Return the value for key if key is in the dictionary, else default.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.get_gp" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.get_gp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_gp</span></code></a></p></td>
+<td><p>Load the Gaussian process.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.get_relative_path" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.get_relative_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_relative_path</span></code></a></p></td>
+<td><p>Return the relative path from the object to a file or directory.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.get_sobol" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.get_sobol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_sobol</span></code></a></p></td>
+<td><p>Return the precomputed Sobol indices.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.items" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.keys" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.keys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.load" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a></p></td>
+<td><p>Load an object from a JSON file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.pop" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.pop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code></a></p></td>
+<td><p>If key is not found, d is returned if given, otherwise KeyError is raised</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.popitem" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.popitem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">popitem</span></code></a></p></td>
+<td><p>Remove and return a (key, value) pair as a 2-tuple.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.predict" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a></p></td>
+<td><p>Evaluate the Gaussian process on new points.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.save" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a></p></td>
+<td><p>Save the object to a JSON file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.setdefault" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.setdefault"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setdefault</span></code></a></p></td>
+<td><p>Insert key with a value of default if key is not in the dictionary.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.update" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a></p></td>
+<td><p>If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k] If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v In either case, this is followed by: for k in F:  D[k] = F[k]</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.values" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">values</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.gp_path" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.gp_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gp_path</span></code></a></p></td>
+<td><p>Return the path of the Gaussian process file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.is_sobol_available" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.is_sobol_available"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_sobol_available</span></code></a></p></td>
+<td><p>Return whether the Sobol indices are already computed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.json_path" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.json_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">json_path</span></code></a></p></td>
+<td><p>Return the path to the object JSON file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.name" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></p></td>
+<td><p>Return the name of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.params" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">params</span></code></a></p></td>
+<td><p>Return the parameters of the surrogate model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.parent_path" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.parent_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parent_path</span></code></a></p></td>
+<td><p>Return the path to the parent directory of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.path" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">path</span></code></a></p></td>
+<td><p>Return the path to the object directory.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.sobol_path" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.sobol_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sobol_path</span></code></a></p></td>
+<td><p>Return the path to the file storing the Sobol indices.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sol_json_path</span></code></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.clear">
+<code class="sig-name descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None.  Remove all items from D.<a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.clear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.copy">
+<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; a shallow copy of D<a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.copy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.fit">
+<em class="property">classmethod </em><code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">parent_path</span></em>, <em class="sig-param"><span class="n">sol</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a Gaussian process from a set of training data.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the generated surrogate model.</p>
+</dd>
+<dt><strong>parent_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the parent directory of the surrogate model.</p>
+</dd>
+<dt><strong>sol</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shamo.core.solutions.parametric.SolParamABC</span></code></span></dt><dd><p>The parametric solution to generate a surrogate model for.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">shamo.Surrogate</span></code></dt><dd><p>The generated surrogate model.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Other Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>kernel</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sklearn.gaussian_process.kernels.Kernel</span></code></span></dt><dd><p>The kernel used to generate the Gaussian process.</p>
+</dd>
+<dt><strong>n_restarts_optimizer</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>The number of restarts for the optimisation step.</p>
+</dd>
+<dt><strong>random_state</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>The seed for the random state.</p>
+</dd>
+<dt><strong>alpha</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The added diagonal to account for noise on training points.</p>
+</dd>
+<dt><strong>n_proc</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>The number of jobs to run in parallel. <code class="docutils literal notranslate"><span class="pre">None</span></code> means 1 job runs at a time
+and <code class="docutils literal notranslate"><span class="pre">-1</span></code> means all cores are used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">sklearn.gaussian_process.GaussianProcessRegressor</span></code></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.fromkeys">
+<code class="sig-name descname">fromkeys</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">iterable</span></em>, <em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">/</span></em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.fromkeys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new dictionary with keys from iterable and values set to value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.gen_sobol">
+<code class="sig-name descname">gen_sobol</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">n_resamples</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">conf_level</span><span class="o">=</span><span class="default_value">0.95</span></em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.gen_sobol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute Sobol sensitivity indices.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>n</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>The number of sample to predict with the Gaussian process. The default is
+<code class="docutils literal notranslate"><span class="pre">1000</span></code>.</p>
+</dd>
+<dt><strong>n_resamples</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>The number of resamples. The default is <code class="docutils literal notranslate"><span class="pre">100</span></code>.</p>
+</dd>
+<dt><strong>conf_level</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>The confidence interval level. The default is <code class="docutils literal notranslate"><span class="pre">0.95</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">list</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>]|dict [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]]</dt><dd><p>A dictionary containing the names of the parameters, the values of the
+first, second and total order Sobol indices and the corresponding
+confidence with respect to the <cite>conf_level</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">default</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">/</span></em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the value for key if key is in the dictionary, else default.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.get_gp">
+<code class="sig-name descname">get_gp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.get_gp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the Gaussian process.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">sklearn.gaussian_process.GaussianProcessRegressor</span></code></dt><dd><p>The Gaussian process.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.get_relative_path">
+<code class="sig-name descname">get_relative_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.get_relative_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the relative path from the object to a file or directory.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the file or directory to compute the relative path for.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></dt><dd><p>The relative path to the file or directory.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.get_sobol">
+<code class="sig-name descname">get_sobol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.get_sobol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the precomputed Sobol indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">list</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>]|dict [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]]|None</dt><dd><p>A dictionary containing the names of the parameters, the values of the
+first, second and total order Sobol indices and the corresponding
+confidence with respect to the <cite>conf_level</cite>.
+If the file does not exist, returns <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.gp_path">
+<em class="property">property </em><code class="sig-name descname">gp_path</code><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.gp_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the path of the Gaussian process file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></dt><dd><p>The path of the Gaussian process file.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.is_sobol_available">
+<em class="property">property </em><code class="sig-name descname">is_sobol_available</code><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.is_sobol_available" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the Sobol indices are already computed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a></dt><dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the indices are already computed, <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.items">
+<code class="sig-name descname">items</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; a set-like object providing a view on D’s items<a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.items" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.json_path">
+<em class="property">property </em><code class="sig-name descname">json_path</code><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.json_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the path to the object JSON file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></dt><dd><p>The path to the object JSON file.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.keys">
+<code class="sig-name descname">keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; a set-like object providing a view on D’s keys<a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.keys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.load">
+<em class="property">classmethod </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">json_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load an object from a JSON file.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>json_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the JSON file containing the object data.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>json_path</cite> is not a <cite>str</cite>, <cite>byte</cite> or <cite>os.PathLike</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the name of the object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></dt><dd><p>The name of the object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.params">
+<em class="property">property </em><code class="sig-name descname">params</code><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the parameters of the surrogate model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">list</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">shamo.DistABC</span></code>]]</dt><dd><p>A list of tuples containing the names of the parameters and the
+corresponding distributions as values.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.parent_path">
+<em class="property">property </em><code class="sig-name descname">parent_path</code><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.parent_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the path to the parent directory of the object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></dt><dd><p>The path to the parent directory of the object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.path">
+<em class="property">property </em><code class="sig-name descname">path</code><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the path to the object directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></dt><dd><p>The path to the object directory.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.pop">
+<code class="sig-name descname">pop</code><span class="sig-paren">(</span><em class="sig-param">k</em><span class="optional">[</span>, <em class="sig-param">d</em><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; v, remove specified key and return the corresponding value.<a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>If key is not found, d is returned if given, otherwise KeyError is raised</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.popitem">
+<code class="sig-name descname">popitem</code><span class="sig-paren">(</span><em class="sig-param">/</em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.popitem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove and return a (key, value) pair as a 2-tuple.</p>
+<p>Pairs are returned in LIFO (last-in, first-out) order.
+Raises KeyError if the dict is empty.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the Gaussian process on new points.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>x</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The coordinates of the evaluation points in the parameter space. Each row
+represents an evaluation.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>To change the behaviour of this method, one should subclass <cite>Surrogate</cite> and
+change the <cite>_post_pro</cite> method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">exist_ok</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the object to a JSON file.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>exist_ok</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, any already existing object is overriden. Otherwise, if
+the object already exists, a <cite>FileExistsError</cite>. The default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileExistsError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileExistsError</span></code></a></dt><dd><p>If <cite>exist_ok</cite> is set to <code class="docutils literal notranslate"><span class="pre">False</span></code> and the object already exists.</p>
+</dd>
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If any of the keys/values to be stored is not a <cite>str</cite>, <cite>int</cite>, <cite>float</cite>,
+<cite>bool</cite> or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.setdefault">
+<code class="sig-name descname">setdefault</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">default</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">/</span></em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.setdefault" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert key with a value of default if key is not in the dictionary.</p>
+<p>Return the value for key if key is in the dictionary, else default.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.sobol_path">
+<em class="property">property </em><code class="sig-name descname">sobol_path</code><a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.sobol_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the path to the file storing the Sobol indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></dt><dd><p>The path to the file storing the Sobol indices.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param">E</em>, <span class="optional">]</span><em class="sig-param">**F</em><span class="sig-paren">)</span> &#x2192; None.  Update D from dict/iterable E and F.<a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k]
+If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v
+In either case, this is followed by: for k in F:  D[k] = F[k]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.values">
+<code class="sig-name descname">values</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; an object providing a view on D’s values<a class="headerlink" href="#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="shamo.eeg.leadfield.single.html" class="btn btn-neutral float-right" title="shamo.eeg.leadfield.single" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield.html" class="btn btn-neutral float-left" title="shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, GIGA CRC In-Vivo Imaging
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

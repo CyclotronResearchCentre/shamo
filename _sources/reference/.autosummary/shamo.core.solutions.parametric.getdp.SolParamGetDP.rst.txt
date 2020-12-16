@@ -1,0 +1,54 @@
+shamo.core.solutions.parametric.getdp.SolParamGetDP
+===================================================
+
+.. currentmodule:: shamo.core.solutions.parametric.getdp
+
+.. autoclass:: SolParamGetDP
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~SolParamGetDP.clear
+      ~SolParamGetDP.copy
+      ~SolParamGetDP.finalize
+      ~SolParamGetDP.fromkeys
+      ~SolParamGetDP.get
+      ~SolParamGetDP.get_relative_path
+      ~SolParamGetDP.get_sub_file
+      ~SolParamGetDP.get_sub_sols
+      ~SolParamGetDP.items
+      ~SolParamGetDP.keys
+      ~SolParamGetDP.load
+      ~SolParamGetDP.pop
+      ~SolParamGetDP.popitem
+      ~SolParamGetDP.save
+      ~SolParamGetDP.setdefault
+      ~SolParamGetDP.update
+      ~SolParamGetDP.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SolParamGetDP.json_path
+      ~SolParamGetDP.model_json_path
+      ~SolParamGetDP.name
+      ~SolParamGetDP.parent_path
+      ~SolParamGetDP.path
+      ~SolParamGetDP.sigmas
+      ~SolParamGetDP.sub_class
+      ~SolParamGetDP.sub_json_paths
+   
+   

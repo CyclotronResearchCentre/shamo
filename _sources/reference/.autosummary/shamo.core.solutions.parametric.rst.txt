@@ -1,0 +1,31 @@
+shamo.core.solutions.parametric
+===============================
+
+.. automodule:: shamo.core.solutions.parametric
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   shamo.core.solutions.parametric.abc
+   shamo.core.solutions.parametric.getdp
+

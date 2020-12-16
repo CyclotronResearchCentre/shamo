@@ -1,0 +1,42 @@
+shamo.core.problems.single.getdp.ProbGetDP
+==========================================
+
+.. currentmodule:: shamo.core.problems.single.getdp
+
+.. autoclass:: ProbGetDP
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~ProbGetDP.clear
+      ~ProbGetDP.copy
+      ~ProbGetDP.fromkeys
+      ~ProbGetDP.get
+      ~ProbGetDP.items
+      ~ProbGetDP.keys
+      ~ProbGetDP.pop
+      ~ProbGetDP.popitem
+      ~ProbGetDP.setdefault
+      ~ProbGetDP.solve
+      ~ProbGetDP.update
+      ~ProbGetDP.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProbGetDP.template
+   
+   

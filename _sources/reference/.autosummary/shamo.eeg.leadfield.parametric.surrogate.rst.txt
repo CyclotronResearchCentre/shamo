@@ -1,0 +1,33 @@
+shamo.eeg.leadfield.parametric.surrogate
+========================================
+
+.. automodule:: shamo.eeg.leadfield.parametric.surrogate
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      SurrEEGLeadfield
+      SurrEEGLeadfieldToRef
+   
+   
+
+   
+   
+   
+
+
+

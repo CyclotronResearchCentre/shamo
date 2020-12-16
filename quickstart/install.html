@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Install &mdash; shamo 0.3.2 documentation</title>
+  <title>Install &mdash; shamo 1.0.0 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -91,10 +91,10 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Install</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#install-binary-dependencies">Install binary dependencies</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cgal">CGAL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gmsh">Gmsh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#getdp">GetDP</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#install-python-dependencies">Install python dependencies</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#install-shamo">Install shamo</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pip">Pip</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#setup-py">Setup.py</a></li>
@@ -103,17 +103,26 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="usage/usage.html">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="usage/tutorials/1_model_creation.html">Model creation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/1_model_creation.html#Model-initialization">Model initialization</a></li>
-<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/1_model_creation.html#Mesh-generation">Mesh generation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/1_model_creation.html#Sensors-placement">Sensors placement</a></li>
-<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/1_model_creation.html#Anisotropy-definition">Anisotropy definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/tutorials/code/fem/fem.html">Finite element model creation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/code/fem/fem.html#Mesh-generation">Mesh generation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/code/fem/fem.html#Sensors-additions">Sensors additions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/code/fem/fem.html#Field-addition">Field addition</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="usage/eeg.html">EEG</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/2_eeg_forward.html">Solve EEG forward problem</a></li>
-<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/4_eeg_parametric_forward.html">Solve EEG parametric forward problem</a></li>
-<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/3_eeg_simulation.html">Simulate EEG source(s)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/code/eeg/eeg_leadfield_ssp-elems.html">EEG leadfield computation - On all ROI elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/code/eeg/eeg_leadfield_ssp-dist.html">EEG leadfield computation - On equidistant elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/code/eeg/eeg_leadfield_ssp-grid.html">EEG leadfield computation - On regular grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/code/eeg/eeg_param_leadfield_ssp-elems.html">EEG parametric leadfield computation - On all ROI elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/code/eeg/eeg_param_leadfield_ssp-dist.html">EEG parametric leadfield computation - On equidistant elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/code/eeg/eeg_param_leadfield_ssp-grid.html">EEG parametric leadfield computation - On regular grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/code/eeg/eeg_param_leadfield_ssp-dist_surr-mat.html">EEG parametric leadfield surrogate model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/code/eeg/eeg_param_leadfield_ssp-dist_surr-toref.html">EEG parametric leadfield sensitivity analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="usage/hd_tdcs.html">HD-tDCS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/code/hd_tdcs/hd_tdcs_simulation.html">HD-tDCS simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage/tutorials/code/hd_tdcs/hd_tdcs_param_simulation.html">HD-tDCS parametric simulation</a></li>
 </ul>
 </li>
 </ul>
@@ -121,88 +130,84 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api/api.html">API reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api/api.html#finite-element-model">Finite element model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/api.html#problems">Problems</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/api.html#eeg">EEG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/api.html#fem">FEM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/api.html#eeg">EEG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/api.html#leadfield">Leadfield</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../api/api.html#solutions">Solutions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/api.html#id1">EEG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/api.html#hd-tdcs">HD-tDCS</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../api/api.html#sources">Sources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/api.html#distributions">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/reference.html">Full reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/.autosummary/shamo.cli.html">shamo.cli</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/.autosummary/shamo.cli.report.html">shamo.cli.report</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../reference/reference.html">Code reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../reference/core/core.html">shamo.core</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../reference/core/distribution.html">shamo.core.distribution</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../reference/core/distribution.html#shamo-core-distribution-distribution">shamo.core.distribution.Distribution</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../reference/core/distribution.html#shamo-core-distribution-constantdistribution">shamo.core.distribution.ConstantDistribution</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../reference/core/distribution.html#shamo-core-distribution-truncatednormaldistribution">shamo.core.distribution.TruncatedNormalDistribution</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../reference/core/distribution.html#shamo-core-distribution-uniformdistribution">shamo.core.distribution.UniformDistribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/.autosummary/shamo.core.html">shamo.core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/.autosummary/shamo.core.distributions.html">shamo.core.distributions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.core.distributions.abc.html">shamo.core.distributions.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.core.distributions.constant.html">shamo.core.distributions.constant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.core.distributions.normal.html">shamo.core.distributions.normal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.core.distributions.uniform.html">shamo.core.distributions.uniform</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/core/objects.html">shamo.core.objects</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../reference/core/objects.html#shamo-core-objects-object">shamo.core.objects.Object</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../reference/core/objects.html#shamo-core-objects-fileobject">shamo.core.objects.FileObject</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../reference/core/objects.html#shamo-core-objects-dirobject">shamo.core.objects.DirObject</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/.autosummary/shamo.core.fem.html">shamo.core.fem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.core.fem.fem.html">shamo.core.fem.fem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.core.fem.field.html">shamo.core.fem.field</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.core.fem.group.html">shamo.core.fem.group</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.core.fem.sensors.html">shamo.core.fem.sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.core.fem.tissue.html">shamo.core.fem.tissue</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/core/problem.html">shamo.core.problem</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../reference/core/problem.html#shamo-core-problem-problem">shamo.core.problem.Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/.autosummary/shamo.core.objects.html">shamo.core.objects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.core.objects.abc.html">shamo.core.objects.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.core.objects.dir.html">shamo.core.objects.dir</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.core.objects.file.html">shamo.core.objects.file</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/core/solution.html">shamo.core.solution</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../reference/core/solution.html#shamo-core-solution-solution">shamo.core.solution.Solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/.autosummary/shamo.core.problems.html">shamo.core.problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.core.problems.parametric.html">shamo.core.problems.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.core.problems.single.html">shamo.core.problems.single</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/.autosummary/shamo.core.solutions.html">shamo.core.solutions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.core.solutions.parametric.html">shamo.core.solutions.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.core.solutions.single.html">shamo.core.solutions.single</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../reference/model/model.html">shamo.model</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../reference/model/anisotropy.html">shamo.model.anisotropy</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../reference/model/anisotropy.html#shamo-model-anisotropy-anisotropy">shamo.model.anisotropy.Anisotropy</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/model/fe_model.html">shamo.model.fe_model</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../reference/model/fe_model.html#shamo-model-fe-model-femodel">shamo.model.fe_model.FEModel</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/model/mesh_config.html">shamo.model.mesh_config</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../reference/model/mesh_config.html#shamo-model-mesh-config-meshconfig">shamo.model.mesh_config.MeshConfig</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/model/sensor.html">shamo.model.sensor</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../reference/model/sensor.html#shamo-model-sensor-sensor">shamo.model.sensor.Sensor</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/model/sources/sources.html">shamo.model.sources</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../reference/model/sources/eeg_source.html">shamo.model.sources.eeg_source</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../reference/model/sources/fe_source.html">shamo.model.sources.fe_source</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../reference/model/sources/source.html">shamo.model.sources.source</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/model/tissue.html">shamo.model.tissue</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../reference/model/tissue.html#shamo-model-tissue-tissue">shamo.model.tissue.Tissue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/.autosummary/shamo.core.surrogate.html">shamo.core.surrogate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.core.surrogate.abc.html">shamo.core.surrogate.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.core.surrogate.scalar.html">shamo.core.surrogate.scalar</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../reference/problems/problems.html">shamo.problems</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../reference/problems/forward/forward.html">shamo.problems.forward</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../reference/problems/forward/eeg/eeg.html">shamo.problems.forward.eeg</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../reference/problems/forward/forward_problem.html">shamo.problems.forward.forward_problem</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../reference/problems/forward/tissue_property.html">shamo.problems.forward.tissue_property</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/.autosummary/shamo.eeg.html">shamo.eeg</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/.autosummary/shamo.eeg.leadfield.html">shamo.eeg.leadfield</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.eeg.leadfield.parametric.html">shamo.eeg.leadfield.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.eeg.leadfield.single.html">shamo.eeg.leadfield.single</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../reference/solutions/solutions.html">shamo.solutions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../reference/solutions/forward/forward.html">shamo.solutions.forward</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../reference/solutions/forward/eeg/eeg.html">shamo.solutions.forward.eeg</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../reference/solutions/forward/common_forward_solution.html">shamo.solutions.forward.common_forward_solution</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../reference/solutions/forward/forward_solution.html">shamo.solutions.forward.forward_solution</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../reference/solutions/forward/parametric_forward_solution.html">shamo.solutions.forward.parametric_forward_solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/.autosummary/shamo.hd_tdcs.html">shamo.hd_tdcs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/.autosummary/shamo.hd_tdcs.simulation.html">shamo.hd_tdcs.simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.hd_tdcs.simulation.parametric.html">shamo.hd_tdcs.simulation.parametric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.hd_tdcs.simulation.single.html">shamo.hd_tdcs.simulation.single</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/.autosummary/shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/.autosummary/shamo.utils.onelab.html">shamo.utils.onelab</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.utils.onelab.get_elems_coords.html">shamo.utils.onelab.get_elems_coords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.utils.onelab.get_elems_subset.html">shamo.utils.onelab.get_elems_subset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.utils.onelab.pos_to_nii.html">shamo.utils.onelab.pos_to_nii</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.utils.onelab.read_vector_file.html">shamo.utils.onelab.read_vector_file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/.autosummary/shamo.utils.path.html">shamo.utils.path</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reference/.autosummary/shamo.utils.path.get_relative_path.html">shamo.utils.path.get_relative_path</a></li>
 </ul>
 </li>
 </ul>
@@ -314,8 +319,8 @@
 <h3>CGAL<a class="headerlink" href="#cgal" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://www.cgal.org/index.html">CGAL</a> is a geometry package which provides fast and reliable algorithms written in C++.
 We recommend you to use the package manager of your OS.</p>
-<table class="colwidths-given docutils align-default" id="id3">
-<caption><span class="caption-text">CGAL</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<table class="colwidths-given docutils align-default" id="id4">
+<caption><span class="caption-text">CGAL</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 20%" />
 <col style="width: 40%" />
@@ -343,12 +348,41 @@ We recommend you to use the package manager of your OS.</p>
 </tbody>
 </table>
 </div>
+<div class="section" id="gmsh">
+<h3>Gmsh<a class="headerlink" href="#gmsh" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://gmsh.info/">Gmsh</a> is a 3D finite element mesher.
+Download the latest version corresponding to your OS.</p>
+<table class="colwidths-given docutils align-default" id="id5">
+<caption><span class="caption-text">Gmsh</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>OS</p></th>
+<th class="head"><p>Link</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Linux</p></td>
+<td><p><a class="reference external" href="https://gmsh.info/bin/Linux/gmsh-4.7.1-Linux32-sdk.tgz">Gmsh Linux 32-bit</a> or <a class="reference external" href="https://gmsh.info/bin/Linux/gmsh-4.7.1-Linux64-sdk.tgz">Gmsh Linux 64-bit</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Windows</p></td>
+<td><p><a class="reference external" href="https://gmsh.info/bin/Windows/gmsh-4.7.1-Windows32-sdk.zip">Gmsh Windows 32-bit</a> or <a class="reference external" href="https://gmsh.info/bin/Windows/gmsh-4.7.1-Windows64-sdk.zip">Gmsh Windows 64-bit</a></p></td>
+</tr>
+<tr class="row-even"><td><p>MacOS</p></td>
+<td><p><a class="reference external" href="https://gmsh.info/bin/MacOSX/gmsh-4.7.1-MacOSX-sdk.tgz">Gmsh MacOS</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Once downloaded, extract it and add it to the path.</p>
+</div>
 <div class="section" id="getdp">
 <h3>GetDP<a class="headerlink" href="#getdp" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://getdp.info/">GetDP</a> is a finite element solver which works in symbiosis with Gmsh.
 Download the latest version corresponding to your OS.</p>
-<table class="colwidths-given docutils align-default" id="id4">
-<caption><span class="caption-text">GetDP</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<table class="colwidths-given docutils align-default" id="id6">
+<caption><span class="caption-text">GetDP</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 20%" />
 <col style="width: 80%" />
@@ -373,59 +407,11 @@ Download the latest version corresponding to your OS.</p>
 <p>Once downloaded, extract it and add it to the path.</p>
 </div>
 </div>
-<div class="section" id="install-python-dependencies">
-<h2>Install python dependencies<a class="headerlink" href="#install-python-dependencies" title="Permalink to this headline">¶</a></h2>
-<p>Using <code class="docutils literal notranslate"><span class="pre">pip</span></code>, install the following packages:</p>
-<table class="colwidths-given docutils align-default" id="id5">
-<caption><span class="caption-text">Python packages</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 40%" />
-<col style="width: 40%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Package</p></th>
-<th class="head"><p>Version</p></th>
-<th class="head"><p>Link</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Numpy</p></td>
-<td><p>&gt;=1.16.2</p></td>
-<td><p><a class="reference external" href="https://numpy.org/">numpy.org</a></p></td>
-</tr>
-<tr class="row-odd"><td><p>Scipy</p></td>
-<td><p>&gt;=1.4.0</p></td>
-<td><p><a class="reference external" href="https://www.scipy.org/">scipy.org</a></p></td>
-</tr>
-<tr class="row-even"><td><p>Nibabel</p></td>
-<td><p>&gt;=2.5.0</p></td>
-<td><p><a class="reference external" href="https://nipy.org/nibabel/">nipy.org</a></p></td>
-</tr>
-<tr class="row-odd"><td><p>Pygalmesh</p></td>
-<td><p>&gt;=0.4.0</p></td>
-<td><p><a class="reference external" href="https://github.com/nschloe/pygalmesh">pygalmesh</a></p></td>
-</tr>
-<tr class="row-even"><td><p>Gmsh</p></td>
-<td><p>&gt;=4.5.6</p></td>
-<td><p><a class="reference external" href="http://gmsh.info/">gmsh.info</a></p></td>
-</tr>
-<tr class="row-odd"><td><p>Chaospy</p></td>
-<td><p>&gt;=3.2.8</p></td>
-<td><p><a class="reference external" href="https://chaospy.readthedocs.io/en/master/">chaospy.readthedocs.io</a></p></td>
-</tr>
-</tbody>
-</table>
-<p>You simply have to issue the following command in a terminal:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3 -m pip install --user numpy scipy nibabel pygalmesh&gt;<span class="o">=</span><span class="m">0</span>.4.0 gmsh chaospy
-</pre></div>
-</div>
-</div>
 <div class="section" id="install-shamo">
 <h2>Install shamo<a class="headerlink" href="#install-shamo" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="pip">
 <h3>Pip<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h3>
-<p>Since <code class="docutils literal notranslate"><span class="pre">shamo</span></code> is available on [PyPI](<a class="reference external" href="https://pypi.org/project/shamo/">https://pypi.org/project/shamo/</a>), the easiest way to install the latest release is to use the following command:</p>
+<p>Since <code class="docutils literal notranslate"><span class="pre">shamo</span></code> is available on <a class="reference external" href="https://pypi.org/project/shamo/">PyPI</a>, the easiest way to install the latest release is to use the following command:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3 -m pip install shamo
 </pre></div>
 </div>
@@ -461,7 +447,7 @@ Download the latest version corresponding to your OS.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, Martin Grignard
+        &copy; Copyright 2020, GIGA CRC In-Vivo Imaging
 
     </p>
   </div>

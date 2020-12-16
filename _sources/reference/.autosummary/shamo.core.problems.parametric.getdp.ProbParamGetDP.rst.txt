@@ -1,0 +1,45 @@
+shamo.core.problems.parametric.getdp.ProbParamGetDP
+===================================================
+
+.. currentmodule:: shamo.core.problems.parametric.getdp
+
+.. autoclass:: ProbParamGetDP
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~ProbParamGetDP.clear
+      ~ProbParamGetDP.copy
+      ~ProbParamGetDP.fromkeys
+      ~ProbParamGetDP.get
+      ~ProbParamGetDP.items
+      ~ProbParamGetDP.keys
+      ~ProbParamGetDP.pop
+      ~ProbParamGetDP.popitem
+      ~ProbParamGetDP.setdefault
+      ~ProbParamGetDP.solve
+      ~ProbParamGetDP.update
+      ~ProbParamGetDP.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProbParamGetDP.METHOD_JOB
+      ~ProbParamGetDP.METHOD_MUL
+      ~ProbParamGetDP.METHOD_SEQ
+      ~ProbParamGetDP.template
+   
+   

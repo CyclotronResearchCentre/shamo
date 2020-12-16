@@ -2,9 +2,10 @@ Usage
 =====
 
 .. toctree::
-    :maxdepth: 1
+   :maxdepth: 1
 
-    tutorials/1_model_creation
-    eeg
+   tutorials/code/fem/fem.ipynb
+   eeg
+   hd_tdcs
 
-The tutorials are available in the form of jupyter notebooks `here <https://github.com/CyclotronResearchCentre/shamo-tutorials>`_ and can be used directly `on binder <https://mybinder.org/v2/gh/CyclotronResearchCentre/shamo-tutorials/master>`_.
+The tutorials are available in the form of jupyter notebooks `here <https://github.com/CyclotronResearchCentre/shamo-tutorials>`_.

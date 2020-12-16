@@ -1,0 +1,34 @@
+shamo.core.fem
+==============
+
+.. automodule:: shamo.core.fem
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   shamo.core.fem.fem
+   shamo.core.fem.field
+   shamo.core.fem.group
+   shamo.core.fem.sensors
+   shamo.core.fem.tissue
+

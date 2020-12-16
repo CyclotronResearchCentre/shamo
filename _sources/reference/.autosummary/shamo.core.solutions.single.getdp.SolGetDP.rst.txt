@@ -1,0 +1,49 @@
+shamo.core.solutions.single.getdp.SolGetDP
+==========================================
+
+.. currentmodule:: shamo.core.solutions.single.getdp
+
+.. autoclass:: SolGetDP
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~SolGetDP.clear
+      ~SolGetDP.copy
+      ~SolGetDP.fromkeys
+      ~SolGetDP.get
+      ~SolGetDP.get_relative_path
+      ~SolGetDP.items
+      ~SolGetDP.keys
+      ~SolGetDP.load
+      ~SolGetDP.pop
+      ~SolGetDP.popitem
+      ~SolGetDP.save
+      ~SolGetDP.setdefault
+      ~SolGetDP.update
+      ~SolGetDP.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SolGetDP.json_path
+      ~SolGetDP.model_json_path
+      ~SolGetDP.name
+      ~SolGetDP.parent_path
+      ~SolGetDP.path
+      ~SolGetDP.sigmas
+   
+   

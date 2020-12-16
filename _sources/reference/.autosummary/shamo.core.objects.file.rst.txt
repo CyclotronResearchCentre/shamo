@@ -1,0 +1,32 @@
+shamo.core.objects.file
+=======================
+
+.. automodule:: shamo.core.objects.file
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      ObjFile
+   
+   
+
+   
+   
+   
+
+
+

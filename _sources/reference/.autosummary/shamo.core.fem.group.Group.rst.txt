@@ -1,0 +1,48 @@
+shamo.core.fem.group.Group
+==========================
+
+.. currentmodule:: shamo.core.fem.group
+
+.. autoclass:: Group
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~Group.clear
+      ~Group.copy
+      ~Group.fromkeys
+      ~Group.get
+      ~Group.items
+      ~Group.keys
+      ~Group.pop
+      ~Group.popitem
+      ~Group.setdefault
+      ~Group.update
+      ~Group.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Group.DIM_LINE
+      ~Group.DIM_POINT
+      ~Group.DIM_SURF
+      ~Group.DIM_VOL
+      ~Group.dim
+      ~Group.entities
+      ~Group.group
+      ~Group.n_entities
+   
+   

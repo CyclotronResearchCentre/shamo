@@ -1,0 +1,32 @@
+shamo.core.solutions.single.getdp
+=================================
+
+.. automodule:: shamo.core.solutions.single.getdp
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      SolGetDP
+   
+   
+
+   
+   
+   
+
+
+

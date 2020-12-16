@@ -1,0 +1,33 @@
+shamo.core.distributions.normal
+===============================
+
+.. automodule:: shamo.core.distributions.normal
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      DistNormal
+      DistTruncNormal
+   
+   
+
+   
+   
+   
+
+
+

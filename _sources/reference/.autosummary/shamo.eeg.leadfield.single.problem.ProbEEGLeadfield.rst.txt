@@ -1,0 +1,42 @@
+shamo.eeg.leadfield.single.problem.ProbEEGLeadfield
+===================================================
+
+.. currentmodule:: shamo.eeg.leadfield.single.problem
+
+.. autoclass:: ProbEEGLeadfield
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~ProbEEGLeadfield.clear
+      ~ProbEEGLeadfield.copy
+      ~ProbEEGLeadfield.fromkeys
+      ~ProbEEGLeadfield.get
+      ~ProbEEGLeadfield.items
+      ~ProbEEGLeadfield.keys
+      ~ProbEEGLeadfield.pop
+      ~ProbEEGLeadfield.popitem
+      ~ProbEEGLeadfield.setdefault
+      ~ProbEEGLeadfield.solve
+      ~ProbEEGLeadfield.update
+      ~ProbEEGLeadfield.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProbEEGLeadfield.template
+   
+   

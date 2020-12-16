@@ -1,0 +1,32 @@
+shamo.core.solutions.parametric.abc
+===================================
+
+.. automodule:: shamo.core.solutions.parametric.abc
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      SolParamABC
+   
+   
+
+   
+   
+   
+
+
+

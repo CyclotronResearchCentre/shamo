@@ -1,0 +1,32 @@
+shamo.core.objects
+==================
+
+.. automodule:: shamo.core.objects
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   shamo.core.objects.abc
+   shamo.core.objects.dir
+   shamo.core.objects.file
+

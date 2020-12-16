@@ -1,0 +1,62 @@
+shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield
+============================================================
+
+.. currentmodule:: shamo.eeg.leadfield.parametric.solution
+
+.. autoclass:: SolParamEEGLeadfield
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~SolParamEEGLeadfield.clear
+      ~SolParamEEGLeadfield.copy
+      ~SolParamEEGLeadfield.finalize
+      ~SolParamEEGLeadfield.fromkeys
+      ~SolParamEEGLeadfield.get
+      ~SolParamEEGLeadfield.get_relative_path
+      ~SolParamEEGLeadfield.get_sub_file
+      ~SolParamEEGLeadfield.get_sub_sols
+      ~SolParamEEGLeadfield.items
+      ~SolParamEEGLeadfield.keys
+      ~SolParamEEGLeadfield.load
+      ~SolParamEEGLeadfield.pop
+      ~SolParamEEGLeadfield.popitem
+      ~SolParamEEGLeadfield.save
+      ~SolParamEEGLeadfield.setdefault
+      ~SolParamEEGLeadfield.update
+      ~SolParamEEGLeadfield.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SolParamEEGLeadfield.json_path
+      ~SolParamEEGLeadfield.markers
+      ~SolParamEEGLeadfield.model_json_path
+      ~SolParamEEGLeadfield.n_sensors
+      ~SolParamEEGLeadfield.n_sources
+      ~SolParamEEGLeadfield.name
+      ~SolParamEEGLeadfield.parent_path
+      ~SolParamEEGLeadfield.path
+      ~SolParamEEGLeadfield.reference
+      ~SolParamEEGLeadfield.rois
+      ~SolParamEEGLeadfield.sensors
+      ~SolParamEEGLeadfield.shape
+      ~SolParamEEGLeadfield.sigmas
+      ~SolParamEEGLeadfield.sub_class
+      ~SolParamEEGLeadfield.sub_json_paths
+      ~SolParamEEGLeadfield.use_grid
+   
+   

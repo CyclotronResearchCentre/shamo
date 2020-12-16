@@ -1,0 +1,57 @@
+shamo.hd\_tdcs.simulation.parametric.solution.SolParamHDTDCSSim
+===============================================================
+
+.. currentmodule:: shamo.hd_tdcs.simulation.parametric.solution
+
+.. autoclass:: SolParamHDTDCSSim
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~SolParamHDTDCSSim.clear
+      ~SolParamHDTDCSSim.copy
+      ~SolParamHDTDCSSim.finalize
+      ~SolParamHDTDCSSim.fromkeys
+      ~SolParamHDTDCSSim.get
+      ~SolParamHDTDCSSim.get_relative_path
+      ~SolParamHDTDCSSim.get_sub_file
+      ~SolParamHDTDCSSim.get_sub_sols
+      ~SolParamHDTDCSSim.items
+      ~SolParamHDTDCSSim.keys
+      ~SolParamHDTDCSSim.load
+      ~SolParamHDTDCSSim.pop
+      ~SolParamHDTDCSSim.popitem
+      ~SolParamHDTDCSSim.save
+      ~SolParamHDTDCSSim.setdefault
+      ~SolParamHDTDCSSim.update
+      ~SolParamHDTDCSSim.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SolParamHDTDCSSim.current
+      ~SolParamHDTDCSSim.json_path
+      ~SolParamHDTDCSSim.model_json_path
+      ~SolParamHDTDCSSim.name
+      ~SolParamHDTDCSSim.parent_path
+      ~SolParamHDTDCSSim.path
+      ~SolParamHDTDCSSim.references
+      ~SolParamHDTDCSSim.sigmas
+      ~SolParamHDTDCSSim.source
+      ~SolParamHDTDCSSim.sub_class
+      ~SolParamHDTDCSSim.sub_json_paths
+   
+   

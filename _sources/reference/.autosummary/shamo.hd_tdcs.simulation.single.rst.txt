@@ -1,0 +1,31 @@
+shamo.hd\_tdcs.simulation.single
+================================
+
+.. automodule:: shamo.hd_tdcs.simulation.single
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   shamo.hd_tdcs.simulation.single.problem
+   shamo.hd_tdcs.simulation.single.solution
+

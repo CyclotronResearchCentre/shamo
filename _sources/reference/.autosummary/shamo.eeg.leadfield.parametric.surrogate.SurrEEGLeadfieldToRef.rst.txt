@@ -1,0 +1,57 @@
+shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef
+==============================================================
+
+.. currentmodule:: shamo.eeg.leadfield.parametric.surrogate
+
+.. autoclass:: SurrEEGLeadfieldToRef
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~SurrEEGLeadfieldToRef.clear
+      ~SurrEEGLeadfieldToRef.copy
+      ~SurrEEGLeadfieldToRef.fit
+      ~SurrEEGLeadfieldToRef.fromkeys
+      ~SurrEEGLeadfieldToRef.gen_sobol
+      ~SurrEEGLeadfieldToRef.get
+      ~SurrEEGLeadfieldToRef.get_gp
+      ~SurrEEGLeadfieldToRef.get_relative_path
+      ~SurrEEGLeadfieldToRef.get_sobol
+      ~SurrEEGLeadfieldToRef.items
+      ~SurrEEGLeadfieldToRef.keys
+      ~SurrEEGLeadfieldToRef.load
+      ~SurrEEGLeadfieldToRef.pop
+      ~SurrEEGLeadfieldToRef.popitem
+      ~SurrEEGLeadfieldToRef.predict
+      ~SurrEEGLeadfieldToRef.save
+      ~SurrEEGLeadfieldToRef.setdefault
+      ~SurrEEGLeadfieldToRef.update
+      ~SurrEEGLeadfieldToRef.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SurrEEGLeadfieldToRef.gp_path
+      ~SurrEEGLeadfieldToRef.is_sobol_available
+      ~SurrEEGLeadfieldToRef.json_path
+      ~SurrEEGLeadfieldToRef.name
+      ~SurrEEGLeadfieldToRef.params
+      ~SurrEEGLeadfieldToRef.parent_path
+      ~SurrEEGLeadfieldToRef.path
+      ~SurrEEGLeadfieldToRef.sobol_path
+      ~SurrEEGLeadfieldToRef.sol_json_path
+   
+   

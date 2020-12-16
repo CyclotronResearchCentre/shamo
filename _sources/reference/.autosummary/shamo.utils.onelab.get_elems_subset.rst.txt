@@ -1,0 +1,6 @@
+shamo.utils.onelab.get\_elems\_subset
+=====================================
+
+.. currentmodule:: shamo.utils.onelab
+
+.. autofunction:: get_elems_subset

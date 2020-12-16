@@ -1,0 +1,35 @@
+﻿shamo.core
+==========
+
+.. automodule:: shamo.core
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   shamo.core.distributions
+   shamo.core.fem
+   shamo.core.objects
+   shamo.core.problems
+   shamo.core.solutions
+   shamo.core.surrogate
+

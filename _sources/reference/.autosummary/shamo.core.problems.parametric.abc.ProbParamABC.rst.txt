@@ -1,0 +1,45 @@
+shamo.core.problems.parametric.abc.ProbParamABC
+===============================================
+
+.. currentmodule:: shamo.core.problems.parametric.abc
+
+.. autoclass:: ProbParamABC
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~ProbParamABC.clear
+      ~ProbParamABC.copy
+      ~ProbParamABC.fromkeys
+      ~ProbParamABC.get
+      ~ProbParamABC.items
+      ~ProbParamABC.keys
+      ~ProbParamABC.pop
+      ~ProbParamABC.popitem
+      ~ProbParamABC.setdefault
+      ~ProbParamABC.solve
+      ~ProbParamABC.update
+      ~ProbParamABC.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProbParamABC.METHOD_JOB
+      ~ProbParamABC.METHOD_MUL
+      ~ProbParamABC.METHOD_SEQ
+      ~ProbParamABC.template
+   
+   

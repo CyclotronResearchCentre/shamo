@@ -1,0 +1,32 @@
+shamo.eeg.leadfield.single.problem
+==================================
+
+.. automodule:: shamo.eeg.leadfield.single.problem
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      ProbEEGLeadfield
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,31 @@
+shamo.core.surrogate
+====================
+
+.. automodule:: shamo.core.surrogate
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   shamo.core.surrogate.abc
+   shamo.core.surrogate.scalar
+

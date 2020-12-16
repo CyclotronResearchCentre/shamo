@@ -1,0 +1,32 @@
+shamo.core.problems.parametric.components.tissue\_property
+==========================================================
+
+.. automodule:: shamo.core.problems.parametric.components.tissue_property
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      CompParamTissueProp
+   
+   
+
+   
+   
+   
+
+
+

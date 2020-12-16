@@ -1,0 +1,32 @@
+shamo.core.fem.field
+====================
+
+.. automodule:: shamo.core.fem.field
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      Field
+   
+   
+
+   
+   
+   
+
+
+

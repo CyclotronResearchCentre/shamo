@@ -1,0 +1,49 @@
+shamo.core.distributions.uniform.DistUniform
+============================================
+
+.. currentmodule:: shamo.core.distributions.uniform
+
+.. autoclass:: DistUniform
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~DistUniform.clear
+      ~DistUniform.copy
+      ~DistUniform.fromkeys
+      ~DistUniform.get
+      ~DistUniform.items
+      ~DistUniform.keys
+      ~DistUniform.load
+      ~DistUniform.pop
+      ~DistUniform.popitem
+      ~DistUniform.setdefault
+      ~DistUniform.update
+      ~DistUniform.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DistUniform.dist
+      ~DistUniform.dist_type
+      ~DistUniform.expect
+      ~DistUniform.lower
+      ~DistUniform.salib_bounds
+      ~DistUniform.salib_name
+      ~DistUniform.uniform_dist
+      ~DistUniform.upper
+   
+   

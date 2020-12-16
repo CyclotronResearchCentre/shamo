@@ -1,0 +1,179 @@
+{
+ "cells": [
+  {
+   "cell_type": "raw",
+   "metadata": {
+    "raw_mimetype": "text/restructuredtext"
+   },
+   "source": [
+    "Finite element model creation\n",
+    "=============================\n",
+    "\n",
+    "The main problems in *shamo* depend on a finite element model to serve as a support for the computation.\n",
+    "Generating such a model can be achieved in a few lines of code.\n",
+    "\n",
+    "To start, we import the :py:class:`~shamo.FEM` class and initialize a model with a name and a parent directory."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from shamo import FEM\n",
+    "\n",
+    "model = FEM(\"suzanne\", \"../../derivatives\")"
+   ]
+  },
+  {
+   "cell_type": "raw",
+   "metadata": {
+    "raw_mimetype": "text/restructuredtext"
+   },
+   "source": [
+    "Mesh generation\n",
+    "---------------\n",
+    "\n",
+    "Several methods can be used ot generate the mesh:\n",
+    "\n",
+    "* :py:func:`~shamo.FEM.mesh_from_array`\n",
+    "* :py:func:`~shamo.FEM.mesh_from_nii`\n",
+    "* :py:func:`~shamo.FEM.mesh_from_masks`\n",
+    "* :py:func:`~shamo.FEM.mesh_from_niis`\n",
+    "\n",
+    "All those methods skip the step of generating surfaces and allow us to directly produce a high definition mesh from the segmented image.\n",
+    "Here, we start from a labelled volume created from the well known `Suzanne model from Blender <https://www.dummies.com/web-design-development/meet-suzanne-the-blender-monkey/>`_.\n",
+    "\n",
+    ".. note::\n",
+    "   Several parameters can be used to refine the mesh. Make sure to tweak them to obtain the mesh you want."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from pathlib import Path\n",
+    "\n",
+    "data_path = Path(\"../../rawdata/suzanne\")\n",
+    "model.mesh_from_nii(\n",
+    "    data_path / \"suzanne_labels.nii\", \n",
+    "    [\"wm\", \"gm\", \"scalp\"], \n",
+    "    max_facet_distance=0.25, \n",
+    "    max_cell_circumradius=5.0, \n",
+    "    min_facet_angle=20,\n",
+    ")"
+   ]
+  },
+  {
+   "cell_type": "raw",
+   "metadata": {
+    "raw_mimetype": "text/restructuredtext"
+   },
+   "source": [
+    "After this first step, a mesh built of triangles and tetrahedra and annotated with the name of the tissues is saved to the directory of the object.\n",
+    "\n",
+    "Sensors additions\n",
+    "-----------------\n",
+    "\n",
+    "Sensors can be added to the mesh with the following methods:\n",
+    "\n",
+    "* :py:func:`~shamo.FEM.add_point_sensor` and the partials :py:func:`~shamo.FEM.add_point_sensor_on` and :py:func:`~shamo.FEM.add_point_sensor_in`\n",
+    "* :py:func:`~shamo.FEM.add_point_sensors` and the partials :py:func:`~shamo.FEM.add_point_sensors_on` and :py:func:`~shamo.FEM.add_point_sensors_in`\n",
+    "* :py:func:`~shamo.FEM.add_point_sensors_from_tsv` and the partials :py:func:`~shamo.FEM.add_point_sensors_from_tsv_on` and :py:func:`~shamo.FEM.add_point_sensors_from_tsv_in`\n",
+    "\n",
+    "In the case of Suzanne, the electrodes are defined in a TSV file with the format:\n",
+    "\n",
+    ".. list-table:: Electrodes TSV file\n",
+    "   :widths: 25 25 25 25\n",
+    "   :header-rows: 1\n",
+    "\n",
+    "   * - Name\n",
+    "     - X\n",
+    "     - Y\n",
+    "     - Z\n",
+    "   * - NZ\n",
+    "     - 1.65\n",
+    "     - -42.78\n",
+    "     - -7.54\n",
+    "   * - ...\n",
+    "     - ...\n",
+    "     - ...\n",
+    "     - ..."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import numpy as np\n",
+    "from pathlib import Path\n",
+    "\n",
+    "model.add_point_sensors_from_tsv(data_path / \"suzanne_sensors.tsv\", \"scalp\", 2)"
+   ]
+  },
+  {
+   "cell_type": "raw",
+   "metadata": {
+    "raw_mimetype": "text/restructuredtext"
+   },
+   "source": [
+    "Now the model also includes the sensors modelled as points.\n",
+    "\n",
+    "Field addition\n",
+    "--------------\n",
+    "\n",
+    "Scalar, vector and tensor fields can be required to model some properties of the model. Such fields can be added to the mesh with the methods:\n",
+    "\n",
+    "* :py:func:`~shamo.FEM.field_from_elems`\n",
+    "* :py:func:`~shamo.FEM.field_from_array`\n",
+    "* :py:func:`~shamo.FEM.field_from_nii`\n",
+    "\n",
+    "For Suzanne, a fake anisotropy tensor for the white matter is stored in a NIFTI file as a 4 dimensional volume."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "model.field_from_nii(\"dti\", data_path / \"suzanne_dti.nii.gz\", \"wm\", fill_val=[1, 0, 0, 0, 1, 0, 0, 0, 1], formula=\"{sigma[wm]}\", nearest=False, resize=False)"
+   ]
+  },
+  {
+   "cell_type": "raw",
+   "metadata": {
+    "raw_mimetype": "text/restructuredtext"
+   },
+   "source": [
+    "The model for Suzanne is now up and ready to get used in a problem."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "shamo",
+   "language": "python",
+   "name": "shamo"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

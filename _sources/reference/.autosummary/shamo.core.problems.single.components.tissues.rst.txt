@@ -1,0 +1,32 @@
+shamo.core.problems.single.components.tissues
+=============================================
+
+.. automodule:: shamo.core.problems.single.components.tissues
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      CompTissues
+   
+   
+
+   
+   
+   
+
+
+

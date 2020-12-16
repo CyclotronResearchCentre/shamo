@@ -1,0 +1,42 @@
+shamo.hd\_tdcs.simulation.single.problem.ProbHDTDCSSim
+======================================================
+
+.. currentmodule:: shamo.hd_tdcs.simulation.single.problem
+
+.. autoclass:: ProbHDTDCSSim
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~ProbHDTDCSSim.clear
+      ~ProbHDTDCSSim.copy
+      ~ProbHDTDCSSim.fromkeys
+      ~ProbHDTDCSSim.get
+      ~ProbHDTDCSSim.items
+      ~ProbHDTDCSSim.keys
+      ~ProbHDTDCSSim.pop
+      ~ProbHDTDCSSim.popitem
+      ~ProbHDTDCSSim.setdefault
+      ~ProbHDTDCSSim.solve
+      ~ProbHDTDCSSim.update
+      ~ProbHDTDCSSim.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProbHDTDCSSim.template
+   
+   

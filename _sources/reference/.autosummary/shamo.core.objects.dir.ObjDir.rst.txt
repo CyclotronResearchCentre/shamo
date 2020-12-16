@@ -1,0 +1,47 @@
+shamo.core.objects.dir.ObjDir
+=============================
+
+.. currentmodule:: shamo.core.objects.dir
+
+.. autoclass:: ObjDir
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~ObjDir.clear
+      ~ObjDir.copy
+      ~ObjDir.fromkeys
+      ~ObjDir.get
+      ~ObjDir.get_relative_path
+      ~ObjDir.items
+      ~ObjDir.keys
+      ~ObjDir.load
+      ~ObjDir.pop
+      ~ObjDir.popitem
+      ~ObjDir.save
+      ~ObjDir.setdefault
+      ~ObjDir.update
+      ~ObjDir.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ObjDir.json_path
+      ~ObjDir.name
+      ~ObjDir.parent_path
+      ~ObjDir.path
+   
+   

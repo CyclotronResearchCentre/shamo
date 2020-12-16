@@ -1,0 +1,53 @@
+shamo.core.surrogate.abc.SurrABC
+================================
+
+.. currentmodule:: shamo.core.surrogate.abc
+
+.. autoclass:: SurrABC
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~SurrABC.clear
+      ~SurrABC.copy
+      ~SurrABC.fit
+      ~SurrABC.fromkeys
+      ~SurrABC.get
+      ~SurrABC.get_gp
+      ~SurrABC.get_relative_path
+      ~SurrABC.items
+      ~SurrABC.keys
+      ~SurrABC.load
+      ~SurrABC.pop
+      ~SurrABC.popitem
+      ~SurrABC.predict
+      ~SurrABC.save
+      ~SurrABC.setdefault
+      ~SurrABC.update
+      ~SurrABC.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SurrABC.gp_path
+      ~SurrABC.json_path
+      ~SurrABC.name
+      ~SurrABC.params
+      ~SurrABC.parent_path
+      ~SurrABC.path
+      ~SurrABC.sol_json_path
+   
+   

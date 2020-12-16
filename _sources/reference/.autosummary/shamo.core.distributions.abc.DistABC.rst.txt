@@ -1,0 +1,47 @@
+shamo.core.distributions.abc.DistABC
+====================================
+
+.. currentmodule:: shamo.core.distributions.abc
+
+.. autoclass:: DistABC
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~DistABC.clear
+      ~DistABC.copy
+      ~DistABC.fromkeys
+      ~DistABC.get
+      ~DistABC.items
+      ~DistABC.keys
+      ~DistABC.load
+      ~DistABC.pop
+      ~DistABC.popitem
+      ~DistABC.setdefault
+      ~DistABC.update
+      ~DistABC.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DistABC.dist
+      ~DistABC.dist_type
+      ~DistABC.expect
+      ~DistABC.salib_bounds
+      ~DistABC.salib_name
+      ~DistABC.uniform_dist
+   
+   

@@ -1,0 +1,6 @@
+shamo.utils.path.get\_relative\_path
+====================================
+
+.. currentmodule:: shamo.utils.path
+
+.. autofunction:: get_relative_path

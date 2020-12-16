@@ -1,0 +1,31 @@
+shamo.eeg.leadfield
+===================
+
+.. automodule:: shamo.eeg.leadfield
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   shamo.eeg.leadfield.parametric
+   shamo.eeg.leadfield.single
+
