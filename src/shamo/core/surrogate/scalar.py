@@ -1,4 +1,6 @@
 """Implement `SurrScalar` class."""
+import json
+
 from SALib.sample import saltelli
 from SALib.analyze import sobol
 
@@ -28,7 +30,49 @@ class SurrScalar(SurrABC):
     shamo.core.surrogate.SurrABC
     """
 
-    def gen_sobol_indices(self, n=1000, n_resamples=100, conf_level=0.95):
+    def __init__(self, name, parent_path, **kwargs):
+        super().__init__(name, parent_path, **kwargs)
+        self.update({"is_sobol_available": kwargs.get("is_sobol_available", False)})
+
+    @property
+    def is_sobol_available(self):
+        """Return whether the Sobol indices are already computed.
+
+        Returns
+        -------
+        bool
+            Return ``True`` if the indices are already computed, ``False`` otherwise.
+        """
+        return self["is_sobol_available"]
+
+    @property
+    def sobol_path(self):
+        """Return the path to the file storing the Sobol indices.
+
+        Returns
+        -------
+        pathlib.Path
+            The path to the file storing the Sobol indices.
+        """
+        return self.path / f"{self.name}_sobol.json"
+
+    def get_sobol(self):
+        """Return the precomputed Sobol indices.
+
+        Returns
+        -------
+        dict [str, list [str]|dict [str, float]]|None
+            A dictionary containing the names of the parameters, the values of the
+            first, second and total order Sobol indices and the corresponding
+            confidence with respect to the `conf_level`.
+            If the file does not exist, returns ``None``.
+        """
+        if self.is_sobol_available:
+            with open(self.sobol_path, "r") as f:
+                return json.load(f)
+        return None
+
+    def gen_sobol(self, n=1000, n_resamples=100, conf_level=0.95):
         """Compute Sobol sensitivity indices.
 
         Parameters
@@ -43,33 +87,32 @@ class SurrScalar(SurrABC):
 
         Returns
         -------
-        numpy.ndarray
-            The first order Sobol indices.
-        numpy.ndarray
-            The confidence in the first ordr Sobol indices.
-        numpy.ndarray
-            The second order Sobol indices.
-        numpy.ndarray
-            The confidence in the second ordr Sobol indices.
-        numpy.ndarray
-            The total order Sobol indices.
-        numpy.ndarray
-            The confidence in the total ordr Sobol indices.
+        dict [str, list [str]|dict [str, float]]
+            A dictionary containing the names of the parameters, the values of the
+            first, second and total order Sobol indices and the corresponding
+            confidence with respect to the `conf_level`.
         """
+        indices = self.get_sobol()
+        if indices is not None:
+            return sobol
+        params_names = [n for n, _ in self.params]
         prob = {
             "num_vars": len(self.params),
-            "names": [n for n, _ in self.params],
+            "names": params_names,
             "dists": [d.salib_name for _, d in self.params],
             "bounds": [d.salib_bounds for _, d in self.params],
         }
         x = saltelli.sample(prob, n)
         y, _ = self.predict(x)
         s_i = sobol.analyze(prob, y, num_resamples=n_resamples, conf_level=conf_level)
-        return (
-            s_i["S1"],
-            s_i["S1_conf"],
-            s_i["S2"],
-            s_i["S2_conf"],
-            s_i["ST"],
-            s_i["ST_conf"],
-        )
+        indices = {
+            "params": params_names,
+            "s1": {"val": s_i["S1"].tolist(), "conf": s_i["S1_conf"].tolist()},
+            "s2": {"val": s_i["S2"].tolist(), "conf": s_i["S2_conf"].tolist()},
+            "st": {"val": s_i["ST"].tolist(), "conf": s_i["ST_conf"].tolist()},
+        }
+        with open(self.sobol_path, "w") as f:
+            json.dump(
+                indices, f, indent=4, sort_keys=True,
+            )
+        return indices
