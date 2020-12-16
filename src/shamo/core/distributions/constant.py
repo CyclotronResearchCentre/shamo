@@ -46,6 +46,11 @@ class DistConstant(DistABC):
         return None
 
     @property
+    def uniform_dist(self):
+        """Return ``None``."""
+        return None
+
+    @property
     def salib_name(self):
         """Return the name of the distribution in SALib.
 

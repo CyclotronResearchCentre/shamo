@@ -49,6 +49,19 @@ class DistNormal(DistABC):
         return chaos.Normal(mu=self.mu, sigma=self.sigma)
 
     @property
+    def uniform_dist(self):
+        """Return a uniform distribution used for sampling.
+
+        Returns
+        -------
+        chaospy.Uniform
+            The uniform distribution.
+        """
+        return chaos.Uniform(
+            lower=self.mu - 3 * self.sigma, upper=self.mu + 3 * self.sigma
+        )
+
+    @property
     def salib_name(self):
         """Return the name of the distribution in SALib.
 
@@ -142,6 +155,17 @@ class DistTruncNormal(DistABC):
         return chaos.Normal(
             mu=self.mu, sigma=self.sigma, lower=self.lower, upper=self.upper
         )
+
+    @property
+    def uniform_dist(self):
+        """Return a uniform distribution used for sampling.
+
+        Returns
+        -------
+        chaospy.Uniform
+            The uniform distribution.
+        """
+        return chaos.Uniform(lower=self.lower, upper=self.upper)
 
     @property
     def salib_name(self):

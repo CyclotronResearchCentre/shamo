@@ -53,6 +53,17 @@ class DistUniform(DistABC):
         return chaos.Uniform(self.lower, self.upper)
 
     @property
+    def uniform_dist(self):
+        """Return a uniform distribution used for sampling.
+
+        Returns
+        -------
+        chaospy.Uniform
+            The uniform distribution.
+        """
+        return self.dist
+
+    @property
     def salib_name(self):
         """Return the name of the distribution in SALib.
 

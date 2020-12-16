@@ -38,6 +38,16 @@ class DistABC(dict, ABC):
         """
 
     @abstractproperty
+    def uniform_dist(self):
+        """Return a uniform distribution used for sampling.
+
+        Returns
+        -------
+        chaospy.Uniform
+            The uniform distribution.
+        """
+
+    @abstractproperty
     def salib_name(self):
         """Return the name of the distribution in SALib.
 

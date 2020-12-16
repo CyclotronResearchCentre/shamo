@@ -58,13 +58,22 @@ class ProbParamABC(ProbABC):
         ------
         RuntimeError
             If no parameter is set as a random variable.
+
+        Notes
+        -----
+        The parameters space is sampled by first modelling each random variable as a
+        uniform distribution and then drawing the points from a Halton quasi-random
+        sequence.
+
+        This allows for a better covering of the whole space than if the actual
+        distributions were used for each random input.
         """
         fixed, varying = self._gen_fixed_varying(**kwargs)
         if len(varying) == 0:
             raise RuntimeError(
                 "No varying parameter was found. Use 'ProbEEGLeadfield' instead."
             )
-        dist = chaos.J(*[p[0].dist for _, p in varying])
+        dist = chaos.J(*[p[0].uniform_dist for _, p in varying])
         x = dist.sample(n_evals + skip, rule="halton").reshape((len(dist), -1))
         if skip != 0:
             x = x[:, skip:]
