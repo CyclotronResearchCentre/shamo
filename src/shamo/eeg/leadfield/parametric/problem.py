@@ -151,9 +151,10 @@ class ProbParamEEGLeadfield(ProbParamGetDP):
         prob.reference = self.reference
         prob.markers = self.markers
         prob.rois = self.rois
-        prob.elems_path.set(
-            get_relative_path(kwargs.get("parent_path", "."), self.elems_path.path)
-        )
+        if self.elems_path.use_path:
+            prob.elems_path.set(
+                get_relative_path(kwargs.get("parent_path", "."), self.elems_path.path)
+            )
         prob.grid = self.grid
         return prob
 
