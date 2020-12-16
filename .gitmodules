@@ -1,3 +1,4 @@
 [submodule "docs/src/quickstart/usage/tutorials"]
 	path = docs/src/quickstart/usage/tutorials
 	url = git@github.com:CyclotronResearchCentre/shamo-tutorials.git
+    branch = master
