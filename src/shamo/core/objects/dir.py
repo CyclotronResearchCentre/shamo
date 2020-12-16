@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 
 from .abc import ObjABC
+from shamo.utils.path import get_relative_path as get_rel_path
 
 
 class ObjDir(ObjABC):
@@ -77,14 +78,4 @@ class ObjDir(ObjABC):
         pathlib.Path
             The relative path to the file or directory.
         """
-        ref = self.path.expanduser().resolve()
-        path = Path(path).expanduser().resolve()
-        here = False
-        rel_path = ""
-        while not here:
-            try:
-                current = str(path.relative_to(ref))
-                return Path(rel_path + current)
-            except ValueError:
-                rel_path += "../"
-                ref = ref.parent
+        return get_rel_path(self.path, path)
