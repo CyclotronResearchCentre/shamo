@@ -14,9 +14,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added `ProbParamABC`, `CompParamTissueProp`, `CompParamValue`, and `ProbParamGetDP` classes to define any parametric problem.
 - Added `SolParamABC` and `SolParamGetDP` classes to store information about the solution of a `ProbParamABC` problem.
 - Added `ProbEEGLeadfield` and `SolEEGLeadfield` classes to solve the EEG forward problem.
-- Added `ProbParamEEGLeadfield`, `SolParamEEGLeadfield` and `SurrEEGLeadfield` classes to solve the parametric EEG forward problem. Also added `SurrEEGLeadfieldDifToRef` class to evalaute the sensitivity of the EEG leadfield matrix.
+- Added `ProbParamEEGLeadfield`, `SolParamEEGLeadfield` and `SurrEEGLeadfield` classes to solve the parametric EEG forward problem. Also added `SurrEEGLeadfieldToRef` class to evalaute the sensitivity of the EEG leadfield matrix.
 - Added `ProbHDTDCSSim` and `SolHDTDCSSim` classes to simulate a HD-tDCS.
 - Added `ProbParamHDTDCSSim` and `SolParamHDTDCSSim` classes to simulate a parametric HD-tDCS.
 - Added `SurrogateABC` class to define any surrogate model based on a `SolParamABC`.
 - Added `SurrScalar` class to define any surrogate model returning a scalar to perform sensitivity analysis.
 - Added `shamo-report` command to facilitate bug report.
+- Added automated full reference with sphinx autosummary.
