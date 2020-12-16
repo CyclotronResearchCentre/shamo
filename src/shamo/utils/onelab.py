@@ -1,3 +1,4 @@
+"""API for `shamo.utils.onelab`."""
 from pathlib import Path
 
 import gmsh
