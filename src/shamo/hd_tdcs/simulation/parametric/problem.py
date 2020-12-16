@@ -83,6 +83,7 @@ class ProbParamHDTDCSSim(ProbParamGetDP):
         sub_sols = self._solve_sub_probs(
             sol, sub_probs, method=method, n_proc=n_proc, model=model, **kwargs
         )
+        return sol
 
     def _gen_fixed_varying(self, **kwargs):
         """Generate two lists containing the fixed and varying parameters.
