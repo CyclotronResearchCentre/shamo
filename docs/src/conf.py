@@ -81,3 +81,7 @@ autodoc_inherit_docstrings = True
 
 # -- Options for bibtex ------------------------------------------------------
 bibtex_bibfiles = ["references.bib"]
+
+# -- Options for nbsphinx ----------------------------------------------------
+nbsphinx_allow_errors = True
+nbsphinx_execute = "never"
