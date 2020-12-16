@@ -20,4 +20,4 @@ if __name__ == "__main__":
     prob.grid.set(np.array({{ grid.affine }}), {{ grid.shape }}, mask=np.array({{ grid.mask }}).astype(bool))
     {% endif %}
 
-    prob.solve("{{ name }}", "{{ parent_path }}", model)
+    prob.solve("{{ name }}", ".", model)
