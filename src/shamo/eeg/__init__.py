@@ -4,7 +4,7 @@ from .leadfield.single.solution import SolEEGLeadfield
 
 from .leadfield.parametric.problem import ProbParamEEGLeadfield
 from .leadfield.parametric.solution import SolParamEEGLeadfield
-from .leadfield.parametric.surrogate import SurrEEGLeadfield, SurrEEGLeadfieldScalar
+from .leadfield.parametric.surrogate import SurrEEGLeadfield, SurrEEGLeadfieldToRef
 
 __all__ = [
     "ProbEEGLeadfield",
@@ -12,5 +12,5 @@ __all__ = [
     "ProbParamEEGLeadfield",
     "SolParamEEGLeadfield",
     "SurrEEGLeadfield",
-    "SurrEEGLeadfieldScalar",
+    "SurrEEGLeadfieldToRef",
 ]

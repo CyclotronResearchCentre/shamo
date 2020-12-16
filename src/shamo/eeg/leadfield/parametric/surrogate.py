@@ -145,7 +145,7 @@ class SurrEEGLeadfield(SurrABC):
         return sols
 
 
-class SurrEEGLeadfieldScalar(SurrScalar):
+class SurrEEGLeadfieldToRef(SurrScalar):
     """Provide a way to evaluate the sensitivity of the EEG leadfield.
 
     Parameters
