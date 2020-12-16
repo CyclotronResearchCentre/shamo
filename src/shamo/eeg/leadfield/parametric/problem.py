@@ -2,9 +2,15 @@
 import logging
 
 from shamo.core.problems.parametric import ProbParamGetDP
-from shamo.core.problems.single import CompSensors, CompTissues, CompGridSampler
+from shamo.core.problems.single import (
+    CompSensors,
+    CompTissues,
+    CompGridSampler,
+    CompFilePath,
+)
 from shamo.eeg import ProbEEGLeadfield
 from .solution import SolParamEEGLeadfield
+from shamo.utils.path import get_relative_path
 
 logger = logging.getLogger(__name__)
 
@@ -22,6 +28,8 @@ class ProbParamEEGLeadfield(ProbParamGetDP):
         The electrode to use as the reference.
     rois : shamo.core.problems.single.CompTissues
         The tissues in which the leadfield must be computed.
+    elems_path : shamo.core.problems.single.CompFilePath
+        The path to the elements subset.
     grid : shamo.core.problems.single.CompGridSampler
         The grid sampler if the source space must be based on a grid.
     """
@@ -32,6 +40,7 @@ class ProbParamEEGLeadfield(ProbParamGetDP):
         self.markers = CompSensors()
         self.reference = CompSensors()
         self.rois = CompTissues()
+        self.elems_path = CompFilePath()
         self.grid = CompGridSampler()
 
     @property
@@ -87,7 +96,9 @@ class ProbParamEEGLeadfield(ProbParamGetDP):
         logger.info("Solving problem")
         self._check_components(**model, **kwargs)
         params = self._gen_params(n_evals, skip, **kwargs)
-        sub_probs = self._gen_sub_probs(n_evals, **params, **kwargs)
+        sub_probs = self._gen_sub_probs(
+            n_evals, parent_path=f"{parent_path}/{name}", **params, **kwargs
+        )
         sol = SolParamEEGLeadfield(
             name,
             parent_path,
@@ -140,6 +151,9 @@ class ProbParamEEGLeadfield(ProbParamGetDP):
         prob.reference = self.reference
         prob.markers = self.markers
         prob.rois = self.rois
+        prob.elems_path.set(
+            get_relative_path(kwargs.get("parent_path", "."), self.elems_path.path)
+        )
         prob.grid = self.grid
         return prob
 
@@ -149,4 +163,9 @@ class ProbParamEEGLeadfield(ProbParamGetDP):
         self._source.check("source", **kwargs)
         self.reference.check("reference", **kwargs)
         self.rois.check("region of interest", **kwargs)
+        self.elems_path.check("elements path", **kwargs)
         self.grid.check("grid", **kwargs)
+        if self.elems_path.use_path and self.grid.use_grid:
+            raise RuntimeError(
+                "Both 'elems_path' and 'grid' are set. Only one of them is allowed."
+            )

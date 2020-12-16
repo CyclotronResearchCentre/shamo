@@ -1,6 +1,7 @@
 """Implement `SolParamGetDP` class."""
 from shamo.core.problems.parametric import ProbParamABC
 from .components.tissue_property import CompParamTissueProp
+from shamo.utils.path import get_relative_path
 
 
 class ProbParamGetDP(ProbParamABC):
@@ -31,7 +32,9 @@ class ProbParamGetDP(ProbParamABC):
         --------
         shamo.core.solutions.parametric.SolParam._gen_py_file
         """
-        kwargs["model_path"] = str(kwargs.get("model", None).json_path)
+        kwargs["model_path"] = str(
+            get_relative_path(parent_path, kwargs.get("model", None).json_path)
+        )
         return super()._gen_py_file(prob, name, parent_path, kwargs)
 
     def _solve_sub_probs(
