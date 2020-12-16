@@ -96,8 +96,9 @@ class ProbParamEEGLeadfield(ProbParamGetDP):
         logger.info("Solving problem")
         self._check_components(**model, **kwargs)
         params = self._gen_params(n_evals, skip, **kwargs)
+        base_path = f"{parent_path}/{name}" if method == "jobs" else "."
         sub_probs = self._gen_sub_probs(
-            n_evals, parent_path=f"{parent_path}/{name}", **params, **kwargs
+            n_evals, parent_path=base_path, **params, **kwargs
         )
         sol = SolParamEEGLeadfield(
             name,
