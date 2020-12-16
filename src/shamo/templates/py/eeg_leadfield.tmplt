@@ -1,7 +1,7 @@
 # Template for solving a `ProbEEGLeadfield` problem.
 import numpy as np
 
-from shamo.fem import FEM
+from shamo import FEM
 from shamo.eeg import ProbEEGLeadfield
 
 if __name__ == "__main__":
@@ -17,7 +17,7 @@ if __name__ == "__main__":
     prob.rois.adds([{% for r in rois -%}"{{ r }}"{{ ", " if not loop.last }}{%- endfor %}])
 
     {% if use_elems_path %}
-    prob.elems_path.set({{ elems_path }})
+    prob.elems_path.set("{{ elems_path }}")
     {% endif %}
     {% if use_grid %}
     prob.grid.set(np.array({{ grid.affine }}), {{ grid.shape }}, mask=np.array({{ grid.mask }}).astype(bool))

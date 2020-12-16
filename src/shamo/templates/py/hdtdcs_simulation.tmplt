@@ -1,7 +1,7 @@
 # Template for solving a `ProbHDTDCSSim` problem.
 import numpy as np
 
-from shamo.fem import FEM
+from shamo import FEM
 from shamo.hd_tdcs import ProbHDTDCSSim
 
 if __name__ == "__main__":
