@@ -195,7 +195,13 @@ class SurrABC(ObjDir):
         change the `_post_pro` method.
         """
         gp = self.get_gp()
-        y_mean, y_std = gp.predict(x, return_std=True)
+        # MultiOutputRegressor does not pass any parameter to each estimator so it is
+        # not possible to obtain the standard deviation for this type of regressor.
+        if isinstance(gp, MultiOutputRegressor):
+            y_mean = gp.predict(x)
+            y_std = None
+        else:
+            y_mean, y_std = gp.predict(x, return_std=True)
         return self._post_pro(x, y_mean, y_std, **kwargs)
 
     def _post_pro(self, x, y_mean, y_std, **kwargs):
