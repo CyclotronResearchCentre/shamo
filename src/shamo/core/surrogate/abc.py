@@ -128,6 +128,9 @@ class SurrABC(ObjDir):
             The seed for the random state.
         alpha : float
             The added diagonal to account for noise on training points.
+        n_proc : int
+            The number of jobs to run in parallel. ``None`` means 1 job runs at a time
+            and ``-1`` means all cores are used.
 
         See Also
         --------
@@ -150,7 +153,8 @@ class SurrABC(ObjDir):
                     random_state=random_state,
                     normalize_y=True,
                     alpha=alpha,
-                )
+                ),
+                n_jobs=kwargs.get("n_proc", None),
             ).fit(x, y)
         else:
             gp = GaussianProcessRegressor(
