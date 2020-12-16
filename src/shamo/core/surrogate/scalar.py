@@ -56,7 +56,6 @@ class SurrScalar(SurrABC):
         numpy.ndarray
             The confidence in the total ordr Sobol indices.
         """
-        print(self.params)
         prob = {
             "num_vars": len(self.params),
             "names": [n for n, _ in self.params],
