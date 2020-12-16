@@ -1,0 +1,26 @@
+# Template for solving a `ProbEEGLeadfield` problem.
+import numpy as np
+
+from shamo import FEM
+from shamo.eeg import ProbEEGLeadfield
+
+if __name__ == "__main__":
+    model = FEM.load("{{ model_path }}")
+    prob = ProbEEGLeadfield()
+
+    {% for s in sigmas %}
+    prob.sigmas.set("{{ s.tissue }}", {{ s.prop }}, {{ s.field }})
+    {%- endfor %}
+
+    prob.reference.adds([{% for r in reference -%}"{{ r }}"{{ ", " if not loop.last }}{%- endfor %}])
+    prob.markers.adds([{% for m in markers -%}"{{ m }}"{{ ", " if not loop.last }}{%- endfor %}])
+    prob.rois.adds([{% for r in rois -%}"{{ r }}"{{ ", " if not loop.last }}{%- endfor %}])
+
+    {% if use_elems_path %}
+    prob.elems_path.set("{{ elems_path }}")
+    {% endif %}
+    {% if use_grid %}
+    prob.grid.set(np.array({{ grid.affine }}), {{ grid.shape }}, mask=np.array({{ grid.mask }}).astype(bool))
+    {% endif %}
+
+    prob.solve("{{ name }}", ".", model)

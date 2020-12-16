@@ -1,0 +1,3 @@
+{% for s in sigmas -%}
+    sigma[{{ s.tissue }}] = {{ s.prop }};{{ "\n    " if not loop.last }}
+{%- endfor %}

@@ -1,0 +1,14 @@
+chaospy>=3.2.8
+click>=7.1.2
+gmsh>=4.6.0
+h5py>=2.10.0
+jinja2>=2.11.2
+meshio>=4.3.1
+nibabel>=3.2.0
+nilearn>=0.6.2
+numpy>=1.19.2
+pygalmesh>=0.9.1
+pyyaml>=5.3.1
+SALib>=1.4.0b0
+scikit-learn>=0.22.1
+scipy>=1.5.3

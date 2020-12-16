@@ -1,0 +1,3 @@
+{% macro pos(field, roi="dom") -%}
+    Print[ {{ field }}, OnElementsOf {{ roi }}, File "{{ field }}.pos" ];
+{%- endmacro %}

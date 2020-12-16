@@ -1,0 +1,15 @@
+{% macro v() -%}
+    { Name v; Value { Term { [{ v }]; In dom; Jacobian jac_vol; } } }
+{%- endmacro %}
+
+{% macro e() -%}
+    { Name e; Value { Term { [-{ d v }]; In dom; Jacobian jac_vol; } } }
+{%- endmacro %}
+
+{% macro j() -%}
+    { Name j; Value { Term { [ -sigma[] * { d v } ]; In dom; Jacobian jac_vol; } } }
+{%- endmacro %}
+
+{% macro mag_j() -%}
+    { Name mag_j; Value { Term { [ Norm[ -sigma[] * { d v } ] ]; In dom; Jacobian jac_vol; } } }
+{%- endmacro %}

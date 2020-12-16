@@ -1,0 +1,5 @@
+    {% for v in vol -%}
+        {{ v.tissue }} = Region[{ {{v.prop}} }];{{ "\n    " if not loop.last }}
+    {%- endfor %}
+
+    dom = Region[{ {% for v in vol -%}{{ v.tissue }}{{ ", " if not loop.last }}{%- endfor %} }];
