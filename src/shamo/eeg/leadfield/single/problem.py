@@ -18,6 +18,7 @@ from shamo.core.problems.single import (
     CompTissues,
 )
 from shamo.utils.onelab import (
+    gmsh_open,
     read_vector_file,
     get_elems_coords,
     get_elems_subset,
@@ -99,13 +100,11 @@ class ProbEEGLeadfield(ProbGetDP):
 
         with TemporaryDirectory() as d:
             if self.min_elems_dist > 0:
-                gmsh.initialize()
-                gmsh.merge(str(model.mesh_path))
-                entities = []
-                for roi in self.rois["tissues"]:
-                    entities.extend(model.tissues[roi].vol.entities)
-                tags, coords = get_elems_subset(3, entities, self.min_elems_dist)
-                gmsh.finalize()
+                with gmsh_open(model.mesh_path, logger) as gmsh:
+                    entities = []
+                    for roi in self.rois["tissues"]:
+                        entities.extend(model.tissues[roi].vol.entities)
+                    tags, coords = get_elems_subset(3, entities, self.min_elems_dist)
                 np.savez(Path(d) / "source_sp.npz", tags=tags, coords=coords)
                 self.elems_path.set(Path(d) / "source_sp.npz")
             self._check_components(**model)
@@ -181,10 +180,8 @@ class ProbEEGLeadfield(ProbGetDP):
             elem_type, elems_tags, row = read_vector_file(tmp_dir / f"{i}.e")
             if i == 0 and not self.elems_path.use_path:
                 logger.info("Acquiring elements coordinates.")
-                gmsh.initialize()
-                gmsh.merge(str(model.mesh_path))
-                coords = get_elems_coords(elem_type, elems_tags)
-                gmsh.finalize()
+                with gmsh_open(model.mesh_path, logger) as gmsh:
+                    coords = get_elems_coords(elem_type, elems_tags)
                 source_sp = (elems_tags, coords)
             elif self.elems_path.use_path:
                 row = self._get_row_for_elems(i, elems_tags, row, source_sp)
@@ -293,10 +290,8 @@ class ProbEEGLeadfield(ProbGetDP):
             The names of the active sensors.
         """
         logger.info("Generating right hand sides.")
-        gmsh.initialize()
-        gmsh.open(str(model.mesh_path))
-        n_nodes = gmsh.model.mesh.getNodes()[0].size
-        gmsh.finalize()
+        with gmsh_open(model.mesh_path, logger) as gmsh:
+            n_nodes = gmsh.model.mesh.getNodes()[0].size
         ref_row_idx = model.sensors[self.reference["sensors"][0]].node - 1
         sensors = []
         i = 0

@@ -167,34 +167,30 @@ def pos_to_nii(src, dst, affine, shape, mask=None):
     u = affine @ np.array([shape[0] - 0.5, -0.5, -0.5, 1]).T
     v = affine @ np.array([-0.5, shape[1] - 0.5, -0.5, 1]).T
     w = affine @ np.array([-0.5, -0.5, shape[2] - 0.5, 1]).T
-    gmsh.initialize()
-    gmsh.option.setNumber("General.Terminal", 1)
-    gmsh.option.setNumber("General.Verbosity", 5)
-    gmsh.option.setNumber("Mesh.Binary", 1)
-    gmsh.merge(str(Path(src)))
-    # Set plugin parameters
-    gmsh.plugin.setNumber("CutBox", "X0", o[0])
-    gmsh.plugin.setNumber("CutBox", "Y0", o[1])
-    gmsh.plugin.setNumber("CutBox", "Z0", o[2])
-    gmsh.plugin.setNumber("CutBox", "X1", u[0])
-    gmsh.plugin.setNumber("CutBox", "Y1", u[1])
-    gmsh.plugin.setNumber("CutBox", "Z1", u[2])
-    gmsh.plugin.setNumber("CutBox", "X2", v[0])
-    gmsh.plugin.setNumber("CutBox", "Y2", v[1])
-    gmsh.plugin.setNumber("CutBox", "Z2", v[2])
-    gmsh.plugin.setNumber("CutBox", "X3", w[0])
-    gmsh.plugin.setNumber("CutBox", "Y3", w[1])
-    gmsh.plugin.setNumber("CutBox", "Z3", w[2])
-    gmsh.plugin.setNumber("CutBox", "Boundary", 0)
-    gmsh.plugin.setNumber("CutBox", "NumPointsU", shape[0] + 1)
-    gmsh.plugin.setNumber("CutBox", "NumPointsV", shape[1] + 1)
-    gmsh.plugin.setNumber("CutBox", "NumPointsW", shape[2] + 1)
-    # Run plugin
-    gmsh.plugin.run("CutBox")
-    # Get field data
-    dtype, n_elems, data = gmsh.view.getListData(1)
-    gmsh.view.write(1, str(Path(dst).parent / f"{Path(dst).stem}_grid.pos"))
-    gmsh.finalize()
+    with gmsh_open(src) as gmsh:
+        gmsh.option.setNumber("Mesh.Binary", 1)
+        # Set plugin parameters
+        gmsh.plugin.setNumber("CutBox", "X0", o[0])
+        gmsh.plugin.setNumber("CutBox", "Y0", o[1])
+        gmsh.plugin.setNumber("CutBox", "Z0", o[2])
+        gmsh.plugin.setNumber("CutBox", "X1", u[0])
+        gmsh.plugin.setNumber("CutBox", "Y1", u[1])
+        gmsh.plugin.setNumber("CutBox", "Z1", u[2])
+        gmsh.plugin.setNumber("CutBox", "X2", v[0])
+        gmsh.plugin.setNumber("CutBox", "Y2", v[1])
+        gmsh.plugin.setNumber("CutBox", "Z2", v[2])
+        gmsh.plugin.setNumber("CutBox", "X3", w[0])
+        gmsh.plugin.setNumber("CutBox", "Y3", w[1])
+        gmsh.plugin.setNumber("CutBox", "Z3", w[2])
+        gmsh.plugin.setNumber("CutBox", "Boundary", 0)
+        gmsh.plugin.setNumber("CutBox", "NumPointsU", shape[0] + 1)
+        gmsh.plugin.setNumber("CutBox", "NumPointsV", shape[1] + 1)
+        gmsh.plugin.setNumber("CutBox", "NumPointsW", shape[2] + 1)
+        # Run plugin
+        gmsh.plugin.run("CutBox")
+        # Get field data
+        dtype, n_elems, data = gmsh.view.getListData(1)
+        gmsh.view.write(1, str(Path(dst).parent / f"{Path(dst).stem}_grid.pos"))
     n_elems = n_elems[0]
     data = data[0]
     data = data.reshape((n_elems, -1))
