@@ -10,7 +10,7 @@ from scipy.spatial.distance import cdist
 
 from .logging import stream_to_logger
 
-LOG_PATTERN = "^(?P<level>[\w]*) +: (?P<text>.*)$"
+LOG_PATTERN = "((?P<level>[\w]*)|(?P<percentage>[ \d]{3}%)) +: (?P<text>.*)"
 
 
 @contextmanager

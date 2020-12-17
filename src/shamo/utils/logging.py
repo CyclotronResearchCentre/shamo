@@ -40,18 +40,31 @@ class StreamToLogger(object):
             The buffer to read from.
         """
         for line in buf.rstrip().splitlines():
-            line = line.rstrip()
-            match = None
-            if self.pattern != "":
-                match = re.search(self.pattern, line)
-            if match is not None:
-                self.logger.log(self.log_level, match.group("text"))
-            else:
-                self.logger.log(self.log_level, line)
+            _log_with_pattern(line, self.logger, self.log_level, self.pattern)
 
     def flush(self):
         """A dummy flush function."""
         pass
+
+
+def _log_with_pattern(line, logger, log_level, pattern):
+    line = line.strip()
+    lines = line.split("\r")
+    for line in lines:
+        match = None
+        if pattern != "":
+            match = re.search(pattern, line)
+        if match is not None:
+            if match.group("level"):
+                logger.log(log_level, match.group("text"))
+            else:
+                logger.log(
+                    log_level,
+                    f"{match.group('text').strip()} ({match.group('percentage')})",
+                )
+        else:
+            if line.strip() != "":
+                logger.log(log_level, line)
 
 
 @contextmanager
@@ -76,3 +89,11 @@ def stream_to_logger(logger=None, log_level=logging.INFO, pattern=""):
             yield
         finally:
             sys.stdout = tmp
+
+
+def subprocess_to_logger(process, logger=None, log_level=logging.INFO, pattern=""):
+    with process.stdout as pipe:
+        with stream_to_logger(logger, log_level, pattern):
+            for line in iter(pipe.readline, b""):
+                _log_with_pattern(line.decode("utf-8"), logger, log_level, pattern)
+    return process.wait()
