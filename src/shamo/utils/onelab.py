@@ -1,10 +1,38 @@
 """API for `shamo.utils.onelab`."""
+from contextlib import contextmanager
+import logging
 from pathlib import Path
 
 import gmsh
 import nibabel as nib
 import numpy as np
 from scipy.spatial.distance import cdist
+
+from .logging import stream_to_logger
+
+LOG_PATTERN = "^(?P<level>[\w]*) +: (?P<text>.*)$"
+
+
+@contextmanager
+def gmsh_open(mesh_path, logger=None):
+    """A context manager where Gmsh is initialized and its output is piped.
+
+    Parameters
+    ----------
+    mesh_path :
+        The path to the mesh file to open.
+    logger : logging.Logger, optional
+        The logger to use. (The default is ``None``)
+    """
+    with stream_to_logger(logger, pattern=LOG_PATTERN):
+        gmsh.initialize()
+        gmsh.option.setNumber("General.Verbosity", 5)
+        gmsh.option.setNumber("General.Terminal", 1)
+        gmsh.open(str(Path(mesh_path)))
+        try:
+            yield gmsh
+        finally:
+            gmsh.finalize()
 
 
 def read_vector_file(path):
