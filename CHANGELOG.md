@@ -4,6 +4,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Added logging support for subprocesses and C libraries via `subprocess_to_logger` and `stream_to_logger` context managers.
+
+### Changed
+
+- Moved GetDP logging to the new logging `subprocess_to_logger` context manager.
+
 ## [1.0.0] - 20-12-16
 
 ### Added
