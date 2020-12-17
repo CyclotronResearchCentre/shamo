@@ -48,6 +48,19 @@ class StreamToLogger(object):
 
 
 def _log_with_pattern(line, logger, log_level, pattern):
+    """Log a text and check a pattern.
+
+    Parameters
+    ----------
+    line : str
+        The line to log.
+    logger : logging.Logger
+        The logger.
+    log_level : int
+        The logging level.
+    pattern : str
+        A pattern containing a 'level' and a 'text' group.
+    """
     line = line.strip()
     lines = line.split("\r")
     for line in lines:
@@ -92,6 +105,17 @@ def stream_to_logger(logger=None, log_level=logging.INFO, pattern=""):
 
 
 def subprocess_to_logger(process, logger=None, log_level=logging.INFO, pattern=""):
+    """A context manager to pipe the output of a subprocess to the logger.
+
+    Parameters
+    ----------
+    logger : logging.Logger
+        The logger to pipe the stream to.
+    log_level : int
+        The logging level of the piped messages.
+    pattern : str
+        A pattern containing a 'level' and a 'text' group.
+    """
     with process.stdout as pipe:
         with stream_to_logger(logger, log_level, pattern):
             for line in iter(pipe.readline, b""):
