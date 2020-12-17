@@ -10,6 +10,8 @@ import numpy as np
 
 from .abc import ProbABC
 from .components.tissue_property import CompTissueProp
+from shamo.utils.logging import subprocess_to_logger
+from shamo.utils.onelab import LOG_PATTERN
 
 logger = logging.getLogger(__name__)
 
@@ -113,20 +115,6 @@ class ProbGetDP(ProbABC):
         ]
         logger.info(f"Running GetDP with command: {' '.join(cmd)}")
         process = Popen(cmd, stdout=PIPE, stderr=STDOUT, cwd=tmp_dir)
-        prev_line = ""
-        n_lines = 1
-        with process.stdout as pipe:
-            for l in iter(pipe.readline, b""):
-                if l == prev_line:
-                    if n_lines % 1000 == 0:
-                        logger.info(f"... (x{n_lines})")
-                    n_lines += 1
-                if l != prev_line:
-                    if n_lines > 1:
-                        logger.info(f"{prev_line.decode('utf-8').strip()} (x{n_lines})")
-                    logger.info(re.sub(r"[A-Z][a-z ]+: ", "", l.decode().strip()))
-                    n_lines = 1
-                prev_line = l
-        exitcode = process.wait()
+        subprocess_to_logger(process, logger, logging.INFO, LOG_PATTERN)
         if exitcode != 0:
             raise CalledProcessError(exitcode, cmd)
