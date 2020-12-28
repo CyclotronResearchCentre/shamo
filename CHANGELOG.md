@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - Added logging support for subprocesses and C libraries via `subprocess_to_logger` and `stream_to_logger` context managers.
+- Added documentation on how to use the logging library with `shamo`.
 
 ### Changed
 
