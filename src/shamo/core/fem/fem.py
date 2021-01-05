@@ -453,6 +453,62 @@ class FEM(ObjDir):
             gmsh.option.setNumber("Mesh.Binary", 1)
             gmsh.write(str(self.mesh_path))
 
+    def mesh_from_fem(self, fem_path, merges):
+        """Generate a mesh from an existing FEM by merging tissues.
+
+        Parameters
+        ----------
+        fem_path :
+            The path to the original model.
+        merges : dict [str, list [str]]
+            The merges to perform. Each value contains the names of the tissues to merge
+            into a tissue named with the key.
+
+        Notes
+        -----
+        This method removes the fields contained in the tissues that are part of a merge
+        and edit the tissue the sensors are placed in/on.
+        """
+        fem = FEM.load(fem_path)
+        with gmsh_open(fem.mesh_path, logger) as gmsh:
+            for merge_to, merge_from in merges.items():
+                self._merge_tissues(fem, merge_from, merge_to)
+            gmsh.write(str(self.mesh_path))
+        self["tissues"] = fem.tissues
+        self["sensors"] = fem.sensors
+        self.save()
+        logger.info("Mesh generated.")
+
+    def _merge_tissues(self, fem, merge_from, merge_to):
+        """Merge multiple tissues into one."""
+        # Edit mesh
+        surf_entities = []
+        vol_entities = []
+        for t in merge_from:
+            surf_entities.extend(fem.tissues[t].surf.entities)
+            vol_entities.extend(fem.tissues[t].surf.entities)
+        max_tag = np.max([t for _, t in gmsh.model.getPhysicalGroups(-1)])
+        surf_group = gmsh.model.addPhysicalGroup(2, surf_entities, max_tag + 1)
+        vol_group = gmsh.model.addPhysicalGroup(3, vol_entities, max_tag + 2)
+        for t in merge_from:
+            gmsh.model.removePhysicalGroups(
+                [(2, fem.tissues[t].surf.group), (3, fem.tissues[t].vol.group)]
+            )
+            for f in fem.tissues[t].fields.values():
+                gmsh.view.remove(f.view)
+            fem.tissues.pop(t, None)
+        gmsh.model.setPhysicalName(2, surf_group, merge_to)
+        gmsh.model.setPhysicalName(3, vol_group, merge_to)
+        # Edit model tissues
+        fem["tissues"][merge_to] = Tissue(
+            Group(2, surf_entities, surf_group), Group(3, vol_entities, vol_group)
+        )
+        # Edit model sensors
+        for s in fem.sensors.values():
+            if s.tissue in merge_from:
+                s["tissue"] = merge_to
+        logger.info(f"Merged {len(merge_from)} tissues into {merge_to}.")
+
     # Sensors --------------------------------------------------------------------------
 
     def add_point_sensor(self, name, coords, tissue, dim):
