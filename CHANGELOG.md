@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Added logging support for subprocesses and C libraries via `subprocess_to_logger` and `stream_to_logger` context managers.
 - Added documentation on how to use the logging library with `shamo`.
+- Added the `mesh_from_fem` method to provide a way to generate a mesh from a previously built one by merging tissues together.
+- Added the `mesh_from_surfaces` method to provide a way to generate a mesh from a set of surface meshes.
 
 ### Changed
 
