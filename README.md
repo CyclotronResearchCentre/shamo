@@ -1,10 +1,13 @@
 # shamo
 
 [![version](https://img.shields.io/pypi/v/shamo?color=black&logo=pypi&logoColor=white&style=flat-square)](https://pypi.org/project/shamo/)
-![Python](https://img.shields.io/pypi/pyversions/shamo?logo=python&logoColor=white&color=black&style=flat-square)
+![python](https://img.shields.io/pypi/pyversions/shamo?logo=python&logoColor=white&color=black&style=flat-square)
+[![documentation](https://img.shields.io/badge/docs-github_pages-black?style=flat-square&logo=read-the-docs&logoColor=white)](https://cyclotronresearchcentre.github.io/shamo/index.html)
+[![tutorials](https://img.shields.io/badge/tutorials-jupyter_notebooks-black?style=flat-square&logo=jupyter&logoColor=white)](https://cyclotronresearchcentre.github.io/shamo/index.html)
 [![codestyle](https://img.shields.io/badge/codestyle-black-black?style=flat-square)](https://github.com/psf/black)
 [![docstyle](https://img.shields.io/badge/docstyle-numpydoc-black?style=flat-square)](https://numpydoc.readthedocs.io/en/latest/)
-[![license](https://img.shields.io/pypi/l/shamo?color=black&style=flat-square)](https://github.com/CyclotronResearchCentre/shamo/blob/master/LICENSE.md)
+[![license](https://img.shields.io/pypi/l/shamo?color=black&style=flat-square&logo=gnu&logoColor=white)](https://github.com/CyclotronResearchCentre/shamo/blob/master/LICENSE.md)  
+[![doi](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.4420811-black?style=flat-square)](https://doi.org/10.5281/zenodo.4420811)
 
 ## Introduction
 
