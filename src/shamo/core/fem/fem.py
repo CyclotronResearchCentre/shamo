@@ -1,5 +1,6 @@
 """Implement the `FEM` class."""
 from collections.abc import Mapping, Iterable
+import copy
 from functools import partialmethod
 import logging
 from pathlib import Path
@@ -452,6 +453,128 @@ class FEM(ObjDir):
                 logger.info(f"Tissue '{t}' added.")
             gmsh.option.setNumber("Mesh.Binary", 1)
             gmsh.write(str(self.mesh_path))
+
+    def mesh_from_fem(self, fem_path, merges):
+        """Generate a mesh from an existing FEM by merging tissues.
+
+        Parameters
+        ----------
+        fem_path : str, byte or os.PathLike
+            The path to the original model.
+        merges : dict [str, list [str]]
+            The merges to perform. Each value contains the names of the tissues to merge
+            into a tissue named with the key.
+
+        Notes
+        -----
+        This method removes the fields contained in the tissues that are part of a merge
+        and edit the tissue the sensors are placed in/on.
+        """
+        fem = FEM.load(fem_path)
+        with gmsh_open(fem.mesh_path, logger) as gmsh:
+            for merge_to, merge_from in merges.items():
+                self._merge_tissues(fem, merge_from, merge_to)
+            gmsh.write(str(self.mesh_path))
+        self["tissues"] = fem.tissues
+        self["sensors"] = fem.sensors
+        self.save()
+        logger.info("Mesh generated.")
+
+    def _merge_tissues(self, fem, merge_from, merge_to):
+        """Merge multiple tissues into one."""
+        # Edit mesh
+        surf_entities = []
+        vol_entities = []
+        for t in merge_from:
+            surf_entities.extend(fem.tissues[t].surf.entities)
+            vol_entities.extend(fem.tissues[t].surf.entities)
+        max_tag = np.max([t for _, t in gmsh.model.getPhysicalGroups(-1)])
+        surf_group = gmsh.model.addPhysicalGroup(2, surf_entities, max_tag + 1)
+        vol_group = gmsh.model.addPhysicalGroup(3, vol_entities, max_tag + 2)
+        for t in merge_from:
+            gmsh.model.removePhysicalGroups(
+                [(2, fem.tissues[t].surf.group), (3, fem.tissues[t].vol.group)]
+            )
+            for f in fem.tissues[t].fields.values():
+                gmsh.view.remove(f.view)
+            fem.tissues.pop(t, None)
+        gmsh.model.setPhysicalName(2, surf_group, merge_to)
+        gmsh.model.setPhysicalName(3, vol_group, merge_to)
+        # Edit model tissues
+        fem["tissues"][merge_to] = Tissue(
+            Group(2, surf_entities, surf_group), Group(3, vol_entities, vol_group)
+        )
+        # Edit model sensors
+        for s in fem.sensors.values():
+            if s.tissue in merge_from:
+                s["tissue"] = merge_to
+        logger.info(f"Merged {len(merge_from)} tissues into {merge_to}.")
+
+    def mesh_from_surfaces(self, tissues, structure, lc=0):
+        """Generate a mesh from a series of surface meshes.
+
+        Parameters
+        ----------
+        tissues : dict [str, str | byte | os.PathLike]
+            A dictionary containing the names of the tissues as keys and the path
+            leading to the corresponding surface mesh as values.
+        structure : list [str | list]
+            A tree structure defined as a nested list defining the way surfaces contain
+            each other.
+        lc : float, optional
+            The characteristic length of the mesh elements. If set to ``0``, it is
+            infered from the size of the surface elements. Otherwise, the same size is
+            set for the whole volume. (The default is ``0``)
+        """
+        with TemporaryDirectory() as d:
+            oredered_tissues = self._gen_mesh_from_surfaces(tissues, structure, lc, d)
+            self._add_tissues(oredered_tissues, d)
+        self.save()
+        logger.info("Mesh generated.")
+
+    def _gen_mesh_from_surfaces(self, tissues, structure, lc, tmp_dir):
+        """Generate the initial mesh from a series of surfaces."""
+        indices = {}
+        oredered_tissues = []
+        with gmsh_open(self.mesh_path, logger) as gmsh:
+            # Add the surfaces
+            for i, (t, p) in enumerate(tissues.items()):
+                gmsh.merge(str(Path(p)))
+                gmsh.model.geo.addSurfaceLoop([i + 1])
+                indices[t] = i + 1
+                oredered_tissues.append(t)
+            # Add the volumes
+            for t, v in self._get_surf_loops(structure).items():
+                gmsh.model.geo.addVolume([indices[n] for n in v], indices[t])
+            gmsh.model.geo.synchronize()
+            if lc != 0:
+                gmsh.option.setNumber("Mesh.CharacteristicLengthExtendFromBoundary", 0)
+                gmsh.option.setNumber("Mesh.CharacteristicLengthMax", lc)
+            gmsh.model.mesh.generate(3)
+            gmsh.write(str(Path(tmp_dir) / "init_mesh.msh"))
+            logger.info("Initial mesh generated.")
+        return oredered_tissues
+
+    def _get_surf_loops(self, structure):
+        """Extract surface loops booleans from tree structure."""
+        vols = {}
+        queue = []
+        while structure:
+            first = structure.pop(0)
+            current = None
+            children = []
+            if isinstance(first, str):
+                current = first
+                if structure:
+                    children = [
+                        s[0] if len(structure[0]) > 1 else s for s in structure[0]
+                    ]
+                vols[current] = [current, *children]
+            elif isinstance(first, list):
+                queue.append(first)
+            if not structure and queue:
+                structure = queue.pop(0)
+        return vols
 
     # Sensors --------------------------------------------------------------------------
 
