@@ -510,7 +510,7 @@ class FEM(ObjDir):
                 s["tissue"] = merge_to
         logger.info(f"Merged {len(merge_from)} tissues into {merge_to}.")
 
-    def mesh_from_surfaces(self, tissues, structure, lc=0):
+    def mesh_from_surfaces(self, tissues, structure, lc=0.0):
         """Generate a mesh from a series of surface meshes.
 
         Parameters
@@ -521,10 +521,18 @@ class FEM(ObjDir):
         structure : list [str | list]
             A tree structure defined as a nested list defining the way surfaces contain
             each other.
-        lc : float, optional
+        lc : float | dict [str, float], optional
             The characteristic length of the mesh elements. If set to ``0``, it is
-            infered from the size of the surface elements. Otherwise, the same size is
-            set for the whole volume. (The default is ``0``)
+            infered from the size of the surface elements. If a float value is used, the
+            same size is set for the whole volume. If a dictionary is provided, it must
+            contain the name of the tissues (or default) as keys and the corresponding
+            characteristic length as values. (The default is ``0.0``)
+
+        Raises
+        ------
+        ValueError
+            If argument `lc` is a dictionary, does not contain all the tissues and have
+            no ``default`` key.
         """
         with TemporaryDirectory() as d:
             oredered_tissues = self._gen_mesh_from_surfaces(tissues, structure, lc, d)
@@ -536,7 +544,7 @@ class FEM(ObjDir):
         """Generate the initial mesh from a series of surfaces."""
         indices = {}
         oredered_tissues = []
-        with gmsh_open(self.mesh_path, logger) as gmsh:
+        with gmsh_open(str(Path(tmp_dir) / "init_mesh.msh"), logger) as gmsh:
             # Add the surfaces
             for i, (t, p) in enumerate(tissues.items()):
                 gmsh.merge(str(Path(p)))
@@ -547,12 +555,47 @@ class FEM(ObjDir):
             for t, v in self._get_surf_loops(structure).items():
                 gmsh.model.geo.addVolume([indices[n] for n in v], indices[t])
             gmsh.model.geo.synchronize()
-            if lc != 0:
-                gmsh.option.setNumber("Mesh.CharacteristicLengthExtendFromBoundary", 0)
-                gmsh.option.setNumber("Mesh.CharacteristicLengthMax", lc)
+            gmsh.option.setNumber("Mesh.Binary", 1)
+            if isinstance(lc, float):
+                # Constant lc accross the whole mesh (or 0)
+                if lc != 0.0:
+                    gmsh.option.setNumber(
+                        "Mesh.CharacteristicLengthExtendFromBoundary", 0
+                    )
+                    gmsh.option.setNumber("Mesh.CharacteristicLengthMax", lc)
+                gmsh.model.mesh.generate(3)
+                gmsh.write(str(Path(tmp_dir) / "init_mesh.msh"))
+                logger.info("Initial mesh generated.")
+                return oredered_tissues
+            # Generate a coarse mesh
+            if "default" not in lc:
+                for t in oredered_tissues:
+                    if t not in lc:
+                        raise ValueError(
+                            "Argument 'lc' must contain all the tissues or a 'default' key."
+                        )
+                lc["default"] = 0.0
+            gmsh.option.setNumber("Mesh.CharacteristicLengthExtendFromBoundary", 0)
+            restricts = []
+            for t in oredered_tissues:
+                box = gmsh.model.mesh.field.add("Box")
+                gmsh.model.mesh.field.setNumber(box, "VIn", lc.get(t, lc["default"]))
+                s = 1
+                for a in ("X", "Y", "Z"):
+                    for b in ("Max", "Min"):
+                        gmsh.model.mesh.field.setNumber(box, f"{a}{b}", s * 999999.9)
+                        s *= -1
+                restrict = gmsh.model.mesh.field.add("Restrict")
+                gmsh.model.mesh.field.setNumber(restrict, "InField", box)
+                gmsh.model.mesh.field.setNumbers(restrict, "VolumesList", [indices[t]])
+                restricts.append(restrict)
+            # Min because Restrict returns 1e22 outside
+            mesh_size = gmsh.model.mesh.field.add("Min")
+            gmsh.model.mesh.field.setNumbers(mesh_size, "FieldsList", restricts)
+            gmsh.model.mesh.field.setAsBackgroundMesh(mesh_size)
             gmsh.model.mesh.generate(3)
             gmsh.write(str(Path(tmp_dir) / "init_mesh.msh"))
-            logger.info("Initial mesh generated.")
+        logger.info("Initial mesh generated.")
         return oredered_tissues
 
     def _get_surf_loops(self, structure):
