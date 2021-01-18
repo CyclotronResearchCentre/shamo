@@ -17,10 +17,8 @@ Then we can configure it anyway we want. To display the output in a jupyter note
    import sys
 
    stream_handler = logging.StreamHandler(sys.stdout)
-   stream_handler.setFormatter(
-       logging.Formatter("%(asctime)s - %(message)s : [%(levelname)s] %(message)s")
-   )
-   logger.add_handler(stream_handler)
+   stream_handler.setFormatter(logging.Formatter("[%(levelname)s] %(message)s"))
+   logger.addHandler(stream_handler)
    logger.setLevel(logging.INFO)
 
 .. note::
