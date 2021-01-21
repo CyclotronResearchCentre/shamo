@@ -4,7 +4,7 @@ Usage
 .. toctree::
    :maxdepth: 1
 
-   tutorials/code/fem/fem.ipynb
+   fem
    eeg
    hd_tdcs
    logging
