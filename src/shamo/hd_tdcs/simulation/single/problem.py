@@ -64,10 +64,6 @@ class ProbHDTDCSSim(ProbGetDP):
         for n, t in model.tissues.items():
             self._vol.set(n, t.vol.group)
         shape = [int(s / 10) for s in model.shape]
-        if not self.grid.use_grid:
-            img = nib.load(model.nii_path)
-            mask = img.get_fdata() != 0
-            self.grid.set(model.affine, model.shape, mask=mask, resize=False)
 
         with TemporaryDirectory() as d:
             self._check_components(**model)
@@ -84,7 +80,8 @@ class ProbHDTDCSSim(ProbGetDP):
             sol["model_json_path"] = str(sol.get_relative_path(model.json_path))
             for p in Path(d).iterdir():
                 if p.suffix == ".pos":
-                    self.grid.nii_from_pos(p, sol.path / f"{name}_{p.stem}.nii")
+                    if self.grid.use_grid:
+                        self.grid.nii_from_pos(p, sol.path / f"{name}_{p.stem}.nii")
                     p.rename(sol.path / f"{name}_{p.name}")
             sol.save()
         return sol
