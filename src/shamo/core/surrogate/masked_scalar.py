@@ -71,14 +71,13 @@ class SurrMaskedScalar(SurrScalar):
         --------
         shamo.core.surrogate.SurrABC
         """
-        self["suffix"] = suffix
         x = []
         y = []
         for s in sol.get_sub_sols():
             x.append(sol.get_x(s))
             y.append(metric(cls._get_masked_data(s, suffix, mask)))
-        x = np.array(x).reshape((len(sols), -1))
-        y = np.array(y).reshape((len(sols),))
+        x = np.array(x).reshape((len(x), -1))
+        y = np.array(y).reshape((len(y),))
         return x, y, sol.get_params()
 
     @abstractclassmethod
