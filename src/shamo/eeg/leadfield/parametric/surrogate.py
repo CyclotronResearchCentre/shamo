@@ -194,19 +194,16 @@ class SurrEEGLeadfieldToRef(SurrScalar):
         """
         ref = kwargs.get("ref", None)
         m_ref = np.array(ref.get_matrix())
-        params = [
-            [t, d[0]] for t, d in sol.sigmas.items() if d[0].dist_type != "constant"
-        ]
         sols = sol.get_sub_sols()
         x = []
         y = []
         for s in sols:
-            x.append([s.sigmas[t][0] for t, _ in params])
+            x.append(sol.get_x(s))
             m = s.get_matrix()
             y.append(metric(m_ref, m))
         x = np.array(x).reshape((len(sols), -1))
         y = np.array(y).reshape((len(sols),))
-        return x, y, params
+        return x, y, sol.get_params()
 
     @classmethod
     def _check_params(cls, **kwargs):
