@@ -115,6 +115,6 @@ class ProbGetDP(ProbABC):
         ]
         logger.info(f"Running GetDP with command: {' '.join(cmd)}")
         process = Popen(cmd, stdout=PIPE, stderr=STDOUT, cwd=tmp_dir)
-        subprocess_to_logger(process, logger, logging.INFO, LOG_PATTERN)
+        exitcode = subprocess_to_logger(process, logger, logging.INFO, LOG_PATTERN)
         if exitcode != 0:
             raise CalledProcessError(exitcode, cmd)
