@@ -1,6 +1,6 @@
 from abc import abstractclassmethod
 
-import nib
+import nibabel as nib
 import numpy as np
 
 from shamo.core.surrogate import SurrScalar
