@@ -24,6 +24,8 @@ class SurrScalar(SurrABC):
         corresponding distributions as values.
     sol_json_path : str
         The path to the parametric solution the surrogate is built of.
+    is_sobol_available : bool
+        If ``True``, Sobol indices are already available.
 
     See Also
     --------
