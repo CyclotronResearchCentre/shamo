@@ -117,4 +117,6 @@ class SurrScalar(SurrABC):
             json.dump(
                 indices, f, indent=4, sort_keys=True,
             )
+        self["is_sobol_available"] = True
+        self.save()
         return indices
