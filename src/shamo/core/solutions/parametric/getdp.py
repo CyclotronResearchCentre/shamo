@@ -60,3 +60,24 @@ class SolParamGetDP(SolParamABC):
             The path to the model JSON file.
         """
         return (self.path / self["model_json_path"]).resolve()
+
+    def get_params(self):
+        """Return the random parameters of the solution.
+
+        Returns
+        -------
+        dict [str, list [ list [str, Any]]]
+        """
+        return [
+            [t, d[0]] for t, d in sol.sigmas.items() if d[0].dist_type != "constant"
+        ]
+
+    def get_x(self, sub_sol):
+        """Return the value of the random parameters in the sub solution.
+
+        Parameters
+        ----------
+        sub_sol : shamo.core.solutions.SolABC
+        """
+        params = self.get_params()
+        return [sub_sol.sigmas[t][0] for t, _ in params if t in sub_sol.sigmas]
