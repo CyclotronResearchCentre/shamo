@@ -114,9 +114,7 @@ class SurrScalar(SurrABC):
             "st": {"val": s_i["ST"].tolist(), "conf": s_i["ST_conf"].tolist()},
         }
         with open(self.sobol_path, "w") as f:
-            json.dump(
-                indices, f, indent=4, sort_keys=True,
-            )
+            json.dump(indices, f, indent=4, sort_keys=True)
         self["is_sobol_available"] = True
         self.save()
         return indices
