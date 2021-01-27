@@ -17,7 +17,7 @@ from scipy.interpolate import RegularGridInterpolator
 from scipy.spatial.distance import cdist
 
 from shamo.core.objects import ObjDir
-from . import Field, Group, Tissue, Sensor, PointSensor
+from . import Field, Group, Tissue, SensorABC, PointSensor
 from shamo.utils.onelab import gmsh_open
 
 logger = logging.getLogger(__name__)
@@ -43,8 +43,7 @@ class FEM(ObjDir):
                 },
                 "mesh_params": kwargs.get("mesh_params", {}),
                 "sensors": {
-                    s: self._load_sensor(d)
-                    for s, d in kwargs.get("sensors", {}).items()
+                    s: SensorABC.load(**d) for s, d in kwargs.get("sensors", {}).items()
                 },
             }
         )
@@ -113,7 +112,7 @@ class FEM(ObjDir):
 
         Returns
         -------
-        dict [str, shamo.fem.Sensor]
+        dict [str, shamo.fem.SensorABC]
             The sensors of the model.
         """
         return self["sensors"]
@@ -801,11 +800,6 @@ class FEM(ObjDir):
         group = gmsh.model.addPhysicalGroup(0, [entity], max_group + 1)
         gmsh.model.setPhysicalName(0, group, name)
         return entity, group
-
-    def _load_sensor(self, sensor):
-        """Load a sensor depending on its type."""
-        if sensor["sensor_type"] == Sensor.TYPE_POINT:
-            return PointSensor(**sensor)
 
     # Fields ---------------------------------------------------------------------------
 

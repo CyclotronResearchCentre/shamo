@@ -1,7 +1,7 @@
 """Implement the `Sensor` class."""
 
 
-class Sensor(dict):
+class SensorABC(dict):
     """A FEM sensor.
 
     Parameters
@@ -13,6 +13,7 @@ class Sensor(dict):
     """
 
     TYPE_POINT = "point"
+    TYPE_CIRCLE = "circle"
 
     def __init__(self, tissue, sensor_type):
         super().__init__({"tissue": tissue, "sensor_type": sensor_type})
@@ -38,3 +39,10 @@ class Sensor(dict):
             The type of the sensor.
         """
         return self["sensor_type"]
+
+    @staticmethod
+    def load(sensor_type, **kwargs):
+        from .point import PointSensor
+
+        sensor_types = {SensorABC.TYPE_POINT: PointSensor}
+        return sensor_types[sensor_type](**kwargs)

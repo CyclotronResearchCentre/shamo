@@ -1,10 +1,10 @@
 """Implement the `PointSensor` class."""
 from collections.abc import Iterable
 
-from shamo.core.fem import Sensor, Group
+from shamo.core.fem import SensorABC, Group
 
 
-class PointSensor(Sensor):
+class PointSensor(SensorABC):
     """A FEM sensor.
 
     Parameters
@@ -22,7 +22,7 @@ class PointSensor(Sensor):
     """
 
     def __init__(self, tissue, real_coords, mesh_coords, point, node, **kwargs):
-        super().__init__(tissue, Sensor.TYPE_POINT)
+        super().__init__(tissue, SensorABC.TYPE_POINT)
         self.update(
             {
                 "real_coords": tuple(real_coords),
