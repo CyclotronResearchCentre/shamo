@@ -24,6 +24,8 @@ class SurrScalar(SurrABC):
         corresponding distributions as values.
     sol_json_path : str
         The path to the parametric solution the surrogate is built of.
+    is_sobol_available : bool
+        If ``True``, Sobol indices are already available.
 
     See Also
     --------
@@ -112,7 +114,7 @@ class SurrScalar(SurrABC):
             "st": {"val": s_i["ST"].tolist(), "conf": s_i["ST_conf"].tolist()},
         }
         with open(self.sobol_path, "w") as f:
-            json.dump(
-                indices, f, indent=4, sort_keys=True,
-            )
+            json.dump(indices, f, indent=4, sort_keys=True)
+        self["is_sobol_available"] = True
+        self.save()
         return indices

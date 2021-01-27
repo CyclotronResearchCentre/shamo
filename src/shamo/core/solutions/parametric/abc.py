@@ -83,3 +83,21 @@ class SolParamABC(ObjDir):
                 if p.is_dir and re.match(r"^.+_\d{8}$", p.name)
             ]
         )
+
+    @abstractmethod
+    def get_params(self):
+        """Return the random parameters of the solution.
+
+        Returns
+        -------
+        list [ list [str, Any]]
+        """
+
+    @abstractmethod
+    def get_x(self, sub_sol):
+        """Return the value of the random parameters in the sub solution.
+
+        Parameters
+        ----------
+        sub_sol : shamo.core.solutions.SolABC
+        """
