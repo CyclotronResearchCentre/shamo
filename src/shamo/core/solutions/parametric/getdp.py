@@ -69,7 +69,9 @@ class SolParamGetDP(SolParamABC):
         dict [str, list [ list [str, Any]]]
         """
         return [
-            [t, d[0]] for t, d in self.sigmas.items() if d[0].dist_type != "constant"
+            [t, d[0]]
+            for t, d in self.sigmas.items()
+            if d[0].dist_type != DistABC.TYPE_CONSTANT
         ]
 
     def get_x(self, sub_sol):

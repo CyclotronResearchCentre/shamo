@@ -13,6 +13,11 @@ class DistABC(dict, ABC):
         The type of the distribution.
     """
 
+    TYPE_CONSTANT = "constant"
+    TYPE_NORMAL = "normal"
+    TYPE_TRUNC_NORMAL = "trunc_normal"
+    TYPE_UNIFORM = "uniform"
+
     def __init__(self, dist_type, **kwargs):
         super().__init__({"dist_type": dist_type})
 
@@ -92,9 +97,9 @@ class DistABC(dict, ABC):
         from .uniform import DistUniform
 
         dist_types = {
-            "constant": DistConstant,
-            "normal": DistNormal,
-            "trunc_normal": DistTruncNormal,
-            "uniform": DistUniform,
+            DistABC.TYPE_CONSTANT: DistConstant,
+            DistABC.TYPE_NORMAL: DistNormal,
+            DistABC.TYPE_TRUNC_NORMAL: DistTruncNormal,
+            DistABC.TYPE_UNIFORM: DistUniform,
         }
         return dist_types[dist_type](**kwargs)
