@@ -1,5 +1,5 @@
 """Implement the `SurfSensorABC` and `CircleSensor` classes."""
-from shamo.core.fem import Sensor, Group
+from shamo.core.fem import SensorABC, Group
 
 
 class SurfSensorABC(SensorABC):
