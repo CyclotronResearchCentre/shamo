@@ -11,10 +11,6 @@ class PointSensor(SensorABC):
     ----------
     tissue : str
         The tissue the sensor is in.
-    real_coords : Iterable [float]
-        The coordinates of the sensor in the real world.
-    mesh_coords : Iterable [float]
-        The coordinates of the sensor in the mesh.
     point : shamo.fem.Group
         The physical group of the sensor.
     node : int
@@ -22,37 +18,8 @@ class PointSensor(SensorABC):
     """
 
     def __init__(self, tissue, real_coords, mesh_coords, point, node, **kwargs):
-        super().__init__(tissue, SensorABC.TYPE_POINT)
-        self.update(
-            {
-                "real_coords": tuple(real_coords),
-                "mesh_coords": tuple(mesh_coords),
-                "point": Group(**point),
-                "node": int(node),
-            }
-        )
-
-    @property
-    def real_coords(self):
-        """Return the real coordinates of the sensor.
-
-        Returns
-        -------
-        tuple (float, float, float)
-            The real coordinates of the sensor [m].
-        """
-        return self["real_coords"]
-
-    @property
-    def mesh_coords(self):
-        """Return the mesh coordinates of the sensor.
-
-        Returns
-        -------
-        tuple (float, float, float)
-            The mesh coordinates of the sensor [m].
-        """
-        return self["mesh_coords"]
+        super().__init__(tissue, SensorABC.TYPE_POINT, real_coords, mesh_coords)
+        self.update({"point": Group(**point), "node": int(node)})
 
     @property
     def point(self):
