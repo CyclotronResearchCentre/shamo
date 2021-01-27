@@ -17,7 +17,7 @@ from scipy.interpolate import RegularGridInterpolator
 from scipy.spatial.distance import cdist
 
 from shamo.core.objects import ObjDir
-from . import Field, Group, Tissue, SensorABC, PointSensor
+from . import Field, Group, Tissue, SensorABC, PointSensor, CircleSensor
 from shamo.utils.onelab import gmsh_open
 
 logger = logging.getLogger(__name__)
@@ -753,6 +753,119 @@ class FEM(ObjDir):
 
     add_point_sensors_from_tsv_on = partialmethod(add_point_sensors_from_tsv, dim=2)
     add_point_sensors_from_tsv_in = partialmethod(add_point_sensors_from_tsv, dim=3)
+
+    def add_circle_sensor_on(self, name, coords, tissue, radius):
+        if name in self.sensors:
+            raise ValueError(f"Sensor '{name}' already exists in model.")
+        if not isinstance(coords, (Iterable, np.ndarray)):
+            raise TypeError("Argument 'coords' expects type Iterable or numpy.ndarray.")
+        if len(coords) != 3:
+            raise ValueError("Argument 'coords' must be a 3D coordinate.")
+        coords = tuple([1e-3 * c for c in coords])
+        if tissue not in self.tissues:
+            raise ValueError(f"Tissue '{tissue}' not found in model.")
+
+        # WARNING: Only works with triangles, with single entity physical surfaces.
+        surf = self.tissues[tissue].surf
+        with gmsh_open(self.mesh_path, logger) as gmsh:
+            nodes_tags, nodes_coords = self._get_tissue_nodes(tissue, 2)
+            # Get closest node
+            dist = cdist([coords], nodes_coords).ravel()
+            min_dist_idx = np.argmin(dist)
+            node_tag = nodes_tags[min_dist_idx]
+            mesh_coords = nodes_coords[min_dist_idx, :]
+            # Get surface elements
+            elems_type, elems_tags, elems_nodes_tags = gmsh.model.mesh.getElements(
+                2, surf.entities[0]
+            )
+            elems_type = elems_type[0]
+            elems_tags = elems_tags[0]
+            elems_nodes_tags = elems_nodes_tags[0].reshape((-1, 3))
+            elems_coords = gmsh.model.mesh.getBarycenters(
+                elems_type, surf.entities[0], False, False
+            ).reshape((-1, 3))
+            # Keep only elements in radius
+            dist = cdist([mesh_coords], elems_coords).ravel()
+            mask = dist <= radius
+            valid_elems_tags = elems_tags[mask]
+            valid_elems_nodes_tags = elems_nodes_tags[mask, :].ravel()
+            # Only keep elements directly connected to closest node
+            valid_elems_repeated = valid_elems_tags.repeat((3,))
+            nodes_to_check = [node_tag]
+            elems = []
+            nodes = []
+            while nodes_to_check:
+                current = nodes_to_check.pop(0)
+                nodes.append(current)
+                mask = valid_elems_nodes_tags == current
+                connected_elems = valid_elems_repeated[mask]
+                for e_t in connected_elems:
+                    elems.append(e_t)
+                    mask = valid_elems_repeated == e_t
+                    connected_nodes = valid_elems_nodes_tags[mask]
+                    for n_t in connected_nodes:
+                        if n_t not in nodes and n_t not in nodes_to_check:
+                            nodes_to_check.append(n_t)
+                    valid_elems_repeated = np.delete(valid_elems_repeated, mask)
+                    valid_elems_nodes_tags = np.delete(valid_elems_nodes_tags, mask)
+            mask = np.in1d(elems_tags, elems, assume_unique=True)
+            valid_elems_tags = elems_tags[mask]
+            valid_elems_nodes_tags = elems_nodes_tags[mask, :].ravel()
+            # Add surface sensor
+            surf_entity = gmsh.model.addDiscreteEntity(2)
+            gmsh.model.mesh.addElements(
+                2,
+                surf_entity,
+                [elems_type],
+                [valid_elems_tags],
+                [valid_elems_nodes_tags],
+            )
+            max_group = np.max([t for d, t in gmsh.model.getPhysicalGroups()])
+            surf_group = gmsh.model.addPhysicalGroup(2, [surf_entity], max_group + 1)
+            gmsh.model.setPhysicalName(2, surf_group, name)
+            # Remove elements from the tissue
+            new_entity = gmsh.model.addDiscreteEntity(2)
+            gmsh.model.mesh.addElements(
+                2,
+                new_entity,
+                [elems_type],
+                [elems_tags[~mask]],
+                [elems_nodes_tags[~mask, :].ravel()],
+            )
+            gmsh.model.removeEntities([(2, surf.entities[0])])
+            try:
+                gmsh.model.removePhysicalGroups([(2, surf.group)])
+            except:
+                pass
+            gmsh.model.removePhysicalName(tissue)
+            g = gmsh.model.addPhysicalGroup(2, [new_entity], surf.group)
+            gmsh.model.setPhysicalName(2, surf.group, tissue)
+            gmsh.model.setPhysicalName(3, self.tissues[tissue].vol.group, tissue)
+            gmsh.model.mesh.removeDuplicateNodes()
+            gmsh.model.mesh.reclassifyNodes()
+            gmsh.option.setNumber("Mesh.Binary", 1)
+            gmsh.write(str(self.mesh_path))
+        sensor = CircleSensor(
+            tissue, coords, mesh_coords, Group(2, [surf_entity], surf_group), radius
+        )
+        self.tissues[tissue].surf["entities"] = [new_entity]
+        self.sensors[name] = sensor
+        self.save()
+        logger.info(f"Sensor '{name}' added.")
+
+    def add_circle_sensors_on(self, coords, tissue, radius):
+        for n, c in coords.items():
+            self.add_circle_sensor_on(n, c, tissue, radius)
+
+    def add_circle_sensors_from_tsv_on(self, tsv_path, tissue, radius):
+        tsv_path = Path(tsv_path)
+        data = np.genfromtxt(
+            tsv_path, delimiter="\t", skip_header=1, dtype=None, encoding="utf-8"
+        )
+        coords = {d[0]: [d[1], d[2], d[3]] for d in data}
+        logger.info(f"{len(coords)} sensors coordinates extracted from '{tsv_path}'.")
+        logger.debug(pformat(coords))
+        return self.add_circle_sensors_on(coords, tissue, radius)
 
     def _get_tissue_nodes(self, tissue, dim):
         """Return all the nodes of the tissue in specified dimensio entities."""
