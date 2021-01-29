@@ -755,6 +755,28 @@ class FEM(ObjDir):
     add_point_sensors_from_tsv_in = partialmethod(add_point_sensors_from_tsv, dim=3)
 
     def add_circle_sensor_on(self, name, coords, tissue, radius):
+        """Add a circle sensor on a surface.
+
+        Parameters
+        ----------
+        name : str
+            The name of the sensor.
+        coords : tuple [float, float, float]
+            The coordinates of the sensor in the subject space.
+        tissue : str
+            The name of the tissue the sensor must be added on.
+        radius : float
+            The radius of the sensor [mm].
+
+        Raises
+        ------
+        ValueError
+            If a sensor with name `name` already exists.
+            If the coordinates are not a 3D location.
+            If the tissue `tissue` does not exist in the model.
+        TypeError
+            If the argument `coords` is not of the right type.
+        """
         if name in self.sensors:
             raise ValueError(f"Sensor '{name}' already exists in model.")
         if not isinstance(coords, (Iterable, np.ndarray)):
@@ -854,10 +876,32 @@ class FEM(ObjDir):
         logger.info(f"Sensor '{name}' added.")
 
     def add_circle_sensors_on(self, coords, tissue, radius):
+        """Add multiple circle sensors to the mesh.
+
+        Parameters
+        ----------
+        coords : Mapping [str, Iterable [float]]
+            The coordinates of the sensor.
+        tissue : str
+            The name of the tissue the sensor is on.
+        radius : float
+            The radius of the sensor [mm].
+        """
         for n, c in coords.items():
             self.add_circle_sensor_on(n, c, tissue, radius)
 
     def add_circle_sensors_from_tsv_on(self, tsv_path, tissue, radius):
+        """Add multiple circle sensors to the mesh from a TSV file.
+
+        Parameters
+        ----------
+        tsv_path : str, byte or os.PathLike
+            The path to the TSV file.
+        tissue : str
+            The name of the tissue the sensor is on.
+        radius : float
+            The radius of the sensor [mm].
+        """
         tsv_path = Path(tsv_path)
         data = np.genfromtxt(
             tsv_path, delimiter="\t", skip_header=1, dtype=None, encoding="utf-8"
