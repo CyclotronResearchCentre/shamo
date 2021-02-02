@@ -76,6 +76,10 @@ class SensorABC(dict):
     @staticmethod
     def load(sensor_type, **kwargs):
         from .point import PointSensor
+        from .surface import CircleSensor
 
-        sensor_types = {SensorABC.TYPE_POINT: PointSensor}
+        sensor_types = {
+            SensorABC.TYPE_POINT: PointSensor,
+            SensorABC.TYPE_CIRCLE: CircleSensor,
+        }
         return sensor_types[sensor_type](**kwargs)
