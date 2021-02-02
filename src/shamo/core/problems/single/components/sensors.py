@@ -60,11 +60,10 @@ class CompSensors(CompABC):
         point = []
         real = []
         for s in self["sensors"]:
-            data = {"sensor": sensors[s].point.group}
             if sensors[s].sensor_type == SensorABC.TYPE_POINT:
-                point.append(data)
-            else:
-                real.append(data)
+                point.append({"sensor": sensors[s].point.group})
+            elif sensors[s].sensor_type in [SensorABC.TYPE_CIRCLE]:
+                real.append({"sensor": sensors[s].surf.group})
         return {"point": point, "real": real}
 
     def to_py_param(self, **kwargs):
