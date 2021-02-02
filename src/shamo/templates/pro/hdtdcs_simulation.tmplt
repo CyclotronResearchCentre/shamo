@@ -4,6 +4,7 @@ Group {
 
 {% include "dom_active.tmplt" %}
     dom_active_point = Region[{ source_point }];
+    dom_active_real = Region[{ source_real, sink_real }];
 }
 
 Function {
@@ -13,7 +14,9 @@ Function {
 }
 
 Constraint {
-    { Name set_local_potential; Type Assign; Case { { Region sink; Value 0.; } } }
+    { Name set_local_potential; Type Assign; Case { { Region sink_point; Value 0.; } } }
+    { Name set_global_potential; Type Assign; Case { { Region sink_real; Value 0.; } } }
+    { Name set_global_current; Type Assign; Case { { Region source_real; Value {{ current }}; } } }
 }
 
 FunctionSpace {
@@ -22,11 +25,29 @@ FunctionSpace {
         BasisFunction {
             {
                 Name sn; NameOfCoef vn; Function BF_Node;
-                Support Region[{ dom, dom_active_point }]; Entity NodesOf[ All ];
+                Support Region[{ dom, dom_active_point, dom_active_real }];
+                Entity NodesOf[ All, Not dom_active_real ];
             }
+            {
+                Name sf; NameOfCoef vf; Function BF_GroupOfNodes;
+                Support Region[{ dom, dom_active_point, dom_active_real }];
+                Entity GroupsOfNodesOf[ dom_active_real ];
+            }
+        }
+        GlobalQuantity {
+            { Name global_potential; Type AliasOf; NameOfCoef vf; }
+            { Name global_current; Type AssociatedWith; NameOfCoef vf; }
         }
         Constraint {
             { NameOfCoef vn; EntityType NodesOf; NameOfConstraint set_local_potential; }
+            {
+                NameOfCoef global_potential; EntityType GroupsOfNodesOf;
+                NameOfConstraint set_global_potential;
+            }
+            {
+                NameOfCoef global_current; EntityType GroupsOfNodesOf;
+                NameOfConstraint set_global_current;
+            }
         }
     }
 }
@@ -40,6 +61,8 @@ Formulation {
         Name form; Type FemEquation;
         Quantity {
             { Name v; Type Local; NameOfSpace func_space; }
+            { Name U; Type Global; NameOfSpace func_space[ global_potential ]; }
+            { Name I; Type Global; NameOfSpace func_space[ global_current ]; }
         }
         Equation {
             Integral {
@@ -49,6 +72,10 @@ Formulation {
             Integral {
                 [ -current[] , { v } ];
                 In dom_active_point; Jacobian jac_vol; Integration int;
+            }
+            GlobalTerm {
+                [ -Dof{ I } , { U } ];
+                In dom_active_real;
             }
         }
     }
@@ -80,6 +107,8 @@ PostProcessing {
             {{ post_pro.j() }}
             {{ post_pro.mag_j() }}
             {{ post_pro.e() }}
+            {{ post_pro.U() }}
+            {{ post_pro.I() }}
         }
     }
 }
