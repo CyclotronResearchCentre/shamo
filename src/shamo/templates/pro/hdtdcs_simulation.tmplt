@@ -3,17 +3,17 @@ Group {
 {% include "dom.tmplt" %}
 
 {% include "dom_active.tmplt" %}
-    dom_active = Region[{ source }];
+    dom_active_point = Region[{ source_point }];
 }
 
 Function {
     {% include "sigma.tmplt" %}
 
-    current[source] = {{ current }};
+    current[source_point] = {{ current }};
 }
 
 Constraint {
-    { Name set_potential; Type Assign; Case { { Region sink; Value 0.; } } }
+    { Name set_local_potential; Type Assign; Case { { Region sink; Value 0.; } } }
 }
 
 FunctionSpace {
@@ -22,11 +22,11 @@ FunctionSpace {
         BasisFunction {
             {
                 Name sn; NameOfCoef vn; Function BF_Node;
-                Support Region[{ dom, dom_active }]; Entity NodesOf[ All ];
+                Support Region[{ dom, dom_active_point }]; Entity NodesOf[ All ];
             }
         }
         Constraint {
-            { NameOfCoef vn; EntityType NodesOf; NameOfConstraint set_potential; }
+            { NameOfCoef vn; EntityType NodesOf; NameOfConstraint set_local_potential; }
         }
     }
 }
@@ -48,7 +48,7 @@ Formulation {
             }
             Integral {
                 [ -current[] , { v } ];
-                In dom_active; Jacobian jac_vol; Integration int;
+                In dom_active_point; Jacobian jac_vol; Integration int;
             }
         }
     }
@@ -79,6 +79,7 @@ PostProcessing {
             {{ post_pro.v() }}
             {{ post_pro.j() }}
             {{ post_pro.mag_j() }}
+            {{ post_pro.e() }}
         }
     }
 }
@@ -91,6 +92,7 @@ PostOperation {
             {{ post_op.pos("v") }}
             {{ post_op.pos("j") }}
             {{ post_op.pos("mag_j") }}
+            {{ post_op.pos("e") }}
         }
     }
 }
