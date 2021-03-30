@@ -766,7 +766,7 @@ class FEM(ObjDir):
         tissue : str
             The name of the tissue the sensor must be added on.
         radius : float
-            The radius of the sensor [mm].
+            The radius of the sensor [m].
 
         Raises
         ------
@@ -885,7 +885,7 @@ class FEM(ObjDir):
         tissue : str
             The name of the tissue the sensor is on.
         radius : float
-            The radius of the sensor [mm].
+            The radius of the sensor [m].
         """
         for n, c in coords.items():
             self.add_circle_sensor_on(n, c, tissue, radius)
@@ -900,7 +900,7 @@ class FEM(ObjDir):
         tissue : str
             The name of the tissue the sensor is on.
         radius : float
-            The radius of the sensor [mm].
+            The radius of the sensor [m].
         """
         tsv_path = Path(tsv_path)
         data = np.genfromtxt(
