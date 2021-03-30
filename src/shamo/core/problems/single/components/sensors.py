@@ -2,6 +2,7 @@
 import logging
 
 from .abc import CompABC
+from shamo.core import SensorABC
 
 logger = logging.getLogger(__name__)
 
@@ -47,7 +48,7 @@ class CompSensors(CompABC):
 
         Returns
         -------
-        list [dict [str, int]]
+        dict [str, list [dict [str, int]]]
             The sensors names and physical points.
 
         Other Parameters
@@ -56,7 +57,14 @@ class CompSensors(CompABC):
             The sensors of the model.
         """
         sensors = kwargs.get("sensors", {})
-        return [{"sensor": sensors[s].point.group} for s in self["sensors"]]
+        point = []
+        real = []
+        for s in self["sensors"]:
+            if sensors[s].sensor_type == SensorABC.TYPE_POINT:
+                point.append({"sensor": sensors[s].point.group})
+            elif sensors[s].sensor_type in [SensorABC.TYPE_CIRCLE]:
+                real.append({"sensor": sensors[s].surf.group})
+        return {"point": point, "real": real}
 
     def to_py_param(self, **kwargs):
         """Return the list of sensor names.

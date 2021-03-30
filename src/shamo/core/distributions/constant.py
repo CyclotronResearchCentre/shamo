@@ -15,7 +15,7 @@ class DistConstant(DistABC):
     """
 
     def __init__(self, val):
-        super().__init__("constant")
+        super().__init__(self.TYPE_CONSTANT)
         self.update({"val": val})
 
     @property

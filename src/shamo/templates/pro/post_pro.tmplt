@@ -13,3 +13,11 @@
 {% macro mag_j() -%}
     { Name mag_j; Value { Term { [ Norm[ -sigma[] * { d v } ] ]; In dom; Jacobian jac_vol; } } }
 {%- endmacro %}
+
+{% macro U() -%}
+    { Name U; Value { Term { [{ U }]; In dom_active_real; } } }
+{%- endmacro %}
+
+{% macro I() -%}
+    { Name I; Value { Term { [{ I }]; In dom_active_real; } } }
+{%- endmacro %}

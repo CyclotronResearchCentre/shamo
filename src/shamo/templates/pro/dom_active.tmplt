@@ -1,2 +1,9 @@
-    source = Region[{ {% for s in sources -%}{{ s.sensor }}{{ ", " if not loop.last }}{%- endfor %} }];
-    sink = Region[{ {% for s in sinks -%}{{ s.sensor }}{{ ", " if not loop.last }}{%- endfor %} }];
+    source_point = Region[{ {% for s in sources.point -%}{{ s.sensor }}{{ ", " if not loop.last }}{%- endfor %} }];
+    source_real = Region[{ {% for s in sources.real -%}{{ s.sensor }}{{ ", " if not loop.last }}{%- endfor %} }];
+
+    source = Region[{ source_point, source_real }];
+
+    sink_point = Region[{ {% for s in sinks.point -%}{{ s.sensor }}{{ ", " if not loop.last }}{%- endfor %} }];
+    sink_real = Region[{ {% for s in sinks.real -%}{{ s.sensor }}{{ ", " if not loop.last }}{%- endfor %} }];
+
+    sink = Region[{ sink_point, sink_real }];

@@ -16,7 +16,7 @@ class DistNormal(DistABC):
     """
 
     def __init__(self, mu, sigma):
-        super().__init__("normal")
+        super().__init__(self.TYPE_NORMAL)
         self.update({"mu": mu, "sigma": sigma})
 
     @property
@@ -100,7 +100,7 @@ class DistTruncNormal(DistABC):
     """
 
     def __init__(self, mu, sigma, lower, upper):
-        super().__init__("trunc_normal")
+        super().__init__(self.TYPE_TRUNC_NORMAL)
         self.update({"mu": mu, "sigma": sigma, "lower": lower, "upper": upper})
 
     @property
