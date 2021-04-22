@@ -7,4 +7,3 @@ HD-tDCS
    tutorials/code/hd_tdcs/hd_tdcs_simulation.ipynb
    tutorials/code/hd_tdcs/hd_tdcs_simulation_sensor_circle.ipynb
    tutorials/code/hd_tdcs/hd_tdcs_param_simulation.ipynb
-   tutorials/code/hd_tdcs/hd_tdcs_param_simulation_surr-nii.ipynb
