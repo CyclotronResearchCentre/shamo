@@ -9,3 +9,4 @@ Mesh generation
    tutorials/code/fem/fem_from_surfaces_lc-default.ipynb
    tutorials/code/fem/fem_from_surfaces_lc-constant.ipynb
    tutorials/code/fem/fem_from_surfaces_lc-tissues.ipynb
+   tutorials/code/fem/fem_from_labels_sensors-circle.ipynb
