@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath("../../src"))
 # -- Project information -----------------------------------------------------
 
 project = "shamo"
-copyright = "2020, GIGA CRC In-Vivo Imaging"
+copyright = "2020-2021, GIGA CRC In-Vivo Imaging"
 author = "Martin Grignard <mar.grignard@uliege.be>"
 
 # The full version, including alpha/beta/rc tags
