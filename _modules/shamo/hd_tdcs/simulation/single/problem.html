@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>shamo.hd_tdcs.simulation.single.problem &mdash; shamo 1.0.0 documentation</title>
+  <title>shamo.hd_tdcs.simulation.single.problem &mdash; shamo 1.1.0 documentation</title>
   
 
   
@@ -101,10 +101,13 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../quickstart/usage/usage.html">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem.html">Finite element model creation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem.html#Mesh-generation">Mesh generation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem.html#Sensors-additions">Sensors additions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem.html#Field-addition">Field addition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../quickstart/usage/fem.html">Mesh generation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem_from_labels.html">Finite element model from labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem_from_fem.html">Finite element model from another model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-default.html">Finite element model from surfaces with default mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-constant.html">Finite element model from surfaces with constant mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-tissues.html">Finite element model from surfaces with per tissue mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem_from_labels_sensors-circle.html">Finite element model from labels</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../quickstart/usage/eeg.html">EEG</a><ul>
@@ -120,9 +123,11 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../quickstart/usage/hd_tdcs.html">HD-tDCS</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation.html">HD-tDCS simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation_sensor_circle.html">HD-tDCS simulation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_param_simulation.html">HD-tDCS parametric simulation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../quickstart/usage/logging.html">Logging</a></li>
 </ul>
 </li>
 </ul>
@@ -175,6 +180,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.core.surrogate.html">shamo.core.surrogate</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.core.surrogate.abc.html">shamo.core.surrogate.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.core.surrogate.masked_scalar.html">shamo.core.surrogate.masked_scalar</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.core.surrogate.scalar.html">shamo.core.surrogate.scalar</a></li>
 </ul>
 </li>
@@ -197,9 +203,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.logging.html">shamo.utils.logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.logging.stream_to_logger.html">shamo.utils.logging.stream_to_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.logging.subprocess_to_logger.html">shamo.utils.logging.subprocess_to_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.logging.StreamToLogger.html">shamo.utils.logging.StreamToLogger</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.onelab.html">shamo.utils.onelab</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.onelab.get_elems_coords.html">shamo.utils.onelab.get_elems_coords</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.onelab.get_elems_subset.html">shamo.utils.onelab.get_elems_subset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.onelab.gmsh_open.html">shamo.utils.onelab.gmsh_open</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.onelab.pos_to_nii.html">shamo.utils.onelab.pos_to_nii</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.onelab.read_vector_file.html">shamo.utils.onelab.read_vector_file</a></li>
 </ul>
@@ -342,10 +355,6 @@
         <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">tissues</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_vol</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">vol</span><span class="o">.</span><span class="n">group</span><span class="p">)</span>
         <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">shape</span><span class="p">]</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">use_grid</span><span class="p">:</span>
-            <span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">nii_path</span><span class="p">)</span>
-            <span class="n">mask</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">affine</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span> <span class="n">resize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="k">with</span> <span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_check_components</span><span class="p">(</span><span class="o">**</span><span class="n">model</span><span class="p">)</span>
@@ -362,7 +371,8 @@
             <span class="n">sol</span><span class="p">[</span><span class="s2">&quot;model_json_path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">get_relative_path</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">json_path</span><span class="p">))</span>
             <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">Path</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
                 <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">suffix</span> <span class="o">==</span> <span class="s2">&quot;.pos&quot;</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">nii_from_pos</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">path</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2">.nii&quot;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">use_grid</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">nii_from_pos</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">path</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2">.nii&quot;</span><span class="p">)</span>
                     <span class="n">p</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">path</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">sol</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">sol</span></div>
@@ -426,7 +436,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, GIGA CRC In-Vivo Imaging
+        &copy; Copyright 2020-2021, GIGA CRC In-Vivo Imaging
 
     </p>
   </div>

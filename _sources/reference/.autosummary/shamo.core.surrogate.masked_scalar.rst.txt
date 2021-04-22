@@ -1,0 +1,33 @@
+shamo.core.surrogate.masked\_scalar
+===================================
+
+.. automodule:: shamo.core.surrogate.masked_scalar
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      SurrMaskedScalar
+      SurrMaskedScalarNii
+   
+   
+
+   
+   
+   
+
+
+

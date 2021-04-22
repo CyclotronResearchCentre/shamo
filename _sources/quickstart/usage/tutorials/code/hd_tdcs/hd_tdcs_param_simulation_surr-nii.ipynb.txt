@@ -1,0 +1,88 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from shamo.hd_tdcs import SolParamHDTDCSSim\n",
+    "\n",
+    "solution = SolParamHDTDCSSim.load(\"../../derivatives/hd_tdcs_simulation/parametric/parametric.json\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from shamo import FEM\n",
+    "\n",
+    "model = FEM.load(solution.model_json_path)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import numpy as np\n",
+    "import nibabel as nib\n",
+    "\n",
+    "img = nib.load(model.path / f\"{model.name}.nii\")\n",
+    "data = img.get_fdata() == 2\n",
+    "mask = nib.Nifti1Image(data.astype(np.uint8), img.affine)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from shamo.core.surrogate import SurrMaskedScalarNii\n",
+    "\n",
+    "surrogate = SurrMaskedScalarNii.fit(\n",
+    "    \"hd_tdcs_param_simulation_surr-nii\",\n",
+    "    \"../../derivatives/hd_tdcs_simulation/\",\n",
+    "    solution,\n",
+    "    metric=np.mean,\n",
+    "    suffix=\"mag_j\",\n",
+    "    mask=mask\n",
+    ")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "s_i = surrogate.gen_sobol()"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "shamo",
+   "language": "python",
+   "name": "shamo"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

@@ -1,0 +1,6 @@
+shamo.utils.onelab.gmsh\_open
+=============================
+
+.. currentmodule:: shamo.utils.onelab
+
+.. autofunction:: gmsh_open

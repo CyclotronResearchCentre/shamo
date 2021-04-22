@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; shamo 1.0.0 documentation</title>
+  <title>Index &mdash; shamo 1.1.0 documentation</title>
   
 
   
@@ -101,10 +101,13 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart/usage/usage.html">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="quickstart/usage/tutorials/code/fem/fem.html">Finite element model creation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/fem/fem.html#Mesh-generation">Mesh generation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/fem/fem.html#Sensors-additions">Sensors additions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/fem/fem.html#Field-addition">Field addition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart/usage/fem.html">Mesh generation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/fem/fem_from_labels.html">Finite element model from labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/fem/fem_from_fem.html">Finite element model from another model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-default.html">Finite element model from surfaces with default mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-constant.html">Finite element model from surfaces with constant mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-tissues.html">Finite element model from surfaces with per tissue mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/fem/fem_from_labels_sensors-circle.html">Finite element model from labels</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="quickstart/usage/eeg.html">EEG</a><ul>
@@ -120,9 +123,11 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="quickstart/usage/hd_tdcs.html">HD-tDCS</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation.html">HD-tDCS simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation_sensor_circle.html">HD-tDCS simulation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_param_simulation.html">HD-tDCS parametric simulation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart/usage/logging.html">Logging</a></li>
 </ul>
 </li>
 </ul>
@@ -175,6 +180,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="reference/.autosummary/shamo.core.surrogate.html">shamo.core.surrogate</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.surrogate.abc.html">shamo.core.surrogate.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.surrogate.masked_scalar.html">shamo.core.surrogate.masked_scalar</a></li>
 <li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.core.surrogate.scalar.html">shamo.core.surrogate.scalar</a></li>
 </ul>
 </li>
@@ -197,9 +203,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="reference/.autosummary/shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/.autosummary/shamo.utils.logging.html">shamo.utils.logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.utils.logging.stream_to_logger.html">shamo.utils.logging.stream_to_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.utils.logging.subprocess_to_logger.html">shamo.utils.logging.subprocess_to_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.utils.logging.StreamToLogger.html">shamo.utils.logging.StreamToLogger</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="reference/.autosummary/shamo.utils.onelab.html">shamo.utils.onelab</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.utils.onelab.get_elems_coords.html">shamo.utils.onelab.get_elems_coords</a></li>
 <li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.utils.onelab.get_elems_subset.html">shamo.utils.onelab.get_elems_subset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.utils.onelab.gmsh_open.html">shamo.utils.onelab.gmsh_open</a></li>
 <li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.utils.onelab.pos_to_nii.html">shamo.utils.onelab.pos_to_nii</a></li>
 <li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.utils.onelab.read_vector_file.html">shamo.utils.onelab.read_vector_file</a></li>
 </ul>
@@ -298,6 +311,7 @@
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
  | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
  
 </div>
 <h2 id="A">A</h2>
@@ -309,12 +323,18 @@
         <li><a href="reference/.autosummary/shamo.core.problems.single.components.tissues.CompTissues.html#shamo.core.problems.single.components.tissues.CompTissues.add">(shamo.core.problems.single.components.tissues.CompTissues method)</a>
 </li>
       </ul></li>
-      <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.add_point_sensor">add_point_sensor() (shamo.core.fem.fem.FEM method)</a>
+      <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.add_circle_sensor_on">add_circle_sensor_on() (shamo.core.fem.fem.FEM method)</a>
 </li>
-      <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.add_point_sensors">add_point_sensors() (shamo.core.fem.fem.FEM method)</a>
+      <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.add_circle_sensors_from_tsv_on">add_circle_sensors_from_tsv_on() (shamo.core.fem.fem.FEM method)</a>
+</li>
+      <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.add_circle_sensors_on">add_circle_sensors_on() (shamo.core.fem.fem.FEM method)</a>
+</li>
+      <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.add_point_sensor">add_point_sensor() (shamo.core.fem.fem.FEM method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.add_point_sensors">add_point_sensors() (shamo.core.fem.fem.FEM method)</a>
+</li>
       <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.add_point_sensors_from_tsv">add_point_sensors_from_tsv() (shamo.core.fem.fem.FEM method)</a>
 </li>
       <li><a href="reference/.autosummary/shamo.core.problems.single.components.sensors.CompSensors.html#shamo.core.problems.single.components.sensors.CompSensors.adds">adds() (shamo.core.problems.single.components.sensors.CompSensors method)</a>
@@ -353,6 +373,8 @@
         <li><a href="reference/.autosummary/shamo.core.problems.single.components.tissues.CompTissues.html#shamo.core.problems.single.components.tissues.CompTissues.check">(shamo.core.problems.single.components.tissues.CompTissues method)</a>
 </li>
       </ul></li>
+      <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor">CircleSensor (class in shamo.core.fem.sensors.surface)</a>
+</li>
       <li><a href="reference/.autosummary/shamo.core.distributions.abc.DistABC.html#shamo.core.distributions.abc.DistABC.clear">clear() (shamo.core.distributions.abc.DistABC method)</a>
 
       <ul>
@@ -370,9 +392,13 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.group.Group.html#shamo.core.fem.group.Group.clear">(shamo.core.fem.group.Group method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.abc.SensorABC.html#shamo.core.fem.sensors.abc.SensorABC.clear">(shamo.core.fem.sensors.abc.SensorABC method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.clear">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
-        <li><a href="reference/.autosummary/shamo.core.fem.sensors.sensor.Sensor.html#shamo.core.fem.sensors.sensor.Sensor.clear">(shamo.core.fem.sensors.sensor.Sensor method)</a>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.clear">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.clear">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue.clear">(shamo.core.fem.tissue.Tissue method)</a>
 </li>
@@ -414,6 +440,10 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.clear">(shamo.core.surrogate.abc.SurrABC method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.clear">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.clear">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.clear">(shamo.core.surrogate.scalar.SurrScalar method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.clear">(shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield method)</a>
@@ -432,15 +462,21 @@
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.clear">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.clear">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.clear">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.clear">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.html#shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.clear">(shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.html#shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.clear">(shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim method)</a>
 </li>
       </ul></li>
-      <li><a href="reference/.autosummary/shamo.core.problems.single.components.abc.CompABC.html#shamo.core.problems.single.components.abc.CompABC">CompABC (class in shamo.core.problems.single.components.abc)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/.autosummary/shamo.core.problems.single.components.abc.CompABC.html#shamo.core.problems.single.components.abc.CompABC">CompABC (class in shamo.core.problems.single.components.abc)</a>
+</li>
       <li><a href="reference/.autosummary/shamo.core.problems.single.components.file_path.CompFilePath.html#shamo.core.problems.single.components.file_path.CompFilePath">CompFilePath (class in shamo.core.problems.single.components.file_path)</a>
 </li>
       <li><a href="reference/.autosummary/shamo.core.problems.single.components.grid_sampler.CompGridSampler.html#shamo.core.problems.single.components.grid_sampler.CompGridSampler">CompGridSampler (class in shamo.core.problems.single.components.grid_sampler)</a>
@@ -472,9 +508,13 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.group.Group.html#shamo.core.fem.group.Group.copy">(shamo.core.fem.group.Group method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.abc.SensorABC.html#shamo.core.fem.sensors.abc.SensorABC.copy">(shamo.core.fem.sensors.abc.SensorABC method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.copy">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
-        <li><a href="reference/.autosummary/shamo.core.fem.sensors.sensor.Sensor.html#shamo.core.fem.sensors.sensor.Sensor.copy">(shamo.core.fem.sensors.sensor.Sensor method)</a>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.copy">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.copy">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue.copy">(shamo.core.fem.tissue.Tissue method)</a>
 </li>
@@ -516,6 +556,10 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.copy">(shamo.core.surrogate.abc.SurrABC method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.copy">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.copy">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.copy">(shamo.core.surrogate.scalar.SurrScalar method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.copy">(shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield method)</a>
@@ -533,6 +577,12 @@
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim.copy">(shamo.hd_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.copy">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.copy">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.copy">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.copy">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.html#shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.copy">(shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim method)</a>
 </li>
@@ -642,13 +692,25 @@
       <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.fit">fit() (shamo.core.surrogate.abc.SurrABC class method)</a>
 
       <ul>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.fit">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar class method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.fit">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii class method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.fit">(shamo.core.surrogate.scalar.SurrScalar class method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield.html#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield.fit">(shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield class method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.html#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.fit">(shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef class method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.fit">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ class method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.fit">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ class method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.fit">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV class method)</a>
+</li>
       </ul></li>
+      <li><a href="reference/.autosummary/shamo.utils.logging.StreamToLogger.html#shamo.utils.logging.StreamToLogger.flush">flush() (shamo.utils.logging.StreamToLogger method)</a>
+</li>
       <li><a href="reference/.autosummary/shamo.core.fem.field.Field.html#shamo.core.fem.field.Field.formula">formula() (shamo.core.fem.field.Field property)</a>
 </li>
       <li><a href="reference/.autosummary/shamo.core.distributions.abc.DistABC.html#shamo.core.distributions.abc.DistABC.fromkeys">fromkeys() (shamo.core.distributions.abc.DistABC method)</a>
@@ -668,9 +730,13 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.group.Group.html#shamo.core.fem.group.Group.fromkeys">(shamo.core.fem.group.Group method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.abc.SensorABC.html#shamo.core.fem.sensors.abc.SensorABC.fromkeys">(shamo.core.fem.sensors.abc.SensorABC method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.fromkeys">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
-        <li><a href="reference/.autosummary/shamo.core.fem.sensors.sensor.Sensor.html#shamo.core.fem.sensors.sensor.Sensor.fromkeys">(shamo.core.fem.sensors.sensor.Sensor method)</a>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.fromkeys">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.fromkeys">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue.fromkeys">(shamo.core.fem.tissue.Tissue method)</a>
 </li>
@@ -712,6 +778,10 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.fromkeys">(shamo.core.surrogate.abc.SurrABC method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.fromkeys">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.fromkeys">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.fromkeys">(shamo.core.surrogate.scalar.SurrScalar method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.fromkeys">(shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield method)</a>
@@ -730,6 +800,12 @@
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.fromkeys">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.fromkeys">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.fromkeys">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.fromkeys">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.html#shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.fromkeys">(shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.html#shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.fromkeys">(shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim method)</a>
@@ -743,10 +819,20 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/.autosummary/shamo.core.fem.field.Field.html#shamo.core.fem.field.Field.gen_formula">gen_formula() (shamo.core.fem.field.Field method)</a>
 </li>
-      <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.gen_sobol">gen_sobol() (shamo.core.surrogate.scalar.SurrScalar method)</a>
+      <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.gen_sobol">gen_sobol() (shamo.core.surrogate.masked_scalar.SurrMaskedScalar method)</a>
 
       <ul>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.gen_sobol">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.gen_sobol">(shamo.core.surrogate.scalar.SurrScalar method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.html#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.gen_sobol">(shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.gen_sobol">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.gen_sobol">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.gen_sobol">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV method)</a>
 </li>
       </ul></li>
       <li><a href="reference/.autosummary/shamo.core.distributions.abc.DistABC.html#shamo.core.distributions.abc.DistABC.get">get() (shamo.core.distributions.abc.DistABC method)</a>
@@ -766,9 +852,13 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.group.Group.html#shamo.core.fem.group.Group.get">(shamo.core.fem.group.Group method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.abc.SensorABC.html#shamo.core.fem.sensors.abc.SensorABC.get">(shamo.core.fem.sensors.abc.SensorABC method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.get">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
-        <li><a href="reference/.autosummary/shamo.core.fem.sensors.sensor.Sensor.html#shamo.core.fem.sensors.sensor.Sensor.get">(shamo.core.fem.sensors.sensor.Sensor method)</a>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.get">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.get">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue.get">(shamo.core.fem.tissue.Tissue method)</a>
 </li>
@@ -810,6 +900,10 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.get">(shamo.core.surrogate.abc.SurrABC method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.get">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.get">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.get">(shamo.core.surrogate.scalar.SurrScalar method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.get">(shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield method)</a>
@@ -828,13 +922,17 @@
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.get">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.get">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.get">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.get">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.html#shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.get">(shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.html#shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.get">(shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/.autosummary/shamo.utils.onelab.get_elems_coords.html#shamo.utils.onelab.get_elems_coords">get_elems_coords() (in module shamo.utils.onelab)</a>
 </li>
       <li><a href="reference/.autosummary/shamo.utils.onelab.get_elems_subset.html#shamo.utils.onelab.get_elems_subset">get_elems_subset() (in module shamo.utils.onelab)</a>
@@ -842,15 +940,37 @@
       <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.get_gp">get_gp() (shamo.core.surrogate.abc.SurrABC method)</a>
 
       <ul>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.get_gp">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.get_gp">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.get_gp">(shamo.core.surrogate.scalar.SurrScalar method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield.html#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield.get_gp">(shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.html#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.get_gp">(shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.get_gp">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.get_gp">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.get_gp">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV method)</a>
+</li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/.autosummary/shamo.eeg.leadfield.single.solution.SolEEGLeadfield.html#shamo.eeg.leadfield.single.solution.SolEEGLeadfield.get_matrix">get_matrix() (shamo.eeg.leadfield.single.solution.SolEEGLeadfield method)</a>
 </li>
+      <li><a href="reference/.autosummary/shamo.core.solutions.parametric.abc.SolParamABC.html#shamo.core.solutions.parametric.abc.SolParamABC.get_params">get_params() (shamo.core.solutions.parametric.abc.SolParamABC method)</a>
+
+      <ul>
+        <li><a href="reference/.autosummary/shamo.core.solutions.parametric.getdp.SolParamGetDP.html#shamo.core.solutions.parametric.getdp.SolParamGetDP.get_params">(shamo.core.solutions.parametric.getdp.SolParamGetDP method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.get_params">(shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.get_params">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim method)</a>
+</li>
+      </ul></li>
       <li><a href="reference/.autosummary/shamo.utils.path.get_relative_path.html#shamo.utils.path.get_relative_path">get_relative_path() (in module shamo.utils.path)</a>
 
       <ul>
@@ -866,6 +986,10 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.get_relative_path">(shamo.core.surrogate.abc.SurrABC method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.get_relative_path">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.get_relative_path">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.get_relative_path">(shamo.core.surrogate.scalar.SurrScalar method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.get_relative_path">(shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield method)</a>
@@ -878,13 +1002,29 @@
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.get_relative_path">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.get_relative_path">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.get_relative_path">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.get_relative_path">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.html#shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.get_relative_path">(shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim method)</a>
 </li>
       </ul></li>
-      <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.get_sobol">get_sobol() (shamo.core.surrogate.scalar.SurrScalar method)</a>
+      <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.get_sobol">get_sobol() (shamo.core.surrogate.masked_scalar.SurrMaskedScalar method)</a>
 
       <ul>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.get_sobol">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.get_sobol">(shamo.core.surrogate.scalar.SurrScalar method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.html#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.get_sobol">(shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.get_sobol">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.get_sobol">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.get_sobol">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV method)</a>
 </li>
       </ul></li>
       <li><a href="reference/.autosummary/shamo.core.solutions.parametric.abc.SolParamABC.html#shamo.core.solutions.parametric.abc.SolParamABC.get_sub_file">get_sub_file() (shamo.core.solutions.parametric.abc.SolParamABC method)</a>
@@ -907,14 +1047,36 @@
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.get_sub_sols">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim method)</a>
 </li>
       </ul></li>
+      <li><a href="reference/.autosummary/shamo.core.solutions.parametric.abc.SolParamABC.html#shamo.core.solutions.parametric.abc.SolParamABC.get_x">get_x() (shamo.core.solutions.parametric.abc.SolParamABC method)</a>
+
+      <ul>
+        <li><a href="reference/.autosummary/shamo.core.solutions.parametric.getdp.SolParamGetDP.html#shamo.core.solutions.parametric.getdp.SolParamGetDP.get_x">(shamo.core.solutions.parametric.getdp.SolParamGetDP method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.get_x">(shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.get_x">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/.autosummary/shamo.utils.onelab.gmsh_open.html#shamo.utils.onelab.gmsh_open">gmsh_open() (in module shamo.utils.onelab)</a>
+</li>
       <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.gp_path">gp_path() (shamo.core.surrogate.abc.SurrABC property)</a>
 
       <ul>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.gp_path">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.gp_path">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii property)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.gp_path">(shamo.core.surrogate.scalar.SurrScalar property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield.html#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield.gp_path">(shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.html#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.gp_path">(shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.gp_path">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.gp_path">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.gp_path">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV property)</a>
 </li>
       </ul></li>
       <li><a href="reference/.autosummary/shamo.core.fem.group.Group.html#shamo.core.fem.group.Group">Group (class in shamo.core.fem.group)</a>
@@ -927,10 +1089,20 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.is_sobol_available">is_sobol_available() (shamo.core.surrogate.scalar.SurrScalar property)</a>
+      <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.is_sobol_available">is_sobol_available() (shamo.core.surrogate.masked_scalar.SurrMaskedScalar property)</a>
 
       <ul>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.is_sobol_available">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.is_sobol_available">(shamo.core.surrogate.scalar.SurrScalar property)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.html#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.is_sobol_available">(shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.is_sobol_available">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.is_sobol_available">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.is_sobol_available">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV property)</a>
 </li>
       </ul></li>
       <li><a href="reference/.autosummary/shamo.core.distributions.abc.DistABC.html#shamo.core.distributions.abc.DistABC.items">items() (shamo.core.distributions.abc.DistABC method)</a>
@@ -950,9 +1122,13 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.group.Group.html#shamo.core.fem.group.Group.items">(shamo.core.fem.group.Group method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.abc.SensorABC.html#shamo.core.fem.sensors.abc.SensorABC.items">(shamo.core.fem.sensors.abc.SensorABC method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.items">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
-        <li><a href="reference/.autosummary/shamo.core.fem.sensors.sensor.Sensor.html#shamo.core.fem.sensors.sensor.Sensor.items">(shamo.core.fem.sensors.sensor.Sensor method)</a>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.items">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.items">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue.items">(shamo.core.fem.tissue.Tissue method)</a>
 </li>
@@ -994,6 +1170,10 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.items">(shamo.core.surrogate.abc.SurrABC method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.items">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.items">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.items">(shamo.core.surrogate.scalar.SurrScalar method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.items">(shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield method)</a>
@@ -1011,6 +1191,12 @@
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim.items">(shamo.hd_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.items">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.items">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.items">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.items">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.html#shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.items">(shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim method)</a>
 </li>
@@ -1042,6 +1228,10 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.json_path">(shamo.core.surrogate.abc.SurrABC property)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.json_path">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.json_path">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii property)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.json_path">(shamo.core.surrogate.scalar.SurrScalar property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.json_path">(shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield property)</a>
@@ -1053,6 +1243,12 @@
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.single.solution.SolEEGLeadfield.html#shamo.eeg.leadfield.single.solution.SolEEGLeadfield.json_path">(shamo.eeg.leadfield.single.solution.SolEEGLeadfield property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.json_path">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.json_path">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.json_path">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.json_path">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.html#shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.json_path">(shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim property)</a>
 </li>
@@ -1080,9 +1276,13 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.group.Group.html#shamo.core.fem.group.Group.keys">(shamo.core.fem.group.Group method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.abc.SensorABC.html#shamo.core.fem.sensors.abc.SensorABC.keys">(shamo.core.fem.sensors.abc.SensorABC method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.keys">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
-        <li><a href="reference/.autosummary/shamo.core.fem.sensors.sensor.Sensor.html#shamo.core.fem.sensors.sensor.Sensor.keys">(shamo.core.fem.sensors.sensor.Sensor method)</a>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.keys">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.keys">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue.keys">(shamo.core.fem.tissue.Tissue method)</a>
 </li>
@@ -1124,6 +1324,10 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.keys">(shamo.core.surrogate.abc.SurrABC method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.keys">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.keys">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.keys">(shamo.core.surrogate.scalar.SurrScalar method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.keys">(shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield method)</a>
@@ -1141,6 +1345,12 @@
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim.keys">(shamo.hd_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.keys">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.keys">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.keys">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.keys">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.html#shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.keys">(shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim method)</a>
 </li>
@@ -1180,6 +1390,10 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.load">(shamo.core.surrogate.abc.SurrABC class method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.load">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar class method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.load">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii class method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.load">(shamo.core.surrogate.scalar.SurrScalar class method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.load">(shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield class method)</a>
@@ -1191,6 +1405,12 @@
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.single.solution.SolEEGLeadfield.html#shamo.eeg.leadfield.single.solution.SolEEGLeadfield.load">(shamo.eeg.leadfield.single.solution.SolEEGLeadfield class method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.load">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim class method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.load">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ class method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.load">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ class method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.load">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV class method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.html#shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.load">(shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim class method)</a>
 </li>
@@ -1221,15 +1441,27 @@
 </li>
       <li><a href="reference/.autosummary/shamo.eeg.leadfield.single.solution.SolEEGLeadfield.html#shamo.eeg.leadfield.single.solution.SolEEGLeadfield.matrix_path">matrix_path() (shamo.eeg.leadfield.single.solution.SolEEGLeadfield property)</a>
 </li>
-      <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.mesh_coords">mesh_coords() (shamo.core.fem.sensors.point.PointSensor property)</a>
+      <li><a href="reference/.autosummary/shamo.core.fem.sensors.abc.SensorABC.html#shamo.core.fem.sensors.abc.SensorABC.mesh_coords">mesh_coords() (shamo.core.fem.sensors.abc.SensorABC property)</a>
+
+      <ul>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.mesh_coords">(shamo.core.fem.sensors.point.PointSensor property)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.mesh_coords">(shamo.core.fem.sensors.surface.CircleSensor property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.mesh_coords">(shamo.core.fem.sensors.surface.SurfSensorABC property)</a>
+</li>
+      </ul></li>
       <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.mesh_from_array">mesh_from_array() (shamo.core.fem.fem.FEM method)</a>
+</li>
+      <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.mesh_from_fem">mesh_from_fem() (shamo.core.fem.fem.FEM method)</a>
 </li>
       <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.mesh_from_masks">mesh_from_masks() (shamo.core.fem.fem.FEM method)</a>
 </li>
       <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.mesh_from_nii">mesh_from_nii() (shamo.core.fem.fem.FEM method)</a>
 </li>
       <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.mesh_from_niis">mesh_from_niis() (shamo.core.fem.fem.FEM method)</a>
+</li>
+      <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.mesh_from_surfaces">mesh_from_surfaces() (shamo.core.fem.fem.FEM method)</a>
 </li>
       <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.mesh_params">mesh_params() (shamo.core.fem.fem.FEM property)</a>
 </li>
@@ -1279,9 +1511,11 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.html#module-shamo.core.fem.sensors">shamo.core.fem.sensors</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.abc.html#module-shamo.core.fem.sensors.abc">shamo.core.fem.sensors.abc</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.html#module-shamo.core.fem.sensors.point">shamo.core.fem.sensors.point</a>
 </li>
-        <li><a href="reference/.autosummary/shamo.core.fem.sensors.sensor.html#module-shamo.core.fem.sensors.sensor">shamo.core.fem.sensors.sensor</a>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.html#module-shamo.core.fem.sensors.surface">shamo.core.fem.sensors.surface</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.tissue.html#module-shamo.core.fem.tissue">shamo.core.fem.tissue</a>
 </li>
@@ -1343,6 +1577,8 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.html#module-shamo.core.surrogate.abc">shamo.core.surrogate.abc</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.html#module-shamo.core.surrogate.masked_scalar">shamo.core.surrogate.masked_scalar</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.html#module-shamo.core.surrogate.scalar">shamo.core.surrogate.scalar</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.html#module-shamo.eeg">shamo.eeg</a>
@@ -1373,6 +1609,8 @@
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.html#module-shamo.hd_tdcs.simulation.parametric.solution">shamo.hd_tdcs.simulation.parametric.solution</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.html#module-shamo.hd_tdcs.simulation.parametric.surrogate">shamo.hd_tdcs.simulation.parametric.surrogate</a>
+</li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.html#module-shamo.hd_tdcs.simulation.single">shamo.hd_tdcs.simulation.single</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.problem.html#module-shamo.hd_tdcs.simulation.single.problem">shamo.hd_tdcs.simulation.single.problem</a>
@@ -1380,6 +1618,8 @@
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.solution.html#module-shamo.hd_tdcs.simulation.single.solution">shamo.hd_tdcs.simulation.single.solution</a>
 </li>
         <li><a href="reference/.autosummary/shamo.utils.html#module-shamo.utils">shamo.utils</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.utils.logging.html#module-shamo.utils.logging">shamo.utils.logging</a>
 </li>
         <li><a href="reference/.autosummary/shamo.utils.onelab.html#module-shamo.utils.onelab">shamo.utils.onelab</a>
 </li>
@@ -1431,6 +1671,10 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.name">(shamo.core.surrogate.abc.SurrABC property)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.name">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.name">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii property)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.name">(shamo.core.surrogate.scalar.SurrScalar property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.name">(shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield property)</a>
@@ -1442,6 +1686,12 @@
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.single.solution.SolEEGLeadfield.html#shamo.eeg.leadfield.single.solution.SolEEGLeadfield.name">(shamo.eeg.leadfield.single.solution.SolEEGLeadfield property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.name">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.name">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.name">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.name">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.html#shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.name">(shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim property)</a>
 </li>
@@ -1477,11 +1727,21 @@
       <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.params">params() (shamo.core.surrogate.abc.SurrABC property)</a>
 
       <ul>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.params">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.params">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii property)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.params">(shamo.core.surrogate.scalar.SurrScalar property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield.html#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield.params">(shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.html#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.params">(shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.params">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.params">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.params">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV property)</a>
 </li>
       </ul></li>
       <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.parent_path">parent_path() (shamo.core.fem.fem.FEM property)</a>
@@ -1501,6 +1761,10 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.parent_path">(shamo.core.surrogate.abc.SurrABC property)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.parent_path">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.parent_path">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii property)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.parent_path">(shamo.core.surrogate.scalar.SurrScalar property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.parent_path">(shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield property)</a>
@@ -1512,6 +1776,12 @@
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.single.solution.SolEEGLeadfield.html#shamo.eeg.leadfield.single.solution.SolEEGLeadfield.parent_path">(shamo.eeg.leadfield.single.solution.SolEEGLeadfield property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.parent_path">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.parent_path">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.parent_path">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.parent_path">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.html#shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.parent_path">(shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim property)</a>
 </li>
@@ -1535,6 +1805,10 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.path">(shamo.core.surrogate.abc.SurrABC property)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.path">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.path">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii property)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.path">(shamo.core.surrogate.scalar.SurrScalar property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.path">(shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield property)</a>
@@ -1546,6 +1820,12 @@
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.single.solution.SolEEGLeadfield.html#shamo.eeg.leadfield.single.solution.SolEEGLeadfield.path">(shamo.eeg.leadfield.single.solution.SolEEGLeadfield property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.path">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.path">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.path">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.path">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.html#shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.path">(shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim property)</a>
 </li>
@@ -1571,9 +1851,13 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.group.Group.html#shamo.core.fem.group.Group.pop">(shamo.core.fem.group.Group method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.abc.SensorABC.html#shamo.core.fem.sensors.abc.SensorABC.pop">(shamo.core.fem.sensors.abc.SensorABC method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.pop">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
-        <li><a href="reference/.autosummary/shamo.core.fem.sensors.sensor.Sensor.html#shamo.core.fem.sensors.sensor.Sensor.pop">(shamo.core.fem.sensors.sensor.Sensor method)</a>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.pop">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.pop">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue.pop">(shamo.core.fem.tissue.Tissue method)</a>
 </li>
@@ -1615,6 +1899,10 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.pop">(shamo.core.surrogate.abc.SurrABC method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.pop">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.pop">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.pop">(shamo.core.surrogate.scalar.SurrScalar method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.pop">(shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield method)</a>
@@ -1632,6 +1920,12 @@
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim.pop">(shamo.hd_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.pop">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.pop">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.pop">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.pop">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.html#shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.pop">(shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim method)</a>
 </li>
@@ -1657,9 +1951,13 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.group.Group.html#shamo.core.fem.group.Group.popitem">(shamo.core.fem.group.Group method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.abc.SensorABC.html#shamo.core.fem.sensors.abc.SensorABC.popitem">(shamo.core.fem.sensors.abc.SensorABC method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.popitem">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
-        <li><a href="reference/.autosummary/shamo.core.fem.sensors.sensor.Sensor.html#shamo.core.fem.sensors.sensor.Sensor.popitem">(shamo.core.fem.sensors.sensor.Sensor method)</a>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.popitem">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.popitem">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue.popitem">(shamo.core.fem.tissue.Tissue method)</a>
 </li>
@@ -1701,6 +1999,10 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.popitem">(shamo.core.surrogate.abc.SurrABC method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.popitem">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.popitem">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.popitem">(shamo.core.surrogate.scalar.SurrScalar method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.popitem">(shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield method)</a>
@@ -1719,6 +2021,12 @@
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.popitem">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.popitem">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.popitem">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.popitem">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.html#shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.popitem">(shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.html#shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.popitem">(shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim method)</a>
@@ -1729,11 +2037,21 @@
       <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.predict">predict() (shamo.core.surrogate.abc.SurrABC method)</a>
 
       <ul>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.predict">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.predict">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.predict">(shamo.core.surrogate.scalar.SurrScalar method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield.html#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield.predict">(shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.html#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.predict">(shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.predict">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.predict">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.predict">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV method)</a>
 </li>
       </ul></li>
       <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield.html#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield.predict_sol">predict_sol() (shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield method)</a>
@@ -1760,18 +2078,28 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.radius">radius() (shamo.core.fem.sensors.surface.CircleSensor property)</a>
+</li>
       <li><a href="reference/.autosummary/shamo.utils.onelab.read_vector_file.html#shamo.utils.onelab.read_vector_file">read_vector_file() (in module shamo.utils.onelab)</a>
 </li>
-      <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.real_coords">real_coords() (shamo.core.fem.sensors.point.PointSensor property)</a>
+      <li><a href="reference/.autosummary/shamo.core.fem.sensors.abc.SensorABC.html#shamo.core.fem.sensors.abc.SensorABC.real_coords">real_coords() (shamo.core.fem.sensors.abc.SensorABC property)</a>
+
+      <ul>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.real_coords">(shamo.core.fem.sensors.point.PointSensor property)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.real_coords">(shamo.core.fem.sensors.surface.CircleSensor property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.real_coords">(shamo.core.fem.sensors.surface.SurfSensorABC property)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.reference">reference() (shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield property)</a>
 
       <ul>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.single.solution.SolEEGLeadfield.html#shamo.eeg.leadfield.single.solution.SolEEGLeadfield.reference">(shamo.eeg.leadfield.single.solution.SolEEGLeadfield property)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.references">references() (shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim property)</a>
 
       <ul>
@@ -1831,6 +2159,10 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.save">(shamo.core.surrogate.abc.SurrABC method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.save">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.save">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.save">(shamo.core.surrogate.scalar.SurrScalar method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.save">(shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield method)</a>
@@ -1843,17 +2175,27 @@
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.save">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.save">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.save">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.save">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.html#shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.save">(shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim method)</a>
 </li>
       </ul></li>
-      <li><a href="reference/.autosummary/shamo.core.fem.sensors.sensor.Sensor.html#shamo.core.fem.sensors.sensor.Sensor">Sensor (class in shamo.core.fem.sensors.sensor)</a>
-</li>
-      <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.sensor_type">sensor_type() (shamo.core.fem.sensors.point.PointSensor property)</a>
+      <li><a href="reference/.autosummary/shamo.core.fem.sensors.abc.SensorABC.html#shamo.core.fem.sensors.abc.SensorABC.sensor_type">sensor_type() (shamo.core.fem.sensors.abc.SensorABC property)</a>
 
       <ul>
-        <li><a href="reference/.autosummary/shamo.core.fem.sensors.sensor.Sensor.html#shamo.core.fem.sensors.sensor.Sensor.sensor_type">(shamo.core.fem.sensors.sensor.Sensor property)</a>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.sensor_type">(shamo.core.fem.sensors.point.PointSensor property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.sensor_type">(shamo.core.fem.sensors.surface.CircleSensor property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.sensor_type">(shamo.core.fem.sensors.surface.SurfSensorABC property)</a>
 </li>
       </ul></li>
+      <li><a href="reference/.autosummary/shamo.core.fem.sensors.abc.SensorABC.html#shamo.core.fem.sensors.abc.SensorABC">SensorABC (class in shamo.core.fem.sensors.abc)</a>
+</li>
       <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.sensors">sensors() (shamo.core.fem.fem.FEM property)</a>
 
       <ul>
@@ -1893,9 +2235,13 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.group.Group.html#shamo.core.fem.group.Group.setdefault">(shamo.core.fem.group.Group method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.abc.SensorABC.html#shamo.core.fem.sensors.abc.SensorABC.setdefault">(shamo.core.fem.sensors.abc.SensorABC method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.setdefault">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
-        <li><a href="reference/.autosummary/shamo.core.fem.sensors.sensor.Sensor.html#shamo.core.fem.sensors.sensor.Sensor.setdefault">(shamo.core.fem.sensors.sensor.Sensor method)</a>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.setdefault">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.setdefault">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue.setdefault">(shamo.core.fem.tissue.Tissue method)</a>
 </li>
@@ -1937,6 +2283,10 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.setdefault">(shamo.core.surrogate.abc.SurrABC method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.setdefault">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.setdefault">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.setdefault">(shamo.core.surrogate.scalar.SurrScalar method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.setdefault">(shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield method)</a>
@@ -1954,6 +2304,12 @@
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim.setdefault">(shamo.hd_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.setdefault">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.setdefault">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.setdefault">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.setdefault">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.html#shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.setdefault">(shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim method)</a>
 </li>
@@ -2058,6 +2414,13 @@
 </li>
       </ul></li>
       <li>
+    shamo.core.fem.sensors.abc
+
+      <ul>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.abc.html#module-shamo.core.fem.sensors.abc">module</a>
+</li>
+      </ul></li>
+      <li>
     shamo.core.fem.sensors.point
 
       <ul>
@@ -2065,10 +2428,10 @@
 </li>
       </ul></li>
       <li>
-    shamo.core.fem.sensors.sensor
+    shamo.core.fem.sensors.surface
 
       <ul>
-        <li><a href="reference/.autosummary/shamo.core.fem.sensors.sensor.html#module-shamo.core.fem.sensors.sensor">module</a>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.html#module-shamo.core.fem.sensors.surface">module</a>
 </li>
       </ul></li>
       <li>
@@ -2134,8 +2497,6 @@
         <li><a href="reference/.autosummary/shamo.core.problems.parametric.components.html#module-shamo.core.problems.parametric.components">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     shamo.core.problems.parametric.components.tissue_property
 
@@ -2150,6 +2511,8 @@
         <li><a href="reference/.autosummary/shamo.core.problems.parametric.components.value.html#module-shamo.core.problems.parametric.components.value">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     shamo.core.problems.parametric.getdp
 
@@ -2284,6 +2647,13 @@
 </li>
       </ul></li>
       <li>
+    shamo.core.surrogate.masked_scalar
+
+      <ul>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.html#module-shamo.core.surrogate.masked_scalar">module</a>
+</li>
+      </ul></li>
+      <li>
     shamo.core.surrogate.scalar
 
       <ul>
@@ -2389,6 +2759,13 @@
 </li>
       </ul></li>
       <li>
+    shamo.hd_tdcs.simulation.parametric.surrogate
+
+      <ul>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.html#module-shamo.hd_tdcs.simulation.parametric.surrogate">module</a>
+</li>
+      </ul></li>
+      <li>
     shamo.hd_tdcs.simulation.single
 
       <ul>
@@ -2414,6 +2791,13 @@
 
       <ul>
         <li><a href="reference/.autosummary/shamo.utils.html#module-shamo.utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    shamo.utils.logging
+
+      <ul>
+        <li><a href="reference/.autosummary/shamo.utils.logging.html#module-shamo.utils.logging">module</a>
 </li>
       </ul></li>
       <li>
@@ -2460,10 +2844,20 @@
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.html#shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.sigmas">(shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim property)</a>
 </li>
       </ul></li>
-      <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.sobol_path">sobol_path() (shamo.core.surrogate.scalar.SurrScalar property)</a>
+      <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.sobol_path">sobol_path() (shamo.core.surrogate.masked_scalar.SurrMaskedScalar property)</a>
 
       <ul>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.sobol_path">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.sobol_path">(shamo.core.surrogate.scalar.SurrScalar property)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.html#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.sobol_path">(shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.sobol_path">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.sobol_path">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.sobol_path">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV property)</a>
 </li>
       </ul></li>
       <li><a href="reference/.autosummary/shamo.eeg.leadfield.single.solution.SolEEGLeadfield.html#shamo.eeg.leadfield.single.solution.SolEEGLeadfield">SolEEGLeadfield (class in shamo.eeg.leadfield.single.solution)</a>
@@ -2506,6 +2900,10 @@
       </ul></li>
       <li><a href="reference/.autosummary/shamo.eeg.leadfield.single.solution.SolEEGLeadfield.html#shamo.eeg.leadfield.single.solution.SolEEGLeadfield.source_sp_path">source_sp_path() (shamo.eeg.leadfield.single.solution.SolEEGLeadfield property)</a>
 </li>
+      <li><a href="reference/.autosummary/shamo.utils.logging.stream_to_logger.html#shamo.utils.logging.stream_to_logger">stream_to_logger() (in module shamo.utils.logging)</a>
+</li>
+      <li><a href="reference/.autosummary/shamo.utils.logging.StreamToLogger.html#shamo.utils.logging.StreamToLogger">StreamToLogger (class in shamo.utils.logging)</a>
+</li>
       <li><a href="reference/.autosummary/shamo.core.solutions.parametric.abc.SolParamABC.html#shamo.core.solutions.parametric.abc.SolParamABC.sub_class">sub_class() (shamo.core.solutions.parametric.abc.SolParamABC property)</a>
 
       <ul>
@@ -2526,13 +2924,33 @@
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.sub_json_paths">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim property)</a>
 </li>
       </ul></li>
-      <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue.surf">surf() (shamo.core.fem.tissue.Tissue property)</a>
+      <li><a href="reference/.autosummary/shamo.utils.logging.subprocess_to_logger.html#shamo.utils.logging.subprocess_to_logger">subprocess_to_logger() (in module shamo.utils.logging)</a>
+</li>
+      <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.surf">surf() (shamo.core.fem.sensors.surface.CircleSensor property)</a>
+
+      <ul>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.surf">(shamo.core.fem.sensors.surface.SurfSensorABC property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue.surf">(shamo.core.fem.tissue.Tissue property)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC">SurfSensorABC (class in shamo.core.fem.sensors.surface)</a>
 </li>
       <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC">SurrABC (class in shamo.core.surrogate.abc)</a>
 </li>
       <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield.html#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfield">SurrEEGLeadfield (class in shamo.eeg.leadfield.parametric.surrogate)</a>
 </li>
       <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef.html#shamo.eeg.leadfield.parametric.surrogate.SurrEEGLeadfieldToRef">SurrEEGLeadfieldToRef (class in shamo.eeg.leadfield.parametric.surrogate)</a>
+</li>
+      <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar">SurrMaskedScalar (class in shamo.core.surrogate.masked_scalar)</a>
+</li>
+      <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii">SurrMaskedScalarNii (class in shamo.core.surrogate.masked_scalar)</a>
+</li>
+      <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ">SurrMaskedScalarNiiJ (class in shamo.hd_tdcs.simulation.parametric.surrogate)</a>
+</li>
+      <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ">SurrMaskedScalarNiiMagJ (class in shamo.hd_tdcs.simulation.parametric.surrogate)</a>
+</li>
+      <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV">SurrMaskedScalarNiiV (class in shamo.hd_tdcs.simulation.parametric.surrogate)</a>
 </li>
       <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar">SurrScalar (class in shamo.core.surrogate.scalar)</a>
 </li>
@@ -2560,10 +2978,14 @@
       </ul></li>
       <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue">Tissue (class in shamo.core.fem.tissue)</a>
 </li>
-      <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.tissue">tissue() (shamo.core.fem.sensors.point.PointSensor property)</a>
+      <li><a href="reference/.autosummary/shamo.core.fem.sensors.abc.SensorABC.html#shamo.core.fem.sensors.abc.SensorABC.tissue">tissue() (shamo.core.fem.sensors.abc.SensorABC property)</a>
 
       <ul>
-        <li><a href="reference/.autosummary/shamo.core.fem.sensors.sensor.Sensor.html#shamo.core.fem.sensors.sensor.Sensor.tissue">(shamo.core.fem.sensors.sensor.Sensor property)</a>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.tissue">(shamo.core.fem.sensors.point.PointSensor property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.tissue">(shamo.core.fem.sensors.surface.CircleSensor property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.tissue">(shamo.core.fem.sensors.surface.SurfSensorABC property)</a>
 </li>
       </ul></li>
       <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.tissues">tissues() (shamo.core.fem.fem.FEM property)</a>
@@ -2574,6 +2996,8 @@
         <li><a href="reference/.autosummary/shamo.core.problems.parametric.components.value.CompParamValue.html#shamo.core.problems.parametric.components.value.CompParamValue.to_param">(shamo.core.problems.parametric.components.value.CompParamValue method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/.autosummary/shamo.core.problems.parametric.components.tissue_property.CompParamTissueProp.html#shamo.core.problems.parametric.components.tissue_property.CompParamTissueProp.to_pro_param">to_pro_param() (shamo.core.problems.parametric.components.tissue_property.CompParamTissueProp method)</a>
 
       <ul>
@@ -2592,8 +3016,6 @@
         <li><a href="reference/.autosummary/shamo.core.problems.single.components.tissues.CompTissues.html#shamo.core.problems.single.components.tissues.CompTissues.to_pro_param">(shamo.core.problems.single.components.tissues.CompTissues method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/.autosummary/shamo.core.problems.parametric.components.tissue_property.CompParamTissueProp.html#shamo.core.problems.parametric.components.tissue_property.CompParamTissueProp.to_py_param">to_py_param() (shamo.core.problems.parametric.components.tissue_property.CompParamTissueProp method)</a>
 
       <ul>
@@ -2647,9 +3069,13 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.group.Group.html#shamo.core.fem.group.Group.update">(shamo.core.fem.group.Group method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.abc.SensorABC.html#shamo.core.fem.sensors.abc.SensorABC.update">(shamo.core.fem.sensors.abc.SensorABC method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.update">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
-        <li><a href="reference/.autosummary/shamo.core.fem.sensors.sensor.Sensor.html#shamo.core.fem.sensors.sensor.Sensor.update">(shamo.core.fem.sensors.sensor.Sensor method)</a>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.update">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.update">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue.update">(shamo.core.fem.tissue.Tissue method)</a>
 </li>
@@ -2691,6 +3117,10 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.update">(shamo.core.surrogate.abc.SurrABC method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.update">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.update">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.update">(shamo.core.surrogate.scalar.SurrScalar method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.update">(shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield method)</a>
@@ -2708,6 +3138,12 @@
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim.update">(shamo.hd_tdcs.simulation.parametric.problem.ProbParamHDTDCSSim method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.update">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.update">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.update">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.update">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.html#shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.update">(shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim method)</a>
 </li>
@@ -2761,9 +3197,13 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.group.Group.html#shamo.core.fem.group.Group.values">(shamo.core.fem.group.Group method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.abc.SensorABC.html#shamo.core.fem.sensors.abc.SensorABC.values">(shamo.core.fem.sensors.abc.SensorABC method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.values">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
-        <li><a href="reference/.autosummary/shamo.core.fem.sensors.sensor.Sensor.html#shamo.core.fem.sensors.sensor.Sensor.values">(shamo.core.fem.sensors.sensor.Sensor method)</a>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.values">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.values">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue.values">(shamo.core.fem.tissue.Tissue method)</a>
 </li>
@@ -2805,6 +3245,10 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.abc.SurrABC.html#shamo.core.surrogate.abc.SurrABC.values">(shamo.core.surrogate.abc.SurrABC method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalar.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalar.values">(shamo.core.surrogate.masked_scalar.SurrMaskedScalar method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.html#shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii.values">(shamo.core.surrogate.masked_scalar.SurrMaskedScalarNii method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.surrogate.scalar.SurrScalar.html#shamo.core.surrogate.scalar.SurrScalar.values">(shamo.core.surrogate.scalar.SurrScalar method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield.values">(shamo.eeg.leadfield.parametric.problem.ProbParamEEGLeadfield method)</a>
@@ -2823,6 +3267,12 @@
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.html#shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim.values">(shamo.hd_tdcs.simulation.parametric.solution.SolParamHDTDCSSim method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ.values">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ.values">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiMagJ method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.html#shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV.values">(shamo.hd_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiV method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.html#shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim.values">(shamo.hd_tdcs.simulation.single.problem.ProbHDTDCSSim method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.html#shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.values">(shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim method)</a>
@@ -2833,6 +3283,14 @@
       <li><a href="reference/.autosummary/shamo.core.fem.field.Field.html#shamo.core.fem.field.Field.view">view() (shamo.core.fem.field.Field property)</a>
 </li>
       <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue.vol">vol() (shamo.core.fem.tissue.Tissue property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/.autosummary/shamo.utils.logging.StreamToLogger.html#shamo.utils.logging.StreamToLogger.write">write() (shamo.utils.logging.StreamToLogger method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -2850,7 +3308,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, GIGA CRC In-Vivo Imaging
+        &copy; Copyright 2020-2021, GIGA CRC In-Vivo Imaging
 
     </p>
   </div>

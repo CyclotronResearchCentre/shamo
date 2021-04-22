@@ -16,6 +16,9 @@ shamo.core.fem.fem.FEM
    .. autosummary::
       :nosignatures:
    
+      ~FEM.add_circle_sensor_on
+      ~FEM.add_circle_sensors_from_tsv_on
+      ~FEM.add_circle_sensors_on
       ~FEM.add_point_sensor
       ~FEM.add_point_sensor_in
       ~FEM.add_point_sensor_on
@@ -37,9 +40,11 @@ shamo.core.fem.fem.FEM
       ~FEM.keys
       ~FEM.load
       ~FEM.mesh_from_array
+      ~FEM.mesh_from_fem
       ~FEM.mesh_from_masks
       ~FEM.mesh_from_nii
       ~FEM.mesh_from_niis
+      ~FEM.mesh_from_surfaces
       ~FEM.pop
       ~FEM.popitem
       ~FEM.save

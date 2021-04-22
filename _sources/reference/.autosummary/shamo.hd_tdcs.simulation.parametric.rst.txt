@@ -28,4 +28,5 @@ shamo.hd\_tdcs.simulation.parametric
 
    shamo.hd_tdcs.simulation.parametric.problem
    shamo.hd_tdcs.simulation.parametric.solution
+   shamo.hd_tdcs.simulation.parametric.surrogate
 

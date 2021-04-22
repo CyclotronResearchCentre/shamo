@@ -17,6 +17,7 @@ shamo.utils.onelab
    
       get_elems_coords
       get_elems_subset
+      gmsh_open
       pos_to_nii
       read_vector_file
    

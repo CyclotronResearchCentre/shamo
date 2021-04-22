@@ -1,0 +1,6 @@
+shamo.utils.logging.stream\_to\_logger
+======================================
+
+.. currentmodule:: shamo.utils.logging
+
+.. autofunction:: stream_to_logger

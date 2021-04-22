@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>shamo.utils.onelab.pos_to_nii &mdash; shamo 1.0.0 documentation</title>
+  <title>shamo.utils.onelab.pos_to_nii &mdash; shamo 1.1.0 documentation</title>
   
 
   
@@ -41,7 +41,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="shamo.utils.onelab.read_vector_file" href="shamo.utils.onelab.read_vector_file.html" />
-    <link rel="prev" title="shamo.utils.onelab.get_elems_subset" href="shamo.utils.onelab.get_elems_subset.html" /> 
+    <link rel="prev" title="shamo.utils.onelab.gmsh_open" href="shamo.utils.onelab.gmsh_open.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -103,10 +103,13 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../quickstart/usage/usage.html">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem.html">Finite element model creation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem.html#Mesh-generation">Mesh generation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem.html#Sensors-additions">Sensors additions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem.html#Field-addition">Field addition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/fem.html">Mesh generation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem_from_labels.html">Finite element model from labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem_from_fem.html">Finite element model from another model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-default.html">Finite element model from surfaces with default mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-constant.html">Finite element model from surfaces with constant mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-tissues.html">Finite element model from surfaces with per tissue mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem_from_labels_sensors-circle.html">Finite element model from labels</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/eeg.html">EEG</a><ul>
@@ -122,9 +125,11 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/hd_tdcs.html">HD-tDCS</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation.html">HD-tDCS simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation_sensor_circle.html">HD-tDCS simulation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_param_simulation.html">HD-tDCS parametric simulation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/logging.html">Logging</a></li>
 </ul>
 </li>
 </ul>
@@ -177,6 +182,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="shamo.core.surrogate.html">shamo.core.surrogate</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="shamo.core.surrogate.abc.html">shamo.core.surrogate.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.surrogate.masked_scalar.html">shamo.core.surrogate.masked_scalar</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shamo.core.surrogate.scalar.html">shamo.core.surrogate.scalar</a></li>
 </ul>
 </li>
@@ -199,9 +205,16 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="shamo.utils.html">shamo.utils</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="shamo.utils.logging.html">shamo.utils.logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.logging.stream_to_logger.html">shamo.utils.logging.stream_to_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.logging.subprocess_to_logger.html">shamo.utils.logging.subprocess_to_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.logging.StreamToLogger.html">shamo.utils.logging.StreamToLogger</a></li>
+</ul>
+</li>
 <li class="toctree-l3 current"><a class="reference internal" href="shamo.utils.onelab.html">shamo.utils.onelab</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.onelab.get_elems_coords.html">shamo.utils.onelab.get_elems_coords</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.onelab.get_elems_subset.html">shamo.utils.onelab.get_elems_subset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.onelab.gmsh_open.html">shamo.utils.onelab.gmsh_open</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">shamo.utils.onelab.pos_to_nii</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.onelab.read_vector_file.html">shamo.utils.onelab.read_vector_file</a></li>
 </ul>
@@ -322,11 +335,11 @@
 </dd>
 <dt><strong>dst</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the output NII file.</p>
 </dd>
-<dt><strong>affine</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The affine matrix of the NII volume.</p>
+<dt><strong>affine</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The affine matrix of the NII volume.</p>
 </dd>
 <dt><strong>shape</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]</span></dt><dd><p>The shape of the NII volume.</p>
 </dd>
-<dt><strong>mask</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>If not set to <code class="docutils literal notranslate"><span class="pre">None</span></code>, the mask is applied to the field.</p>
+<dt><strong>mask</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>If not set to <code class="docutils literal notranslate"><span class="pre">None</span></code>, the mask is applied to the field.</p>
 </dd>
 </dl>
 </dd>
@@ -352,7 +365,7 @@
         <a href="shamo.utils.onelab.read_vector_file.html" class="btn btn-neutral float-right" title="shamo.utils.onelab.read_vector_file" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="shamo.utils.onelab.get_elems_subset.html" class="btn btn-neutral float-left" title="shamo.utils.onelab.get_elems_subset" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="shamo.utils.onelab.gmsh_open.html" class="btn btn-neutral float-left" title="shamo.utils.onelab.gmsh_open" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -362,7 +375,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, GIGA CRC In-Vivo Imaging
+        &copy; Copyright 2020-2021, GIGA CRC In-Vivo Imaging
 
     </p>
   </div>

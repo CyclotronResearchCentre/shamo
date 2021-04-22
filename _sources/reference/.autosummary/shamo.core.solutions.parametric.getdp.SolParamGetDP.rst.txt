@@ -21,9 +21,11 @@ shamo.core.solutions.parametric.getdp.SolParamGetDP
       ~SolParamGetDP.finalize
       ~SolParamGetDP.fromkeys
       ~SolParamGetDP.get
+      ~SolParamGetDP.get_params
       ~SolParamGetDP.get_relative_path
       ~SolParamGetDP.get_sub_file
       ~SolParamGetDP.get_sub_sols
+      ~SolParamGetDP.get_x
       ~SolParamGetDP.items
       ~SolParamGetDP.keys
       ~SolParamGetDP.load

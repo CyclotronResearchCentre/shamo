@@ -1,0 +1,41 @@
+shamo.utils.logging
+===================
+
+.. automodule:: shamo.utils.logging
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+   
+      stream_to_logger
+      subprocess_to_logger
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      StreamToLogger
+   
+   
+
+   
+   
+   
+
+
+

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>shamo.eeg.leadfield.single.problem &mdash; shamo 1.0.0 documentation</title>
+  <title>shamo.eeg.leadfield.single.problem &mdash; shamo 1.1.0 documentation</title>
   
 
   
@@ -101,10 +101,13 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../quickstart/usage/usage.html">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem.html">Finite element model creation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem.html#Mesh-generation">Mesh generation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem.html#Sensors-additions">Sensors additions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem.html#Field-addition">Field addition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../quickstart/usage/fem.html">Mesh generation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem_from_labels.html">Finite element model from labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem_from_fem.html">Finite element model from another model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-default.html">Finite element model from surfaces with default mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-constant.html">Finite element model from surfaces with constant mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-tissues.html">Finite element model from surfaces with per tissue mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/fem/fem_from_labels_sensors-circle.html">Finite element model from labels</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../quickstart/usage/eeg.html">EEG</a><ul>
@@ -120,9 +123,11 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../quickstart/usage/hd_tdcs.html">HD-tDCS</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation.html">HD-tDCS simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation_sensor_circle.html">HD-tDCS simulation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_param_simulation.html">HD-tDCS parametric simulation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../quickstart/usage/logging.html">Logging</a></li>
 </ul>
 </li>
 </ul>
@@ -175,6 +180,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.core.surrogate.html">shamo.core.surrogate</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.core.surrogate.abc.html">shamo.core.surrogate.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.core.surrogate.masked_scalar.html">shamo.core.surrogate.masked_scalar</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.core.surrogate.scalar.html">shamo.core.surrogate.scalar</a></li>
 </ul>
 </li>
@@ -197,9 +203,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.logging.html">shamo.utils.logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.logging.stream_to_logger.html">shamo.utils.logging.stream_to_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.logging.subprocess_to_logger.html">shamo.utils.logging.subprocess_to_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.logging.StreamToLogger.html">shamo.utils.logging.StreamToLogger</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.onelab.html">shamo.utils.onelab</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.onelab.get_elems_coords.html">shamo.utils.onelab.get_elems_coords</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.onelab.get_elems_subset.html">shamo.utils.onelab.get_elems_subset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.onelab.gmsh_open.html">shamo.utils.onelab.gmsh_open</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.onelab.pos_to_nii.html">shamo.utils.onelab.pos_to_nii</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.onelab.read_vector_file.html">shamo.utils.onelab.read_vector_file</a></li>
 </ul>
@@ -296,6 +309,7 @@
     <span class="n">CompTissues</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">shamo.utils.onelab</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">gmsh_open</span><span class="p">,</span>
     <span class="n">read_vector_file</span><span class="p">,</span>
     <span class="n">get_elems_coords</span><span class="p">,</span>
     <span class="n">get_elems_subset</span><span class="p">,</span>
@@ -377,13 +391,11 @@
 
         <span class="k">with</span> <span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_elems_dist</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">gmsh</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
-                <span class="n">gmsh</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">mesh_path</span><span class="p">))</span>
-                <span class="n">entities</span> <span class="o">=</span> <span class="p">[]</span>
-                <span class="k">for</span> <span class="n">roi</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rois</span><span class="p">[</span><span class="s2">&quot;tissues&quot;</span><span class="p">]:</span>
-                    <span class="n">entities</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">tissues</span><span class="p">[</span><span class="n">roi</span><span class="p">]</span><span class="o">.</span><span class="n">vol</span><span class="o">.</span><span class="n">entities</span><span class="p">)</span>
-                <span class="n">tags</span><span class="p">,</span> <span class="n">coords</span> <span class="o">=</span> <span class="n">get_elems_subset</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_elems_dist</span><span class="p">)</span>
-                <span class="n">gmsh</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+                <span class="k">with</span> <span class="n">gmsh_open</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">mesh_path</span><span class="p">,</span> <span class="n">logger</span><span class="p">)</span> <span class="k">as</span> <span class="n">gmsh</span><span class="p">:</span>
+                    <span class="n">entities</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">for</span> <span class="n">roi</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rois</span><span class="p">[</span><span class="s2">&quot;tissues&quot;</span><span class="p">]:</span>
+                        <span class="n">entities</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">tissues</span><span class="p">[</span><span class="n">roi</span><span class="p">]</span><span class="o">.</span><span class="n">vol</span><span class="o">.</span><span class="n">entities</span><span class="p">)</span>
+                    <span class="n">tags</span><span class="p">,</span> <span class="n">coords</span> <span class="o">=</span> <span class="n">get_elems_subset</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_elems_dist</span><span class="p">)</span>
                 <span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;source_sp.npz&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">coords</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">elems_path</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;source_sp.npz&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_check_components</span><span class="p">(</span><span class="o">**</span><span class="n">model</span><span class="p">)</span>
@@ -459,10 +471,8 @@
             <span class="n">elem_type</span><span class="p">,</span> <span class="n">elems_tags</span><span class="p">,</span> <span class="n">row</span> <span class="o">=</span> <span class="n">read_vector_file</span><span class="p">(</span><span class="n">tmp_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.e&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">elems_path</span><span class="o">.</span><span class="n">use_path</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Acquiring elements coordinates.&quot;</span><span class="p">)</span>
-                <span class="n">gmsh</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
-                <span class="n">gmsh</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">mesh_path</span><span class="p">))</span>
-                <span class="n">coords</span> <span class="o">=</span> <span class="n">get_elems_coords</span><span class="p">(</span><span class="n">elem_type</span><span class="p">,</span> <span class="n">elems_tags</span><span class="p">)</span>
-                <span class="n">gmsh</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+                <span class="k">with</span> <span class="n">gmsh_open</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">mesh_path</span><span class="p">,</span> <span class="n">logger</span><span class="p">)</span> <span class="k">as</span> <span class="n">gmsh</span><span class="p">:</span>
+                    <span class="n">coords</span> <span class="o">=</span> <span class="n">get_elems_coords</span><span class="p">(</span><span class="n">elem_type</span><span class="p">,</span> <span class="n">elems_tags</span><span class="p">)</span>
                 <span class="n">source_sp</span> <span class="o">=</span> <span class="p">(</span><span class="n">elems_tags</span><span class="p">,</span> <span class="n">coords</span><span class="p">)</span>
             <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">elems_path</span><span class="o">.</span><span class="n">use_path</span><span class="p">:</span>
                 <span class="n">row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_row_for_elems</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">elems_tags</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">source_sp</span><span class="p">)</span>
@@ -571,10 +581,8 @@
 <span class="sd">            The names of the active sensors.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Generating right hand sides.&quot;</span><span class="p">)</span>
-        <span class="n">gmsh</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
-        <span class="n">gmsh</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">mesh_path</span><span class="p">))</span>
-        <span class="n">n_nodes</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">getNodes</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span>
-        <span class="n">gmsh</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">gmsh_open</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">mesh_path</span><span class="p">,</span> <span class="n">logger</span><span class="p">)</span> <span class="k">as</span> <span class="n">gmsh</span><span class="p">:</span>
+            <span class="n">n_nodes</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">getNodes</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span>
         <span class="n">ref_row_idx</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="p">[</span><span class="s2">&quot;sensors&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">node</span> <span class="o">-</span> <span class="mi">1</span>
         <span class="n">sensors</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
@@ -602,7 +610,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, GIGA CRC In-Vivo Imaging
+        &copy; Copyright 2020-2021, GIGA CRC In-Vivo Imaging
 
     </p>
   </div>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>shamo.utils.onelab &mdash; shamo 1.0.0 documentation</title>
+  <title>shamo.utils.onelab &mdash; shamo 1.1.0 documentation</title>
   
 
   
@@ -101,10 +101,13 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../quickstart/usage/usage.html">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../quickstart/usage/tutorials/code/fem/fem.html">Finite element model creation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/tutorials/code/fem/fem.html#Mesh-generation">Mesh generation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/tutorials/code/fem/fem.html#Sensors-additions">Sensors additions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/tutorials/code/fem/fem.html#Field-addition">Field addition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart/usage/fem.html">Mesh generation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/tutorials/code/fem/fem_from_labels.html">Finite element model from labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/tutorials/code/fem/fem_from_fem.html">Finite element model from another model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-default.html">Finite element model from surfaces with default mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-constant.html">Finite element model from surfaces with constant mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-tissues.html">Finite element model from surfaces with per tissue mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/tutorials/code/fem/fem_from_labels_sensors-circle.html">Finite element model from labels</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../quickstart/usage/eeg.html">EEG</a><ul>
@@ -120,9 +123,11 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../quickstart/usage/hd_tdcs.html">HD-tDCS</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation.html">HD-tDCS simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation_sensor_circle.html">HD-tDCS simulation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_param_simulation.html">HD-tDCS parametric simulation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart/usage/logging.html">Logging</a></li>
 </ul>
 </li>
 </ul>
@@ -175,6 +180,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../reference/.autosummary/shamo.core.surrogate.html">shamo.core.surrogate</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/.autosummary/shamo.core.surrogate.abc.html">shamo.core.surrogate.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/.autosummary/shamo.core.surrogate.masked_scalar.html">shamo.core.surrogate.masked_scalar</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/.autosummary/shamo.core.surrogate.scalar.html">shamo.core.surrogate.scalar</a></li>
 </ul>
 </li>
@@ -197,9 +203,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../reference/.autosummary/shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/.autosummary/shamo.utils.logging.html">shamo.utils.logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/.autosummary/shamo.utils.logging.stream_to_logger.html">shamo.utils.logging.stream_to_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/.autosummary/shamo.utils.logging.subprocess_to_logger.html">shamo.utils.logging.subprocess_to_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/.autosummary/shamo.utils.logging.StreamToLogger.html">shamo.utils.logging.StreamToLogger</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../reference/.autosummary/shamo.utils.onelab.html">shamo.utils.onelab</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/.autosummary/shamo.utils.onelab.get_elems_coords.html">shamo.utils.onelab.get_elems_coords</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/.autosummary/shamo.utils.onelab.get_elems_subset.html">shamo.utils.onelab.get_elems_subset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/.autosummary/shamo.utils.onelab.gmsh_open.html">shamo.utils.onelab.gmsh_open</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/.autosummary/shamo.utils.onelab.pos_to_nii.html">shamo.utils.onelab.pos_to_nii</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/.autosummary/shamo.utils.onelab.read_vector_file.html">shamo.utils.onelab.read_vector_file</a></li>
 </ul>
@@ -277,12 +290,40 @@
             
   <h1>Source code for shamo.utils.onelab</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;API for `shamo.utils.onelab`.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+<span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 <span class="kn">import</span> <span class="nn">gmsh</span>
 <span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">cdist</span>
+
+<span class="kn">from</span> <span class="nn">.logging</span> <span class="kn">import</span> <span class="n">stream_to_logger</span>
+
+<span class="n">LOG_PATTERN</span> <span class="o">=</span> <span class="s2">&quot;((?P&lt;level&gt;[\w]*)|(?P&lt;percentage&gt;[ \d]</span><span class="si">{3}</span><span class="s2">%)) +: (?P&lt;text&gt;.*)&quot;</span>
+
+
+<div class="viewcode-block" id="gmsh_open"><a class="viewcode-back" href="../../../reference/.autosummary/shamo.utils.onelab.gmsh_open.html#shamo.utils.onelab.gmsh_open">[docs]</a><span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">gmsh_open</span><span class="p">(</span><span class="n">mesh_path</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A context manager where Gmsh is initialized and its output is piped.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mesh_path :</span>
+<span class="sd">        The path to the mesh file to open.</span>
+<span class="sd">    logger : logging.Logger, optional</span>
+<span class="sd">        The logger to use. (The default is ``None``)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">stream_to_logger</span><span class="p">(</span><span class="n">logger</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="n">LOG_PATTERN</span><span class="p">):</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;General.Verbosity&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;General.Terminal&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">mesh_path</span><span class="p">)))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">gmsh</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">gmsh</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="read_vector_file"><a class="viewcode-back" href="../../../reference/.autosummary/shamo.utils.onelab.read_vector_file.html#shamo.utils.onelab.read_vector_file">[docs]</a><span class="k">def</span> <span class="nf">read_vector_file</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
@@ -417,34 +458,30 @@
     <span class="n">u</span> <span class="o">=</span> <span class="n">affine</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
     <span class="n">v</span> <span class="o">=</span> <span class="n">affine</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
     <span class="n">w</span> <span class="o">=</span> <span class="n">affine</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;General.Terminal&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;General.Verbosity&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;Mesh.Binary&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">src</span><span class="p">)))</span>
-    <span class="c1"># Set plugin parameters</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;X0&quot;</span><span class="p">,</span> <span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;Y0&quot;</span><span class="p">,</span> <span class="n">o</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;Z0&quot;</span><span class="p">,</span> <span class="n">o</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;Y1&quot;</span><span class="p">,</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;Z1&quot;</span><span class="p">,</span> <span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;Y2&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;Z2&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;X3&quot;</span><span class="p">,</span> <span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;Y3&quot;</span><span class="p">,</span> <span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;Z3&quot;</span><span class="p">,</span> <span class="n">w</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;Boundary&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;NumPointsU&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;NumPointsV&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;NumPointsW&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="c1"># Run plugin</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">)</span>
-    <span class="c1"># Get field data</span>
-    <span class="n">dtype</span><span class="p">,</span> <span class="n">n_elems</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getListData</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">dst</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Path</span><span class="p">(</span><span class="n">dst</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2">_grid.pos&quot;</span><span class="p">))</span>
-    <span class="n">gmsh</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">gmsh_open</span><span class="p">(</span><span class="n">src</span><span class="p">)</span> <span class="k">as</span> <span class="n">gmsh</span><span class="p">:</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;Mesh.Binary&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Set plugin parameters</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;X0&quot;</span><span class="p">,</span> <span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;Y0&quot;</span><span class="p">,</span> <span class="n">o</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;Z0&quot;</span><span class="p">,</span> <span class="n">o</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;Y1&quot;</span><span class="p">,</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;Z1&quot;</span><span class="p">,</span> <span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;Y2&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;Z2&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;X3&quot;</span><span class="p">,</span> <span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;Y3&quot;</span><span class="p">,</span> <span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;Z3&quot;</span><span class="p">,</span> <span class="n">w</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;Boundary&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;NumPointsU&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;NumPointsV&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">,</span> <span class="s2">&quot;NumPointsW&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Run plugin</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">)</span>
+        <span class="c1"># Get field data</span>
+        <span class="n">dtype</span><span class="p">,</span> <span class="n">n_elems</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getListData</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">dst</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Path</span><span class="p">(</span><span class="n">dst</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2">_grid.pos&quot;</span><span class="p">))</span>
     <span class="n">n_elems</span> <span class="o">=</span> <span class="n">n_elems</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_elems</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
@@ -472,7 +509,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, GIGA CRC In-Vivo Imaging
+        &copy; Copyright 2020-2021, GIGA CRC In-Vivo Imaging
 
     </p>
   </div>

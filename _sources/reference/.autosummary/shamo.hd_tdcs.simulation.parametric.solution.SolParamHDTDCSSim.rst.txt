@@ -21,9 +21,11 @@ shamo.hd\_tdcs.simulation.parametric.solution.SolParamHDTDCSSim
       ~SolParamHDTDCSSim.finalize
       ~SolParamHDTDCSSim.fromkeys
       ~SolParamHDTDCSSim.get
+      ~SolParamHDTDCSSim.get_params
       ~SolParamHDTDCSSim.get_relative_path
       ~SolParamHDTDCSSim.get_sub_file
       ~SolParamHDTDCSSim.get_sub_sols
+      ~SolParamHDTDCSSim.get_x
       ~SolParamHDTDCSSim.items
       ~SolParamHDTDCSSim.keys
       ~SolParamHDTDCSSim.load

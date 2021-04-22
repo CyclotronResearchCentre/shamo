@@ -1,0 +1,32 @@
+shamo.utils.logging.StreamToLogger
+==================================
+
+.. currentmodule:: shamo.utils.logging
+
+.. autoclass:: StreamToLogger
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~StreamToLogger.flush
+      ~StreamToLogger.write
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~StreamToLogger.pattern
+   
+   

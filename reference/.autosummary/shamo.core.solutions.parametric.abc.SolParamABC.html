@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>shamo.core.solutions.parametric.abc.SolParamABC &mdash; shamo 1.0.0 documentation</title>
+  <title>shamo.core.solutions.parametric.abc.SolParamABC &mdash; shamo 1.1.0 documentation</title>
   
 
   
@@ -103,10 +103,13 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../quickstart/usage/usage.html">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem.html">Finite element model creation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem.html#Mesh-generation">Mesh generation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem.html#Sensors-additions">Sensors additions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem.html#Field-addition">Field addition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/fem.html">Mesh generation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem_from_labels.html">Finite element model from labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem_from_fem.html">Finite element model from another model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-default.html">Finite element model from surfaces with default mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-constant.html">Finite element model from surfaces with constant mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-tissues.html">Finite element model from surfaces with per tissue mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem_from_labels_sensors-circle.html">Finite element model from labels</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/eeg.html">EEG</a><ul>
@@ -122,9 +125,11 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/hd_tdcs.html">HD-tDCS</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation.html">HD-tDCS simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation_sensor_circle.html">HD-tDCS simulation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_param_simulation.html">HD-tDCS parametric simulation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/logging.html">Logging</a></li>
 </ul>
 </li>
 </ul>
@@ -177,6 +182,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="shamo.core.surrogate.html">shamo.core.surrogate</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="shamo.core.surrogate.abc.html">shamo.core.surrogate.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.surrogate.masked_scalar.html">shamo.core.surrogate.masked_scalar</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shamo.core.surrogate.scalar.html">shamo.core.surrogate.scalar</a></li>
 </ul>
 </li>
@@ -199,9 +205,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shamo.utils.logging.html">shamo.utils.logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.logging.stream_to_logger.html">shamo.utils.logging.stream_to_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.logging.subprocess_to_logger.html">shamo.utils.logging.subprocess_to_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.logging.StreamToLogger.html">shamo.utils.logging.StreamToLogger</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="shamo.utils.onelab.html">shamo.utils.onelab</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.onelab.get_elems_coords.html">shamo.utils.onelab.get_elems_coords</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.onelab.get_elems_subset.html">shamo.utils.onelab.get_elems_subset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.onelab.gmsh_open.html">shamo.utils.onelab.gmsh_open</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.onelab.pos_to_nii.html">shamo.utils.onelab.pos_to_nii</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.onelab.read_vector_file.html">shamo.utils.onelab.read_vector_file</a></li>
 </ul>
@@ -358,14 +371,20 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.solutions.parametric.abc.SolParamABC.get" title="shamo.core.solutions.parametric.abc.SolParamABC.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code></a></p></td>
 <td><p>Return the value for key if key is in the dictionary, else default.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.solutions.parametric.abc.SolParamABC.get_relative_path" title="shamo.core.solutions.parametric.abc.SolParamABC.get_relative_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_relative_path</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.solutions.parametric.abc.SolParamABC.get_params" title="shamo.core.solutions.parametric.abc.SolParamABC.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a></p></td>
+<td><p>Return the random parameters of the solution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.solutions.parametric.abc.SolParamABC.get_relative_path" title="shamo.core.solutions.parametric.abc.SolParamABC.get_relative_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_relative_path</span></code></a></p></td>
 <td><p>Return the relative path from the object to a file or directory.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.solutions.parametric.abc.SolParamABC.get_sub_file" title="shamo.core.solutions.parametric.abc.SolParamABC.get_sub_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_sub_file</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.solutions.parametric.abc.SolParamABC.get_sub_file" title="shamo.core.solutions.parametric.abc.SolParamABC.get_sub_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_sub_file</span></code></a></p></td>
 <td><p>Return the relative paths to the same file in all the sub-solutions.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.solutions.parametric.abc.SolParamABC.get_sub_sols" title="shamo.core.solutions.parametric.abc.SolParamABC.get_sub_sols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_sub_sols</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.solutions.parametric.abc.SolParamABC.get_sub_sols" title="shamo.core.solutions.parametric.abc.SolParamABC.get_sub_sols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_sub_sols</span></code></a></p></td>
 <td><p>Return the sub-solutions.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.solutions.parametric.abc.SolParamABC.get_x" title="shamo.core.solutions.parametric.abc.SolParamABC.get_x"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_x</span></code></a></p></td>
+<td><p>Return the value of the random parameters in the sub solution.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.solutions.parametric.abc.SolParamABC.items" title="shamo.core.solutions.parametric.abc.SolParamABC.items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></a></p></td>
 <td><p></p></td>
@@ -452,6 +471,19 @@
 </dd></dl>
 
 <dl class="py method">
+<dt id="shamo.core.solutions.parametric.abc.SolParamABC.get_params">
+<em class="property">abstract </em><code class="sig-name descname">get_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/shamo/core/solutions/parametric/abc.html#SolParamABC.get_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shamo.core.solutions.parametric.abc.SolParamABC.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the random parameters of the solution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">list</span></code></a> [ <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">list</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Any</span></code>]]</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="shamo.core.solutions.parametric.abc.SolParamABC.get_relative_path">
 <code class="sig-name descname">get_relative_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#shamo.core.solutions.parametric.abc.SolParamABC.get_relative_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the relative path from the object to a file or directory.</p>
@@ -494,6 +526,19 @@
 <dd class="field-odd"><dl class="simple">
 <dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">list</span></code></a> [<code class="xref py py-obj docutils literal notranslate"><span class="pre">shamo.core.objects.ObjDir</span></code>]</dt><dd><p>The sub-solutions.</p>
 </dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.core.solutions.parametric.abc.SolParamABC.get_x">
+<em class="property">abstract </em><code class="sig-name descname">get_x</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sub_sol</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/shamo/core/solutions/parametric/abc.html#SolParamABC.get_x"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shamo.core.solutions.parametric.abc.SolParamABC.get_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the value of the random parameters in the sub solution.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>sub_sol</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shamo.core.solutions.SolABC</span></code></span></dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -696,7 +741,7 @@ In either case, this is followed by: for k in F:  D[k] = F[k]</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, GIGA CRC In-Vivo Imaging
+        &copy; Copyright 2020-2021, GIGA CRC In-Vivo Imaging
 
     </p>
   </div>

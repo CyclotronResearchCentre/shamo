@@ -1,0 +1,49 @@
+shamo.core.fem.sensors.surface.CircleSensor
+===========================================
+
+.. currentmodule:: shamo.core.fem.sensors.surface
+
+.. autoclass:: CircleSensor
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~CircleSensor.clear
+      ~CircleSensor.copy
+      ~CircleSensor.fromkeys
+      ~CircleSensor.get
+      ~CircleSensor.items
+      ~CircleSensor.keys
+      ~CircleSensor.load
+      ~CircleSensor.pop
+      ~CircleSensor.popitem
+      ~CircleSensor.setdefault
+      ~CircleSensor.update
+      ~CircleSensor.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~CircleSensor.TYPE_CIRCLE
+      ~CircleSensor.TYPE_POINT
+      ~CircleSensor.mesh_coords
+      ~CircleSensor.radius
+      ~CircleSensor.real_coords
+      ~CircleSensor.sensor_type
+      ~CircleSensor.surf
+      ~CircleSensor.tissue
+   
+   

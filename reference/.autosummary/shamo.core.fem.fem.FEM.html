@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>shamo.core.fem.fem.FEM &mdash; shamo 1.0.0 documentation</title>
+  <title>shamo.core.fem.fem.FEM &mdash; shamo 1.1.0 documentation</title>
   
 
   
@@ -103,10 +103,13 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../quickstart/usage/usage.html">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem.html">Finite element model creation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem.html#Mesh-generation">Mesh generation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem.html#Sensors-additions">Sensors additions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem.html#Field-addition">Field addition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/fem.html">Mesh generation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem_from_labels.html">Finite element model from labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem_from_fem.html">Finite element model from another model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-default.html">Finite element model from surfaces with default mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-constant.html">Finite element model from surfaces with constant mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem_from_surfaces_lc-tissues.html">Finite element model from surfaces with per tissue mesh size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/fem/fem_from_labels_sensors-circle.html">Finite element model from labels</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/eeg.html">EEG</a><ul>
@@ -122,9 +125,11 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/hd_tdcs.html">HD-tDCS</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation.html">HD-tDCS simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_simulation_sensor_circle.html">HD-tDCS simulation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../quickstart/usage/tutorials/code/hd_tdcs/hd_tdcs_param_simulation.html">HD-tDCS parametric simulation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart/usage/logging.html">Logging</a></li>
 </ul>
 </li>
 </ul>
@@ -177,6 +182,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="shamo.core.surrogate.html">shamo.core.surrogate</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="shamo.core.surrogate.abc.html">shamo.core.surrogate.abc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.core.surrogate.masked_scalar.html">shamo.core.surrogate.masked_scalar</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shamo.core.surrogate.scalar.html">shamo.core.surrogate.scalar</a></li>
 </ul>
 </li>
@@ -199,9 +205,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shamo.utils.logging.html">shamo.utils.logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.logging.stream_to_logger.html">shamo.utils.logging.stream_to_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.logging.subprocess_to_logger.html">shamo.utils.logging.subprocess_to_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.logging.StreamToLogger.html">shamo.utils.logging.StreamToLogger</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="shamo.utils.onelab.html">shamo.utils.onelab</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.onelab.get_elems_coords.html">shamo.utils.onelab.get_elems_coords</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.onelab.get_elems_subset.html">shamo.utils.onelab.get_elems_subset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.onelab.gmsh_open.html">shamo.utils.onelab.gmsh_open</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.onelab.pos_to_nii.html">shamo.utils.onelab.pos_to_nii</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.onelab.read_vector_file.html">shamo.utils.onelab.read_vector_file</a></li>
 </ul>
@@ -335,68 +348,80 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.add_point_sensor" title="shamo.core.fem.fem.FEM.add_point_sensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensor</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.add_circle_sensor_on" title="shamo.core.fem.fem.FEM.add_circle_sensor_on"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_circle_sensor_on</span></code></a></p></td>
+<td><p>Add a circle sensor on a surface.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.add_circle_sensors_from_tsv_on" title="shamo.core.fem.fem.FEM.add_circle_sensors_from_tsv_on"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_circle_sensors_from_tsv_on</span></code></a></p></td>
+<td><p>Add multiple circle sensors to the mesh from a TSV file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.add_circle_sensors_on" title="shamo.core.fem.fem.FEM.add_circle_sensors_on"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_circle_sensors_on</span></code></a></p></td>
+<td><p>Add multiple circle sensors to the mesh.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.add_point_sensor" title="shamo.core.fem.fem.FEM.add_point_sensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensor</span></code></a></p></td>
 <td><p>Add a point sensor to the mesh.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensor_in</span></code></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensor_in</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensor_on</span></code></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensor_on</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.add_point_sensors" title="shamo.core.fem.fem.FEM.add_point_sensors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensors</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.add_point_sensors" title="shamo.core.fem.fem.FEM.add_point_sensors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensors</span></code></a></p></td>
 <td><p>Add multiple point sensors to the mesh.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.add_point_sensors_from_tsv" title="shamo.core.fem.fem.FEM.add_point_sensors_from_tsv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensors_from_tsv</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.add_point_sensors_from_tsv" title="shamo.core.fem.fem.FEM.add_point_sensors_from_tsv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensors_from_tsv</span></code></a></p></td>
 <td><p>Add multiple point sensors to the mesh from a TSV file.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensors_from_tsv_in</span></code></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensors_from_tsv_in</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensors_from_tsv_on</span></code></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensors_from_tsv_on</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensors_in</span></code></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensors_in</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensors_on</span></code></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensors_on</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.clear" title="shamo.core.fem.fem.FEM.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.clear" title="shamo.core.fem.fem.FEM.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.copy" title="shamo.core.fem.fem.FEM.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.copy" title="shamo.core.fem.fem.FEM.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.field_from_array" title="shamo.core.fem.fem.FEM.field_from_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_from_array</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.field_from_array" title="shamo.core.fem.fem.FEM.field_from_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_from_array</span></code></a></p></td>
 <td><p>Add a field to the mesh from an array.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.field_from_elems" title="shamo.core.fem.fem.FEM.field_from_elems"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_from_elems</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.field_from_elems" title="shamo.core.fem.fem.FEM.field_from_elems"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_from_elems</span></code></a></p></td>
 <td><p>Add a field to the mesh from element data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.field_from_nii" title="shamo.core.fem.fem.FEM.field_from_nii"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_from_nii</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.field_from_nii" title="shamo.core.fem.fem.FEM.field_from_nii"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_from_nii</span></code></a></p></td>
 <td><p>Add a field to the mesh from a NIFTI image.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.fromkeys" title="shamo.core.fem.fem.FEM.fromkeys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fromkeys</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.fromkeys" title="shamo.core.fem.fem.FEM.fromkeys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fromkeys</span></code></a></p></td>
 <td><p>Create a new dictionary with keys from iterable and values set to value.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.get" title="shamo.core.fem.fem.FEM.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.get" title="shamo.core.fem.fem.FEM.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code></a></p></td>
 <td><p>Return the value for key if key is in the dictionary, else default.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.get_relative_path" title="shamo.core.fem.fem.FEM.get_relative_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_relative_path</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.get_relative_path" title="shamo.core.fem.fem.FEM.get_relative_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_relative_path</span></code></a></p></td>
 <td><p>Return the relative path from the object to a file or directory.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.items" title="shamo.core.fem.fem.FEM.items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.items" title="shamo.core.fem.fem.FEM.items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.keys" title="shamo.core.fem.fem.FEM.keys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.keys" title="shamo.core.fem.fem.FEM.keys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.load" title="shamo.core.fem.fem.FEM.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.load" title="shamo.core.fem.fem.FEM.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a></p></td>
 <td><p>Load an object from a JSON file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.mesh_from_array" title="shamo.core.fem.fem.FEM.mesh_from_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_from_array</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.mesh_from_array" title="shamo.core.fem.fem.FEM.mesh_from_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_from_array</span></code></a></p></td>
 <td><p>Generate a MSH file from a labelled array.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.mesh_from_fem" title="shamo.core.fem.fem.FEM.mesh_from_fem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_from_fem</span></code></a></p></td>
+<td><p>Generate a mesh from an existing FEM by merging tissues.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.mesh_from_masks" title="shamo.core.fem.fem.FEM.mesh_from_masks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_from_masks</span></code></a></p></td>
 <td><p>Generate a MSH file from multiple binary masks.</p></td>
@@ -407,22 +432,25 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.mesh_from_niis" title="shamo.core.fem.fem.FEM.mesh_from_niis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_from_niis</span></code></a></p></td>
 <td><p>Generate a MSH file from multiple binary masks.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.pop" title="shamo.core.fem.fem.FEM.pop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.mesh_from_surfaces" title="shamo.core.fem.fem.FEM.mesh_from_surfaces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_from_surfaces</span></code></a></p></td>
+<td><p>Generate a mesh from a series of surface meshes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.pop" title="shamo.core.fem.fem.FEM.pop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code></a></p></td>
 <td><p>If key is not found, d is returned if given, otherwise KeyError is raised</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.popitem" title="shamo.core.fem.fem.FEM.popitem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">popitem</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.popitem" title="shamo.core.fem.fem.FEM.popitem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">popitem</span></code></a></p></td>
 <td><p>Remove and return a (key, value) pair as a 2-tuple.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.save" title="shamo.core.fem.fem.FEM.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.save" title="shamo.core.fem.fem.FEM.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a></p></td>
 <td><p>Save the object to a JSON file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.setdefault" title="shamo.core.fem.fem.FEM.setdefault"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setdefault</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.setdefault" title="shamo.core.fem.fem.FEM.setdefault"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setdefault</span></code></a></p></td>
 <td><p>Insert key with a value of default if key is not in the dictionary.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.update" title="shamo.core.fem.fem.FEM.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.update" title="shamo.core.fem.fem.FEM.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a></p></td>
 <td><p>If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k] If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v In either case, this is followed by: for k in F:  D[k] = F[k]</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.values" title="shamo.core.fem.fem.FEM.values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">values</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.values" title="shamo.core.fem.fem.FEM.values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">values</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -470,6 +498,72 @@
 </tbody>
 </table>
 <dl class="py method">
+<dt id="shamo.core.fem.fem.FEM.add_circle_sensor_on">
+<code class="sig-name descname">add_circle_sensor_on</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">coords</span></em>, <em class="sig-param"><span class="n">tissue</span></em>, <em class="sig-param"><span class="n">radius</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/shamo/core/fem/fem.html#FEM.add_circle_sensor_on"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shamo.core.fem.fem.FEM.add_circle_sensor_on" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a circle sensor on a surface.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the sensor.</p>
+</dd>
+<dt><strong>coords</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]</span></dt><dd><p>The coordinates of the sensor in the subject space.</p>
+</dd>
+<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the tissue the sensor must be added on.</p>
+</dd>
+<dt><strong>radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The radius of the sensor [m].</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If a sensor with name <cite>name</cite> already exists.
+If the coordinates are not a 3D location.
+If the tissue <cite>tissue</cite> does not exist in the model.</p>
+</dd>
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If the argument <cite>coords</cite> is not of the right type.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.core.fem.fem.FEM.add_circle_sensors_from_tsv_on">
+<code class="sig-name descname">add_circle_sensors_from_tsv_on</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tsv_path</span></em>, <em class="sig-param"><span class="n">tissue</span></em>, <em class="sig-param"><span class="n">radius</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/shamo/core/fem/fem.html#FEM.add_circle_sensors_from_tsv_on"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shamo.core.fem.fem.FEM.add_circle_sensors_from_tsv_on" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add multiple circle sensors to the mesh from a TSV file.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>tsv_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the TSV file.</p>
+</dd>
+<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the tissue the sensor is on.</p>
+</dd>
+<dt><strong>radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The radius of the sensor [m].</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.core.fem.fem.FEM.add_circle_sensors_on">
+<code class="sig-name descname">add_circle_sensors_on</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">coords</span></em>, <em class="sig-param"><span class="n">tissue</span></em>, <em class="sig-param"><span class="n">radius</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/shamo/core/fem/fem.html#FEM.add_circle_sensors_on"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shamo.core.fem.fem.FEM.add_circle_sensors_on" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add multiple circle sensors to the mesh.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>coords</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapping</span></code> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]]</span></dt><dd><p>The coordinates of the sensor.</p>
+</dd>
+<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the tissue the sensor is on.</p>
+</dd>
+<dt><strong>radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The radius of the sensor [m].</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="shamo.core.fem.fem.FEM.add_point_sensor">
 <code class="sig-name descname">add_point_sensor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">coords</span></em>, <em class="sig-param"><span class="n">tissue</span></em>, <em class="sig-param"><span class="n">dim</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/shamo/core/fem/fem.html#FEM.add_point_sensor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shamo.core.fem.fem.FEM.add_point_sensor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a point sensor to the mesh.</p>
@@ -478,7 +572,7 @@
 <dd class="field-odd"><dl>
 <dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the sensor.</p>
 </dd>
-<dt><strong>coords</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>] <code class="xref py py-obj docutils literal notranslate"><span class="pre">or</span></code> <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The coordinates of the sensor.</p>
+<dt><strong>coords</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>] <code class="xref py py-obj docutils literal notranslate"><span class="pre">or</span></code> <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The coordinates of the sensor.</p>
 </dd>
 <dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the tissue the sensor is on/in.</p>
 </dd>
@@ -564,7 +658,7 @@ If argument <cite>dim</cite> is not an <cite>int</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></dt><dd><p>The affine matrix of the NIFTI file.</p>
+<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></dt><dd><p>The affine matrix of the NIFTI file.</p>
 </dd>
 </dl>
 </dd>
@@ -590,13 +684,13 @@ If argument <cite>dim</cite> is not an <cite>int</cite>.</p>
 <dd class="field-odd"><dl>
 <dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the field. In the mesh, it will be added as ‘{tissue}_{name}’.</p>
 </dd>
-<dt><strong>field</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The field values.</p>
+<dt><strong>field</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The field values.</p>
 </dd>
-<dt><strong>affine</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The affine matrix of the field.</p>
+<dt><strong>affine</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The affine matrix of the field.</p>
 </dd>
 <dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The tissue in which the field must be added.</p>
 </dd>
-<dt><strong>fill_val</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code></span></dt><dd><p>The value to add in elements of the tissue that are not in <cite>elems_tags</cite>.</p>
+<dt><strong>fill_val</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code></span></dt><dd><p>The value to add in elements of the tissue that are not in <cite>elems_tags</cite>.</p>
 </dd>
 <dt><strong>formula</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>The formula linking the field to a physical property. The default value is
 <cite>‘1’</cite>.</p>
@@ -642,11 +736,11 @@ If argument <cite>affine</cite> is neither a (3, 4) nor a (4, 4) array.</p>
 </dd>
 <dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The tissue in which the field must be added.</p>
 </dd>
-<dt><strong>elems_tags</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>]</span></dt><dd><p>The tags of the elements in which the value is available.</p>
+<dt><strong>elems_tags</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>]</span></dt><dd><p>The tags of the elements in which the value is available.</p>
 </dd>
-<dt><strong>elems_vals</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code></span></dt><dd><p>The values of the field on the corresponding elements.</p>
+<dt><strong>elems_vals</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code></span></dt><dd><p>The values of the field on the corresponding elements.</p>
 </dd>
-<dt><strong>fill_val</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code></span></dt><dd><p>The value to add in elements of the tissue that are not in <cite>elems_tags</cite>.</p>
+<dt><strong>fill_val</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code></span></dt><dd><p>The value to add in elements of the tissue that are not in <cite>elems_tags</cite>.</p>
 </dd>
 <dt><strong>formula</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The formula linking the field to a physical property.</p>
 </dd>
@@ -683,7 +777,7 @@ If argument <cite>fill_val</cite> does not correspond to the values in <cite>ele
 </dd>
 <dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The tissue in which the field must be added.</p>
 </dd>
-<dt><strong>fill_val</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code></span></dt><dd><p>The value to add in elements of the tissue that are not in <cite>elems_tags</cite>.</p>
+<dt><strong>fill_val</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code></span></dt><dd><p>The value to add in elements of the tissue that are not in <cite>elems_tags</cite>.</p>
 </dd>
 <dt><strong>formula</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>The formula linking the field to a physical property. The default value is
 <cite>‘1’</cite>.</p>
@@ -794,10 +888,10 @@ default is <code class="docutils literal notranslate"><span class="pre">True</sp
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>labels</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>A labelled array corresponding to a multi-segments image. The array must
+<dt><strong>labels</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>A labelled array corresponding to a multi-segments image. The array must
 contain int labels starting from <code class="docutils literal notranslate"><span class="pre">0</span></code> (air) without skipping a number.</p>
 </dd>
-<dt><strong>affine</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The affine matrix of the volume.</p>
+<dt><strong>affine</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The affine matrix of the volume.</p>
 </dd>
 <dt><strong>tissues</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/glossary.html#term-iterable" title="(in Python v3.9)"><span>iterable</span></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>]</span></dt><dd><p>The names of the tissues in the same order as the labels.</p>
 </dd>
@@ -852,15 +946,35 @@ in ‘labels’.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="shamo.core.fem.fem.FEM.mesh_from_fem">
+<code class="sig-name descname">mesh_from_fem</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fem_path</span></em>, <em class="sig-param"><span class="n">merges</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/shamo/core/fem/fem.html#FEM.mesh_from_fem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shamo.core.fem.fem.FEM.mesh_from_fem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a mesh from an existing FEM by merging tissues.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>fem_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the original model.</p>
+</dd>
+<dt><strong>merges</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">list</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>]]</span></dt><dd><p>The merges to perform. Each value contains the names of the tissues to merge
+into a tissue named with the key.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This method removes the fields contained in the tissues that are part of a merge
+and edit the tissue the sensors are placed in/on.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="shamo.core.fem.fem.FEM.mesh_from_masks">
 <code class="sig-name descname">mesh_from_masks</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">masks</span></em>, <em class="sig-param"><span class="n">affine</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/shamo/core/fem/fem.html#FEM.mesh_from_masks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shamo.core.fem.fem.FEM.mesh_from_masks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a MSH file from multiple binary masks.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>mask</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapping</span></code> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>]</span></dt><dd><p>A mapping from the names of the tissues to the corresponding binary masks.</p>
+<dt><strong>mask</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapping</span></code> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>]</span></dt><dd><p>A mapping from the names of the tissues to the corresponding binary masks.</p>
 </dd>
-<dt><strong>affine</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The affine matrix of the volume.</p>
+<dt><strong>affine</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The affine matrix of the volume.</p>
 </dd>
 </dl>
 </dd>
@@ -1020,6 +1134,37 @@ NIFTI binary masks.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="shamo.core.fem.fem.FEM.mesh_from_surfaces">
+<code class="sig-name descname">mesh_from_surfaces</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tissues</span></em>, <em class="sig-param"><span class="n">structure</span></em>, <em class="sig-param"><span class="n">lc</span><span class="o">=</span><span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/shamo/core/fem/fem.html#FEM.mesh_from_surfaces"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shamo.core.fem.fem.FEM.mesh_from_surfaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a mesh from a series of surface meshes.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>tissues</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> | <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a>]</span></dt><dd><p>A dictionary containing the names of the tissues as keys and the path
+leading to the corresponding surface mesh as values.</p>
+</dd>
+<dt><strong>structure</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">list</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">list</span></code></a>]</span></dt><dd><p>A tree structure defined as a nested list defining the way surfaces contain
+each other.</p>
+</dd>
+<dt><strong>lc</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>The characteristic length of the mesh elements. If set to <code class="docutils literal notranslate"><span class="pre">0</span></code>, it is
+infered from the size of the surface elements. If a float value is used, the
+same size is set for the whole volume. If a dictionary is provided, it must
+contain the name of the tissues (or default) as keys and the corresponding
+characteristic length as values. (The default is <code class="docutils literal notranslate"><span class="pre">0.0</span></code>)</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If argument <cite>lc</cite> is a dictionary, does not contain all the tissues and have
+no <code class="docutils literal notranslate"><span class="pre">default</span></code> key.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="shamo.core.fem.fem.FEM.mesh_params">
 <em class="property">property </em><code class="sig-name descname">mesh_params</code><a class="headerlink" href="#shamo.core.fem.fem.FEM.mesh_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the parameters used to produce the mesh.</p>
@@ -1148,7 +1293,7 @@ the object already exists, a <cite>FileExistsError</cite>. The default is <code 
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">shamo.fem.Sensor</span></code>]</dt><dd><p>The sensors of the model.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">shamo.fem.SensorABC</span></code>]</dt><dd><p>The sensors of the model.</p>
 </dd>
 </dl>
 </dd>
@@ -1169,7 +1314,7 @@ the object already exists, a <cite>FileExistsError</cite>. The default is <code 
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></dt><dd><p>The shape of the NIFTI file.</p>
+<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></dt><dd><p>The shape of the NIFTI file.</p>
 </dd>
 </dl>
 </dd>
@@ -1228,7 +1373,7 @@ In either case, this is followed by: for k in F:  D[k] = F[k]</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, GIGA CRC In-Vivo Imaging
+        &copy; Copyright 2020-2021, GIGA CRC In-Vivo Imaging
 
     </p>
   </div>

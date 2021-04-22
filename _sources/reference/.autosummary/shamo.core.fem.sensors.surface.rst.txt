@@ -1,0 +1,33 @@
+shamo.core.fem.sensors.surface
+==============================
+
+.. automodule:: shamo.core.fem.sensors.surface
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      CircleSensor
+      SurfSensorABC
+   
+   
+
+   
+   
+   
+
+
+

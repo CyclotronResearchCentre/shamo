@@ -1,0 +1,34 @@
+shamo.hd\_tdcs.simulation.parametric.surrogate
+==============================================
+
+.. automodule:: shamo.hd_tdcs.simulation.parametric.surrogate
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      SurrMaskedScalarNiiJ
+      SurrMaskedScalarNiiMagJ
+      SurrMaskedScalarNiiV
+   
+   
+
+   
+   
+   
+
+
+

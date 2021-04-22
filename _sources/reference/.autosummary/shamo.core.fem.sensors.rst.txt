@@ -26,6 +26,7 @@ shamo.core.fem.sensors
    :template: custom-module-template.rst
    :recursive:
 
+   shamo.core.fem.sensors.abc
    shamo.core.fem.sensors.point
-   shamo.core.fem.sensors.sensor
+   shamo.core.fem.sensors.surface
 

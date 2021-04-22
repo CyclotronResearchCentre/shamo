@@ -21,9 +21,11 @@ shamo.core.solutions.parametric.abc.SolParamABC
       ~SolParamABC.finalize
       ~SolParamABC.fromkeys
       ~SolParamABC.get
+      ~SolParamABC.get_params
       ~SolParamABC.get_relative_path
       ~SolParamABC.get_sub_file
       ~SolParamABC.get_sub_sols
+      ~SolParamABC.get_x
       ~SolParamABC.items
       ~SolParamABC.keys
       ~SolParamABC.load

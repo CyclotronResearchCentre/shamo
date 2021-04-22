@@ -27,5 +27,6 @@ shamo.core.surrogate
    :recursive:
 
    shamo.core.surrogate.abc
+   shamo.core.surrogate.masked_scalar
    shamo.core.surrogate.scalar
 

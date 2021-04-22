@@ -1,0 +1,57 @@
+shamo.core.surrogate.masked\_scalar.SurrMaskedScalar
+====================================================
+
+.. currentmodule:: shamo.core.surrogate.masked_scalar
+
+.. autoclass:: SurrMaskedScalar
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~SurrMaskedScalar.clear
+      ~SurrMaskedScalar.copy
+      ~SurrMaskedScalar.fit
+      ~SurrMaskedScalar.fromkeys
+      ~SurrMaskedScalar.gen_sobol
+      ~SurrMaskedScalar.get
+      ~SurrMaskedScalar.get_gp
+      ~SurrMaskedScalar.get_relative_path
+      ~SurrMaskedScalar.get_sobol
+      ~SurrMaskedScalar.items
+      ~SurrMaskedScalar.keys
+      ~SurrMaskedScalar.load
+      ~SurrMaskedScalar.pop
+      ~SurrMaskedScalar.popitem
+      ~SurrMaskedScalar.predict
+      ~SurrMaskedScalar.save
+      ~SurrMaskedScalar.setdefault
+      ~SurrMaskedScalar.update
+      ~SurrMaskedScalar.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SurrMaskedScalar.gp_path
+      ~SurrMaskedScalar.is_sobol_available
+      ~SurrMaskedScalar.json_path
+      ~SurrMaskedScalar.name
+      ~SurrMaskedScalar.params
+      ~SurrMaskedScalar.parent_path
+      ~SurrMaskedScalar.path
+      ~SurrMaskedScalar.sobol_path
+      ~SurrMaskedScalar.sol_json_path
+   
+   

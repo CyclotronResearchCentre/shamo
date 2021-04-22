@@ -1,0 +1,47 @@
+shamo.core.fem.sensors.abc.SensorABC
+====================================
+
+.. currentmodule:: shamo.core.fem.sensors.abc
+
+.. autoclass:: SensorABC
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~SensorABC.clear
+      ~SensorABC.copy
+      ~SensorABC.fromkeys
+      ~SensorABC.get
+      ~SensorABC.items
+      ~SensorABC.keys
+      ~SensorABC.load
+      ~SensorABC.pop
+      ~SensorABC.popitem
+      ~SensorABC.setdefault
+      ~SensorABC.update
+      ~SensorABC.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SensorABC.TYPE_CIRCLE
+      ~SensorABC.TYPE_POINT
+      ~SensorABC.mesh_coords
+      ~SensorABC.real_coords
+      ~SensorABC.sensor_type
+      ~SensorABC.tissue
+   
+   

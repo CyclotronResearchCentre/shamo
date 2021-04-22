@@ -1,0 +1,91 @@
+{
+ "cells": [
+  {
+   "cell_type": "raw",
+   "metadata": {
+    "raw_mimetype": "text/restructuredtext"
+   },
+   "source": [
+    "Finite element model from another model\n",
+    "=======================================\n",
+    "\n",
+    "Sometimes, it is interesting to compare several geometries for the same subject. Since the geometry has a big impact on the solution of the problems, it is interesting to start by creating the most complex model to, then, create simpler models by merging some tissues.\n",
+    "In this example, we use the model previously generated for Suzanne.\n",
+    "\n",
+    ".. warning::\n",
+    "\n",
+    "   This process does not keep the fields included into tissues involved in the merges.\n",
+    "\n",
+    "As for the generation from labels, we start by declaring the model and giving it a name."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from shamo import FEM\n",
+    "\n",
+    "model = FEM(\"fem_from_fem\", \"../../derivatives\")"
+   ]
+  },
+  {
+   "cell_type": "raw",
+   "metadata": {
+    "raw_mimetype": "text/restructuredtext"
+   },
+   "source": [
+    "Next, we must define the merge operations that must be performed. This dictionary must contain, as keys, the names of the resulting tissues and, as values, the list of names of the tissues that must be merged."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "merges = {\"soft\": [\"wm\", \"scalp\"]}"
+   ]
+  },
+  {
+   "cell_type": "raw",
+   "metadata": {
+    "raw_mimetype": "text/restructuredtext"
+   },
+   "source": [
+    "Finally, we can generate the mesh by specifying the original model to base the new one on and the merge dictionary using the :py:func:`~shamo.FEM.mesh_from_fem` method."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "model.mesh_from_fem(\"../../derivatives/suzanne/suzanne.json\", merges)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "shamo",
+   "language": "python",
+   "name": "shamo"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

@@ -22,6 +22,7 @@ shamo.core.fem.sensors.point.PointSensor
       ~PointSensor.get
       ~PointSensor.items
       ~PointSensor.keys
+      ~PointSensor.load
       ~PointSensor.pop
       ~PointSensor.popitem
       ~PointSensor.setdefault
@@ -36,6 +37,7 @@ shamo.core.fem.sensors.point.PointSensor
 
    .. autosummary::
    
+      ~PointSensor.TYPE_CIRCLE
       ~PointSensor.TYPE_POINT
       ~PointSensor.mesh_coords
       ~PointSensor.node

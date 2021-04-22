@@ -1,0 +1,48 @@
+shamo.core.fem.sensors.surface.SurfSensorABC
+============================================
+
+.. currentmodule:: shamo.core.fem.sensors.surface
+
+.. autoclass:: SurfSensorABC
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~SurfSensorABC.clear
+      ~SurfSensorABC.copy
+      ~SurfSensorABC.fromkeys
+      ~SurfSensorABC.get
+      ~SurfSensorABC.items
+      ~SurfSensorABC.keys
+      ~SurfSensorABC.load
+      ~SurfSensorABC.pop
+      ~SurfSensorABC.popitem
+      ~SurfSensorABC.setdefault
+      ~SurfSensorABC.update
+      ~SurfSensorABC.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SurfSensorABC.TYPE_CIRCLE
+      ~SurfSensorABC.TYPE_POINT
+      ~SurfSensorABC.mesh_coords
+      ~SurfSensorABC.real_coords
+      ~SurfSensorABC.sensor_type
+      ~SurfSensorABC.surf
+      ~SurfSensorABC.tissue
+   
+   

@@ -21,9 +21,11 @@ shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield
       ~SolParamEEGLeadfield.finalize
       ~SolParamEEGLeadfield.fromkeys
       ~SolParamEEGLeadfield.get
+      ~SolParamEEGLeadfield.get_params
       ~SolParamEEGLeadfield.get_relative_path
       ~SolParamEEGLeadfield.get_sub_file
       ~SolParamEEGLeadfield.get_sub_sols
+      ~SolParamEEGLeadfield.get_x
       ~SolParamEEGLeadfield.items
       ~SolParamEEGLeadfield.keys
       ~SolParamEEGLeadfield.load

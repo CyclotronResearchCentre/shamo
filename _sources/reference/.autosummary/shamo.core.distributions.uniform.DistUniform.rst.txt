@@ -37,6 +37,10 @@ shamo.core.distributions.uniform.DistUniform
 
    .. autosummary::
    
+      ~DistUniform.TYPE_CONSTANT
+      ~DistUniform.TYPE_NORMAL
+      ~DistUniform.TYPE_TRUNC_NORMAL
+      ~DistUniform.TYPE_UNIFORM
       ~DistUniform.dist
       ~DistUniform.dist_type
       ~DistUniform.expect

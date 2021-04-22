@@ -1,0 +1,57 @@
+shamo.hd\_tdcs.simulation.parametric.surrogate.SurrMaskedScalarNiiJ
+===================================================================
+
+.. currentmodule:: shamo.hd_tdcs.simulation.parametric.surrogate
+
+.. autoclass:: SurrMaskedScalarNiiJ
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~SurrMaskedScalarNiiJ.clear
+      ~SurrMaskedScalarNiiJ.copy
+      ~SurrMaskedScalarNiiJ.fit
+      ~SurrMaskedScalarNiiJ.fromkeys
+      ~SurrMaskedScalarNiiJ.gen_sobol
+      ~SurrMaskedScalarNiiJ.get
+      ~SurrMaskedScalarNiiJ.get_gp
+      ~SurrMaskedScalarNiiJ.get_relative_path
+      ~SurrMaskedScalarNiiJ.get_sobol
+      ~SurrMaskedScalarNiiJ.items
+      ~SurrMaskedScalarNiiJ.keys
+      ~SurrMaskedScalarNiiJ.load
+      ~SurrMaskedScalarNiiJ.pop
+      ~SurrMaskedScalarNiiJ.popitem
+      ~SurrMaskedScalarNiiJ.predict
+      ~SurrMaskedScalarNiiJ.save
+      ~SurrMaskedScalarNiiJ.setdefault
+      ~SurrMaskedScalarNiiJ.update
+      ~SurrMaskedScalarNiiJ.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SurrMaskedScalarNiiJ.gp_path
+      ~SurrMaskedScalarNiiJ.is_sobol_available
+      ~SurrMaskedScalarNiiJ.json_path
+      ~SurrMaskedScalarNiiJ.name
+      ~SurrMaskedScalarNiiJ.params
+      ~SurrMaskedScalarNiiJ.parent_path
+      ~SurrMaskedScalarNiiJ.path
+      ~SurrMaskedScalarNiiJ.sobol_path
+      ~SurrMaskedScalarNiiJ.sol_json_path
+   
+   

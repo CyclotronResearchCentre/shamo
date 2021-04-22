@@ -1,0 +1,6 @@
+shamo.utils.logging.subprocess\_to\_logger
+==========================================
+
+.. currentmodule:: shamo.utils.logging
+
+.. autofunction:: subprocess_to_logger

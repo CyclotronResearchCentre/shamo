@@ -20,7 +20,7 @@
    "source": [
     "from shamo import FEM\n",
     "\n",
-    "model = FEM.load(\"../../derivatives/suzanne/suzanne.json\")"
+    "model = FEM.load(\"../../derivatives/fem_from_labels/fem_from_labels.json\")"
    ]
   },
   {
