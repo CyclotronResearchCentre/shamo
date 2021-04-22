@@ -1,4 +1,5 @@
 """Implement `CompParamTissueProp` class."""
+from shamo.core.distributions import DistABC
 from shamo.core.problems.single import CompTissueProp
 
 
@@ -25,7 +26,7 @@ class CompParamTissueProp(CompTissueProp):
         for t, p in self.items():
             if name != "":
                 t = f"{name}.{t}"
-            if p[0].dist_type == "constant":
+            if p[0].dist_type == DistABC.TYPE_CONSTANT:
                 fixed.append([t, [p[0].val, p[1]]])
             else:
                 varying.append([t, p])

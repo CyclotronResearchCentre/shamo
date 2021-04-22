@@ -5,14 +5,14 @@ Group {
     roi = Region[{ {% for r in rois -%}{{ r.tissue }}{{ ", " if not loop.last }}{%- endfor %} }];
 
 {% include "dom_active.tmplt" %}
-    dom_active = Region[{ source, sink }];
+    dom_active = Region[{ source_point, sink_point }];
 }
 
 Function {
     {% include "sigma.tmplt" %}
 
-    current[source] = 1;
-    current[sink] = -1;
+    current[source_point] = 1;
+    current[sink_point] = -1;
 }
 
 FunctionSpace {

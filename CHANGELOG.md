@@ -2,7 +2,20 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.1.0] - 21-04-22
+
+### Added
+
+- Added logging support for subprocesses and C libraries via `subprocess_to_logger` and `stream_to_logger` context managers.
+- Added documentation on how to use the logging library with `shamo`.
+- Added the `mesh_from_fem` method to provide a way to generate a mesh from a previously built one by merging tissues together.
+- Added the `mesh_from_surfaces` method to provide a way to generate a mesh from a set of surface meshes.
+- Added `SurrMaskedScalar` and `SurrMaskedScalarNii` to enable more sensitivity analysis.
+- Added `SurrMaskedScalarNiiJ`, `SurrMaskedScalarNiiMagJ` and `SurrMaskedScalarNiiV` for tDCS.
+
+### Changed
+
+- Moved GetDP logging to the new logging `subprocess_to_logger` context manager.
 
 ## [1.0.0] - 20-12-16
 

@@ -1,5 +1,6 @@
 """Implement the `FEM` class."""
 from collections.abc import Mapping, Iterable
+import copy
 from functools import partialmethod
 import logging
 from pathlib import Path
@@ -16,7 +17,8 @@ from scipy.interpolate import RegularGridInterpolator
 from scipy.spatial.distance import cdist
 
 from shamo.core.objects import ObjDir
-from . import Field, Group, Tissue, Sensor, PointSensor
+from . import Field, Group, Tissue, SensorABC, PointSensor, CircleSensor
+from shamo.utils.onelab import gmsh_open
 
 logger = logging.getLogger(__name__)
 
@@ -41,8 +43,7 @@ class FEM(ObjDir):
                 },
                 "mesh_params": kwargs.get("mesh_params", {}),
                 "sensors": {
-                    s: self._load_sensor(d)
-                    for s, d in kwargs.get("sensors", {}).items()
+                    s: SensorABC.load(**d) for s, d in kwargs.get("sensors", {}).items()
                 },
             }
         )
@@ -111,7 +112,7 @@ class FEM(ObjDir):
 
         Returns
         -------
-        dict [str, shamo.fem.Sensor]
+        dict [str, shamo.fem.SensorABC]
             The sensors of the model.
         """
         return self["sensors"]
@@ -421,42 +422,201 @@ class FEM(ObjDir):
 
     def _apply_transform(self, affine, tmp_dir):
         """Apply the affine transform to the mesh."""
-        gmsh.initialize()
-        gmsh.option.setNumber("General.Terminal", 1)
-        gmsh.merge(str(Path(tmp_dir) / "init_mesh.mesh"))
-        gmsh.plugin.run("NewView")
-        axes = ["x", "y", "z"]
-        for r in range(3):
-            for c in range(3):
-                gmsh.plugin.setNumber(
-                    "Transform", "A{}{}".format(r + 1, c + 1), affine[r, c]
-                )
-            gmsh.plugin.setNumber("Transform", "T{}".format(axes[r]), affine[r, -1])
-        gmsh.plugin.run("Transform")
-        # gmsh.model.mesh.reclassifyNodes()
-        gmsh.option.setNumber("Mesh.Binary", 1)
-        gmsh.write(str(Path(tmp_dir) / "init_mesh.msh"))
-        gmsh.finalize()
+        with gmsh_open(Path(tmp_dir) / "init_mesh.mesh", logger) as gmsh:
+            gmsh.plugin.run("NewView")
+            axes = ["x", "y", "z"]
+            for r in range(3):
+                for c in range(3):
+                    gmsh.plugin.setNumber(
+                        "Transform", "A{}{}".format(r + 1, c + 1), affine[r, c]
+                    )
+                gmsh.plugin.setNumber("Transform", "T{}".format(axes[r]), affine[r, -1])
+            gmsh.plugin.run("Transform")
+            # gmsh.model.mesh.reclassifyNodes()
+            gmsh.option.setNumber("Mesh.Binary", 1)
+            gmsh.write(str(Path(tmp_dir) / "init_mesh.msh"))
         logger.info("Affine transformation applied.")
 
     def _add_tissues(self, tissues, tmp_dir):
         """Add the tissues as physical groups."""
-        gmsh.initialize()
-        gmsh.option.setNumber("General.Terminal", 1)
-        gmsh.merge(str(Path(tmp_dir) / "init_mesh.msh"))
-        for l, t in enumerate(tissues):
-            entity = l + 1
-            surf_group = gmsh.model.addPhysicalGroup(2, [entity])
-            gmsh.model.setPhysicalName(2, surf_group, t)
-            vol_group = gmsh.model.addPhysicalGroup(3, [entity])
-            gmsh.model.setPhysicalName(3, vol_group, t)
-            self["tissues"][t] = Tissue(
-                Group(2, [entity], surf_group), Group(3, [entity], vol_group)
+        with gmsh_open(Path(tmp_dir) / "init_mesh.msh", logger) as gmsh:
+            for l, t in enumerate(tissues):
+                entity = l + 1
+                surf_group = gmsh.model.addPhysicalGroup(2, [entity])
+                gmsh.model.setPhysicalName(2, surf_group, t)
+                vol_group = gmsh.model.addPhysicalGroup(3, [entity])
+                gmsh.model.setPhysicalName(3, vol_group, t)
+                self["tissues"][t] = Tissue(
+                    Group(2, [entity], surf_group), Group(3, [entity], vol_group)
+                )
+                logger.info(f"Tissue '{t}' added.")
+            gmsh.option.setNumber("Mesh.Binary", 1)
+            gmsh.write(str(self.mesh_path))
+
+    def mesh_from_fem(self, fem_path, merges):
+        """Generate a mesh from an existing FEM by merging tissues.
+
+        Parameters
+        ----------
+        fem_path : str, byte or os.PathLike
+            The path to the original model.
+        merges : dict [str, list [str]]
+            The merges to perform. Each value contains the names of the tissues to merge
+            into a tissue named with the key.
+
+        Notes
+        -----
+        This method removes the fields contained in the tissues that are part of a merge
+        and edit the tissue the sensors are placed in/on.
+        """
+        fem = FEM.load(fem_path)
+        with gmsh_open(fem.mesh_path, logger) as gmsh:
+            for merge_to, merge_from in merges.items():
+                self._merge_tissues(fem, merge_from, merge_to)
+            gmsh.write(str(self.mesh_path))
+        self["tissues"] = fem.tissues
+        self["sensors"] = fem.sensors
+        self.save()
+        logger.info("Mesh generated.")
+
+    def _merge_tissues(self, fem, merge_from, merge_to):
+        """Merge multiple tissues into one."""
+        # Edit mesh
+        surf_entities = []
+        vol_entities = []
+        for t in merge_from:
+            surf_entities.extend(fem.tissues[t].surf.entities)
+            vol_entities.extend(fem.tissues[t].surf.entities)
+        max_tag = np.max([t for _, t in gmsh.model.getPhysicalGroups(-1)])
+        surf_group = gmsh.model.addPhysicalGroup(2, surf_entities, max_tag + 1)
+        vol_group = gmsh.model.addPhysicalGroup(3, vol_entities, max_tag + 2)
+        for t in merge_from:
+            gmsh.model.removePhysicalGroups(
+                [(2, fem.tissues[t].surf.group), (3, fem.tissues[t].vol.group)]
             )
-            logger.info(f"Tissue '{t}' added.")
-        gmsh.option.setNumber("Mesh.Binary", 1)
-        gmsh.write(str(self.mesh_path))
-        gmsh.finalize()
+            for f in fem.tissues[t].fields.values():
+                gmsh.view.remove(f.view)
+            fem.tissues.pop(t, None)
+        gmsh.model.setPhysicalName(2, surf_group, merge_to)
+        gmsh.model.setPhysicalName(3, vol_group, merge_to)
+        # Edit model tissues
+        fem["tissues"][merge_to] = Tissue(
+            Group(2, surf_entities, surf_group), Group(3, vol_entities, vol_group)
+        )
+        # Edit model sensors
+        for s in fem.sensors.values():
+            if s.tissue in merge_from:
+                s["tissue"] = merge_to
+        logger.info(f"Merged {len(merge_from)} tissues into {merge_to}.")
+
+    def mesh_from_surfaces(self, tissues, structure, lc=0.0):
+        """Generate a mesh from a series of surface meshes.
+
+        Parameters
+        ----------
+        tissues : dict [str, str | byte | os.PathLike]
+            A dictionary containing the names of the tissues as keys and the path
+            leading to the corresponding surface mesh as values.
+        structure : list [str | list]
+            A tree structure defined as a nested list defining the way surfaces contain
+            each other.
+        lc : float | dict [str, float], optional
+            The characteristic length of the mesh elements. If set to ``0``, it is
+            infered from the size of the surface elements. If a float value is used, the
+            same size is set for the whole volume. If a dictionary is provided, it must
+            contain the name of the tissues (or default) as keys and the corresponding
+            characteristic length as values. (The default is ``0.0``)
+
+        Raises
+        ------
+        ValueError
+            If argument `lc` is a dictionary, does not contain all the tissues and have
+            no ``default`` key.
+        """
+        with TemporaryDirectory() as d:
+            oredered_tissues = self._gen_mesh_from_surfaces(tissues, structure, lc, d)
+            self._add_tissues(oredered_tissues, d)
+        self.save()
+        logger.info("Mesh generated.")
+
+    def _gen_mesh_from_surfaces(self, tissues, structure, lc, tmp_dir):
+        """Generate the initial mesh from a series of surfaces."""
+        indices = {}
+        oredered_tissues = []
+        with gmsh_open(str(Path(tmp_dir) / "init_mesh.msh"), logger) as gmsh:
+            # Add the surfaces
+            for i, (t, p) in enumerate(tissues.items()):
+                gmsh.merge(str(Path(p)))
+                gmsh.model.geo.addSurfaceLoop([i + 1])
+                indices[t] = i + 1
+                oredered_tissues.append(t)
+            # Add the volumes
+            for t, v in self._get_surf_loops(structure).items():
+                gmsh.model.geo.addVolume([indices[n] for n in v], indices[t])
+            gmsh.model.geo.synchronize()
+            gmsh.option.setNumber("Mesh.Binary", 1)
+            if isinstance(lc, float):
+                # Constant lc accross the whole mesh (or 0)
+                if lc != 0.0:
+                    gmsh.option.setNumber(
+                        "Mesh.CharacteristicLengthExtendFromBoundary", 0
+                    )
+                    gmsh.option.setNumber("Mesh.CharacteristicLengthMax", lc)
+                gmsh.model.mesh.generate(3)
+                gmsh.write(str(Path(tmp_dir) / "init_mesh.msh"))
+                logger.info("Initial mesh generated.")
+                return oredered_tissues
+            # Generate a coarse mesh
+            if "default" not in lc:
+                for t in oredered_tissues:
+                    if t not in lc:
+                        raise ValueError(
+                            "Argument 'lc' must contain all the tissues or a 'default' key."
+                        )
+                lc["default"] = 0.0
+            gmsh.option.setNumber("Mesh.CharacteristicLengthExtendFromBoundary", 0)
+            restricts = []
+            for t in oredered_tissues:
+                box = gmsh.model.mesh.field.add("Box")
+                gmsh.model.mesh.field.setNumber(box, "VIn", lc.get(t, lc["default"]))
+                s = 1
+                for a in ("X", "Y", "Z"):
+                    for b in ("Max", "Min"):
+                        gmsh.model.mesh.field.setNumber(box, f"{a}{b}", s * 999999.9)
+                        s *= -1
+                restrict = gmsh.model.mesh.field.add("Restrict")
+                gmsh.model.mesh.field.setNumber(restrict, "InField", box)
+                gmsh.model.mesh.field.setNumbers(restrict, "VolumesList", [indices[t]])
+                restricts.append(restrict)
+            # Min because Restrict returns 1e22 outside
+            mesh_size = gmsh.model.mesh.field.add("Min")
+            gmsh.model.mesh.field.setNumbers(mesh_size, "FieldsList", restricts)
+            gmsh.model.mesh.field.setAsBackgroundMesh(mesh_size)
+            gmsh.model.mesh.generate(3)
+            gmsh.write(str(Path(tmp_dir) / "init_mesh.msh"))
+        logger.info("Initial mesh generated.")
+        return oredered_tissues
+
+    def _get_surf_loops(self, structure):
+        """Extract surface loops booleans from tree structure."""
+        vols = {}
+        queue = []
+        while structure:
+            first = structure.pop(0)
+            current = None
+            children = []
+            if isinstance(first, str):
+                current = first
+                if structure:
+                    children = [
+                        s[0] if len(structure[0]) > 1 else s for s in structure[0]
+                    ]
+                vols[current] = [current, *children]
+            elif isinstance(first, list):
+                queue.append(first)
+            if not structure and queue:
+                structure = queue.pop(0)
+        return vols
 
     # Sensors --------------------------------------------------------------------------
 
@@ -502,15 +662,12 @@ class FEM(ObjDir):
                 f"tissue '{tissue}' with coords:\n{coords}"
             )
         )
-        gmsh.initialize()
-        gmsh.option.setNumber("General.Terminal", 1)
-        gmsh.open(str(self.mesh_path))
-        nodes_tags, nodes_coords = self._get_tissue_nodes(tissue, dim)
-        self._add_point_sensor(name, coords, nodes_tags, nodes_coords, tissue)
-        gmsh.model.mesh.removeDuplicateNodes()
-        gmsh.option.setNumber("Mesh.Binary", 1)
-        gmsh.write(str(self.mesh_path))
-        gmsh.finalize()
+        with gmsh_open(self.mesh_path, logger) as gmsh:
+            nodes_tags, nodes_coords = self._get_tissue_nodes(tissue, dim)
+            self._add_point_sensor(name, coords, nodes_tags, nodes_coords, tissue)
+            gmsh.model.mesh.removeDuplicateNodes()
+            gmsh.option.setNumber("Mesh.Binary", 1)
+            gmsh.write(str(self.mesh_path))
         self.save()
         logger.info(f"Sensor '{name}' added.")
 
@@ -549,19 +706,16 @@ class FEM(ObjDir):
                 f"tissue '{tissue}' with coords:\n{pformat(coords)}"
             )
         )
-        gmsh.initialize()
-        gmsh.option.setNumber("General.Terminal", 1)
-        gmsh.open(str(self.mesh_path))
-        nodes_tags, nodes_coords = self._get_tissue_nodes(tissue, dim)
-        for s, c in coords.items():
-            self._add_point_sensor(s, c, nodes_tags, nodes_coords, tissue)
-            logger.info(
-                f"Sensor '{s}' added {'on' if dim == 2 else 'in'} tissue '{tissue}'."
-            )
-        gmsh.model.mesh.removeDuplicateNodes()
-        gmsh.option.setNumber("Mesh.Binary", 1)
-        gmsh.write(str(self.mesh_path))
-        gmsh.finalize()
+        with gmsh_open(self.mesh_path, logger) as gmsh:
+            nodes_tags, nodes_coords = self._get_tissue_nodes(tissue, dim)
+            for s, c in coords.items():
+                self._add_point_sensor(s, c, nodes_tags, nodes_coords, tissue)
+                logger.info(
+                    f"Sensor '{s}' added {'on' if dim == 2 else 'in'} tissue '{tissue}'."
+                )
+            gmsh.model.mesh.removeDuplicateNodes()
+            gmsh.option.setNumber("Mesh.Binary", 1)
+            gmsh.write(str(self.mesh_path))
         self.save()
 
     add_point_sensors_on = partialmethod(add_point_sensors, dim=2)
@@ -599,6 +753,163 @@ class FEM(ObjDir):
 
     add_point_sensors_from_tsv_on = partialmethod(add_point_sensors_from_tsv, dim=2)
     add_point_sensors_from_tsv_in = partialmethod(add_point_sensors_from_tsv, dim=3)
+
+    def add_circle_sensor_on(self, name, coords, tissue, radius):
+        """Add a circle sensor on a surface.
+
+        Parameters
+        ----------
+        name : str
+            The name of the sensor.
+        coords : tuple [float, float, float]
+            The coordinates of the sensor in the subject space.
+        tissue : str
+            The name of the tissue the sensor must be added on.
+        radius : float
+            The radius of the sensor [m].
+
+        Raises
+        ------
+        ValueError
+            If a sensor with name `name` already exists.
+            If the coordinates are not a 3D location.
+            If the tissue `tissue` does not exist in the model.
+        TypeError
+            If the argument `coords` is not of the right type.
+        """
+        if name in self.sensors:
+            raise ValueError(f"Sensor '{name}' already exists in model.")
+        if not isinstance(coords, (Iterable, np.ndarray)):
+            raise TypeError("Argument 'coords' expects type Iterable or numpy.ndarray.")
+        if len(coords) != 3:
+            raise ValueError("Argument 'coords' must be a 3D coordinate.")
+        coords = tuple([1e-3 * c for c in coords])
+        if tissue not in self.tissues:
+            raise ValueError(f"Tissue '{tissue}' not found in model.")
+
+        # WARNING: Only works with triangles, with single entity physical surfaces.
+        surf = self.tissues[tissue].surf
+        with gmsh_open(self.mesh_path, logger) as gmsh:
+            nodes_tags, nodes_coords = self._get_tissue_nodes(tissue, 2)
+            # Get closest node
+            dist = cdist([coords], nodes_coords).ravel()
+            min_dist_idx = np.argmin(dist)
+            node_tag = nodes_tags[min_dist_idx]
+            mesh_coords = nodes_coords[min_dist_idx, :]
+            # Get surface elements
+            elems_type, elems_tags, elems_nodes_tags = gmsh.model.mesh.getElements(
+                2, surf.entities[0]
+            )
+            elems_type = elems_type[0]
+            elems_tags = elems_tags[0]
+            elems_nodes_tags = elems_nodes_tags[0].reshape((-1, 3))
+            elems_coords = gmsh.model.mesh.getBarycenters(
+                elems_type, surf.entities[0], False, False
+            ).reshape((-1, 3))
+            # Keep only elements in radius
+            dist = cdist([mesh_coords], elems_coords).ravel()
+            mask = dist <= radius
+            valid_elems_tags = elems_tags[mask]
+            valid_elems_nodes_tags = elems_nodes_tags[mask, :].ravel()
+            # Only keep elements directly connected to closest node
+            valid_elems_repeated = valid_elems_tags.repeat((3,))
+            nodes_to_check = [node_tag]
+            elems = []
+            nodes = []
+            while nodes_to_check:
+                current = nodes_to_check.pop(0)
+                nodes.append(current)
+                mask = valid_elems_nodes_tags == current
+                connected_elems = valid_elems_repeated[mask]
+                for e_t in connected_elems:
+                    elems.append(e_t)
+                    mask = valid_elems_repeated == e_t
+                    connected_nodes = valid_elems_nodes_tags[mask]
+                    for n_t in connected_nodes:
+                        if n_t not in nodes and n_t not in nodes_to_check:
+                            nodes_to_check.append(n_t)
+                    valid_elems_repeated = np.delete(valid_elems_repeated, mask)
+                    valid_elems_nodes_tags = np.delete(valid_elems_nodes_tags, mask)
+            mask = np.in1d(elems_tags, elems, assume_unique=True)
+            valid_elems_tags = elems_tags[mask]
+            valid_elems_nodes_tags = elems_nodes_tags[mask, :].ravel()
+            # Add surface sensor
+            surf_entity = gmsh.model.addDiscreteEntity(2)
+            gmsh.model.mesh.addElements(
+                2,
+                surf_entity,
+                [elems_type],
+                [valid_elems_tags],
+                [valid_elems_nodes_tags],
+            )
+            max_group = np.max([t for d, t in gmsh.model.getPhysicalGroups()])
+            surf_group = gmsh.model.addPhysicalGroup(2, [surf_entity], max_group + 1)
+            gmsh.model.setPhysicalName(2, surf_group, name)
+            # Remove elements from the tissue
+            new_entity = gmsh.model.addDiscreteEntity(2)
+            gmsh.model.mesh.addElements(
+                2,
+                new_entity,
+                [elems_type],
+                [elems_tags[~mask]],
+                [elems_nodes_tags[~mask, :].ravel()],
+            )
+            gmsh.model.removeEntities([(2, surf.entities[0])])
+            try:
+                gmsh.model.removePhysicalGroups([(2, surf.group)])
+            except:
+                pass
+            gmsh.model.removePhysicalName(tissue)
+            g = gmsh.model.addPhysicalGroup(2, [new_entity], surf.group)
+            gmsh.model.setPhysicalName(2, surf.group, tissue)
+            gmsh.model.setPhysicalName(3, self.tissues[tissue].vol.group, tissue)
+            gmsh.model.mesh.removeDuplicateNodes()
+            gmsh.model.mesh.reclassifyNodes()
+            gmsh.option.setNumber("Mesh.Binary", 1)
+            gmsh.write(str(self.mesh_path))
+        sensor = CircleSensor(
+            tissue, coords, mesh_coords, Group(2, [surf_entity], surf_group), radius
+        )
+        self.tissues[tissue].surf["entities"] = [new_entity]
+        self.sensors[name] = sensor
+        self.save()
+        logger.info(f"Sensor '{name}' added.")
+
+    def add_circle_sensors_on(self, coords, tissue, radius):
+        """Add multiple circle sensors to the mesh.
+
+        Parameters
+        ----------
+        coords : Mapping [str, Iterable [float]]
+            The coordinates of the sensor.
+        tissue : str
+            The name of the tissue the sensor is on.
+        radius : float
+            The radius of the sensor [m].
+        """
+        for n, c in coords.items():
+            self.add_circle_sensor_on(n, c, tissue, radius)
+
+    def add_circle_sensors_from_tsv_on(self, tsv_path, tissue, radius):
+        """Add multiple circle sensors to the mesh from a TSV file.
+
+        Parameters
+        ----------
+        tsv_path : str, byte or os.PathLike
+            The path to the TSV file.
+        tissue : str
+            The name of the tissue the sensor is on.
+        radius : float
+            The radius of the sensor [m].
+        """
+        tsv_path = Path(tsv_path)
+        data = np.genfromtxt(
+            tsv_path, delimiter="\t", skip_header=1, dtype=None, encoding="utf-8"
+        )
+        coords = {d[0]: [d[1], d[2], d[3]] for d in data}
+        logger.info(f"{len(coords)} sensors coordinates extracted from '{tsv_path}'.")
+        logger.debug(pformat(coords))
+        return self.add_circle_sensors_on(coords, tissue, radius)
 
     def _get_tissue_nodes(self, tissue, dim):
         """Return all the nodes of the tissue in specified dimensio entities."""
@@ -646,11 +957,6 @@ class FEM(ObjDir):
         group = gmsh.model.addPhysicalGroup(0, [entity], max_group + 1)
         gmsh.model.setPhysicalName(0, group, name)
         return entity, group
-
-    def _load_sensor(self, sensor):
-        """Load a sensor depending on its type."""
-        if sensor["sensor_type"] == Sensor.TYPE_POINT:
-            return PointSensor(**sensor)
 
     # Fields ---------------------------------------------------------------------------
 
@@ -718,16 +1024,14 @@ class FEM(ObjDir):
             )
         # TODO: Check formula
 
-        gmsh.initialize()
-        gmsh.open(str(self.mesh_path))
-        elems_tags, elems_vals = self._fill_empty_field_elems(
-            tissue, elems_tags, elems_vals, n_vals, fill_val
-        )
-        view = self._add_field_view(name, tissue, elems_tags, elems_vals, n_vals)
-        gmsh.option.setNumber("PostProcessing.SaveMesh", 0)
-        gmsh.option.setNumber("Mesh.Binary", 1)
-        gmsh.view.write(view, str(self.mesh_path), True)
-        gmsh.finalize()
+        with gmsh_open(self.mesh_path, logger) as gmsh:
+            elems_tags, elems_vals = self._fill_empty_field_elems(
+                tissue, elems_tags, elems_vals, n_vals, fill_val
+            )
+            view = self._add_field_view(name, tissue, elems_tags, elems_vals, n_vals)
+            gmsh.option.setNumber("PostProcessing.SaveMesh", 0)
+            gmsh.option.setNumber("Mesh.Binary", 1)
+            gmsh.view.write(view, str(self.mesh_path), True)
         self.tissues[tissue].fields[name] = Field(field_type, view, formula)
         self.save()
         logger.info(f"Field '{name}' added in tissue '{tissue}'.")
@@ -939,10 +1243,8 @@ class FEM(ObjDir):
         interpolate = RegularGridInterpolator(
             (x, y, z), field, method=method, bounds_error=False, fill_value=fill_val
         )
-        gmsh.initialize()
-        gmsh.open(str(self.mesh_path))
-        elems_tags = self._get_tissue_vol_elems(tissue)
-        elems_coords = self._get_tissue_vol_elems_coords(tissue)
-        gmsh.finalize()
+        with gmsh_open(self.mesh_path, logger) as gmsh:
+            elems_tags = self._get_tissue_vol_elems(tissue)
+            elems_coords = self._get_tissue_vol_elems_coords(tissue)
         elems_vals = interpolate(elems_coords)
         return elems_tags, elems_vals

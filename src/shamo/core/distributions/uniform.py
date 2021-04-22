@@ -16,7 +16,7 @@ class DistUniform(DistABC):
     """
 
     def __init__(self, lower, upper):
-        super().__init__("uniform")
+        super().__init__(self.TYPE_UNIFORM)
         self.update({"lower": lower, "upper": upper})
 
     @property

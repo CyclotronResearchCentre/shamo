@@ -4,8 +4,9 @@ Usage
 .. toctree::
    :maxdepth: 1
 
-   tutorials/code/fem/fem.ipynb
+   fem
    eeg
    hd_tdcs
+   logging
 
 The tutorials are available in the form of jupyter notebooks `here <https://github.com/CyclotronResearchCentre/shamo-tutorials>`_.

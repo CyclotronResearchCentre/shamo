@@ -83,7 +83,7 @@ class CompParamValue(CompABC):
         fixed = []
         varying = []
         name = f"{name}.val"
-        if self.val.dist_type == "constant":
+        if self.val.dist_type == DistABC.TYPE_CONSTANT:
             return [[name, [self.val.val, None]]], []
         else:
             return [], [[name, [self.val, None]]]
