@@ -1,24 +1,25 @@
 """Implement the `FEM` class."""
-from collections.abc import Mapping, Iterable
 import copy
-from functools import partialmethod
 import logging
+from collections.abc import Iterable, Mapping
+from functools import partialmethod
 from pathlib import Path
 from pprint import pformat
 from tempfile import TemporaryDirectory
 
-import gmsh
 import meshio
 import nibabel as nib
-from nilearn.image import crop_img
 import numpy as np
-import pygalmesh as cgal
+from nilearn.image import crop_img
 from scipy.interpolate import RegularGridInterpolator
 from scipy.spatial.distance import cdist
 
+import gmsh
+import pygalmesh as cgal
 from shamo.core.objects import ObjDir
-from . import Field, Group, Tissue, SensorABC, PointSensor, CircleSensor
 from shamo.utils.onelab import gmsh_open
+
+from . import CircleSensor, Field, Group, PointSensor, SensorABC, Tissue
 
 logger = logging.getLogger(__name__)
 
@@ -608,9 +609,12 @@ class FEM(ObjDir):
             if isinstance(first, str):
                 current = first
                 if structure:
-                    children = [
-                        s[0] if len(structure[0]) > 1 else s for s in structure[0]
-                    ]
+                    if isinstance(structure[0][0], list):
+                        children = [
+                            s[0] if len(structure[0]) > 1 else s for s in structure[0]
+                        ]
+                    else:
+                        children = [structure[0][0]]
                 vols[current] = [current, *children]
             elif isinstance(first, list):
                 queue.append(first)
