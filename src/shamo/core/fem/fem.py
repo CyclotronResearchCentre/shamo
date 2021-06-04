@@ -750,7 +750,7 @@ class FEM(ObjDir):
         data = np.genfromtxt(
             tsv_path, delimiter="\t", skip_header=1, dtype=None, encoding="utf-8"
         )
-        coords = {d[0]: [d[1], d[2], d[3]] for d in data}
+        coords = {str(d[0]): [float(d[1]), float(d[2]), float(d[3])] for d in data}
         logger.info(f"{len(coords)} sensors coordinates extracted from '{tsv_path}'.")
         logger.debug(pformat(coords))
         return self.add_point_sensors(coords, tissue, dim)
@@ -910,7 +910,7 @@ class FEM(ObjDir):
         data = np.genfromtxt(
             tsv_path, delimiter="\t", skip_header=1, dtype=None, encoding="utf-8"
         )
-        coords = {d[0]: [d[1], d[2], d[3]] for d in data}
+        coords = {str(d[0]): [float(d[1]), float(d[2]), float(d[3])] for d in data}
         logger.info(f"{len(coords)} sensors coordinates extracted from '{tsv_path}'.")
         logger.debug(pformat(coords))
         return self.add_circle_sensors_on(coords, tissue, radius)
