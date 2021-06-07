@@ -4,8 +4,9 @@ from tempfile import TemporaryDirectory
 
 import nibabel as nib
 
-from shamo.core.problems.single import ProbGetDP, CompSensors, CompGridSampler
+from shamo.core.problems.single import CompGridSampler, CompSensors, ProbGetDP
 from shamo.utils.onelab import pos_to_nii
+
 from .solution import SolHDTDCSSim
 
 
@@ -63,7 +64,6 @@ class ProbHDTDCSSim(ProbGetDP):
         """
         for n, t in model.tissues.items():
             self._vol.set(n, t.vol.group)
-        shape = [int(s / 10) for s in model.shape]
 
         with TemporaryDirectory() as d:
             self._check_components(**model)
