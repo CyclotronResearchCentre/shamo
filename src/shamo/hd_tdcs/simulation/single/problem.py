@@ -1,4 +1,5 @@
 """Implement `ProbHDTDCSSim` class."""
+import shutil
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -82,7 +83,7 @@ class ProbHDTDCSSim(ProbGetDP):
                 if p.suffix == ".pos":
                     if self.grid.use_grid:
                         self.grid.nii_from_pos(p, sol.path / f"{name}_{p.stem}.nii")
-                    p.rename(sol.path / f"{name}_{p.name}")
+                    shutil.move(str(p), str(sol.path / f"{name}_{p.name}"))
             sol.save()
         return sol
 

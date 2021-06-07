@@ -1,29 +1,31 @@
 """Implement the `ProbEEGLeadfield` class."""
 import logging
+import shutil
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-import gmsh
-import h5py
 import nibabel as nib
 import numpy as np
 from scipy.sparse import csc_matrix
 
+import gmsh
+import h5py
 from shamo.core.problems.single import (
-    ProbGetDP,
     CompFilePath,
     CompGridSampler,
-    CompTissueProp,
     CompSensors,
+    CompTissueProp,
     CompTissues,
+    ProbGetDP,
 )
 from shamo.utils.onelab import (
-    gmsh_open,
-    read_vector_file,
     get_elems_coords,
     get_elems_subset,
+    gmsh_open,
     pos_to_nii,
+    read_vector_file,
 )
+
 from .solution import SolEEGLeadfield
 
 logger = logging.getLogger(__name__)
@@ -139,7 +141,7 @@ class ProbEEGLeadfield(ProbGetDP):
                 use_grid=self.grid.use_grid,
             )
             sol["model_json_path"] = str(sol.get_relative_path(model.json_path))
-            Path.rename(src, sol.matrix_path)
+            shutil.move(str(src), str(sol.matrix_path))
             if self.grid.use_grid:
                 source_sp.to_filename(sol.source_sp_path)
             else:
