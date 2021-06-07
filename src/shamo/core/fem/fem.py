@@ -594,6 +594,9 @@ class FEM(ObjDir):
             gmsh.model.mesh.field.setNumbers(mesh_size, "FieldsList", restricts)
             gmsh.model.mesh.field.setAsBackgroundMesh(mesh_size)
             gmsh.model.mesh.generate(3)
+            gmsh.model.mesh.removeDuplicateNodes()
+            gmsh.option.setNumber("Mesh.Binary", 1)
+            gmsh.model.mesh.reclassifyNodes()
             gmsh.write(str(Path(tmp_dir) / "init_mesh.msh"))
         logger.info("Initial mesh generated.")
         return oredered_tissues
