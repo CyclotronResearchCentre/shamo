@@ -1,2 +1,2 @@
 include *.md
-include *.tmplt
+global-include *.tmplt
