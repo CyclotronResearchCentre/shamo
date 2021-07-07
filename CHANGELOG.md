@@ -2,6 +2,13 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- Fixed field interpolation. Before, the only case in which field interpolation worked was when the field was aligned with the structural image used to generate the mesh. Now, it works no matter the orientation of the field.
+- Fixed template embedding in the package. It looks like, before, template files were not included in the package/not accessible.
+
 ## [1.1.1] - 21-06-01
 
 ### Fixed

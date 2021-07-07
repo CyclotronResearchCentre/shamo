@@ -1121,9 +1121,8 @@ class FEM(ObjDir):
         if tissue not in self.tissues:
             raise KeyError(f"Tissue '{tissue}' not found in model.")
 
-        coords = self._get_field_coords(field.shape, affine)
         elems_tags, elems_vals = self._interp_field(
-            tissue, coords, field, "nearest" if nearest else "linear", fill_val
+            tissue, field, affine, "nearest" if nearest else "linear", fill_val
         )
         return self.field_from_elems(
             name, tissue, elems_tags, elems_vals, fill_val, formula
@@ -1235,23 +1234,17 @@ class FEM(ObjDir):
         )
         return view
 
-    def _get_field_coords(self, shape, affine):
-        """Convert cell indices into real coordinates."""
-        flat_idx = np.arange(np.prod(shape[:3]))
-        idx = np.vstack(np.unravel_index(flat_idx, shape[:3])).T
-        coords = nib.affines.apply_affine(affine, idx)
-        return coords
-
-    def _interp_field(self, tissue, coords, field, method, fill_val):
+    def _interp_field(self, tissue, field, affine, method, fill_val):
         """Interpolate a field on a mesh grid."""
-        x = np.unique(coords[:, 0])
-        y = np.unique(coords[:, 1])
-        z = np.unique(coords[:, 2])
+        x = np.arange(field.shape[0])
+        y = np.arange(field.shape[1])
+        z = np.arange(field.shape[2])
         interpolate = RegularGridInterpolator(
             (x, y, z), field, method=method, bounds_error=False, fill_value=fill_val
         )
         with gmsh_open(self.mesh_path, logger) as gmsh:
             elems_tags = self._get_tissue_vol_elems(tissue)
             elems_coords = self._get_tissue_vol_elems_coords(tissue)
-        elems_vals = interpolate(elems_coords)
+        inv_affine = np.linalg.inv(affine)
+        elems_vals = interpolate(nib.affines.apply_affine(inv_affine, elems_coords))
         return elems_tags, elems_vals
