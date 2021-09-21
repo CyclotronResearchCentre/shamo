@@ -94,3 +94,25 @@ class RectSensor(SurfSensorABC):
     def __init__(self, tissue, real_coords, mesh_coords, surf, width, height, **kwargs):
         super().__init__(tissue, SensorABC.TYPE_RECT, real_coords, mesh_coords, surf)
         self.update({"width": float(width), "height": float(height)})
+
+    @property
+    def width(self):
+        """Return the width of the sensor.
+
+        Returns
+        -------
+        float
+            The width of the sensor.
+        """
+        return self["width"]
+
+    @property
+    def height(self):
+        """Return the height of the sensor.
+
+        Returns
+        -------
+        float
+            The height of the sensor.
+        """
+        return self["height"]
