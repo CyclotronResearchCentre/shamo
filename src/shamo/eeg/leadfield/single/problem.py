@@ -4,12 +4,12 @@ import shutil
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
+import h5py
 import nibabel as nib
 import numpy as np
 from scipy.sparse import csc_matrix
 
 import gmsh
-import h5py
 from shamo.core.problems.single import (
     CompFilePath,
     CompGridSampler,
@@ -111,7 +111,9 @@ class ProbEEGLeadfield(ProbGetDP):
                 self.elems_path.set(Path(d) / "source_sp.npz")
             self._check_components(**model)
             sensors = self._gen_rhs(model, d)
-            self._gen_pro_file(d, **kwargs, **model, active_sensors=sensors)
+            problem_path = self._gen_pro_file(
+                d, **kwargs, **model, active_sensors=sensors
+            )
             self._run_getdp(model, d)
             src = Path(d) / f"{name}.hdf5"
             if self.elems_path.use_path:
@@ -142,6 +144,7 @@ class ProbEEGLeadfield(ProbGetDP):
             )
             sol["model_json_path"] = str(sol.get_relative_path(model.json_path))
             shutil.move(str(src), str(sol.matrix_path))
+            shutil.move(str(problem_path), str(sol.path / f"{name}.pro"))
             if self.grid.use_grid:
                 source_sp.to_filename(sol.source_sp_path)
             else:

@@ -68,7 +68,7 @@ class ProbHDTDCSSim(ProbGetDP):
 
         with TemporaryDirectory() as d:
             self._check_components(**model)
-            self._gen_pro_file(d, **kwargs, **model)
+            problem_path = self._gen_pro_file(d, **kwargs, **model)
             self._run_getdp(model, d)
             sol = SolHDTDCSSim(
                 name,
@@ -84,6 +84,7 @@ class ProbHDTDCSSim(ProbGetDP):
                     if self.grid.use_grid:
                         self.grid.nii_from_pos(p, sol.path / f"{name}_{p.stem}.nii")
                     shutil.move(str(p), str(sol.path / f"{name}_{p.name}"))
+            shutil.move(str(problem_path), str(sol.path / f"{name}.pro"))
             sol.save()
         return sol
 
