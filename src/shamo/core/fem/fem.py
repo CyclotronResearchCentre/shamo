@@ -1,8 +1,8 @@
 """Implement the `FEM` class."""
-import copy
 import logging
 from collections.abc import Iterable, Mapping
 from functools import partialmethod
+import os
 from pathlib import Path
 from pprint import pformat
 from tempfile import TemporaryDirectory
@@ -215,7 +215,7 @@ class FEM(ObjDir):
         labels = cropped_img.get_fdata().astype(np.uint16)
         affine = cropped_img.affine
 
-        with TemporaryDirectory() as d:
+        with TemporaryDirectory(dir=os.environ.get("SHAMO_TMP_DIR", None)) as d:
             self._gen_init_mesh(labels, np.eye(4), d, **kwargs)
             self._apply_transform(affine, d)
             self._add_tissues(tissues, d)
@@ -534,7 +534,7 @@ class FEM(ObjDir):
             If argument `lc` is a dictionary, does not contain all the tissues and have
             no ``default`` key.
         """
-        with TemporaryDirectory() as d:
+        with TemporaryDirectory(dir=os.environ.get("SHAMO_TMP_DIR", None)) as d:
             oredered_tissues = self._gen_mesh_from_surfaces(tissues, structure, lc, d)
             self._add_tissues(oredered_tissues, d)
         self.save()

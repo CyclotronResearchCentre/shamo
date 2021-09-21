@@ -1,6 +1,7 @@
 """Implement the `ProbEEGLeadfield` class."""
 import logging
 import shutil
+import os
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -100,7 +101,7 @@ class ProbEEGLeadfield(ProbGetDP):
                 self._source["sensors"] = [s]
                 break
 
-        with TemporaryDirectory() as d:
+        with TemporaryDirectory(dir=os.environ.get("SHAMO_TMP_DIR", None)) as d:
             if self.min_elems_dist > 0:
                 with gmsh_open(model.mesh_path, logger) as gmsh:
                     entities = []

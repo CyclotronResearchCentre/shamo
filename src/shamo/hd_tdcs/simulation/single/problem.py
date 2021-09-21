@@ -1,5 +1,6 @@
 """Implement `ProbHDTDCSSim` class."""
 import shutil
+import os
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -66,7 +67,7 @@ class ProbHDTDCSSim(ProbGetDP):
         for n, t in model.tissues.items():
             self._vol.set(n, t.vol.group)
 
-        with TemporaryDirectory() as d:
+        with TemporaryDirectory(dir=os.environ.get("SHAMO_TMP_DIR", None)) as d:
             self._check_components(**model)
             problem_path = self._gen_pro_file(d, **kwargs, **model)
             self._run_getdp(model, d)
