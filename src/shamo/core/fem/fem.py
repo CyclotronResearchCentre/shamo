@@ -59,7 +59,7 @@ class FEM(ObjDir):
         pathlib.Path
             The path to the NIFTI file.
         """
-        return self.path / f"{self.name}.nii"
+        return self.path / f"{self.name}.nii.gz"
 
     @property
     def affine(self):
