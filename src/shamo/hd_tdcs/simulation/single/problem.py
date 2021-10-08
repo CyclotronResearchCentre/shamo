@@ -83,7 +83,7 @@ class ProbHDTDCSSim(ProbGetDP):
             for p in Path(d).iterdir():
                 if p.suffix == ".pos":
                     if self.grid.use_grid:
-                        self.grid.nii_from_pos(p, sol.path / f"{name}_{p.stem}.nii")
+                        self.grid.nii_from_pos(p, sol.path / f"{name}_{p.stem}.nii.gz")
                     shutil.move(str(p), str(sol.path / f"{name}_{p.name}"))
             shutil.move(str(problem_path), str(sol.path / f"{name}.pro"))
             sol.save()

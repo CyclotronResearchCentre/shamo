@@ -217,7 +217,7 @@ class SurrMaskedScalarNii(SurrMaskedScalar):
         mask = kwargs.pop("mask")
         data = mask.get_fdata().astype(bool)
         surr = super().fit(name, parent_path, sol, mask=data, **kwargs)
-        mask.to_filename(surr.path / f"{surr.name}_mask.nii")
+        mask.to_filename(surr.path / f"{surr.name}_mask.nii.gz")
         return surr
 
     @classmethod
@@ -238,5 +238,5 @@ class SurrMaskedScalarNii(SurrMaskedScalar):
         numpy.ndarray
             The masked data.
         """
-        img = nib.load(sol.path / f"{sol.name}_{suffix}.nii")
+        img = nib.load(sol.path / f"{sol.name}_{suffix}.nii.gz")
         return img.get_fdata()[mask]

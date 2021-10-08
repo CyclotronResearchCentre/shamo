@@ -23,7 +23,6 @@ from shamo.utils.onelab import (
     get_elems_coords,
     get_elems_subset,
     gmsh_open,
-    pos_to_nii,
     read_vector_file,
 )
 
@@ -176,7 +175,7 @@ class ProbEEGLeadfield(ProbGetDP):
         """
         tmp_dir = Path(tmp_dir)
         if self.grid.use_grid:
-            img = self.grid.nii_from_pos(tmp_dir / f"{i}.pos", tmp_dir / f"{i}.nii")
+            img = self.grid.nii_from_pos(tmp_dir / f"{i}.pos", tmp_dir / f"{i}.nii.gz")
             row = img.get_fdata()[self.grid.mask].ravel()
             if i == 0:
                 source_sp = nib.Nifti1Image(
