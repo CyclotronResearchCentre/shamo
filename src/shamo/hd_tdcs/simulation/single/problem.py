@@ -80,12 +80,14 @@ class ProbHDTDCSSim(ProbGetDP):
                 current=self.current,
             )
             sol["model_json_path"] = str(sol.get_relative_path(model.json_path))
+            shutil.move(str(problem_path.with_suffix(".pre")), str(sol.path / f"{name}.pre"))
+            shutil.move(str(problem_path.with_suffix(".res")), str(sol.path / f"{name}.res"))
+            shutil.move(str(problem_path), str(sol.path / f"{name}.pro"))
             for p in Path(d).iterdir():
                 if p.suffix == ".pos":
                     if self.grid.use_grid:
                         self.grid.nii_from_pos(p, sol.path / f"{name}_{p.stem}.nii.gz")
                     shutil.move(str(p), str(sol.path / f"{name}_{p.name}"))
-            shutil.move(str(problem_path), str(sol.path / f"{name}.pro"))
             sol.save()
         return sol
 
