@@ -190,8 +190,7 @@ def pos_to_nii(src, dst, affine, shape, mask=None):
         # Run plugin
         gmsh.plugin.run("CutBox")
         # Get field data
-        dtype, n_elems, data = gmsh.view.getListData(1)
-        gmsh.view.write(1, str(Path(dst).parent / f"{Path(dst).stem}_grid.pos"))
+        _, n_elems, data = gmsh.view.getListData(1)
     n_elems = n_elems[0]
     data = data[0]
     data = data.reshape((n_elems, -1))
