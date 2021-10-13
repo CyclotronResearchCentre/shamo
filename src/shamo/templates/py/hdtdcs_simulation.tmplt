@@ -17,7 +17,11 @@ if __name__ == "__main__":
     prob.current = {{ current }}
 
     {% if use_grid %}
+    {% if mask %}
     prob.grid.set(np.array({{ grid.affine }}), {{ grid.shape }}, mask=np.array({{ grid.mask }}).astype(bool))
+    {% else %}
+    prob.grid.set(np.array({{ grid.affine }}), {{ grid.shape }})
+    {% endif %}
     {% endif %}
 
     prob.solve("{{ name }}", ".", model)

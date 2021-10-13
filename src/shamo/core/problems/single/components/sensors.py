@@ -62,7 +62,7 @@ class CompSensors(CompABC):
         for s in self["sensors"]:
             if sensors[s].sensor_type == SensorABC.TYPE_POINT:
                 point.append({"sensor": sensors[s].point.group})
-            elif sensors[s].sensor_type in [SensorABC.TYPE_CIRCLE]:
+            elif sensors[s].sensor_type in [SensorABC.TYPE_CIRCLE, SensorABC.TYPE_RECT]:
                 real.append({"sensor": sensors[s].surf.group})
         return {"point": point, "real": real}
 

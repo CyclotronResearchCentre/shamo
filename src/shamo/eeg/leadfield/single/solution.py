@@ -158,7 +158,7 @@ class SolEEGLeadfield(SolGetDP):
             The path to the source space file.
         """
         if self.use_grid:
-            return self.path / f"{self.name}_mask.nii"
+            return self.path / f"{self.name}_mask.nii.gz"
         return self.path / f"{self.name}_elems.npz"
 
     def set_matrix(self, matrix):

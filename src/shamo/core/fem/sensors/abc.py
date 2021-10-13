@@ -18,6 +18,7 @@ class SensorABC(dict):
 
     TYPE_POINT = "point"
     TYPE_CIRCLE = "circle"
+    TYPE_RECT = "rect"
 
     def __init__(self, tissue, sensor_type, real_coords, mesh_coords):
         super().__init__(
@@ -76,10 +77,11 @@ class SensorABC(dict):
     @staticmethod
     def load(sensor_type, **kwargs):
         from .point import PointSensor
-        from .surface import CircleSensor
+        from .surface import CircleSensor, RectSensor
 
         sensor_types = {
             SensorABC.TYPE_POINT: PointSensor,
             SensorABC.TYPE_CIRCLE: CircleSensor,
+            SensorABC.TYPE_RECT: RectSensor,
         }
         return sensor_types[sensor_type](**kwargs)

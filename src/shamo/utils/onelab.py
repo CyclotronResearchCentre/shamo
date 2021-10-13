@@ -1,12 +1,13 @@
 """API for `shamo.utils.onelab`."""
-from contextlib import contextmanager
 import logging
+from contextlib import contextmanager
 from pathlib import Path
 
-import gmsh
 import nibabel as nib
 import numpy as np
 from scipy.spatial.distance import cdist
+
+import gmsh
 
 from .logging import stream_to_logger
 
@@ -147,7 +148,7 @@ def pos_to_nii(src, dst, affine, shape, mask=None):
     Parameters
     ----------
     src : str, byte or os.PathLike
-        The path to the input NII file.
+        The path to the input POS file.
     dst : str, byte or os.PathLike
         The path to the output NII file.
     affine : numpy.ndarray
@@ -189,8 +190,7 @@ def pos_to_nii(src, dst, affine, shape, mask=None):
         # Run plugin
         gmsh.plugin.run("CutBox")
         # Get field data
-        dtype, n_elems, data = gmsh.view.getListData(1)
-        gmsh.view.write(1, str(Path(dst).parent / f"{Path(dst).stem}_grid.pos"))
+        _, n_elems, data = gmsh.view.getListData(1)
     n_elems = n_elems[0]
     data = data[0]
     data = data.reshape((n_elems, -1))

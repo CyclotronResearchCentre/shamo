@@ -1,11 +1,14 @@
 """Implement `ProbHDTDCSSim` class."""
+import shutil
+import os
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
 import nibabel as nib
 
-from shamo.core.problems.single import ProbGetDP, CompSensors, CompGridSampler
+from shamo.core.problems.single import CompGridSampler, CompSensors, ProbGetDP
 from shamo.utils.onelab import pos_to_nii
+
 from .solution import SolHDTDCSSim
 
 
@@ -63,11 +66,10 @@ class ProbHDTDCSSim(ProbGetDP):
         """
         for n, t in model.tissues.items():
             self._vol.set(n, t.vol.group)
-        shape = [int(s / 10) for s in model.shape]
 
-        with TemporaryDirectory() as d:
+        with TemporaryDirectory(dir=os.environ.get("SHAMO_TMP_DIR", None)) as d:
             self._check_components(**model)
-            self._gen_pro_file(d, **kwargs, **model)
+            problem_path = self._gen_pro_file(d, **kwargs, **model)
             self._run_getdp(model, d)
             sol = SolHDTDCSSim(
                 name,
@@ -78,11 +80,14 @@ class ProbHDTDCSSim(ProbGetDP):
                 current=self.current,
             )
             sol["model_json_path"] = str(sol.get_relative_path(model.json_path))
+            shutil.move(str(problem_path.with_suffix(".pre")), str(sol.path / f"{name}.pre"))
+            shutil.move(str(problem_path.with_suffix(".res")), str(sol.path / f"{name}.res"))
+            shutil.move(str(problem_path), str(sol.path / f"{name}.pro"))
             for p in Path(d).iterdir():
                 if p.suffix == ".pos":
                     if self.grid.use_grid:
-                        self.grid.nii_from_pos(p, sol.path / f"{name}_{p.stem}.nii")
-                    p.rename(sol.path / f"{name}_{p.name}")
+                        self.grid.nii_from_pos(p, sol.path / f"{name}_{p.stem}.nii.gz")
+                    shutil.move(str(p), str(sol.path / f"{name}_{p.name}"))
             sol.save()
         return sol
 
