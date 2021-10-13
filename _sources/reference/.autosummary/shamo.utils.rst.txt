@@ -26,6 +26,7 @@
    :template: custom-module-template.rst
    :recursive:
 
+   shamo.utils.geometry
    shamo.utils.logging
    shamo.utils.onelab
    shamo.utils.path

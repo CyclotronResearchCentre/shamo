@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>shamo.utils.onelab.pos_to_nii &mdash; shamo 1.1.0 documentation</title>
+  <title>shamo.utils.onelab.pos_to_nii &mdash; shamo 1.2.0 documentation</title>
   
 
   
@@ -205,6 +205,10 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="shamo.utils.html">shamo.utils</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="shamo.utils.geometry.html">shamo.utils.geometry</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.geometry.Plane3D.html">shamo.utils.geometry.Plane3D</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="shamo.utils.logging.html">shamo.utils.logging</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.logging.stream_to_logger.html">shamo.utils.logging.stream_to_logger</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.logging.subprocess_to_logger.html">shamo.utils.logging.subprocess_to_logger</a></li>
@@ -331,15 +335,15 @@
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>src</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the input NII file.</p>
+<dt><strong>src</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the input POS file.</p>
 </dd>
-<dt><strong>dst</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the output NII file.</p>
+<dt><strong>dst</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the output NII file.</p>
 </dd>
-<dt><strong>affine</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The affine matrix of the NII volume.</p>
+<dt><strong>affine</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The affine matrix of the NII volume.</p>
 </dd>
-<dt><strong>shape</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]</span></dt><dd><p>The shape of the NII volume.</p>
+<dt><strong>shape</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]</span></dt><dd><p>The shape of the NII volume.</p>
 </dd>
-<dt><strong>mask</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>If not set to <code class="docutils literal notranslate"><span class="pre">None</span></code>, the mask is applied to the field.</p>
+<dt><strong>mask</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>If not set to <code class="docutils literal notranslate"><span class="pre">None</span></code>, the mask is applied to the field.</p>
 </dd>
 </dl>
 </dd>

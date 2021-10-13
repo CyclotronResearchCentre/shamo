@@ -39,6 +39,7 @@ shamo.core.fem.sensors.point.PointSensor
    
       ~PointSensor.TYPE_CIRCLE
       ~PointSensor.TYPE_POINT
+      ~PointSensor.TYPE_RECT
       ~PointSensor.mesh_coords
       ~PointSensor.node
       ~PointSensor.point

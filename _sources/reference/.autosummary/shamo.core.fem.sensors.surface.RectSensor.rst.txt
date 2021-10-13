@@ -1,0 +1,51 @@
+shamo.core.fem.sensors.surface.RectSensor
+=========================================
+
+.. currentmodule:: shamo.core.fem.sensors.surface
+
+.. autoclass:: RectSensor
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~RectSensor.clear
+      ~RectSensor.copy
+      ~RectSensor.fromkeys
+      ~RectSensor.get
+      ~RectSensor.items
+      ~RectSensor.keys
+      ~RectSensor.load
+      ~RectSensor.pop
+      ~RectSensor.popitem
+      ~RectSensor.setdefault
+      ~RectSensor.update
+      ~RectSensor.values
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RectSensor.TYPE_CIRCLE
+      ~RectSensor.TYPE_POINT
+      ~RectSensor.TYPE_RECT
+      ~RectSensor.height
+      ~RectSensor.mesh_coords
+      ~RectSensor.real_coords
+      ~RectSensor.sensor_type
+      ~RectSensor.surf
+      ~RectSensor.tissue
+      ~RectSensor.width
+   
+   

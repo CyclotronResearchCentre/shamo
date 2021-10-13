@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>shamo.core.fem.group.Group &mdash; shamo 1.1.0 documentation</title>
+  <title>shamo.core.fem.group.Group &mdash; shamo 1.2.0 documentation</title>
   
 
   
@@ -205,6 +205,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shamo.utils.geometry.html">shamo.utils.geometry</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.geometry.Plane3D.html">shamo.utils.geometry.Plane3D</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="shamo.utils.logging.html">shamo.utils.logging</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.logging.stream_to_logger.html">shamo.utils.logging.stream_to_logger</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.logging.subprocess_to_logger.html">shamo.utils.logging.subprocess_to_logger</a></li>
@@ -329,23 +333,23 @@
 <dl class="py class">
 <dt id="shamo.core.fem.group.Group">
 <em class="property">class </em><code class="sig-prename descclassname">shamo.core.fem.group.</code><code class="sig-name descname">Group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dim</span></em>, <em class="sig-param"><span class="n">entities</span></em>, <em class="sig-param"><span class="n">group</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/shamo/core/fem/group.html#Group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shamo.core.fem.group.Group" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
 <p>A FEM physical group.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>dim</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>The dimension of the group. Can be one of <cite>DIM_POINT</cite>, <cite>DIM_LINE</cite>, <cite>DIM_SURF</cite> or
+<dt><strong>dim</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>The dimension of the group. Can be one of <cite>DIM_POINT</cite>, <cite>DIM_LINE</cite>, <cite>DIM_SURF</cite> or
 <cite>DIM_VOL</cite>.</p>
 </dd>
-<dt><strong>entities</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>]</span></dt><dd><p>The tags of the entities composing the physical group.</p>
+<dt><strong>entities</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>]</span></dt><dd><p>The tags of the entities composing the physical group.</p>
 </dd>
-<dt><strong>group</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>The physical group tag.</p>
+<dt><strong>group</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>The physical group tag.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If argument <cite>dim</cite> is not convertible to <cite>int</cite>.
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If argument <cite>dim</cite> is not convertible to <cite>int</cite>.
 If an element of argument <cite>entities</cite> is not convertible to <cite>int</cite>.
 If argument <cite>group</cite> is not convertible to <cite>int</cite>.</p>
 </dd>
@@ -444,7 +448,7 @@ If argument <cite>group</cite> is not convertible to <cite>int</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></dt><dd><p>The dimension of the physical group.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></dt><dd><p>The dimension of the physical group.</p>
 </dd>
 </dl>
 </dd>
@@ -458,7 +462,7 @@ If argument <cite>group</cite> is not convertible to <cite>int</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>]</dt><dd><p>The tags of the entities composing the physical group.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>]</dt><dd><p>The tags of the entities composing the physical group.</p>
 </dd>
 </dl>
 </dd>
@@ -484,7 +488,7 @@ If argument <cite>group</cite> is not convertible to <cite>int</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></dt><dd><p>The tag of the physical group.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></dt><dd><p>The tag of the physical group.</p>
 </dd>
 </dl>
 </dd>
@@ -508,7 +512,7 @@ If argument <cite>group</cite> is not convertible to <cite>int</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></dt><dd><p>The number of entities composing the physical group.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></dt><dd><p>The number of entities composing the physical group.</p>
 </dd>
 </dl>
 </dd>

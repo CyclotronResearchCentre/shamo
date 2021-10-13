@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>shamo.utils.onelab &mdash; shamo 1.1.0 documentation</title>
+  <title>shamo.utils.onelab &mdash; shamo 1.2.0 documentation</title>
   
 
   
@@ -203,6 +203,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../reference/.autosummary/shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/.autosummary/shamo.utils.geometry.html">shamo.utils.geometry</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/.autosummary/shamo.utils.geometry.Plane3D.html">shamo.utils.geometry.Plane3D</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../reference/.autosummary/shamo.utils.logging.html">shamo.utils.logging</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/.autosummary/shamo.utils.logging.stream_to_logger.html">shamo.utils.logging.stream_to_logger</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/.autosummary/shamo.utils.logging.subprocess_to_logger.html">shamo.utils.logging.subprocess_to_logger</a></li>
@@ -290,14 +294,15 @@
             
   <h1>Source code for shamo.utils.onelab</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;API for `shamo.utils.onelab`.&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
-<span class="kn">import</span> <span class="nn">gmsh</span>
 <span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">cdist</span>
+
+<span class="kn">import</span> <span class="nn">gmsh</span>
 
 <span class="kn">from</span> <span class="nn">.logging</span> <span class="kn">import</span> <span class="n">stream_to_logger</span>
 
@@ -438,7 +443,7 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    src : str, byte or os.PathLike</span>
-<span class="sd">        The path to the input NII file.</span>
+<span class="sd">        The path to the input POS file.</span>
 <span class="sd">    dst : str, byte or os.PathLike</span>
 <span class="sd">        The path to the output NII file.</span>
 <span class="sd">    affine : numpy.ndarray</span>
@@ -480,8 +485,7 @@
         <span class="c1"># Run plugin</span>
         <span class="n">gmsh</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;CutBox&quot;</span><span class="p">)</span>
         <span class="c1"># Get field data</span>
-        <span class="n">dtype</span><span class="p">,</span> <span class="n">n_elems</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getListData</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">gmsh</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">dst</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Path</span><span class="p">(</span><span class="n">dst</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2">_grid.pos&quot;</span><span class="p">))</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">n_elems</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getListData</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">n_elems</span> <span class="o">=</span> <span class="n">n_elems</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_elems</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>

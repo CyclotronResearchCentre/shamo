@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>shamo.eeg.leadfield.single.problem &mdash; shamo 1.1.0 documentation</title>
+  <title>shamo.eeg.leadfield.single.problem &mdash; shamo 1.2.0 documentation</title>
   
 
   
@@ -203,6 +203,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.geometry.html">shamo.utils.geometry</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.geometry.Plane3D.html">shamo.utils.geometry.Plane3D</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.logging.html">shamo.utils.logging</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.logging.stream_to_logger.html">shamo.utils.logging.stream_to_logger</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.logging.subprocess_to_logger.html">shamo.utils.logging.subprocess_to_logger</a></li>
@@ -291,30 +295,32 @@
   <h1>Source code for shamo.eeg.leadfield.single.problem</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Implement the `ProbEEGLeadfield` class.&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">TemporaryDirectory</span>
 
-<span class="kn">import</span> <span class="nn">gmsh</span>
 <span class="kn">import</span> <span class="nn">h5py</span>
 <span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">csc_matrix</span>
 
+<span class="kn">import</span> <span class="nn">gmsh</span>
 <span class="kn">from</span> <span class="nn">shamo.core.problems.single</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">ProbGetDP</span><span class="p">,</span>
     <span class="n">CompFilePath</span><span class="p">,</span>
     <span class="n">CompGridSampler</span><span class="p">,</span>
-    <span class="n">CompTissueProp</span><span class="p">,</span>
     <span class="n">CompSensors</span><span class="p">,</span>
+    <span class="n">CompTissueProp</span><span class="p">,</span>
     <span class="n">CompTissues</span><span class="p">,</span>
+    <span class="n">ProbGetDP</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">shamo.utils.onelab</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">gmsh_open</span><span class="p">,</span>
-    <span class="n">read_vector_file</span><span class="p">,</span>
     <span class="n">get_elems_coords</span><span class="p">,</span>
     <span class="n">get_elems_subset</span><span class="p">,</span>
-    <span class="n">pos_to_nii</span><span class="p">,</span>
+    <span class="n">gmsh_open</span><span class="p">,</span>
+    <span class="n">read_vector_file</span><span class="p">,</span>
 <span class="p">)</span>
+
 <span class="kn">from</span> <span class="nn">.solution</span> <span class="kn">import</span> <span class="n">SolEEGLeadfield</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -389,7 +395,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_source</span><span class="p">[</span><span class="s2">&quot;sensors&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="p">]</span>
                 <span class="k">break</span>
 
-        <span class="k">with</span> <span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">TemporaryDirectory</span><span class="p">(</span><span class="nb">dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;SHAMO_TMP_DIR&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_elems_dist</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">with</span> <span class="n">gmsh_open</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">mesh_path</span><span class="p">,</span> <span class="n">logger</span><span class="p">)</span> <span class="k">as</span> <span class="n">gmsh</span><span class="p">:</span>
                     <span class="n">entities</span> <span class="o">=</span> <span class="p">[]</span>
@@ -400,7 +406,9 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">elems_path</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;source_sp.npz&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_check_components</span><span class="p">(</span><span class="o">**</span><span class="n">model</span><span class="p">)</span>
             <span class="n">sensors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gen_rhs</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_gen_pro_file</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">model</span><span class="p">,</span> <span class="n">active_sensors</span><span class="o">=</span><span class="n">sensors</span><span class="p">)</span>
+            <span class="n">problem_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gen_pro_file</span><span class="p">(</span>
+                <span class="n">d</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">model</span><span class="p">,</span> <span class="n">active_sensors</span><span class="o">=</span><span class="n">sensors</span>
+            <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_run_getdp</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
             <span class="n">src</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.hdf5&quot;</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">elems_path</span><span class="o">.</span><span class="n">use_path</span><span class="p">:</span>
@@ -430,7 +438,8 @@
                 <span class="n">use_grid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">use_grid</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="n">sol</span><span class="p">[</span><span class="s2">&quot;model_json_path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">get_relative_path</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">json_path</span><span class="p">))</span>
-            <span class="n">Path</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">matrix_path</span><span class="p">)</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">src</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">matrix_path</span><span class="p">))</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">problem_path</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">path</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.pro&quot;</span><span class="p">))</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">use_grid</span><span class="p">:</span>
                 <span class="n">source_sp</span><span class="o">.</span><span class="n">to_filename</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">source_sp_path</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
@@ -461,7 +470,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">tmp_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">use_grid</span><span class="p">:</span>
-            <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">nii_from_pos</span><span class="p">(</span><span class="n">tmp_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.pos&quot;</span><span class="p">,</span> <span class="n">tmp_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.nii&quot;</span><span class="p">)</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">nii_from_pos</span><span class="p">(</span><span class="n">tmp_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.pos&quot;</span><span class="p">,</span> <span class="n">tmp_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.nii.gz&quot;</span><span class="p">)</span>
             <span class="n">row</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()[</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">mask</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">source_sp</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">Nifti1Image</span><span class="p">(</span>

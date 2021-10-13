@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>shamo.core.fem.sensors.surface &mdash; shamo 1.1.0 documentation</title>
+  <title>shamo.core.fem.sensors.surface &mdash; shamo 1.2.0 documentation</title>
   
 
   
@@ -203,6 +203,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.geometry.html">shamo.utils.geometry</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.geometry.Plane3D.html">shamo.utils.geometry.Plane3D</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.logging.html">shamo.utils.logging</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.logging.stream_to_logger.html">shamo.utils.logging.stream_to_logger</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.logging.subprocess_to_logger.html">shamo.utils.logging.subprocess_to_logger</a></li>
@@ -331,7 +335,7 @@
 
 
 <div class="viewcode-block" id="CircleSensor"><a class="viewcode-back" href="../../../../../reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor">[docs]</a><span class="k">class</span> <span class="nc">CircleSensor</span><span class="p">(</span><span class="n">SurfSensorABC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;The base class for any surfacic sensor.</span>
+    <span class="sd">&quot;&quot;&quot;A circular sensor.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -361,6 +365,52 @@
 <span class="sd">            The radius of the sensor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;radius&quot;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="RectSensor"><a class="viewcode-back" href="../../../../../reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor">[docs]</a><span class="k">class</span> <span class="nc">RectSensor</span><span class="p">(</span><span class="n">SurfSensorABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A rectangular sensor.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    tissue : str</span>
+<span class="sd">        The tissue the sensor is in.</span>
+<span class="sd">    real_coords : Iterable [float]</span>
+<span class="sd">        The coordinates of the sensor in the real world.</span>
+<span class="sd">    mesh_coords : Iterable [float]</span>
+<span class="sd">        The coordinates of the sensor in the mesh.</span>
+<span class="sd">    surf : shamo.fem.Group</span>
+<span class="sd">        The physical group of the sensor.</span>
+<span class="sd">    width : float</span>
+<span class="sd">        The width of the rectangle.</span>
+<span class="sd">    height : float</span>
+<span class="sd">        The height of the rectangle.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">real_coords</span><span class="p">,</span> <span class="n">mesh_coords</span><span class="p">,</span> <span class="n">surf</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">tissue</span><span class="p">,</span> <span class="n">SensorABC</span><span class="o">.</span><span class="n">TYPE_RECT</span><span class="p">,</span> <span class="n">real_coords</span><span class="p">,</span> <span class="n">mesh_coords</span><span class="p">,</span> <span class="n">surf</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">height</span><span class="p">)})</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">width</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the width of the sensor.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float</span>
+<span class="sd">            The width of the sensor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;width&quot;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">height</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the height of the sensor.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float</span>
+<span class="sd">            The height of the sensor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">]</span></div>
 </pre></div>
 
            </div>

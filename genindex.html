@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; shamo 1.1.0 documentation</title>
+  <title>Index &mdash; shamo 1.2.0 documentation</title>
   
 
   
@@ -203,6 +203,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="reference/.autosummary/shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/.autosummary/shamo.utils.geometry.html">shamo.utils.geometry</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.utils.geometry.Plane3D.html">shamo.utils.geometry.Plane3D</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="reference/.autosummary/shamo.utils.logging.html">shamo.utils.logging</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.utils.logging.stream_to_logger.html">shamo.utils.logging.stream_to_logger</a></li>
 <li class="toctree-l4"><a class="reference internal" href="reference/.autosummary/shamo.utils.logging.subprocess_to_logger.html">shamo.utils.logging.subprocess_to_logger</a></li>
@@ -298,6 +302,7 @@
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#J"><strong>J</strong></a>
  | <a href="#K"><strong>K</strong></a>
@@ -317,6 +322,8 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/.autosummary/shamo.utils.geometry.Plane3D.html#shamo.utils.geometry.Plane3D.abs_dist">abs_dist() (shamo.utils.geometry.Plane3D method)</a>
+</li>
       <li><a href="reference/.autosummary/shamo.core.problems.single.components.sensors.CompSensors.html#shamo.core.problems.single.components.sensors.CompSensors.add">add() (shamo.core.problems.single.components.sensors.CompSensors method)</a>
 
       <ul>
@@ -336,6 +343,8 @@
       <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.add_point_sensors">add_point_sensors() (shamo.core.fem.fem.FEM method)</a>
 </li>
       <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.add_point_sensors_from_tsv">add_point_sensors_from_tsv() (shamo.core.fem.fem.FEM method)</a>
+</li>
+      <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.add_rect_sensor_on">add_rect_sensor_on() (shamo.core.fem.fem.FEM method)</a>
 </li>
       <li><a href="reference/.autosummary/shamo.core.problems.single.components.sensors.CompSensors.html#shamo.core.problems.single.components.sensors.CompSensors.adds">adds() (shamo.core.problems.single.components.sensors.CompSensors method)</a>
 
@@ -397,6 +406,8 @@
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.clear">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.clear">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor.clear">(shamo.core.fem.sensors.surface.RectSensor method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.clear">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
@@ -514,6 +525,8 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.copy">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor.copy">(shamo.core.fem.sensors.surface.RectSensor method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.copy">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue.copy">(shamo.core.fem.tissue.Tissue method)</a>
@@ -613,6 +626,8 @@
         <li><a href="reference/.autosummary/shamo.core.distributions.normal.DistTruncNormal.html#shamo.core.distributions.normal.DistTruncNormal.dist">(shamo.core.distributions.normal.DistTruncNormal property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.distributions.uniform.DistUniform.html#shamo.core.distributions.uniform.DistUniform.dist">(shamo.core.distributions.uniform.DistUniform property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.utils.geometry.Plane3D.html#shamo.utils.geometry.Plane3D.dist">(shamo.utils.geometry.Plane3D method)</a>
 </li>
       </ul></li>
       <li><a href="reference/.autosummary/shamo.core.distributions.abc.DistABC.html#shamo.core.distributions.abc.DistABC.dist_type">dist_type() (shamo.core.distributions.abc.DistABC property)</a>
@@ -736,6 +751,8 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.fromkeys">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor.fromkeys">(shamo.core.fem.sensors.surface.RectSensor method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.fromkeys">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue.fromkeys">(shamo.core.fem.tissue.Tissue method)</a>
@@ -857,6 +874,8 @@
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.get">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.get">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor.get">(shamo.core.fem.sensors.surface.RectSensor method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.get">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
@@ -1086,6 +1105,14 @@
   </ul></td>
 </tr></table>
 
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor.height">height() (shamo.core.fem.sensors.surface.RectSensor property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -1127,6 +1154,8 @@
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.items">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.items">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor.items">(shamo.core.fem.sensors.surface.RectSensor method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.items">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
@@ -1281,6 +1310,8 @@
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.keys">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.keys">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor.keys">(shamo.core.fem.sensors.surface.RectSensor method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.keys">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
@@ -1447,6 +1478,8 @@
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.mesh_coords">(shamo.core.fem.sensors.point.PointSensor property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.mesh_coords">(shamo.core.fem.sensors.surface.CircleSensor property)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor.mesh_coords">(shamo.core.fem.sensors.surface.RectSensor property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.mesh_coords">(shamo.core.fem.sensors.surface.SurfSensorABC property)</a>
 </li>
@@ -1618,6 +1651,8 @@
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.solution.html#module-shamo.hd_tdcs.simulation.single.solution">shamo.hd_tdcs.simulation.single.solution</a>
 </li>
         <li><a href="reference/.autosummary/shamo.utils.html#module-shamo.utils">shamo.utils</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.utils.geometry.html#module-shamo.utils.geometry">shamo.utils.geometry</a>
 </li>
         <li><a href="reference/.autosummary/shamo.utils.logging.html#module-shamo.utils.logging">shamo.utils.logging</a>
 </li>
@@ -1830,6 +1865,8 @@
         <li><a href="reference/.autosummary/shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.html#shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim.path">(shamo.hd_tdcs.simulation.single.solution.SolHDTDCSSim property)</a>
 </li>
       </ul></li>
+      <li><a href="reference/.autosummary/shamo.utils.geometry.Plane3D.html#shamo.utils.geometry.Plane3D">Plane3D (class in shamo.utils.geometry)</a>
+</li>
       <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.point">point() (shamo.core.fem.sensors.point.PointSensor property)</a>
 </li>
       <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor">PointSensor (class in shamo.core.fem.sensors.point)</a>
@@ -1856,6 +1893,8 @@
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.pop">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.pop">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor.pop">(shamo.core.fem.sensors.surface.RectSensor method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.pop">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
@@ -1956,6 +1995,8 @@
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.popitem">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.popitem">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor.popitem">(shamo.core.fem.sensors.surface.RectSensor method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.popitem">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
@@ -2089,11 +2130,15 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.real_coords">(shamo.core.fem.sensors.surface.CircleSensor property)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor.real_coords">(shamo.core.fem.sensors.surface.RectSensor property)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.real_coords">(shamo.core.fem.sensors.surface.SurfSensorABC property)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor">RectSensor (class in shamo.core.fem.sensors.surface)</a>
+</li>
       <li><a href="reference/.autosummary/shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.html#shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield.reference">reference() (shamo.eeg.leadfield.parametric.solution.SolParamEEGLeadfield property)</a>
 
       <ul>
@@ -2191,6 +2236,8 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.sensor_type">(shamo.core.fem.sensors.surface.CircleSensor property)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor.sensor_type">(shamo.core.fem.sensors.surface.RectSensor property)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.sensor_type">(shamo.core.fem.sensors.surface.SurfSensorABC property)</a>
 </li>
       </ul></li>
@@ -2240,6 +2287,8 @@
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.setdefault">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.setdefault">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor.setdefault">(shamo.core.fem.sensors.surface.RectSensor method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.setdefault">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
@@ -2794,6 +2843,13 @@
 </li>
       </ul></li>
       <li>
+    shamo.utils.geometry
+
+      <ul>
+        <li><a href="reference/.autosummary/shamo.utils.geometry.html#module-shamo.utils.geometry">module</a>
+</li>
+      </ul></li>
+      <li>
     shamo.utils.logging
 
       <ul>
@@ -2929,6 +2985,8 @@
       <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.surf">surf() (shamo.core.fem.sensors.surface.CircleSensor property)</a>
 
       <ul>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor.surf">(shamo.core.fem.sensors.surface.RectSensor property)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.surf">(shamo.core.fem.sensors.surface.SurfSensorABC property)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue.surf">(shamo.core.fem.tissue.Tissue property)</a>
@@ -2985,10 +3043,16 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.tissue">(shamo.core.fem.sensors.surface.CircleSensor property)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor.tissue">(shamo.core.fem.sensors.surface.RectSensor property)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.tissue">(shamo.core.fem.sensors.surface.SurfSensorABC property)</a>
 </li>
       </ul></li>
       <li><a href="reference/.autosummary/shamo.core.fem.fem.FEM.html#shamo.core.fem.fem.FEM.tissues">tissues() (shamo.core.fem.fem.FEM property)</a>
+</li>
+      <li><a href="reference/.autosummary/shamo.utils.geometry.Plane3D.html#shamo.utils.geometry.Plane3D.to_2d">to_2d() (shamo.utils.geometry.Plane3D method)</a>
+</li>
+      <li><a href="reference/.autosummary/shamo.utils.geometry.Plane3D.html#shamo.utils.geometry.Plane3D.to_3d">to_3d() (shamo.utils.geometry.Plane3D method)</a>
 </li>
       <li><a href="reference/.autosummary/shamo.core.problems.parametric.components.tissue_property.CompParamTissueProp.html#shamo.core.problems.parametric.components.tissue_property.CompParamTissueProp.to_param">to_param() (shamo.core.problems.parametric.components.tissue_property.CompParamTissueProp method)</a>
 
@@ -3074,6 +3138,8 @@
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.point.PointSensor.html#shamo.core.fem.sensors.point.PointSensor.update">(shamo.core.fem.sensors.point.PointSensor method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.update">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
+</li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor.update">(shamo.core.fem.sensors.surface.RectSensor method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.update">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
@@ -3203,6 +3269,8 @@
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.CircleSensor.html#shamo.core.fem.sensors.surface.CircleSensor.values">(shamo.core.fem.sensors.surface.CircleSensor method)</a>
 </li>
+        <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor.values">(shamo.core.fem.sensors.surface.RectSensor method)</a>
+</li>
         <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.SurfSensorABC.html#shamo.core.fem.sensors.surface.SurfSensorABC.values">(shamo.core.fem.sensors.surface.SurfSensorABC method)</a>
 </li>
         <li><a href="reference/.autosummary/shamo.core.fem.tissue.Tissue.html#shamo.core.fem.tissue.Tissue.values">(shamo.core.fem.tissue.Tissue method)</a>
@@ -3289,6 +3357,10 @@
 
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/.autosummary/shamo.core.fem.sensors.surface.RectSensor.html#shamo.core.fem.sensors.surface.RectSensor.width">width() (shamo.core.fem.sensors.surface.RectSensor property)</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/.autosummary/shamo.utils.logging.StreamToLogger.html#shamo.utils.logging.StreamToLogger.write">write() (shamo.utils.logging.StreamToLogger method)</a>
 </li>

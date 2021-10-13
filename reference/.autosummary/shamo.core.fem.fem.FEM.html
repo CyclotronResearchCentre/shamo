@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>shamo.core.fem.fem.FEM &mdash; shamo 1.1.0 documentation</title>
+  <title>shamo.core.fem.fem.FEM &mdash; shamo 1.2.0 documentation</title>
   
 
   
@@ -205,6 +205,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shamo.utils.geometry.html">shamo.utils.geometry</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.geometry.Plane3D.html">shamo.utils.geometry.Plane3D</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="shamo.utils.logging.html">shamo.utils.logging</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.logging.stream_to_logger.html">shamo.utils.logging.stream_to_logger</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.logging.subprocess_to_logger.html">shamo.utils.logging.subprocess_to_logger</a></li>
@@ -334,9 +338,9 @@
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the model.</p>
+<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the model.</p>
 </dd>
-<dt><strong>parent_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the parent directory of the model.</p>
+<dt><strong>parent_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the parent directory of the model.</p>
 </dd>
 </dl>
 </dd>
@@ -384,73 +388,76 @@
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point_sensors_on</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.clear" title="shamo.core.fem.fem.FEM.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.add_rect_sensor_on" title="shamo.core.fem.fem.FEM.add_rect_sensor_on"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_rect_sensor_on</span></code></a></p></td>
+<td><p>Add a rectangular sensor on a surface.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.clear" title="shamo.core.fem.fem.FEM.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.copy" title="shamo.core.fem.fem.FEM.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.copy" title="shamo.core.fem.fem.FEM.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.field_from_array" title="shamo.core.fem.fem.FEM.field_from_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_from_array</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.field_from_array" title="shamo.core.fem.fem.FEM.field_from_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_from_array</span></code></a></p></td>
 <td><p>Add a field to the mesh from an array.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.field_from_elems" title="shamo.core.fem.fem.FEM.field_from_elems"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_from_elems</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.field_from_elems" title="shamo.core.fem.fem.FEM.field_from_elems"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_from_elems</span></code></a></p></td>
 <td><p>Add a field to the mesh from element data.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.field_from_nii" title="shamo.core.fem.fem.FEM.field_from_nii"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_from_nii</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.field_from_nii" title="shamo.core.fem.fem.FEM.field_from_nii"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_from_nii</span></code></a></p></td>
 <td><p>Add a field to the mesh from a NIFTI image.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.fromkeys" title="shamo.core.fem.fem.FEM.fromkeys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fromkeys</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.fromkeys" title="shamo.core.fem.fem.FEM.fromkeys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fromkeys</span></code></a></p></td>
 <td><p>Create a new dictionary with keys from iterable and values set to value.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.get" title="shamo.core.fem.fem.FEM.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.get" title="shamo.core.fem.fem.FEM.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code></a></p></td>
 <td><p>Return the value for key if key is in the dictionary, else default.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.get_relative_path" title="shamo.core.fem.fem.FEM.get_relative_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_relative_path</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.get_relative_path" title="shamo.core.fem.fem.FEM.get_relative_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_relative_path</span></code></a></p></td>
 <td><p>Return the relative path from the object to a file or directory.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.items" title="shamo.core.fem.fem.FEM.items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.items" title="shamo.core.fem.fem.FEM.items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.keys" title="shamo.core.fem.fem.FEM.keys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.keys" title="shamo.core.fem.fem.FEM.keys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.load" title="shamo.core.fem.fem.FEM.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.load" title="shamo.core.fem.fem.FEM.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a></p></td>
 <td><p>Load an object from a JSON file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.mesh_from_array" title="shamo.core.fem.fem.FEM.mesh_from_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_from_array</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.mesh_from_array" title="shamo.core.fem.fem.FEM.mesh_from_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_from_array</span></code></a></p></td>
 <td><p>Generate a MSH file from a labelled array.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.mesh_from_fem" title="shamo.core.fem.fem.FEM.mesh_from_fem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_from_fem</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.mesh_from_fem" title="shamo.core.fem.fem.FEM.mesh_from_fem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_from_fem</span></code></a></p></td>
 <td><p>Generate a mesh from an existing FEM by merging tissues.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.mesh_from_masks" title="shamo.core.fem.fem.FEM.mesh_from_masks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_from_masks</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.mesh_from_masks" title="shamo.core.fem.fem.FEM.mesh_from_masks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_from_masks</span></code></a></p></td>
 <td><p>Generate a MSH file from multiple binary masks.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.mesh_from_nii" title="shamo.core.fem.fem.FEM.mesh_from_nii"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_from_nii</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.mesh_from_nii" title="shamo.core.fem.fem.FEM.mesh_from_nii"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_from_nii</span></code></a></p></td>
 <td><p>Generate a MSH file from a labelled NIFTI file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.mesh_from_niis" title="shamo.core.fem.fem.FEM.mesh_from_niis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_from_niis</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.mesh_from_niis" title="shamo.core.fem.fem.FEM.mesh_from_niis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_from_niis</span></code></a></p></td>
 <td><p>Generate a MSH file from multiple binary masks.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.mesh_from_surfaces" title="shamo.core.fem.fem.FEM.mesh_from_surfaces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_from_surfaces</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.mesh_from_surfaces" title="shamo.core.fem.fem.FEM.mesh_from_surfaces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_from_surfaces</span></code></a></p></td>
 <td><p>Generate a mesh from a series of surface meshes.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.pop" title="shamo.core.fem.fem.FEM.pop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.pop" title="shamo.core.fem.fem.FEM.pop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code></a></p></td>
 <td><p>If key is not found, d is returned if given, otherwise KeyError is raised</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.popitem" title="shamo.core.fem.fem.FEM.popitem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">popitem</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.popitem" title="shamo.core.fem.fem.FEM.popitem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">popitem</span></code></a></p></td>
 <td><p>Remove and return a (key, value) pair as a 2-tuple.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.save" title="shamo.core.fem.fem.FEM.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.save" title="shamo.core.fem.fem.FEM.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a></p></td>
 <td><p>Save the object to a JSON file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.setdefault" title="shamo.core.fem.fem.FEM.setdefault"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setdefault</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.setdefault" title="shamo.core.fem.fem.FEM.setdefault"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setdefault</span></code></a></p></td>
 <td><p>Insert key with a value of default if key is not in the dictionary.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.update" title="shamo.core.fem.fem.FEM.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.update" title="shamo.core.fem.fem.FEM.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a></p></td>
 <td><p>If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k] If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v In either case, this is followed by: for k in F:  D[k] = F[k]</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.values" title="shamo.core.fem.fem.FEM.values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">values</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#shamo.core.fem.fem.FEM.values" title="shamo.core.fem.fem.FEM.values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">values</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -504,23 +511,23 @@
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the sensor.</p>
+<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the sensor.</p>
 </dd>
-<dt><strong>coords</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]</span></dt><dd><p>The coordinates of the sensor in the subject space.</p>
+<dt><strong>coords</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]</span></dt><dd><p>The coordinates of the sensor in the subject space.</p>
 </dd>
-<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the tissue the sensor must be added on.</p>
+<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the tissue the sensor must be added on.</p>
 </dd>
-<dt><strong>radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The radius of the sensor [m].</p>
+<dt><strong>radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The radius of the sensor [m].</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If a sensor with name <cite>name</cite> already exists.
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If a sensor with name <cite>name</cite> already exists.
 If the coordinates are not a 3D location.
 If the tissue <cite>tissue</cite> does not exist in the model.</p>
 </dd>
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If the argument <cite>coords</cite> is not of the right type.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If the argument <cite>coords</cite> is not of the right type.</p>
 </dd>
 </dl>
 </dd>
@@ -534,11 +541,11 @@ If the tissue <cite>tissue</cite> does not exist in the model.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>tsv_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the TSV file.</p>
+<dt><strong>tsv_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the TSV file.</p>
 </dd>
-<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the tissue the sensor is on.</p>
+<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the tissue the sensor is on.</p>
 </dd>
-<dt><strong>radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The radius of the sensor [m].</p>
+<dt><strong>radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The radius of the sensor [m].</p>
 </dd>
 </dl>
 </dd>
@@ -552,11 +559,11 @@ If the tissue <cite>tissue</cite> does not exist in the model.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>coords</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapping</span></code> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]]</span></dt><dd><p>The coordinates of the sensor.</p>
+<dt><strong>coords</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapping</span></code> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]]</span></dt><dd><p>The coordinates of the sensor.</p>
 </dd>
-<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the tissue the sensor is on.</p>
+<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the tissue the sensor is on.</p>
 </dd>
-<dt><strong>radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The radius of the sensor [m].</p>
+<dt><strong>radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The radius of the sensor [m].</p>
 </dd>
 </dl>
 </dd>
@@ -570,23 +577,23 @@ If the tissue <cite>tissue</cite> does not exist in the model.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the sensor.</p>
+<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the sensor.</p>
 </dd>
-<dt><strong>coords</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>] <code class="xref py py-obj docutils literal notranslate"><span class="pre">or</span></code> <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The coordinates of the sensor.</p>
+<dt><strong>coords</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>] <code class="xref py py-obj docutils literal notranslate"><span class="pre">or</span></code> <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The coordinates of the sensor.</p>
 </dd>
-<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the tissue the sensor is on/in.</p>
+<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the tissue the sensor is on/in.</p>
 </dd>
-<dt><strong>dim</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">2</span></code>, the sensor is added on the surface of the tissue. If set to
+<dt><strong>dim</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">2</span></code>, the sensor is added on the surface of the tissue. If set to
 <code class="docutils literal notranslate"><span class="pre">3</span></code>, it is placed inside the tissue.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>coords</cite> is neither an <cite>Iterable</cite> or a <cite>numpy.ndarray</cite>.
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>coords</cite> is neither an <cite>Iterable</cite> or a <cite>numpy.ndarray</cite>.
 If argument <cite>dim</cite> is not an <cite>int</cite>.</p>
 </dd>
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If argument <cite>name</cite> refers to an existing sensor.
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If argument <cite>name</cite> refers to an existing sensor.
 If argument <cite>coords</cite> is not a proper 3D coordinate.
 If argument <cite>tissue</cite> refers to a non existing tissue.</p>
 </dd>
@@ -602,21 +609,21 @@ If argument <cite>tissue</cite> refers to a non existing tissue.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>coords</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapping</span></code> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]]</span></dt><dd><p>The coordinates of the sensor.</p>
+<dt><strong>coords</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapping</span></code> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]]</span></dt><dd><p>The coordinates of the sensor.</p>
 </dd>
-<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the tissue the sensor is on/in.</p>
+<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the tissue the sensor is on/in.</p>
 </dd>
-<dt><strong>dim</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">2</span></code>, the sensor is added on the surface of the tissue. If set to
+<dt><strong>dim</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">2</span></code>, the sensor is added on the surface of the tissue. If set to
 <code class="docutils literal notranslate"><span class="pre">3</span></code>, it is placed inside the tissue.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>coords</cite> is not a Mapping of coordinates.
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>coords</cite> is not a Mapping of coordinates.
 If argument <cite>dim</cite> is not an <cite>int</cite>.</p>
 </dd>
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If argument <cite>tissue</cite> refers to a non existing tissue.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If argument <cite>tissue</cite> refers to a non existing tissue.</p>
 </dd>
 </dl>
 </dd>
@@ -630,21 +637,55 @@ If argument <cite>dim</cite> is not an <cite>int</cite>.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>tsv_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the TSV file.</p>
+<dt><strong>tsv_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the TSV file.</p>
 </dd>
-<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the tissue the sensor is on/in.</p>
+<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the tissue the sensor is on/in.</p>
 </dd>
-<dt><strong>dim</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">2</span></code>, the sensor is added on the surface of the tissue. If set to
+<dt><strong>dim</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">2</span></code>, the sensor is added on the surface of the tissue. If set to
 <code class="docutils literal notranslate"><span class="pre">3</span></code>, it is placed inside the tissue.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>coords</cite> is not a Mapping of coordinates.
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>coords</cite> is not a Mapping of coordinates.
 If argument <cite>dim</cite> is not an <cite>int</cite>.</p>
 </dd>
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If argument <cite>tissue</cite> refers to a non existing tissue.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If argument <cite>tissue</cite> refers to a non existing tissue.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shamo.core.fem.fem.FEM.add_rect_sensor_on">
+<code class="sig-name descname">add_rect_sensor_on</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">coords</span></em>, <em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">tissue</span></em>, <em class="sig-param"><span class="n">shape</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/shamo/core/fem/fem.html#FEM.add_rect_sensor_on"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shamo.core.fem.fem.FEM.add_rect_sensor_on" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a rectangular sensor on a surface.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the sensor.</p>
+</dd>
+<dt><strong>coords</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]</span></dt><dd><p>The coordinates of the center of the sensor in the subject space. It
+corresponds to the origin of the plane used to model the sensor.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> [<code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]]</span></dt><dd><p>The eigen vectors of the plane. the first is used for the width and the
+second for the height of the rectangle.</p>
+</dd>
+<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the tissue the sensor must be added on.</p>
+</dd>
+<dt><strong>shape</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]</span></dt><dd><p>The width and height of the rectangle [m].</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If a sensor with name <cite>name</cite> already exists.
+If the coordinates are not a 3D location.
+If the tissue <cite>tissue</cite> does not exist in the model.</p>
+</dd>
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If the argument <cite>coords</cite> is not of the right type.</p>
 </dd>
 </dl>
 </dd>
@@ -658,7 +699,7 @@ If argument <cite>dim</cite> is not an <cite>int</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></dt><dd><p>The affine matrix of the NIFTI file.</p>
+<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></dt><dd><p>The affine matrix of the NIFTI file.</p>
 </dd>
 </dl>
 </dd>
@@ -682,37 +723,37 @@ If argument <cite>dim</cite> is not an <cite>int</cite>.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the field. In the mesh, it will be added as ‘{tissue}_{name}’.</p>
+<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the field. In the mesh, it will be added as ‘{tissue}_{name}’.</p>
 </dd>
-<dt><strong>field</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The field values.</p>
+<dt><strong>field</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The field values.</p>
 </dd>
-<dt><strong>affine</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The affine matrix of the field.</p>
+<dt><strong>affine</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The affine matrix of the field.</p>
 </dd>
-<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The tissue in which the field must be added.</p>
+<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The tissue in which the field must be added.</p>
 </dd>
-<dt><strong>fill_val</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code></span></dt><dd><p>The value to add in elements of the tissue that are not in <cite>elems_tags</cite>.</p>
+<dt><strong>fill_val</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code></span></dt><dd><p>The value to add in elements of the tissue that are not in <cite>elems_tags</cite>.</p>
 </dd>
-<dt><strong>formula</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>The formula linking the field to a physical property. The default value is
+<dt><strong>formula</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>The formula linking the field to a physical property. The default value is
 <cite>‘1’</cite>.</p>
 </dd>
-<dt><strong>nearest</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, no interpolation is performed. Otherwise, a linear
+<dt><strong>nearest</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, no interpolation is performed. Otherwise, a linear
 interpolation is used. The default value is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 </dd>
-<dt><strong>resize</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, the affine matrix is converted from [mm] to [m]. The
+<dt><strong>resize</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, the affine matrix is converted from [mm] to [m]. The
 default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>field</cite> is not a <cite>numpy.ndarray</cite>.
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>field</cite> is not a <cite>numpy.ndarray</cite>.
 If argument <cite>affine</cite> is not a <cite>numpy.ndarray</cite>.</p>
 </dd>
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If argument <cite>field</cite> is not a 3D or 4D array containing a scalar, vector or
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If argument <cite>field</cite> is not a 3D or 4D array containing a scalar, vector or
 tensor field.
 If argument <cite>affine</cite> is neither a (3, 4) nor a (4, 4) array.</p>
 </dd>
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KeyError</span></code></a></dt><dd><p>If argument <cite>tissue</cite> does not correspond to a tissue of the mesh.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KeyError</span></code></a></dt><dd><p>If argument <cite>tissue</cite> does not correspond to a tissue of the mesh.</p>
 </dd>
 </dl>
 </dd>
@@ -732,31 +773,31 @@ If argument <cite>affine</cite> is neither a (3, 4) nor a (4, 4) array.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the field. In the mesh, it will be added as ‘{tissue}_{name}’.</p>
+<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the field. In the mesh, it will be added as ‘{tissue}_{name}’.</p>
 </dd>
-<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The tissue in which the field must be added.</p>
+<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The tissue in which the field must be added.</p>
 </dd>
-<dt><strong>elems_tags</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>]</span></dt><dd><p>The tags of the elements in which the value is available.</p>
+<dt><strong>elems_tags</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code> [<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>]</span></dt><dd><p>The tags of the elements in which the value is available.</p>
 </dd>
-<dt><strong>elems_vals</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code></span></dt><dd><p>The values of the field on the corresponding elements.</p>
+<dt><strong>elems_vals</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code></span></dt><dd><p>The values of the field on the corresponding elements.</p>
 </dd>
-<dt><strong>fill_val</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code></span></dt><dd><p>The value to add in elements of the tissue that are not in <cite>elems_tags</cite>.</p>
+<dt><strong>fill_val</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code></span></dt><dd><p>The value to add in elements of the tissue that are not in <cite>elems_tags</cite>.</p>
 </dd>
-<dt><strong>formula</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The formula linking the field to a physical property.</p>
+<dt><strong>formula</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The formula linking the field to a physical property.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KeyError</span></code></a></dt><dd><p>If argument <cite>tissue</cite> does not correspond to a tissue of the mesh.
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KeyError</span></code></a></dt><dd><p>If argument <cite>tissue</cite> does not correspond to a tissue of the mesh.
 If argument <cite>name</cite> refers to an already existing field.</p>
 </dd>
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>elems_tags</cite> is neither a <cite>numpy.ndarray</cite> or a <cite>Iterable</cite> of
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>elems_tags</cite> is neither a <cite>numpy.ndarray</cite> or a <cite>Iterable</cite> of
 <cite>int</cite>.
 If argument <cite>elems_vals</cite> is neither a <cite>numpy.ndarray</cite> or a <cite>Iterable</cite>.
 If argument <cite>fill_val</cite> is neither a <cite>numpy.ndarray</cite> or a <cite>Iterable</cite>.</p>
 </dd>
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If argument <cite>elems_vals</cite> does not contain a scalar, vector or tensor field.
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If argument <cite>elems_vals</cite> does not contain a scalar, vector or tensor field.
 If argument <cite>fill_val</cite> does not correspond to the values in <cite>elems_vals</cite>.</p>
 </dd>
 </dl>
@@ -771,28 +812,28 @@ If argument <cite>fill_val</cite> does not correspond to the values in <cite>ele
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the field. In the mesh, it will be added as ‘{tissue}_{name}’.</p>
+<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The name of the field. In the mesh, it will be added as ‘{tissue}_{name}’.</p>
 </dd>
-<dt><strong>nii_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the NIFTI file containing the field.</p>
+<dt><strong>nii_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the NIFTI file containing the field.</p>
 </dd>
-<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The tissue in which the field must be added.</p>
+<dt><strong>tissue</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The tissue in which the field must be added.</p>
 </dd>
-<dt><strong>fill_val</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code></span></dt><dd><p>The value to add in elements of the tissue that are not in <cite>elems_tags</cite>.</p>
+<dt><strong>fill_val</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable</span></code></span></dt><dd><p>The value to add in elements of the tissue that are not in <cite>elems_tags</cite>.</p>
 </dd>
-<dt><strong>formula</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>The formula linking the field to a physical property. The default value is
+<dt><strong>formula</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>The formula linking the field to a physical property. The default value is
 <cite>‘1’</cite>.</p>
 </dd>
-<dt><strong>nearest</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, no interpolation is performed. Otherwise, a linear
+<dt><strong>nearest</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, no interpolation is performed. Otherwise, a linear
 interpolation is used. The default value is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 </dd>
-<dt><strong>resize</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, the affine matrix is converted from [mm] to [m]. The
+<dt><strong>resize</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, the affine matrix is converted from [mm] to [m]. The
 default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>nii_path</cite> is not a <cite>str</cite>, <cite>byte</cite> or <cite>os.PathLike</cite>.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>nii_path</cite> is not a <cite>str</cite>, <cite>byte</cite> or <cite>os.PathLike</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -824,13 +865,13 @@ default is <code class="docutils literal notranslate"><span class="pre">True</sp
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the file or directory to compute the relative path for.</p>
+<dt><strong>path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the file or directory to compute the relative path for.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></dt><dd><p>The relative path to the file or directory.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></dt><dd><p>The relative path to the file or directory.</p>
 </dd>
 </dl>
 </dd>
@@ -849,7 +890,7 @@ default is <code class="docutils literal notranslate"><span class="pre">True</sp
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></dt><dd><p>The path to the object JSON file.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></dt><dd><p>The path to the object JSON file.</p>
 </dd>
 </dl>
 </dd>
@@ -868,13 +909,13 @@ default is <code class="docutils literal notranslate"><span class="pre">True</sp
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>json_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the JSON file containing the object data.</p>
+<dt><strong>json_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the JSON file containing the object data.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>json_path</cite> is not a <cite>str</cite>, <cite>byte</cite> or <cite>os.PathLike</cite>.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>json_path</cite> is not a <cite>str</cite>, <cite>byte</cite> or <cite>os.PathLike</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -888,24 +929,24 @@ default is <code class="docutils literal notranslate"><span class="pre">True</sp
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>labels</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>A labelled array corresponding to a multi-segments image. The array must
+<dt><strong>labels</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>A labelled array corresponding to a multi-segments image. The array must
 contain int labels starting from <code class="docutils literal notranslate"><span class="pre">0</span></code> (air) without skipping a number.</p>
 </dd>
-<dt><strong>affine</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The affine matrix of the volume.</p>
+<dt><strong>affine</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The affine matrix of the volume.</p>
 </dd>
-<dt><strong>tissues</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/glossary.html#term-iterable" title="(in Python v3.9)"><span>iterable</span></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>]</span></dt><dd><p>The names of the tissues in the same order as the labels.</p>
+<dt><strong>tissues</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/glossary.html#term-iterable" title="(in Python v3.10)"><span>iterable</span></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>]</span></dt><dd><p>The names of the tissues in the same order as the labels.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Other Parameters</dt>
 <dd class="field-even"><dl>
-<dt><strong>lloyd</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>lloyd</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
-<dt><strong>odt</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>odt</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
-<dt><strong>perturb</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>perturb</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
-<dt><strong>exude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>exude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
 <dt><strong>max_edge_size_at_feature_edges: float, optional</strong></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
@@ -919,17 +960,17 @@ contain int labels starting from <code class="docutils literal notranslate"><spa
 </dd>
 <dt><strong>max_circumradius_edge_ratio: float, optional</strong></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
-<dt><strong>seed</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>seed</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument ‘labels’ is not a <cite>numpy.ndarray</cite>.
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument ‘labels’ is not a <cite>numpy.ndarray</cite>.
 If argument ‘affine’ is not a <cite>numpy.ndarray</cite>.
 If an element of argument ‘tissues’ is not a <cite>str</cite>.</p>
 </dd>
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If argument ‘labels’ is not a 3D array.
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If argument ‘labels’ is not a 3D array.
 If argument ‘affine’ is neither a (3, 4) nor a (4, 4) array.
 If argument ‘tissues’ does not contain as many elements as there are labels
 in ‘labels’.</p>
@@ -952,9 +993,9 @@ in ‘labels’.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>fem_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the original model.</p>
+<dt><strong>fem_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the original model.</p>
 </dd>
-<dt><strong>merges</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">list</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>]]</span></dt><dd><p>The merges to perform. Each value contains the names of the tissues to merge
+<dt><strong>merges</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">list</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>]]</span></dt><dd><p>The merges to perform. Each value contains the names of the tissues to merge
 into a tissue named with the key.</p>
 </dd>
 </dl>
@@ -972,21 +1013,21 @@ and edit the tissue the sensors are placed in/on.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>mask</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapping</span></code> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>]</span></dt><dd><p>A mapping from the names of the tissues to the corresponding binary masks.</p>
+<dt><strong>mask</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapping</span></code> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>]</span></dt><dd><p>A mapping from the names of the tissues to the corresponding binary masks.</p>
 </dd>
-<dt><strong>affine</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The affine matrix of the volume.</p>
+<dt><strong>affine</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>The affine matrix of the volume.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Other Parameters</dt>
 <dd class="field-even"><dl>
-<dt><strong>lloyd</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>lloyd</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
-<dt><strong>odt</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>odt</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
-<dt><strong>perturb</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>perturb</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
-<dt><strong>exude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>exude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
 <dt><strong>max_edge_size_at_feature_edges: float, optional</strong></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
@@ -1000,15 +1041,15 @@ and edit the tissue the sensors are placed in/on.</p>
 </dd>
 <dt><strong>max_circumradius_edge_ratio: float, optional</strong></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
-<dt><strong>seed</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>seed</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>masks</cite> is not a mapping from <cite>str</cite> to <cite>numpy.ndarray</cite>.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>masks</cite> is not a mapping from <cite>str</cite> to <cite>numpy.ndarray</cite>.</p>
 </dd>
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If the masks in ‘masks’ are not all of the same shape.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If the masks in ‘masks’ are not all of the same shape.</p>
 </dd>
 </dl>
 </dd>
@@ -1029,21 +1070,21 @@ and edit the tissue the sensors are placed in/on.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>nii_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the NIFTI file containing the labelled volume.</p>
+<dt><strong>nii_path</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></span></dt><dd><p>The path to the NIFTI file containing the labelled volume.</p>
 </dd>
-<dt><strong>tissues</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/glossary.html#term-iterable" title="(in Python v3.9)"><span>iterable</span></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>]</span></dt><dd><p>The names of the tissues in the same order as the labels.</p>
+<dt><strong>tissues</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/glossary.html#term-iterable" title="(in Python v3.10)"><span>iterable</span></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>]</span></dt><dd><p>The names of the tissues in the same order as the labels.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Other Parameters</dt>
 <dd class="field-even"><dl>
-<dt><strong>lloyd</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>lloyd</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
-<dt><strong>odt</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>odt</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
-<dt><strong>perturb</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>perturb</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
-<dt><strong>exude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>exude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
 <dt><strong>max_edge_size_at_feature_edges: float, optional</strong></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
@@ -1057,13 +1098,13 @@ and edit the tissue the sensors are placed in/on.</p>
 </dd>
 <dt><strong>max_circumradius_edge_ratio: float, optional</strong></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
-<dt><strong>seed</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>seed</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>nii_path</cite> is not a <cite>str</cite>, <cite>byte</cite> or <cite>os.PathLike</cite>.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>nii_path</cite> is not a <cite>str</cite>, <cite>byte</cite> or <cite>os.PathLike</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -1084,20 +1125,20 @@ and edit the tissue the sensors are placed in/on.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>niis</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapping</span></code> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a>]</span></dt><dd><p>A mapping from the names of the tissues to the path to the corresponding
+<dt><strong>niis</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapping</span></code> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> or <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a>]</span></dt><dd><p>A mapping from the names of the tissues to the path to the corresponding
 NIFTI binary masks.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Other Parameters</dt>
 <dd class="field-even"><dl>
-<dt><strong>lloyd</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>lloyd</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
-<dt><strong>odt</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>odt</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
-<dt><strong>perturb</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>perturb</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
-<dt><strong>exude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>exude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
 <dt><strong>max_edge_size_at_feature_edges: float, optional</strong></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
@@ -1111,13 +1152,13 @@ NIFTI binary masks.</p>
 </dd>
 <dt><strong>max_circumradius_edge_ratio: float, optional</strong></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
-<dt><strong>seed</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
+<dt><strong>seed</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>For more information, refer to the documentation of <cite>pygalmesh</cite>.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>niis</cite> is not a mapping from <cite>str</cite> to <cite>str</cite>, <cite>byte</cite> or
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If argument <cite>niis</cite> is not a mapping from <cite>str</cite> to <cite>str</cite>, <cite>byte</cite> or
 <cite>os.PathLike</cite>.</p>
 </dd>
 </dl>
@@ -1140,13 +1181,13 @@ NIFTI binary masks.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>tissues</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> | <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a>]</span></dt><dd><p>A dictionary containing the names of the tissues as keys and the path
+<dt><strong>tissues</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">byte</span></code> | <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.PathLike</span></code></a>]</span></dt><dd><p>A dictionary containing the names of the tissues as keys and the path
 leading to the corresponding surface mesh as values.</p>
 </dd>
-<dt><strong>structure</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">list</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">list</span></code></a>]</span></dt><dd><p>A tree structure defined as a nested list defining the way surfaces contain
+<dt><strong>structure</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">list</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">list</span></code></a>]</span></dt><dd><p>A tree structure defined as a nested list defining the way surfaces contain
 each other.</p>
 </dd>
-<dt><strong>lc</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>The characteristic length of the mesh elements. If set to <code class="docutils literal notranslate"><span class="pre">0</span></code>, it is
+<dt><strong>lc</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>The characteristic length of the mesh elements. If set to <code class="docutils literal notranslate"><span class="pre">0</span></code>, it is
 infered from the size of the surface elements. If a float value is used, the
 same size is set for the whole volume. If a dictionary is provided, it must
 contain the name of the tissues (or default) as keys and the corresponding
@@ -1156,7 +1197,7 @@ characteristic length as values. (The default is <code class="docutils literal n
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If argument <cite>lc</cite> is a dictionary, does not contain all the tissues and have
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueError</span></code></a></dt><dd><p>If argument <cite>lc</cite> is a dictionary, does not contain all the tissues and have
 no <code class="docutils literal notranslate"><span class="pre">default</span></code> key.</p>
 </dd>
 </dl>
@@ -1171,7 +1212,7 @@ no <code class="docutils literal notranslate"><span class="pre">default</span></
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]</dt><dd><p>The parameters used to produce the mesh.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]</dt><dd><p>The parameters used to produce the mesh.</p>
 </dd>
 </dl>
 </dd>
@@ -1185,7 +1226,7 @@ no <code class="docutils literal notranslate"><span class="pre">default</span></
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></dt><dd><p>The path to the MSH file.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></dt><dd><p>The path to the MSH file.</p>
 </dd>
 </dl>
 </dd>
@@ -1199,7 +1240,7 @@ no <code class="docutils literal notranslate"><span class="pre">default</span></
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></dt><dd><p>The name of the object.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></dt><dd><p>The name of the object.</p>
 </dd>
 </dl>
 </dd>
@@ -1213,7 +1254,7 @@ no <code class="docutils literal notranslate"><span class="pre">default</span></
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></dt><dd><p>The path to the NIFTI file.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></dt><dd><p>The path to the NIFTI file.</p>
 </dd>
 </dl>
 </dd>
@@ -1227,7 +1268,7 @@ no <code class="docutils literal notranslate"><span class="pre">default</span></
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></dt><dd><p>The path to the parent directory of the object.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></dt><dd><p>The path to the parent directory of the object.</p>
 </dd>
 </dl>
 </dd>
@@ -1241,7 +1282,7 @@ no <code class="docutils literal notranslate"><span class="pre">default</span></
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></dt><dd><p>The path to the object directory.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></dt><dd><p>The path to the object directory.</p>
 </dd>
 </dl>
 </dd>
@@ -1269,16 +1310,16 @@ Raises KeyError if the dict is empty.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>exist_ok</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.9)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, any already existing object is overriden. Otherwise, if
+<dt><strong>exist_ok</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, any already existing object is overriden. Otherwise, if
 the object already exists, a <cite>FileExistsError</cite>. The default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileExistsError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileExistsError</span></code></a></dt><dd><p>If <cite>exist_ok</cite> is set to <code class="docutils literal notranslate"><span class="pre">False</span></code> and the object already exists.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileExistsError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileExistsError</span></code></a></dt><dd><p>If <cite>exist_ok</cite> is set to <code class="docutils literal notranslate"><span class="pre">False</span></code> and the object already exists.</p>
 </dd>
-<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If any of the keys/values to be stored is not a <cite>str</cite>, <cite>int</cite>, <cite>float</cite>,
+<dt><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a></dt><dd><p>If any of the keys/values to be stored is not a <cite>str</cite>, <cite>int</cite>, <cite>float</cite>,
 <cite>bool</cite> or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </dd>
 </dl>
@@ -1293,7 +1334,7 @@ the object already exists, a <cite>FileExistsError</cite>. The default is <code 
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">shamo.fem.SensorABC</span></code>]</dt><dd><p>The sensors of the model.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">shamo.fem.SensorABC</span></code>]</dt><dd><p>The sensors of the model.</p>
 </dd>
 </dl>
 </dd>
@@ -1314,7 +1355,7 @@ the object already exists, a <cite>FileExistsError</cite>. The default is <code 
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></dt><dd><p>The shape of the NIFTI file.</p>
+<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></dt><dd><p>The shape of the NIFTI file.</p>
 </dd>
 </dl>
 </dd>
@@ -1328,7 +1369,7 @@ the object already exists, a <cite>FileExistsError</cite>. The default is <code 
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">shamo.fem.Tissue</span></code>]</dt><dd><p>The tissues of the model.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a> [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">shamo.fem.Tissue</span></code>]</dt><dd><p>The tissues of the model.</p>
 </dd>
 </dl>
 </dd>

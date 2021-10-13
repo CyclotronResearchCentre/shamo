@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>shamo.utils.logging.StreamToLogger &mdash; shamo 1.1.0 documentation</title>
+  <title>shamo.utils.logging.StreamToLogger &mdash; shamo 1.2.0 documentation</title>
   
 
   
@@ -205,6 +205,10 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="shamo.utils.html">shamo.utils</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="shamo.utils.geometry.html">shamo.utils.geometry</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shamo.utils.geometry.Plane3D.html">shamo.utils.geometry.Plane3D</a></li>
+</ul>
+</li>
 <li class="toctree-l3 current"><a class="reference internal" href="shamo.utils.logging.html">shamo.utils.logging</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.logging.stream_to_logger.html">shamo.utils.logging.stream_to_logger</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shamo.utils.logging.subprocess_to_logger.html">shamo.utils.logging.subprocess_to_logger</a></li>
@@ -327,18 +331,18 @@
 <dl class="py class">
 <dt id="shamo.utils.logging.StreamToLogger">
 <em class="property">class </em><code class="sig-prename descclassname">shamo.utils.logging.</code><code class="sig-name descname">StreamToLogger</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">logger</span></em>, <em class="sig-param"><span class="n">log_level</span><span class="o">=</span><span class="default_value">20</span></em>, <em class="sig-param"><span class="n">pattern</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/shamo/utils/logging.html#StreamToLogger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shamo.utils.logging.StreamToLogger" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Pipe a stream to a logger.</p>
 <p>The implementation is based on the blog post available at:
 <a class="reference external" href="http://techies-world.com/how-to-redirect-stdout-and-stderr-to-a-logger-in-python/">http://techies-world.com/how-to-redirect-stdout-and-stderr-to-a-logger-in-python/</a></p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>logger</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logging.Logger</span></code></a></span></dt><dd><p>The logger to pipe the stream to.</p>
+<dt><strong>logger</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logging.Logger</span></code></a></span></dt><dd><p>The logger to pipe the stream to.</p>
 </dd>
-<dt><strong>log_level</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>The logging level of the piped messages.</p>
+<dt><strong>log_level</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>The logging level of the piped messages.</p>
 </dd>
-<dt><strong>pattern</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>A pattern containing a ‘level’ and a ‘text’ group.</p>
+<dt><strong>pattern</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>A pattern containing a ‘level’ and a ‘text’ group.</p>
 </dd>
 </dl>
 </dd>
@@ -383,7 +387,7 @@
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>buf</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></a></span></dt><dd><p>The buffer to read from.</p>
+<dt><strong>buf</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></a></span></dt><dd><p>The buffer to read from.</p>
 </dd>
 </dl>
 </dd>

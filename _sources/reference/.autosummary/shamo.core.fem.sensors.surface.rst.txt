@@ -21,6 +21,7 @@ shamo.core.fem.sensors.surface
       :nosignatures:
    
       CircleSensor
+      RectSensor
       SurfSensorABC
    
    

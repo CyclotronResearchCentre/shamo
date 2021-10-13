@@ -28,6 +28,7 @@ shamo.core.fem.fem.FEM
       ~FEM.add_point_sensors_from_tsv_on
       ~FEM.add_point_sensors_in
       ~FEM.add_point_sensors_on
+      ~FEM.add_rect_sensor_on
       ~FEM.clear
       ~FEM.copy
       ~FEM.field_from_array

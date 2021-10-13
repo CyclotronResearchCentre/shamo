@@ -1,0 +1,32 @@
+shamo.utils.geometry
+====================
+
+.. automodule:: shamo.utils.geometry
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      Plane3D
+   
+   
+
+   
+   
+   
+
+
+

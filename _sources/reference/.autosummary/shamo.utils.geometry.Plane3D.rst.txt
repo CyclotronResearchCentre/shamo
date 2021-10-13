@@ -1,0 +1,28 @@
+shamo.utils.geometry.Plane3D
+============================
+
+.. currentmodule:: shamo.utils.geometry
+
+.. autoclass:: Plane3D
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~Plane3D.abs_dist
+      ~Plane3D.dist
+      ~Plane3D.to_2d
+      ~Plane3D.to_3d
+   
+   
+
+   
+   
+   

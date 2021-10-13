@@ -39,6 +39,7 @@ shamo.core.fem.sensors.abc.SensorABC
    
       ~SensorABC.TYPE_CIRCLE
       ~SensorABC.TYPE_POINT
+      ~SensorABC.TYPE_RECT
       ~SensorABC.mesh_coords
       ~SensorABC.real_coords
       ~SensorABC.sensor_type

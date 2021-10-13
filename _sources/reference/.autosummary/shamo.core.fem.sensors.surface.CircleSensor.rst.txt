@@ -39,6 +39,7 @@ shamo.core.fem.sensors.surface.CircleSensor
    
       ~CircleSensor.TYPE_CIRCLE
       ~CircleSensor.TYPE_POINT
+      ~CircleSensor.TYPE_RECT
       ~CircleSensor.mesh_coords
       ~CircleSensor.radius
       ~CircleSensor.real_coords

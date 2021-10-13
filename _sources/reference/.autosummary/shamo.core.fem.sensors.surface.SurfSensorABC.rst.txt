@@ -39,6 +39,7 @@ shamo.core.fem.sensors.surface.SurfSensorABC
    
       ~SurfSensorABC.TYPE_CIRCLE
       ~SurfSensorABC.TYPE_POINT
+      ~SurfSensorABC.TYPE_RECT
       ~SurfSensorABC.mesh_coords
       ~SurfSensorABC.real_coords
       ~SurfSensorABC.sensor_type

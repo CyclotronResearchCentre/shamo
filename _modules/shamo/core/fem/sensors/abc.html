@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>shamo.core.fem.sensors.abc &mdash; shamo 1.1.0 documentation</title>
+  <title>shamo.core.fem.sensors.abc &mdash; shamo 1.2.0 documentation</title>
   
 
   
@@ -203,6 +203,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.html">shamo.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.geometry.html">shamo.utils.geometry</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.geometry.Plane3D.html">shamo.utils.geometry.Plane3D</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.logging.html">shamo.utils.logging</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.logging.stream_to_logger.html">shamo.utils.logging.stream_to_logger</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../reference/.autosummary/shamo.utils.logging.subprocess_to_logger.html">shamo.utils.logging.subprocess_to_logger</a></li>
@@ -309,6 +313,7 @@
 
     <span class="n">TYPE_POINT</span> <span class="o">=</span> <span class="s2">&quot;point&quot;</span>
     <span class="n">TYPE_CIRCLE</span> <span class="o">=</span> <span class="s2">&quot;circle&quot;</span>
+    <span class="n">TYPE_RECT</span> <span class="o">=</span> <span class="s2">&quot;rect&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">sensor_type</span><span class="p">,</span> <span class="n">real_coords</span><span class="p">,</span> <span class="n">mesh_coords</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
@@ -367,11 +372,12 @@
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">sensor_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="kn">from</span> <span class="nn">.point</span> <span class="kn">import</span> <span class="n">PointSensor</span>
-        <span class="kn">from</span> <span class="nn">.surface</span> <span class="kn">import</span> <span class="n">CircleSensor</span>
+        <span class="kn">from</span> <span class="nn">.surface</span> <span class="kn">import</span> <span class="n">CircleSensor</span><span class="p">,</span> <span class="n">RectSensor</span>
 
         <span class="n">sensor_types</span> <span class="o">=</span> <span class="p">{</span>
             <span class="n">SensorABC</span><span class="o">.</span><span class="n">TYPE_POINT</span><span class="p">:</span> <span class="n">PointSensor</span><span class="p">,</span>
             <span class="n">SensorABC</span><span class="o">.</span><span class="n">TYPE_CIRCLE</span><span class="p">:</span> <span class="n">CircleSensor</span><span class="p">,</span>
+            <span class="n">SensorABC</span><span class="o">.</span><span class="n">TYPE_RECT</span><span class="p">:</span> <span class="n">RectSensor</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">sensor_types</span><span class="p">[</span><span class="n">sensor_type</span><span class="p">](</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 </pre></div>
