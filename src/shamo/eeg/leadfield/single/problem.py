@@ -1,29 +1,31 @@
 """Implement the `ProbEEGLeadfield` class."""
 import logging
+import shutil
+import os
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-import gmsh
 import h5py
 import nibabel as nib
 import numpy as np
 from scipy.sparse import csc_matrix
 
+import gmsh
 from shamo.core.problems.single import (
-    ProbGetDP,
     CompFilePath,
     CompGridSampler,
-    CompTissueProp,
     CompSensors,
+    CompTissueProp,
     CompTissues,
+    ProbGetDP,
 )
 from shamo.utils.onelab import (
-    gmsh_open,
-    read_vector_file,
     get_elems_coords,
     get_elems_subset,
-    pos_to_nii,
+    gmsh_open,
+    read_vector_file,
 )
+
 from .solution import SolEEGLeadfield
 
 logger = logging.getLogger(__name__)
@@ -98,7 +100,7 @@ class ProbEEGLeadfield(ProbGetDP):
                 self._source["sensors"] = [s]
                 break
 
-        with TemporaryDirectory() as d:
+        with TemporaryDirectory(dir=os.environ.get("SHAMO_TMP_DIR", None)) as d:
             if self.min_elems_dist > 0:
                 with gmsh_open(model.mesh_path, logger) as gmsh:
                     entities = []
@@ -109,7 +111,9 @@ class ProbEEGLeadfield(ProbGetDP):
                 self.elems_path.set(Path(d) / "source_sp.npz")
             self._check_components(**model)
             sensors = self._gen_rhs(model, d)
-            self._gen_pro_file(d, **kwargs, **model, active_sensors=sensors)
+            problem_path = self._gen_pro_file(
+                d, **kwargs, **model, active_sensors=sensors
+            )
             self._run_getdp(model, d)
             src = Path(d) / f"{name}.hdf5"
             if self.elems_path.use_path:
@@ -139,7 +143,8 @@ class ProbEEGLeadfield(ProbGetDP):
                 use_grid=self.grid.use_grid,
             )
             sol["model_json_path"] = str(sol.get_relative_path(model.json_path))
-            Path.rename(src, sol.matrix_path)
+            shutil.move(str(src), str(sol.matrix_path))
+            shutil.move(str(problem_path), str(sol.path / f"{name}.pro"))
             if self.grid.use_grid:
                 source_sp.to_filename(sol.source_sp_path)
             else:
@@ -170,7 +175,7 @@ class ProbEEGLeadfield(ProbGetDP):
         """
         tmp_dir = Path(tmp_dir)
         if self.grid.use_grid:
-            img = self.grid.nii_from_pos(tmp_dir / f"{i}.pos", tmp_dir / f"{i}.nii")
+            img = self.grid.nii_from_pos(tmp_dir / f"{i}.pos", tmp_dir / f"{i}.nii.gz")
             row = img.get_fdata()[self.grid.mask].ravel()
             if i == 0:
                 source_sp = nib.Nifti1Image(

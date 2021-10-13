@@ -1,17 +1,18 @@
 """Implement the `ProbGetDP` class."""
-from abc import abstractproperty, abstractmethod
 import logging
-from pathlib import Path
 import re
-from subprocess import CalledProcessError, Popen, PIPE, STDOUT
+from abc import abstractmethod, abstractproperty
+from pathlib import Path
+from subprocess import PIPE, STDOUT, CalledProcessError, Popen
 
-from jinja2 import Environment, PackageLoader
 import numpy as np
+from jinja2 import Environment, PackageLoader
+
+from shamo.utils.logging import subprocess_to_logger
+from shamo.utils.onelab import LOG_PATTERN
 
 from .abc import ProbABC
 from .components.tissue_property import CompTissueProp
-from shamo.utils.logging import subprocess_to_logger
-from shamo.utils.onelab import LOG_PATTERN
 
 logger = logging.getLogger(__name__)
 
@@ -79,6 +80,11 @@ class ProbGetDP(ProbABC):
         ----------
         tmp_dir : str, byte or os.PathLike
             The path to the directory the PRO file must be created in.
+
+        Returns
+        -------
+        pathlib.Path
+            The path to the temporary problem file.
         """
         logger.info("Generating problem file.")
         env = Environment(loader=PackageLoader("shamo", "templates/pro"))
@@ -87,6 +93,7 @@ class ProbGetDP(ProbABC):
         logger.debug(content)
         with open(Path(tmp_dir) / "problem.pro", "w") as f:
             f.write(content)
+        return Path(tmp_dir) / "problem.pro"
 
     def _run_getdp(self, model, tmp_dir):
         """Run GetDP to solve the PRO file.

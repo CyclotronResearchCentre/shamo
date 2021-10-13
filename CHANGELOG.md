@@ -2,6 +2,26 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [1.2.0] - 21-10-13
+
+### Added
+
+- Added rectangular electrodes for tDCS.
+
+### Fixed
+
+- Fixed field interpolation. Before, the only case in which field interpolation worked was when the field was aligned with the structural image used to generate the mesh. Now, it works no matter the orientation of the field.
+- Fixed template embedding in the package. It looks like, before, template files were not included in the package/not accessible.
+- Fixed moving file between different drives. Shamo now uses `shutil` to perform this action.
+- Fixed `None` mask in grid conversion.
+
+### Changed
+
+- All `.nii` files are now `.nii.gz` files.
+- HD-tDCS solutions now contain the raw GetDP results so that it is possible to regenerate the `.pos` files. This allows the user to only keep the files of interest while still having the ability to get the others back if needed.
+
 ## [1.1.1] - 21-06-01
 
 ### Fixed

@@ -4,7 +4,7 @@ from .field import Field
 from .tissue import Tissue
 from .sensors.abc import SensorABC
 from .sensors.point import PointSensor
-from .sensors.surface import SurfSensorABC, CircleSensor
+from .sensors.surface import SurfSensorABC, CircleSensor, RectSensor
 
 from .fem import FEM
 
@@ -17,4 +17,5 @@ __all__ = [
     "PointSensor",
     "SurfSensorABC",
     "CircleSensor",
+    "RectSensor",
 ]

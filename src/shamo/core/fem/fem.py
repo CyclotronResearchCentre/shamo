@@ -1,8 +1,8 @@
 """Implement the `FEM` class."""
-import copy
 import logging
 from collections.abc import Iterable, Mapping
 from functools import partialmethod
+import os
 from pathlib import Path
 from pprint import pformat
 from tempfile import TemporaryDirectory
@@ -19,7 +19,7 @@ import pygalmesh as cgal
 from shamo.core.objects import ObjDir
 from shamo.utils.onelab import gmsh_open
 
-from . import CircleSensor, Field, Group, PointSensor, SensorABC, Tissue
+from . import CircleSensor, Field, Group, PointSensor, RectSensor, SensorABC, Tissue
 
 logger = logging.getLogger(__name__)
 
@@ -59,7 +59,7 @@ class FEM(ObjDir):
         pathlib.Path
             The path to the NIFTI file.
         """
-        return self.path / f"{self.name}.nii"
+        return self.path / f"{self.name}.nii.gz"
 
     @property
     def affine(self):
@@ -215,7 +215,7 @@ class FEM(ObjDir):
         labels = cropped_img.get_fdata().astype(np.uint16)
         affine = cropped_img.affine
 
-        with TemporaryDirectory() as d:
+        with TemporaryDirectory(dir=os.environ.get("SHAMO_TMP_DIR", None)) as d:
             self._gen_init_mesh(labels, np.eye(4), d, **kwargs)
             self._apply_transform(affine, d)
             self._add_tissues(tissues, d)
@@ -534,7 +534,7 @@ class FEM(ObjDir):
             If argument `lc` is a dictionary, does not contain all the tissues and have
             no ``default`` key.
         """
-        with TemporaryDirectory() as d:
+        with TemporaryDirectory(dir=os.environ.get("SHAMO_TMP_DIR", None)) as d:
             oredered_tissues = self._gen_mesh_from_surfaces(tissues, structure, lc, d)
             self._add_tissues(oredered_tissues, d)
         self.save()
@@ -594,6 +594,9 @@ class FEM(ObjDir):
             gmsh.model.mesh.field.setNumbers(mesh_size, "FieldsList", restricts)
             gmsh.model.mesh.field.setAsBackgroundMesh(mesh_size)
             gmsh.model.mesh.generate(3)
+            gmsh.model.mesh.removeDuplicateNodes()
+            gmsh.option.setNumber("Mesh.Binary", 1)
+            gmsh.model.mesh.reclassifyNodes()
             gmsh.write(str(Path(tmp_dir) / "init_mesh.msh"))
         logger.info("Initial mesh generated.")
         return oredered_tissues
@@ -750,7 +753,7 @@ class FEM(ObjDir):
         data = np.genfromtxt(
             tsv_path, delimiter="\t", skip_header=1, dtype=None, encoding="utf-8"
         )
-        coords = {d[0]: [d[1], d[2], d[3]] for d in data}
+        coords = {str(d[0]): [float(d[1]), float(d[2]), float(d[3])] for d in data}
         logger.info(f"{len(coords)} sensors coordinates extracted from '{tsv_path}'.")
         logger.debug(pformat(coords))
         return self.add_point_sensors(coords, tissue, dim)
@@ -910,10 +913,147 @@ class FEM(ObjDir):
         data = np.genfromtxt(
             tsv_path, delimiter="\t", skip_header=1, dtype=None, encoding="utf-8"
         )
-        coords = {d[0]: [d[1], d[2], d[3]] for d in data}
+        coords = {str(d[0]): [float(d[1]), float(d[2]), float(d[3])] for d in data}
         logger.info(f"{len(coords)} sensors coordinates extracted from '{tsv_path}'.")
         logger.debug(pformat(coords))
         return self.add_circle_sensors_on(coords, tissue, radius)
+
+    def add_rect_sensor_on(self, name, coords, axis, tissue, shape):
+        """Add a rectangular sensor on a surface.
+
+        Parameters
+        ----------
+        name : str
+            The name of the sensor.
+        coords : tuple [float, float, float]
+            The coordinates of the center of the sensor in the subject space. It
+            corresponds to the origin of the plane used to model the sensor.
+        axis : tuple [Iterable [float]]
+            The eigen vectors of the plane. the first is used for the width and the
+            second for the height of the rectangle.
+        tissue : str
+            The name of the tissue the sensor must be added on.
+        shape : tuple [float, float]
+            The width and height of the rectangle [m].
+
+        Raises
+        ------
+        ValueError
+            If a sensor with name `name` already exists.
+            If the coordinates are not a 3D location.
+            If the tissue `tissue` does not exist in the model.
+        TypeError
+            If the argument `coords` is not of the right type.
+        """
+        from shamo.utils.geometry import Plane3D
+
+        if name in self.sensors:
+            raise ValueError(f"Sensor '{name}' already exists in model.")
+        if not isinstance(coords, (Iterable, np.ndarray)):
+            raise TypeError("Argument 'coords' expects type Iterable or numpy.ndarray.")
+        if len(coords) != 3:
+            raise ValueError("Argument 'coords' must be a 3D coordinate.")
+        coords = tuple([1e-3 * c for c in coords])
+        if tissue not in self.tissues:
+            raise ValueError(f"Tissue '{tissue}' not found in model.")
+
+        # WARNING: Only works with triangles, with single entity physical surfaces.
+        plane = Plane3D(coords, axis[0], axis[1])
+        surf = self.tissues[tissue].surf
+        shape = np.array(shape)
+        gmsh.initialize()
+        gmsh.option.setNumber("General.Terminal", 1)
+        gmsh.open(str(self.mesh_path))
+        nodes_tags, nodes_coords = self._get_tissue_nodes(tissue, 2)
+        # Get closest node
+        dist = cdist([coords], nodes_coords).ravel()
+        min_dist_idx = np.argmin(dist)
+        node_tag = nodes_tags[min_dist_idx]
+        mesh_coords = nodes_coords[min_dist_idx, :]
+        # Get surface elements
+        elems_type, elems_tags, elems_nodes_tags = gmsh.model.mesh.getElements(
+            2, surf.entities[0]
+        )
+        elems_type = elems_type[0]
+        elems_tags = elems_tags[0]
+        elems_nodes_tags = elems_nodes_tags[0].reshape((-1, 3))
+        elems_coords = gmsh.model.mesh.getBarycenters(
+            elems_type, surf.entities[0], False, False
+        ).reshape((-1, 3))
+        # Keep only points that are inside the rectangle
+        elems_coords_2d = plane.to_2d(elems_coords)
+        mask = np.apply_along_axis(
+            lambda c: np.all(np.abs(c) < shape / 2), 1, elems_coords_2d
+        )
+        valid_elems_tags, elems_coords = (elems_tags[mask], elems_coords[mask])
+        valid_elems_nodes_tags = elems_nodes_tags[mask].ravel()
+        logger.debug(f"{valid_elems_tags.size} elements close to the plane.")
+        # Only keep elements directly connected to closest node
+        valid_elems_repeated = valid_elems_tags.repeat((3,))
+        nodes_to_check = [node_tag]
+        elems = []
+        nodes = []
+        while nodes_to_check:
+            current = nodes_to_check.pop(0)
+            nodes.append(current)
+            mask = valid_elems_nodes_tags == current
+            connected_elems = valid_elems_repeated[mask]
+            for e_t in connected_elems:
+                elems.append(e_t)
+                mask = valid_elems_repeated == e_t
+                connected_nodes = valid_elems_nodes_tags[mask]
+                for n_t in connected_nodes:
+                    if n_t not in nodes and n_t not in nodes_to_check:
+                        nodes_to_check.append(n_t)
+                valid_elems_repeated = np.delete(valid_elems_repeated, mask)
+                valid_elems_nodes_tags = np.delete(valid_elems_nodes_tags, mask)
+        mask = np.in1d(elems_tags, elems, assume_unique=True)
+        valid_elems_tags = elems_tags[mask]
+        valid_elems_nodes_tags = elems_nodes_tags[mask, :].ravel()
+        logger.debug(f"{valid_elems_tags.size} valid elements.")
+        # Add surface sensor
+        surf_entity = gmsh.model.addDiscreteEntity(2)
+        gmsh.model.mesh.addElements(
+            2, surf_entity, [elems_type], [valid_elems_tags], [valid_elems_nodes_tags],
+        )
+        max_group = np.max([t for d, t in gmsh.model.getPhysicalGroups()])
+        surf_group = gmsh.model.addPhysicalGroup(2, [surf_entity], max_group + 1)
+        gmsh.model.setPhysicalName(2, surf_group, name)
+        # Remove elements from the tissue
+        new_entity = gmsh.model.addDiscreteEntity(2)
+        gmsh.model.mesh.addElements(
+            2,
+            new_entity,
+            [elems_type],
+            [elems_tags[~mask]],
+            [elems_nodes_tags[~mask, :].ravel()],
+        )
+        gmsh.model.removeEntities([(2, surf.entities[0])])
+        try:
+            gmsh.model.removePhysicalGroups([(2, surf.group)])
+        except:
+            pass
+        gmsh.model.removePhysicalName(tissue)
+        g = gmsh.model.addPhysicalGroup(2, [new_entity], surf.group)
+        gmsh.model.setPhysicalName(2, surf.group, tissue)
+        gmsh.model.setPhysicalName(3, self.tissues[tissue].vol.group, tissue)
+        gmsh.model.mesh.removeDuplicateNodes()
+        gmsh.model.mesh.reclassifyNodes()
+        gmsh.option.setNumber("Mesh.Binary", 1)
+        gmsh.write(str(self.mesh_path))
+        gmsh.finalize()
+        sensor = RectSensor(
+            tissue,
+            coords,
+            mesh_coords,
+            Group(2, [surf_entity], surf_group),
+            shape[0],
+            shape[1],
+        )
+        self.tissues[tissue].surf["entities"] = [new_entity]
+        self.sensors[name] = sensor
+        self.save()
+        logger.info(f"Sensor '{name}' added.")
 
     def _get_tissue_nodes(self, tissue, dim):
         """Return all the nodes of the tissue in specified dimensio entities."""
@@ -1118,9 +1258,8 @@ class FEM(ObjDir):
         if tissue not in self.tissues:
             raise KeyError(f"Tissue '{tissue}' not found in model.")
 
-        coords = self._get_field_coords(field.shape, affine)
         elems_tags, elems_vals = self._interp_field(
-            tissue, coords, field, "nearest" if nearest else "linear", fill_val
+            tissue, field, affine, "nearest" if nearest else "linear", fill_val
         )
         return self.field_from_elems(
             name, tissue, elems_tags, elems_vals, fill_val, formula
@@ -1232,23 +1371,17 @@ class FEM(ObjDir):
         )
         return view
 
-    def _get_field_coords(self, shape, affine):
-        """Convert cell indices into real coordinates."""
-        flat_idx = np.arange(np.prod(shape[:3]))
-        idx = np.vstack(np.unravel_index(flat_idx, shape[:3])).T
-        coords = nib.affines.apply_affine(affine, idx)
-        return coords
-
-    def _interp_field(self, tissue, coords, field, method, fill_val):
+    def _interp_field(self, tissue, field, affine, method, fill_val):
         """Interpolate a field on a mesh grid."""
-        x = np.unique(coords[:, 0])
-        y = np.unique(coords[:, 1])
-        z = np.unique(coords[:, 2])
+        x = np.arange(field.shape[0])
+        y = np.arange(field.shape[1])
+        z = np.arange(field.shape[2])
         interpolate = RegularGridInterpolator(
             (x, y, z), field, method=method, bounds_error=False, fill_value=fill_val
         )
         with gmsh_open(self.mesh_path, logger) as gmsh:
             elems_tags = self._get_tissue_vol_elems(tissue)
             elems_coords = self._get_tissue_vol_elems_coords(tissue)
-        elems_vals = interpolate(elems_coords)
+        inv_affine = np.linalg.inv(affine)
+        elems_vals = interpolate(nib.affines.apply_affine(inv_affine, elems_coords))
         return elems_tags, elems_vals
