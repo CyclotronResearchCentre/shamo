@@ -51,6 +51,23 @@ You can contribute to *shamo* in several ways like adding new features, fixing b
 
 For more information, refer to [this document](CONTRIBUTING.md).
 
+### How to cite?
+
+If you use *shamo* in your work, please cite [this paper](https://doi.org/10.1007/s12021-022-09574-7) (Available in open access on both [Orbi](https://hdl.handle.net/2268/288747) and [Arxiv](https://arxiv.org/abs/2103.08164)):
+```bib
+@article{grignard_shamo_2022,
+	title = {Shamo: A Tool for Electromagnetic Modeling, Simulation and Sensitivity} {Analysis of the Head},
+	issn = {1559-0089},
+	shorttitle = {Shamo},
+	doi = {10.1007/s12021-022-09574-7},
+	language = {en},
+	journal = {Neuroinformatics},
+	author = {Grignard, Martin and Geuzaine, Christophe and Phillips, Christophe},
+	month = mar,
+	year = {2022},
+}
+```
+
 ## License
 
 Copyright (C) 2020 [GIGA CRC In-Vivo Imaging](https://www.giga.uliege.be/cms/c_5634375/fr/giga-in-vivo-imaging), Liège, Belgium
