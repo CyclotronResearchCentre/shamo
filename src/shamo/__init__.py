@@ -4,7 +4,7 @@ import warnings
 from shamo.core.distributions import *
 from shamo.core.fem import *
 
-__version__ = "1.2.0"
+__version__ = "1.2.1"
 
 # Remove unnecessary warnings
 warnings.filterwarnings("ignore", category=RuntimeWarning, lineno=521)

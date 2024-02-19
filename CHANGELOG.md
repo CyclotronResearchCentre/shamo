@@ -4,6 +4,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [1.2.1] - 24-02-19
+
+### Fixed
+
+- Fixed broadcast error when checking for empty affine matrix or shape vector in the grid sampler.
+
 ## [1.2.0] - 21-10-13
 
 ### Added
