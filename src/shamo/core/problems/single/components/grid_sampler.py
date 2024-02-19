@@ -43,7 +43,9 @@ class CompGridSampler(CompABC):
         bool
             Return ``True`` if the grid can be used, ``False`` otherwise.
         """
-        return True if self["affine"] != [] and self["shape"] != [] else False
+        has_affine = np.array(self["affine"]).size != 0
+        has_shape = np.array(self["shape"]).size != 0
+        return has_affine and has_shape
 
     @property
     def affine(self):
